@@ -62,8 +62,8 @@
 
                         <div class="contact-li">
                             <h3>Contact</h3>
-                            <li class="text-center">   <span class="contact-item"><i class="icon-phone"></i> <span class="contatct-span-style"> <a href="tel:(+94) 71 351 1350">  (+94) 71 351 1350</a></span></span></li>
-                            <li class="text-center">   <span class="contact-item"><i class="icon-phone"></i> <span class="contatct-span-style"><a href="(+94) 81 314 4500">   (+94) 81 314 4500</a></span></span></li>
+                            <li class="text-center">   <span class="contact-item"><i class="icon-phone"></i> <span class="contatct-span-style" style="color:white;"> <a href="tel:(+94) 71 351 1350">  (+94) 71 351 1350</a></span></span></li>
+                            <li class="text-center">   <span class="contact-item"><i class="icon-phone"></i> <span class="contatct-span-style" style="color:white;"><a href="(+94) 81 314 4500">   (+94) 81 314 4500</a></span></span></li>
                         </div>
                         <div class="contact-li">
                             <h3>Email</h3>

@@ -68,7 +68,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             }
                                         } else {
                                             ?> 
-                                            <b style="padding-left: 15px;">No Attrations in the database.</b> 
+                                            <b style="padding-left: 15px;">No Package in the database.</b> 
                                         <?php } ?> 
 
                                     </div>

@@ -68,41 +68,38 @@ include './main-fuction.php';
                     <div class="contact-form">
                         <div class="row">
                             <div class="col-sm-6 col-xs-12">
-                                <input type="text" name="date1" id="date1" class="form-control" data-select="date"  placeholder="Pick Up date">
+                                <input type="text" id="date1"   class="form-control date" data-select="date"  placeholder="Pick Up date">
 
                             </div>
                             <div class="col-sm-6 col-xs-12">
-                                <input class="timepicker1" type="text" name="timepicker1"  style="padding-left: 10px" placeholder="Pick up time">
+                                <select  >
+                                    <option> -- Pick up location --</option>
+                                    <option> -- Pick up location --</option>
+                                    <option> -- Pick up location --</option>
+                                </select>                 
+                            </div>  
 
-                            </div> 
-
-                            <div class="col-sm-12 col-xs-12">
-                                <input type="text" name="txtSubject"  id="txtSubject" class="form-control input-validater" placeholder="Pick up location">
-
-                            </div>
-                            <div class="col-sm-12 col-xs-8 col-md-9"> 
-                                <div class="inc">
-                                    <div class="controls"> 
-                                        <input type="text" class="form-control data-val" name="text" placeholder="text" /> 
-                                    </div>
-                                </div> 
-                            </div>
-                            <div  class="col-md-3">
-                                <div class="value-data">
-                                    
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-xs-4 col-md-3"> 
-                                <button type="submit"  class="btn btn-style-3 submit" id="append" name="append"> + ADD Location</button>
-                            </div>
-                            <div class="col-sm-12 col-xs-6 col-md-6">
-                                <input type="text" name="txtSubject"  id="txtSubject" class="form-control input-validater" placeholder="Drop off location">
-                            </div>
                             <div class="col-sm-6 col-xs-12 col-md-6">
-                                <input class="timepicker1" type="text" name="timepicker1"  style="padding-left: 10px" placeholder="Drop off time"/>
+                                <input class="timepicker1" type="text" name="timepicker1"  style="padding-left: 10px" placeholder="Pick up time"/>
+
+                            </div> 
+                            <div class="col-sm-6 col-xs-12">
+                                <input type="text" id="date2" class="form-control date" data-select="date"  placeholder="Return date">
 
                             </div> 
 
+                            <div class="col-sm-12 col-xs-6 col-md-6">
+                                <select  >
+                                    <option> -- Return   location --</option>
+                                    <option> -- Return   location --</option>
+                                    <option> -- Return   location --</option>
+                                </select>               
+                            </div>
+
+                            <div class="col-sm-6 col-xs-12 col-md-6">
+                                <input class="timepicker1" type="text" name="timepicker1"  style="padding-left: 10px" placeholder="Return time"/>
+
+                            </div>
                             <div class="col-sm-12 col-xs-12">
                                 <div class="row form-group">
                                     <div class="col-sm-6 col-xs-12">
@@ -137,7 +134,12 @@ include './main-fuction.php';
 
                 </div>
             </div>
-        </div> 
+        </div>
+
+
+
+
+
         <!-- - - - - - - - - - - - - end Content - - - - - - - - - - - - - - - -->
 
         <!-- - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
@@ -174,26 +176,19 @@ include './main-fuction.php';
         $('.btn-date').on('click', function (e) {
             e.preventDefault();
             $.dateSelect.show({
-                element: 'input[name="date2"]'
+                element: 'input[id="date1"]',
+
+            });
+        });
+
+        $('.btn-date').on('click', function (e) {
+            e.preventDefault();
+            $.dateSelect.show({
+                element: 'input[id="date2"]',
+
             });
         });
         $('.timepicker1').timepicki();
-
-
-        jQuery(document).ready(function () {
-            $("#append").click(function () { 
-                 
-                   
-                $(".inc").append('<div class="controls col-md-3">  <a href="#" class="remove_this btn btn-xs btn-danger">remove</a>  </div>');
-                return false;
-            });
-
-            jQuery(document).on('click', '.remove_this', function () {
-                jQuery(this).parent().remove();
-                return false;
-            }); 
-        });
-
     </script>
 </body>
 </html>

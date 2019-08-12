@@ -49,7 +49,7 @@ $Contact2 = new Page(9);
                             <li ><a href="price.php">Rates</a> </li>
                             <li class=""> <a href="travel.php">Travel</a>  </li>
                             <li ><a href="contact.php">Contact</a> </li>
-                            <li ><a href="packages.php">Book Now</a> </li>
+                            <li style="background-color: beige;"><a href="packages.php">Book Now</a> </li>
                         </ul>
                     </nav>
                 </div>
