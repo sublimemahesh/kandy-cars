@@ -11,15 +11,15 @@
 class Database {
 
     
-    private $host = 'localhost';
-    private $name = 'gallnwxt_kandyrentcar';
-    private $user = 'gallnwxt_kandyrentcar';
-    private $password = 'kandyrentcar@Sublime123';
-     
 //    private $host = 'localhost';
-//    private $name = 'kandy_car';
-//    private $user = 'root';
-//    private $password = '';
+//    private $name = 'gallnwxt_kandyrentcar';
+//    private $user = 'gallnwxt_kandyrentcar';
+//    private $password = 'kandyrentcar@Sublime123';
+     
+    private $host = 'localhost';
+    private $name = 'kandy-rent-car';
+    private $user = 'root';
+    private $password = '';
 
     public function __construct() {
         mysql_connect($this->host, $this->user, $this->password) or die("Invalid host  or user details");

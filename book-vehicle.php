@@ -80,7 +80,7 @@ include './main-fuction.php';
                                 </div> 
 
                                 <div class="model-info  pull-left" style="  padding-bottom:12px;">
-                                    <div ><a href="<?php echo actual_link(); ?>contact-us/" class="btn-2">Inquiry</a></div>
+                                    <div ><a href="booking-form.php" class="btn-2">Book Now</a></div>
                                 </div>
                                 <div class="model-info  pull-left " style="margin-left: 10px;  padding-bottom:12px;">
                                     <div ><a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($product['name'])); ?>/" class="btn-2">View</a></div>

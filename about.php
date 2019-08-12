@@ -1,7 +1,6 @@
 <?php
-include_once(dirname(__FILE__) . '/class/include.php');
-
-
+include_once(dirname(__FILE__) . '/class/include.php'); 
+include './main-fuction.php';
 $About = new Page(1);
 $Vission = new Page(7);
 $Mission = new Page(8);
