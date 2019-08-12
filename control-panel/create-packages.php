@@ -7,7 +7,7 @@ include_once(dirname(__FILE__) . '/auth.php');
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Attraction</title>
+        <title>Packages</title>
         <!-- Favicon-->
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -37,7 +37,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2>Create Attraction</h2>
+                                <h2>Create Packages</h2>
                                 <ul class="header-dropdown">
                                     <li class="">
                                         <a href="manage-attraction.php">
@@ -47,7 +47,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                 </ul>
                             </div>
                             <div class="body">
-                                <form class="form-horizontal"  method="post" action="post-and-get/attraction.php" enctype="multipart/form-data"> 
+                                <form class="form-horizontal"  method="post" action="post-and-get/package.php" enctype="multipart/form-data"> 
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">

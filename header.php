@@ -34,13 +34,22 @@ $Contact2 = new Page(9);
                     <nav id="main-navigation" class="main-navigation">
                         <ul id="menu" class="clearfix">
                             <li ><a href="<?php echo actual_link() ?>">Home</a> </li>
-                            <li ><a href="<?php echo actual_link() ?>about-us/">About</a>  </li>
+<!--                            <li ><a href="<?php echo actual_link() ?>about-us/">About</a>  </li>
                             <li ><a href="<?php echo actual_link() ?>services/">Services</a>  </li>
                             <li ><a href="<?php echo actual_link() ?>vehicles/">Vehicles</a>  </li>
                             <li ><a href="<?php echo actual_link() ?>gallery/">Gallery</a>  </li>
                             <li ><a href="<?php echo actual_link() ?>price-list/">Rates</a> </li>
                             <li class=""> <a href="<?php echo actual_link() ?>travel/">Travel</a>  </li>
-                            <li ><a href="<?php echo actual_link() ?>contact-us">Contact</a> </li>
+                            <li ><a href="<?php echo actual_link() ?>contact-us">Contact</a> </li>-->
+                            
+                            <li ><a href="about.php">About</a>  </li>
+                            <li ><a href="service.php">Services</a>  </li>
+                            <li ><a href="vehicle.php">Vehicles</a>  </li>
+                            <li ><a href="gallery.php">Gallery</a>  </li>
+                            <li ><a href="price.php">Rates</a> </li>
+                            <li class=""> <a href="travel.php">Travel</a>  </li>
+                            <li ><a href="contact.php">Contact</a> </li>
+                            <li ><a href="packages.php">Book Now</a> </li>
                         </ul>
                     </nav>
                 </div>
