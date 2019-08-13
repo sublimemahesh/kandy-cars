@@ -18,9 +18,8 @@ google.maps.event.addListener(pickupAutocomplete, 'place_changed', function () {
 
 $(document).ready(function () {
 
-    jQuery('#pickup-date, #drop-date, #search-to-date').datetimepicker();
-
-
+    jQuery('#pickup-date, #drop-date, #search-to-date').datetimepicker(); 
+    
     google.maps.event.addListener(returnAutocomplete, 'place_changed', function () {
         var originId = $('#origin').val();
 

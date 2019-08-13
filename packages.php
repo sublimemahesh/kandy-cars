@@ -65,7 +65,7 @@ $id = $_GET['id'];
                             </a>
                             <div class="product-description no-rating">
                                 <h4 class="product-name"><a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($package['title'])); ?>/"><?php echo $package["title"]; ?></a></h4>
- 
+
                                 <div class="pricing-area">
                                     <div class="product-price new-price">
 
@@ -82,12 +82,9 @@ $id = $_GET['id'];
                                 </div>
 
                                 <div class="model-info  pull-left" style="  padding-bottom:12px;">
-                                    <div ><a href="booking-form.php" class="btn-2">Book Now</a></div>
+                                    <div ><a href="booking-form.php?id=<?php echo $package['id'] ?>" class="btn-2">Book Now</a></div>
                                 </div>
-                                <div class="model-info  pull-left " style="margin-left: 10px;  padding-bottom:12px;">
-                                    <div ><a href="  " class="btn-2">Decorations</a></div>
 
-                                </div>
                             </div> 
                         </div> 
                     </div>

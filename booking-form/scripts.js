@@ -8,7 +8,7 @@ jQuery(document).ready(function () {
 
     jQuery("#txtPickUpTime").blur(function () {
         validateEmpty("txtPickUpTime", "spanPickUpTime");
-    }); 
+    });
 
     jQuery("#txtEmail").blur(function () {
         ValidateEmail("txtEmail", "spanEmail");
@@ -54,7 +54,7 @@ function validate() {
             validateEmpty("txtPickUpDate", "spanPickUpDate") &
             validateEmpty("txtPickUpTime", "spanPickUpTime") &
             validateEmpty("txtDropOfTime", "spanDropOfTime") &
-            ValidateEmail("txtEmail", "spanEmail") &   
+            ValidateEmail("txtEmail", "spanEmail") &
             validateEmpty("captchacode", "capspan")
             )
     {
@@ -70,6 +70,12 @@ function validate() {
 
 
 function sendForm() {
+
+    var pick_up_location = [];
+    $(".pick_up_location").each(function () {
+        pick_up_location.push($(this).val());
+    });
+     
     jQuery.ajax({
         url: "booking-form/send-email.php",
         cache: false,
@@ -77,12 +83,14 @@ function sendForm() {
         type: "POST",
         data: {
             captchacode: jQuery('#captchacode').val(),
-            visitor_pick_up_location: jQuery('#txtpick_up_location').val(),
+            visitor_vehicle: jQuery('#txtVehicle').val(),
+            visitor_decoration: jQuery('#txtDecoration').val(),
+            visitor_pick_up_location: pick_up_location,
             visitor_Pick_up_date: jQuery('#txtPickUpDate').val(),
             visitor_email: jQuery('#txtEmail').val(),
             visitor_Pick_up_time: jQuery('#txtPickUpTime').val(),
             visitor_Drop_of_time: jQuery('#txtDropOfTime').val()
-          
+
 
         },
         success: function (html) {
@@ -103,7 +111,7 @@ function sendForm() {
                 jQuery('#captchacode').val("");
                 jQuery('#txtPickUpDate').val("");
                 jQuery('#txtEmail').val("");
-                jQuery('#txtPickUpTime').val("");  
+                jQuery('#txtPickUpTime').val("");
                 jQuery('#txtDropOfTime').val("");
             }
 
