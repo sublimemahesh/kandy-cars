@@ -43,8 +43,8 @@ include './main-fuction.php';
     <link href="<?php echo actual_link() ?>css/custom.css" rel="stylesheet" type="text/css"/>
     <link href="css/jquery.dateselect.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link href="css/timepicki.css" rel="stylesheet" type="text/css"/>
-
+    <link href="css/timepicki.css" rel="stylesheet" type="text/css"/>    
+    <link href="booking-form/style.css" rel="stylesheet" type="text/css"/>
 </head>
 
 
@@ -68,66 +68,62 @@ include './main-fuction.php';
                     <div class="contact-form">
                         <div class="row">
                             <div class="col-sm-6 col-xs-12">
-                                <input type="text" name="date1" id="date1" class="form-control" data-select="date"  placeholder="Pick Up date">
-
+                                <input type="text" name="txtPickUpDate" id="txtPickUpDate" class="form-control" data-select="date"  placeholder="Pick Up date">
+                                <span id="spanPickUpDate" ></span> 
                             </div>
                             <div class="col-sm-6 col-xs-12">
-                                <input class="timepicker1" type="text" name="timepicker1"  style="padding-left: 10px" placeholder="Pick up time">
-
+                                <input class="timepicker1" type="text" name="txtPickUpTime"  id="txtPickUpTime" style="padding-left: 10px" placeholder="Pick up time">
+                                <span id="spanPickUpTime" ></span> 
                             </div> 
 
-                            <div class="col-sm-12 col-xs-12">
-                                <input type="text" name="txtSubject"  id="txtSubject" class="form-control input-validater" placeholder="Pick up location">
-
-                            </div>
-                            <div class="col-sm-12 col-xs-8 col-md-9"> 
-                                <div class="inc">
+                            <div class="col-sm-12 col-xs-8 col-md-11"> 
+                                <div class="">
                                     <div class="controls"> 
-                                        <input type="text" class="form-control data-val" name="text" placeholder="text" /> 
+                                        <input type="text" id="origin" class="form-control data-val " name="text" placeholder="Pick up location" autocomplete="off"/> 
                                     </div>
                                 </div> 
                             </div>
-                            <div  class="col-md-3">
-                                <div class="value-data">
-                                    
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-xs-4 col-md-3"> 
-                                <button type="submit"  class="btn btn-style-3 submit" id="append" name="append"> + ADD Location</button>
-                            </div>
-                            <div class="col-sm-12 col-xs-6 col-md-6">
-                                <input type="text" name="txtSubject"  id="txtSubject" class="form-control input-validater" placeholder="Drop off location">
-                            </div>
-                            <div class="col-sm-6 col-xs-12 col-md-6">
-                                <input class="timepicker1" type="text" name="timepicker1"  style="padding-left: 10px" placeholder="Drop off time"/>
 
+                            <div class="col-sm-12 col-xs-4 col-md-1"> 
+                                <button type="submit"  class="btn btn-style-3 btn-sm submit" id="append" name="append" > + </button>
+                            </div>                           
+                            <div  class="col-md-12">
+                                <div class="inc">
+
+                                </div>
+                            </div>  
+
+                            <div class="col-sm-12 col-xs-6 col-md-6">
+                                <input type="text" name=""  id="destination" class="form-control input-validater" placeholder="Drop off location" autocomplete="off" />
+                            </div>
+
+                            <div class="col-sm-6 col-xs-12 col-md-6">
+                                <input class="timepicker1" type="text" name="txtDropOfTime" id="txtDropOfTime" style="padding-left: 10px" placeholder="Drop off time" autocomplete="off"/>
+                                <span id="spanDropOfTime" ></span> 
+                            </div> 
+                            <div class="col-sm-12 col-xs-6 col-md-6">
+                                <input type="text" name="txtEmail" id="txtEmail"  class="form-control input-validater" placeholder="Your Email *">
+                                <span id="spanEmail" ></span> 
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-sm-6 col-xs-12  col-md-3"> 
+                                    <input type="text" name="captchacode" id="captchacode" class="form-control input-validater" placeholder="Enter the Security Code >> ">
+                                    <span id="capspan" ></span> 
+                                </div>   
+                                <div class="col-sm-6 col-xs-12 col-md-3"> 
+                                    <?php include("./booking-form/captchacode-widget.php"); ?> 
+                                </div>  
+
+                                <div class="col-xs-12 col-sm-6">
+                                    <div class="col-sm-4">
+                                        <div class="div-check" >
+                                            <img src="booking-form/img/checking.gif" id="checking"/>
+                                        </div>
+                                    </div>
+                                </div>
                             </div> 
 
-                            <div class="col-sm-12 col-xs-12">
-                                <div class="row form-group">
-                                    <div class="col-sm-6 col-xs-12">
-                                        <br>
-                                        <label for="comment"><span id="star">*</span>Security Code: </label>
-
-                                        <input type="text" name="captchacode" id="captchacode" class="form-control input-validater" placeholder="Enter the Security Code >> ">
-                                        <span id="capspan" ></span> 
-                                    </div>   
-                                    <div class="col-sm-6 col-xs-12"> 
-                                        <?php include("./contact-form/captchacode-widget.php"); ?> 
-                                    </div>  
-
-                                    <div class="col-xs-12 col-sm-6">
-                                        <div class="col-sm-4">
-                                            <div class="div-check" >
-                                                <img src="contact-form/img/checking.gif" id="checking"/>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-8 text-right">
-
-                                        </div> 
-                                    </div>
-                                </div> 
-                            </div>
                             <div class="col-sm-12 col-xs-12">
                                 <button type="submit" id="btnSubmit" class="btn btn-style-3 submit">SEND YOUR MESSAGE</button>
                                 <div id="dismessage" align="center"></div>
@@ -170,30 +166,36 @@ include './main-fuction.php';
     <script src="<?php echo actual_link() ?>contact-form/scripts.js" type="text/javascript"></script>
     <script src="js/jquery.dateselect.min.js" type="text/javascript"></script>
     <script src="js/timepicki.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#append").click(function () {
+                var data_val = $('.data-val').val();
+                $(".inc").append('<div class="controls  col-md-6"><a href="#"> <input type="hidden" name="txtpick_up_location[]" id="txtpick_up_location" value="' + data_val + '  "><p>' + data_val + ' <i class="fa fa-times fa-icion-s remove_this" aria-hidden="true"></i></p> </a> </div>');
+                return false;
+            });
+        });
+    </script>
+
     <script>
         $('.btn-date').on('click', function (e) {
             e.preventDefault();
             $.dateSelect.show({
-                element: 'input[name="date2"]'
+                element: 'input[name="txtPickUpDate"]'
             });
         });
         $('.timepicker1').timepicki();
 
 
-        jQuery(document).ready(function () {
-            $("#append").click(function () { 
-                 
-                   
-                $(".inc").append('<div class="controls col-md-3">  <a href="#" class="remove_this btn btn-xs btn-danger">remove</a>  </div>');
-                return false;
-            });
-
-            jQuery(document).on('click', '.remove_this', function () {
-                jQuery(this).parent().remove();
-                return false;
-            }); 
+        jQuery(document).on('click', '.remove_this', function () {
+            jQuery(this).parent().remove();
+            return false;
         });
 
-    </script>
+    </script> 
+    <script src="booking-form/scripts.js" type="text/javascript"></script>
+    <script src="js/city.js" type="text/javascript"></script>
+
 </body>
 </html>

@@ -66,7 +66,7 @@ $PACKAGE = new Package($id);
                                             </div>
                                         </div>
                                     </div>
-                                     
+
                                     <div class="col-md-12">                                       
                                         <div class="form-group form-float">
                                             <div class="form-line">
@@ -83,10 +83,21 @@ $PACKAGE = new Package($id);
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <label for="description">Description</label>
-                                        <div class="form-line">
-                                            <textarea id="description" name="description" class="form-control" rows="5"><?php echo $PACKAGE->description; ?></textarea> 
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="number" id="charge" class="form-control" autocomplete="off" name="charge" required="true" value="<?php echo $PACKAGE->charge; ?>">
+                                                <label class="form-label">Charge</label>
+                                            </div>
+                                        </div>
+                                    </div> 
+
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="number" id="mileage_limit" class="form-control" autocomplete="off" name="mileage_limit" required="true" value="<?php echo $PACKAGE->mileage_limit; ?>">
+                                                <label class="form-label">Mileage Limit</label>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">

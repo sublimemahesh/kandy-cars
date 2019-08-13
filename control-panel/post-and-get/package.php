@@ -8,9 +8,11 @@ if (isset($_POST['create'])) {
     $VALID = new Validator();
 
 
+    $PACKAGE->vehicle = $_POST['vehicle'];
     $PACKAGE->title = $_POST['title'];
     $PACKAGE->short_description = $_POST['short_description'];
-    $PACKAGE->description = $_POST['description'];
+    $PACKAGE->charge = $_POST['charge'];
+    $PACKAGE->mileage_limit = $_POST['mileage_limit'];
 
     $dir_dest = '../../upload/packages/';
 
@@ -39,7 +41,6 @@ if (isset($_POST['create'])) {
     $VALID->check($PACKAGE, [
         'title' => ['required' => TRUE],
         'short_description' => ['required' => TRUE],
-        'description' => ['required' => TRUE],
         'image_name' => ['required' => TRUE]
     ]);
 
@@ -89,19 +90,18 @@ if (isset($_POST['update'])) {
         }
     }
 
-    $PACKAGE = new Package($_POST['id']);
-
+    $PACKAGE = new Package($_POST['id']); 
 
     $PACKAGE->image_name = $_POST['oldImageName'];
     $PACKAGE->title = $_POST['title'];
     $PACKAGE->short_description = $_POST['short_description'];
-    $PACKAGE->description = $_POST['description'];
+    $PACKAGE->charge = $_POST['charge'];
+    $PACKAGE->mileage_limit = $_POST['mileage_limit'];
 
     $VALID = new Validator();
     $VALID->check($PACKAGE, [
         'title' => ['required' => TRUE],
-        'short_description' => ['required' => TRUE],
-        'description' => ['required' => TRUE],
+        'short_description' => ['required' => TRUE], 
         'image_name' => ['required' => TRUE]
     ]);
 
