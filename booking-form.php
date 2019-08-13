@@ -2,6 +2,9 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
 include './main-fuction.php';
+$id = $_GET['id'];
+$PACKAGE = new Package($id);
+$PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
 ?>
 <html lang="en">
 
@@ -64,7 +67,9 @@ include './main-fuction.php';
         <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
         <div class="container margin-top-50">
             <div class="row"> 
+                <h2 class="text-center"> <?php echo $PRODUCT_TYPE->name ?></h2>
                 <div class="col-md-12 question-form bg-sidebar-item">
+
                     <div class="contact-form">
                         <div class="row">
                             <div class="col-sm-6 col-xs-12">
@@ -101,12 +106,24 @@ include './main-fuction.php';
                                 <input class="timepicker1" type="text" name="txtDropOfTime" id="txtDropOfTime" style="padding-left: 10px" placeholder="Drop off time" autocomplete="off"/>
                                 <span id="spanDropOfTime" ></span> 
                             </div> 
+                            <div class="col-sm-6 col-xs-12 col-md-6">
+                                <select name="txtDecoration" id="txtDecoration">
+                                    <option value="0">-- Please select the decoration --</option>
+                                    <?php
+                                    $DECORATION = new Decoration(NULL);
+                                    foreach ($DECORATION->getDecorationsByVehicle($PACKAGE->vehicle) as $decoration) {
+                                        ?>
+                                        <option value="<?php echo $decoration['name'] ?>"><?php echo $decoration['name'] ?></option>
+                                    <?php } ?>
+                                </select>
+
+                            </div> 
                             <div class="col-sm-12 col-xs-6 col-md-6">
                                 <input type="text" name="txtEmail" id="txtEmail"  class="form-control input-validater" placeholder="Your Email *">
                                 <span id="spanEmail" ></span> 
                             </div>
 
-                            <div class="row form-group">
+                            <div class=" form-group">
                                 <div class="col-sm-6 col-xs-12  col-md-3"> 
                                     <input type="text" name="captchacode" id="captchacode" class="form-control input-validater" placeholder="Enter the Security Code >> ">
                                     <span id="capspan" ></span> 
@@ -125,6 +142,7 @@ include './main-fuction.php';
                             </div> 
 
                             <div class="col-sm-12 col-xs-12">
+                                <input type="hidden" name="txtVehicle" id="txtVehicle" value="<?php echo $PRODUCT_TYPE->name?>" />
                                 <button type="submit" id="btnSubmit" class="btn btn-style-3 submit">SEND YOUR MESSAGE</button>
                                 <div id="dismessage" align="center"></div>
                             </div>
@@ -172,7 +190,7 @@ include './main-fuction.php';
         $(document).ready(function () {
             $("#append").click(function () {
                 var data_val = $('.data-val').val();
-                $(".inc").append('<div class="controls  col-md-6"><a href="#"> <input type="hidden" name="txtpick_up_location[]" id="txtpick_up_location" value="' + data_val + '  "><p>' + data_val + ' <i class="fa fa-times fa-icion-s remove_this" aria-hidden="true"></i></p> </a> </div>');
+                $(".inc").append('<div class="controls  col-md-6"><a href="#"> <input type="hidden" name="txtpick_up_location" class="pick_up_location"  id="txtpick_up_location" value="' + data_val + '  "><p>' + data_val + ' <i class="fa fa-times fa-icion-s remove_this" aria-hidden="true"></i></p> </a> </div>');
                 return false;
             });
         });

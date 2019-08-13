@@ -34,7 +34,7 @@ $PRODUCT_TYPE = new ProductType(NULL);
                         <div class="card">
                             <div class="header">
                                 <h2>
-                                    Add Package
+                                   View all vehicle 
                                 </h2>
                                 <ul class="header-dropdown">
                                     <li>
@@ -61,8 +61,8 @@ $PRODUCT_TYPE = new ProductType(NULL);
                                                     <div class="img-caption">
                                                         <p class="maxlinetitle"><?php echo $product['name']; ?></p> 
                                                         <div class="d">
-                                                            <a href="create-packages.php?id=<?php echo $product['id']; ?>"><button class="glyphicon glyphicon-alert edit-btn"></button></a> | 
-                                                            <a href="create-decoration.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-send arrange-btn"></button></a>
+                                                            <a href="create-packages.php?id=<?php echo $product['id']; ?>"><button class="glyphicon glyphicon-briefcase edit-btn" title="Add Packages"></button></a> | 
+                                                            <a href="create-decoration.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-send arrange-btn" title="Add Decoration"></button></a>
                                                         </div>
                                                     </div>
                                                 </div>

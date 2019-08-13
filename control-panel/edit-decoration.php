@@ -5,14 +5,14 @@ $id = '';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
-$PRODUCT_TYPE = new ProductType($id);
+$DECORATION = new Decoration($id);
 ?>
 <!DOCTYPE html>
 <html> 
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Packages</title>
+        <title>DECORATION</title>
         <!-- Favicon-->
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -42,7 +42,7 @@ $PRODUCT_TYPE = new ProductType($id);
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2>Create Decoration -" <?php echo $PRODUCT_TYPE->name ?> "</h2>
+                                <h2>Edit Decoration -" <?php echo $DECORATION->name ?> "</h2>
 
                             </div>
                             <div class="body">
@@ -50,7 +50,7 @@ $PRODUCT_TYPE = new ProductType($id);
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="text" id="name" class="form-control"  autocomplete="off" name="name" required="true">
+                                                <input type="text" id="name" class="form-control"  autocomplete="off" name="name" required="true" value="<?php echo $DECORATION->name?>">
                                                 <label class="form-label">Name</label>
                                             </div>
                                         </div>
@@ -58,8 +58,8 @@ $PRODUCT_TYPE = new ProductType($id);
 
 
                                     <div class="col-md-12"> 
-                                        <input type="hidden" name="vehicle" id="vehicle" value="<?php echo $id ?>">
-                                        <input type="submit" name="create" class="btn btn-primary m-t-15 waves-effect" value="create"/>
+                                        <input type="hidden" name="id" id="id" value="<?php echo $id ?>">
+                                        <input type="submit" name="update" class="btn btn-primary m-t-15 waves-effect" value="update"/>
                                     </div>
                                 </form>
                                 <div class="row">  </div>
@@ -69,66 +69,7 @@ $PRODUCT_TYPE = new ProductType($id);
                     </div>
                 </div>
 
-                <div class="row clearfix">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="card">
-                            <div class="header">
-                                <h2>
-                                    Manage Packages
-                                </h2>
-
-                            </div>
-                            <div class="body">
-                                <!--                                <div class="table-responsive">-->
-
-                                <div>
-                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>   
-                                                <th>Option</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>  
-                                                <th>Option</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-
-                                            <?php
-                                            $DECORATION = new Decoration(NULL);
-                                            foreach ($DECORATION->getDecorationsByVehicle($id) as $key => $decoration) {
-                                                ?>
-                                                <tr id="row_<?php echo $decoration['id']; ?>">
-                                                    <td><?php echo $decoration['id']; ?></td> 
-                                                    <td><?php echo $decoration['name']; ?></td> 
-
-
-                                                    <td> 
-                                                        <a href="edit-decoration.php?id=<?php echo $decoration['id']; ?>" class="op-link btn btn-sm btn-default"><i class="glyphicon glyphicon-pencil"></i></a>  
-                                                        | 
-                                                        <a href="#" class="delete-decoration btn btn-sm btn-danger" data-id="<?php echo $decoration['id']; ?>">
-                                                            <i class="waves-effect glyphicon glyphicon-trash" data-type="cancel"></i>
-                                                        </a>   
-
-                                                    </td>
-                                                </tr>
-                                                <?php
-                                            }
-                                            ?>   
-                                        </tbody>
-                                    </table>
-                                </div> 
-
-                                <!--                                </div>-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              
                 <!-- #END# Vertical Layout -->
 
             </div>
@@ -142,8 +83,8 @@ $PRODUCT_TYPE = new ProductType($id);
         <script src="js/admin.js"></script>
         <script src="js/demo.js"></script>
         <script src="js/add-new-ad.js" type="text/javascript"></script>
-        <script src="plugins/sweetalert/sweetalert.min.js"></script>
-        <script src="delete/js/decoration.js" type="text/javascript"></script>
+
+
         <script src="tinymce/js/tinymce/tinymce.min.js"></script>
         <script>
             tinymce.init({
