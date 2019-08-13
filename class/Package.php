@@ -14,26 +14,30 @@
 class Package {
 
     public $id;
+    public $vehicle;
     public $title;
     public $image_name;
     public $short_description;
-    public $description;
+    public $charge;
+    public $mileage_limit;
     public $queue;
 
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`title`,`image_name`,`short_description`,`description`,`queue` FROM `package` WHERE `id`=" . $id;
+            $query = "SELECT `id`,`vehicle`,`title`,`image_name`,`short_description`,`charge`,`mileage_limit`,`queue` FROM `package` WHERE `id`=" . $id;
 
             $db = new Database();
 
             $result = mysql_fetch_array($db->readQuery($query));
 
             $this->id = $result['id'];
+            $this->vehicle = $result['vehicle'];
             $this->title = $result['title'];
             $this->image_name = $result['image_name'];
             $this->short_description = $result['short_description'];
-            $this->description = $result['description'];
+            $this->charge = $result['charge'];
+            $this->mileage_limit = $result['mileage_limit'];
             $this->queue = $result['queue'];
 
             return $this;
@@ -42,11 +46,13 @@ class Package {
 
     public function create() {
 
-        $query = "INSERT INTO `package` (`title`,`image_name`,`short_description`,`description`,`queue`) VALUES  ('"
+        $query = "INSERT INTO `package` (`vehicle`,`title`,`image_name`,`short_description`,`charge`,`mileage_limit`,`queue`) VALUES  ('"
+                . $this->vehicle . "','"
                 . $this->title . "','"
                 . $this->image_name . "', '"
                 . $this->short_description . "', '"
-                . $this->description . "', '"
+                . $this->charge . "', '"
+                . $this->mileage_limit . "', '"
                 . $this->queue . "')";
 
         $db = new Database();
@@ -76,13 +82,28 @@ class Package {
         return $array_res;
     }
 
+    public function getPackagesByVehicle($id) {
+
+        $query = "SELECT * FROM `package` WHERE `vehicle`=" . $id . " ORDER BY queue ASC";
+        $db = new Database();
+        $result = $db->readQuery($query);
+        $array_res = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            array_push($array_res, $row);
+        }
+
+        return $array_res;
+    }
+
     public function update() {
 
         $query = "UPDATE  `package` SET "
                 . "`title` ='" . $this->title . "', "
                 . "`image_name` ='" . $this->image_name . "', "
                 . "`short_description` ='" . $this->short_description . "', "
-                . "`description` ='" . $this->description . "', "
+                . "`charge` ='" . $this->charge . "', "
+                . "`mileage_limit` ='" . $this->mileage_limit . "', "
                 . "`queue` ='" . $this->queue . "' "
                 . "WHERE `id` = '" . $this->id . "'";
 
@@ -99,7 +120,7 @@ class Package {
 
     public function delete() {
 
-        
+
         unlink(Helper::getSitePath() . "upload/packages/" . $this->image_name);
 
         $query = 'DELETE FROM `package` WHERE id="' . $this->id . '"';
@@ -127,7 +148,7 @@ class Package {
     }
 
     public function arrange($key, $img) {
-        
+
         $query = "UPDATE `package` SET `queue` = '" . $key . "'  WHERE id = '" . $img . "'";
         $db = new Database();
         $result = $db->readQuery($query);

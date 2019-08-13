@@ -1,18 +1,13 @@
 <?php
 include_once(dirname(__FILE__) . '/../class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
-$id = '';
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-}
-$PRODUCT_TYPE = new ProductType($id);
 ?>
 <!DOCTYPE html>
 <html> 
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Packages</title>
+        <title>Booking Category</title>
         <!-- Favicon-->
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -42,8 +37,14 @@ $PRODUCT_TYPE = new ProductType($id);
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2>Create Packages -" <?php echo $PRODUCT_TYPE->name ?> "</h2>
-                                 
+                                <h2>Create Booking Category</h2>
+                                <ul class="header-dropdown">
+                                    <li class="">
+                                        <a href="manage-attraction.php">
+                                            <i class="material-icons">list</i> 
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="body">
                                 <form class="form-horizontal"  method="post" action="post-and-get/package.php" enctype="multipart/form-data"> 
@@ -73,25 +74,14 @@ $PRODUCT_TYPE = new ProductType($id);
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="number" id="charge" class="form-control" autocomplete="off" name="charge" required="true">
-                                                <label class="form-label">Charge</label>
-                                            </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <label for="description">Description</label>
+                                        <div class="form-line">
+                                           <textarea id="description" name="description" class="form-control" rows="5"></textarea> 
                                         </div>
-                                    </div> 
 
-                                    <div class="col-md-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="number" id="mileage_limit" class="form-control" autocomplete="off" name="mileage_limit" required="true">
-                                                <label class="form-label">Mileage Limit</label>
-                                            </div>
-                                        </div>
-                                    </div> 
+                                    </div>
                                     <div class="col-md-12"> 
-                                        <input type="hidden" name="vehicle" id="vehicle" value="<?php echo $id ?>">
                                         <input type="submit" name="create" class="btn btn-primary m-t-15 waves-effect" value="create"/>
                                     </div>
                                 </form>
@@ -102,51 +92,7 @@ $PRODUCT_TYPE = new ProductType($id);
                     </div>
                 </div>
 
-                <div class="row clearfix">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="card">
-                            <div class="header">
-                                <h2>
-                                    Manage Packages
-                                </h2>
 
-                            </div>
-                            <div class="body">
-                                <!--                                <div class="table-responsive">-->
-                                <div>
-                                    <div class="row clearfix">
-                                        <?php
-                                        $PACKAGE = Package::getPackagesByVehicle($id);
-                                        if (count($PACKAGE) > 0) {
-                                            foreach ($PACKAGE as $key => $package) {
-                                                ?>
-                                                <div class="col-md-3"  id="div<?php echo $package['id']; ?>">
-                                                    <div class="photo-img-container">
-                                                        <img src="../upload/packages/<?php echo $package['image_name']; ?>" class="img-responsive ">
-                                                    </div>
-                                                    <div class="img-caption">
-                                                        <p class="maxlinetitle"><?php echo $package['title']; ?></p>
-                                                        <div class="d">
-                                                            <a href="edit-package.php?id=<?php echo $package['id']; ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a> | 
-                                                            <a href="arrange-package.php">  <button class="glyphicon glyphicon-random arrange-btn"></button></a> | 
-                                                            <a href="#"  class="delete-package" data-id="<?php echo $package['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <?php
-                                            }
-                                        } else {
-                                            ?> 
-                                            <b style="padding-left: 15px;">No Category in the database.</b> 
-                                        <?php } ?> 
-
-                                    </div>
-                                </div>
-                                <!--                                </div>-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <!-- #END# Vertical Layout -->
 
             </div>

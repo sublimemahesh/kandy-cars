@@ -56,36 +56,22 @@ include './main-fuction.php';
                 foreach ($PRODUCT as $key => $product) {
                     ?>
                     <!-- Slide -->                  
-                    <div class="col-md-4 ">
+                    <div class="col-md-4 "> 
                         <div class="product" style="margin-bottom:20px;">
-                            <a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($product['name'])); ?>/">
+                            <a href="packages.php?id=<?php echo $product['id']; ?>">
+
+    <!--                            <a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($product['name'])); ?>/">-->
                                 <img src="<?php echo actual_link() ?>upload/product-type/<?php echo $product["image_name"]; ?>" alt="">
+                                <!--</a>-->
                             </a>
                             <div class="product-description no-rating">
-                                <h5 class="product-name"><a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($product['name'])); ?>/"><?php echo $product["name"]; ?></a></h5>
-                                <span>Self Drive</span>            
-                                <div class="pricing-area">
-                                    <div class="product-price new-price">
+                                <h5 class="product-name"><a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($product['name'])); ?>/"><?php echo $product["name"]; ?></a>
 
-                                        <span>Charge Per Day</span>  
-                                        <span style="color:#000;font-size:21px;" >LKR</span>
-                                        <span  style="color:#000;font-size:18px;" ><?php echo $product['sd_charge_per_day']; ?></span> 
-                                    </div>
-                                    <div class="product-price new-price">
-                                        <span> Mileage Limit</span> 
-                                        <span style="color:#000;font-size:21px;" >Km</span>
-                                        <span style="color:#000;font-size:18px;" ><?php echo $product['sd_mileage_limit']; ?></span>
-
-                                    </div>
-                                </div> 
-
-                                <div class="model-info  pull-left" style="  padding-bottom:12px;">
-                                    <div ><a href="booking-form.php" class="btn-2">Book Now</a></div>
+                                </h5>
+                                <div class="model-info  pull-right" style="  padding-bottom:12px;">
+                                    <div ><a href="packages.php?id=<?php echo $product['id']; ?>" class="btn-2">Book Now</a></div>
                                 </div>
-                                <div class="model-info  pull-left " style="margin-left: 10px;  padding-bottom:12px;">
-                                    <div ><a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($product['name'])); ?>/" class="btn-2">View</a></div>
 
-                                </div>
                             </div> 
                         </div> 
                     </div>

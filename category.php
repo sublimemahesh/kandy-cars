@@ -1,8 +1,6 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
 include './main-fuction.php';
-
-$id = $_GET['id'];
 ?>
 <!doctype html>
 <html lang="en">
@@ -53,47 +51,40 @@ $id = $_GET['id'];
         <div class="page-section container " >
             <div class="row">
 
-                <?php
-                $PACKAGE = Package::getPackagesByVehicle($id);
-                foreach ($PACKAGE as $key => $package) {
-                    ?>
-                    <!-- Slide -->                  
-                    <div class="col-md-4 ">
-                        <div class="product" style="margin-bottom:20px;">
-                            <a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($package['title'])); ?>/">
-                                <img src="<?php echo actual_link() ?>upload/packages/<?php echo $package["image_name"]; ?>" alt="">
-                            </a>
-                            <div class="product-description no-rating">
-                                <h4 class="product-name"><a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($package['title'])); ?>/"><?php echo $package["title"]; ?></a></h4>
- 
-                                <div class="pricing-area">
-                                    <div class="product-price new-price">
-
-                                        <span>Charge Per Day</span>  
-                                        <span style="color:#000;font-size:21px;" >LKR</span>
-                                        <span  style="color:#000;font-size:18px;" ><?php echo $package['charge']; ?></span> 
-                                    </div>
-                                    <div class="product-price new-price">
-                                        <span> Mileage Limit</span> 
-                                        <span style="color:#000;font-size:21px;" >Km</span>
-                                        <span style="color:#000;font-size:18px;" ><?php echo $package['mileage_limit']; ?></span>
-
-                                    </div>
-                                </div>
-
-                                <div class="model-info  pull-left" style="  padding-bottom:12px;">
-                                    <div ><a href="booking-form.php" class="btn-2">Book Now</a></div>
-                                </div>
-                                <div class="model-info  pull-left " style="margin-left: 10px;  padding-bottom:12px;">
-                                    <div ><a href="  " class="btn-2">Decorations</a></div>
-
-                                </div>
+                <!-- Slide -->                  
+                <div class="col-md-4 ">
+                    <div class="product" style="margin-bottom:20px;">
+                        <a href="book-vehicle.php">
+                            <img src="upload/packages/-153804160_191049336746_1565603059_n.jpg" alt="">
+                        </a>
+                        <div class="product-description no-rating">
+                            <h4 class="product-name"> VIP and wedding cars  </h4> 
+                            <div class="pricing-area text-justify">
+                                Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator , as well as a random Lipsum generator
+                            </div>   
+                            <div class="model-info  pull-left" style="  padding-bottom:12px;">
+                                <div ><a href="book-vehicle.php" class="btn-2">vehicles</a></div>
                             </div> 
                         </div> 
-                    </div>
-                    <?php
-                }
-                ?>
+                    </div> 
+                </div> 
+                
+                <div class="col-md-4">
+                    <div class="product" style="margin-bottom:20px;">
+                        <a href="book-vehicle-rent-car.php">
+                            <img src="upload/packages/-171018635_191032122271_1565603089_n.jpg" alt="">
+                        </a>
+                        <div class="product-description no-rating">
+                            <h4 class="product-name">Rent a Car  </h4> 
+                            <div class="pricing-area text-justify">
+                                Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator ,as well as a random Lipsum generator
+                            </div>  
+                            <div class="model-info  pull-left" style="  padding-bottom:12px;">
+                                <div ><a href="book-vehicle-rent-car.php" class="btn-2">vehicles</a></div>
+                            </div> 
+                        </div> 
+                    </div> 
+                </div> 
             </div>
         </div>
 

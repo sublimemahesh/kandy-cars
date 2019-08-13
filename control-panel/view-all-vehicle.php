@@ -1,13 +1,15 @@
 ﻿<?php
 include_once(dirname(__FILE__) . '/../class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
-?> 
+
+$PRODUCT_TYPE = new ProductType(NULL);
+?>
 ﻿<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Packages</title>
+        <title>Products</title>
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
@@ -32,11 +34,11 @@ include_once(dirname(__FILE__) . '/auth.php');
                         <div class="card">
                             <div class="header">
                                 <h2>
-                                    Manage Packages
+                                    Add Package
                                 </h2>
                                 <ul class="header-dropdown">
                                     <li>
-                                        <a href="create-packages.php">
+                                        <a href="create-product-type.php">
                                             <i class="material-icons">add</i> 
                                         </a>
                                     </li>
@@ -47,28 +49,30 @@ include_once(dirname(__FILE__) . '/auth.php');
                                 <div>
                                     <div class="row clearfix">
                                         <?php
-                                        $PACKAGE = Package::all();
-                                        if (count($PACKAGE) > 0) {
-                                            foreach ($PACKAGE as $key => $package) {
+                                        $PRODUCT_TYPE = ProductType::all();
+                                        if (count($PRODUCT_TYPE) > 0) {
+                                            foreach ($PRODUCT_TYPE as $key => $product) {
                                                 ?>
-                                                <div class="col-md-3"  id="div<?php echo $package['id']; ?>">
+
+                                                <div class="col-md-3"   >
                                                     <div class="photo-img-container">
-                                                        <img src="../upload/packages/<?php echo $package['image_name']; ?>" class="img-responsive ">
+                                                        <img src="../upload/product-type/<?php echo $product['image_name']; ?>" class="img-responsive ">
                                                     </div>
                                                     <div class="img-caption">
-                                                        <p class="maxlinetitle"><?php echo $package['title']; ?></p>
+                                                        <p class="maxlinetitle"><?php echo $product['name']; ?></p> 
                                                         <div class="d">
-                                                            <a href="#"  class="delete-package" data-id="<?php echo $package['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a> | 
-                                                            <a href="edit-package.php?id=<?php echo $package['id']; ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a> | 
-                                                            <a href="arrange-package.php">  <button class="glyphicon glyphicon-random arrange-btn"></button></a>
+                                                            <a href="create-packages.php?id=<?php echo $product['id']; ?>"><button class="glyphicon glyphicon-alert edit-btn"></button></a> | 
+                                                            <a href="create-decoration.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-send arrange-btn"></button></a>
                                                         </div>
                                                     </div>
                                                 </div>
+
+
                                                 <?php
                                             }
                                         } else {
                                             ?> 
-                                            <b style="padding-left: 15px;">No Package in the database.</b> 
+                                            <b style="padding-left: 15px;">No Products in the database.</b> 
                                         <?php } ?> 
 
                                     </div>
@@ -99,13 +103,13 @@ include_once(dirname(__FILE__) . '/auth.php');
         <script src="plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
         <script src="js/admin.js"></script>
         <script src="js/pages/tables/jquery-datatable.js"></script>
+        <script src="js/demo.js"></script>
 
         <script src="plugins/sweetalert/sweetalert.min.js"></script>
         <script src="plugins/bootstrap-notify/bootstrap-notify.js"></script>
         <script src="js/pages/ui/dialogs.js"></script>
         <script src="js/demo.js"></script>
-        <script src="delete/js/package.js" type="text/javascript"></script>
-
+        <script src="delete/js/product-type.js" type="text/javascript"></script>
     </body>
 
 </html> 

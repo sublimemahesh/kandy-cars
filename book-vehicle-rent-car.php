@@ -1,8 +1,6 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
 include './main-fuction.php';
-
-$id = $_GET['id'];
 ?>
 <!doctype html>
 <html lang="en">
@@ -54,40 +52,38 @@ $id = $_GET['id'];
             <div class="row">
 
                 <?php
-                $PACKAGE = Package::getPackagesByVehicle($id);
-                foreach ($PACKAGE as $key => $package) {
+                $PRODUCT = ProductType::all();
+                foreach ($PRODUCT as $key => $product) {
                     ?>
                     <!-- Slide -->                  
-                    <div class="col-md-4 ">
+                    <div class="col-md-4 "> 
                         <div class="product" style="margin-bottom:20px;">
-                            <a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($package['title'])); ?>/">
-                                <img src="<?php echo actual_link() ?>upload/packages/<?php echo $package["image_name"]; ?>" alt="">
+                            <a href="booking-form-rent-car.php">
+
+        <!--                            <a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($product['name'])); ?>/">-->
+                                <img src="<?php echo actual_link() ?>upload/product-type/<?php echo $product["image_name"]; ?>" alt="">
+                                <!--</a>-->
                             </a>
                             <div class="product-description no-rating">
-                                <h4 class="product-name"><a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($package['title'])); ?>/"><?php echo $package["title"]; ?></a></h4>
- 
-                                <div class="pricing-area">
-                                    <div class="product-price new-price">
+                                <h5 class="product-name"><a href="booking-form-rent-car.php"><?php echo $product["name"]; ?></a>
+                                    <div class="pricing-area">
+                                        <div class="product-price new-price">
+                                            <span>Charge Per Day</span>  
+                                            <span style="color:#000;font-size:21px;" >LKR</span>
+                                            <span  style="color:#000;font-size:18px;" ><?php echo $product['sd_charge_per_day']; ?></span> 
+                                        </div>
+                                        <div class="product-price new-price">
+                                            <span> Mileage Limit</span> 
+                                            <span style="color:#000;font-size:21px;" >Km</span>
+                                            <span style="color:#000;font-size:18px;" ><?php echo $product['sd_mileage_limit']; ?></span>
 
-                                        <span>Charge Per Day</span>  
-                                        <span style="color:#000;font-size:21px;" >LKR</span>
-                                        <span  style="color:#000;font-size:18px;" ><?php echo $package['charge']; ?></span> 
-                                    </div>
-                                    <div class="product-price new-price">
-                                        <span> Mileage Limit</span> 
-                                        <span style="color:#000;font-size:21px;" >Km</span>
-                                        <span style="color:#000;font-size:18px;" ><?php echo $package['mileage_limit']; ?></span>
-
-                                    </div>
+                                        </div>
+                                    </div> 
+                                </h5>
+                                <div class="model-info  pull-right" style="  padding-bottom:12px;">
+                                    <div ><a href="booking-form-rent-car.php" class="btn-2">Book Now</a></div>
                                 </div>
 
-                                <div class="model-info  pull-left" style="  padding-bottom:12px;">
-                                    <div ><a href="booking-form.php" class="btn-2">Book Now</a></div>
-                                </div>
-                                <div class="model-info  pull-left " style="margin-left: 10px;  padding-bottom:12px;">
-                                    <div ><a href="  " class="btn-2">Decorations</a></div>
-
-                                </div>
                             </div> 
                         </div> 
                     </div>
