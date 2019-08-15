@@ -1,4 +1,4 @@
-<!doctype html>
+<!doctype html> 
 <html lang="en">
 
     <!-- Google Web Fonts
@@ -25,26 +25,26 @@
 
     <!-- Vendor CSS
     ============================================ -->
-    <link rel="shortcut icon" href="<?php echo actual_link()?>./images/logo/img.png">
-    <link rel="stylesheet" href="<?php echo actual_link()?>font/demo-files/demo.css">
-    <link rel="stylesheet" href="<?php echo actual_link()?>plugins/fancybox/jquery.fancybox.css">
+    <link rel="shortcut icon" href="<?php echo actual_link() ?>./images/logo/img.png">
+    <link rel="stylesheet" href="<?php echo actual_link() ?>font/demo-files/demo.css">
+    <link rel="stylesheet" href="<?php echo actual_link() ?>plugins/fancybox/jquery.fancybox.css">
 
     <!-- CSS theme files
     ============================================ -->
-    <link href="<?php echo actual_link()?>css/bootstrap.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="<?php echo actual_link()?>css/fontello.css">
-    <link rel="stylesheet" href="<?php echo actual_link()?>css/owl.carousel.css">
-    <link rel="stylesheet" href="<?php echo actual_link()?>css/style.css">
-    <link rel="stylesheet" href="<?php echo actual_link()?>css/responsive.css">
-    <link href="<?php echo actual_link()?>contact-form/style.css" rel="stylesheet" type="text/css"/>
-    <link href="<?php echo actual_link()?>css/custom.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo actual_link() ?>css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="<?php echo actual_link() ?>css/fontello.css">
+    <link rel="stylesheet" href="<?php echo actual_link() ?>css/owl.carousel.css">
+    <link rel="stylesheet" href="<?php echo actual_link() ?>css/style.css">
+    <link rel="stylesheet" href="<?php echo actual_link() ?>css/responsive.css">
+    <link href="<?php echo actual_link() ?>contact-form/style.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo actual_link() ?>css/custom.css" rel="stylesheet" type="text/css"/>
 </head>
 
 
 <body>
 
 
- 
+
     <div id="wrapper" class="wrapper-container">
 
         <!-- - - - - - - - - - - - - Mobile Menu - - - - - - - - - - - - - - -->
@@ -53,7 +53,7 @@
 
         <!-- - - - - - - - - - - - - - Header - - - - - - - - - - - - - - - - -->
         <?php include './header.php'; ?>
-      
+
         <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
         <div class="container margin-top-50">
             <div class="row">
@@ -62,21 +62,21 @@
 
                         <div class="contact-li">
                             <h3>Contact</h3>
-                            <li class="text-center">   <span class="contact-item"><i class="icon-phone"></i> <span class="contatct-span-style" style="color:white;"> <a href="tel:(+94) 71 351 1350">  (+94) 71 351 1350</a></span></span></li>
-                            <li class="text-center">   <span class="contact-item"><i class="icon-phone"></i> <span class="contatct-span-style" style="color:white;"><a href="(+94) 81 314 4500">   (+94) 81 314 4500</a></span></span></li>
+                            <li class="text-center">   <span class="contact-item"><i class="icon-phone"></i> <span class="contatct-span-style" > <a href="tel:(+94) 71 351 1350"  class="white">  (+94) 71 351 1350</a></span></span></li>
+                            <li class="text-center">   <span class="contact-item"><i class="icon-phone"></i> <span class="contatct-span-style"  ><a href="(+94) 81 314 4500" class="white">   (+94) 81 314 4500</a></span></span></li>
                         </div>
                         <div class="contact-li">
                             <h3>Email</h3>
-                            <li class="text-center">  <span class="contact-item"><i class="icon-envelope-open"></i><span class="contatct-span-style"> <a href="mailto:keerthi@kandycars.lk"> keerthi@kandycars.lk</a></span></span></li>
-                           
-                            <li class="text-center"> <span class="contact-item"><i class="icon-envelope-open"></i> <span class="contatct-span-style"> <a href="mailto:booking@kandycars.lk">  booking@kandycars.lk</a></span></span></li>
+                            <li class="text-center">  <span class="contact-item"><i class="icon-envelope-open"></i><span class="contatct-span-style"> <a href="mailto:keerthi@kandycars.lk" class="white"> keerthi@kandycars.lk</a></span></span></li>
+
+                            <li class="text-center"> <span class="contact-item"><i class="icon-envelope-open"></i> <span class="contatct-span-style"> <a href="mailto:booking@kandycars.lk" class="white">  booking@kandycars.lk</a></span></span></li>
                         </div>
                         <div class="contact-li">
                             <h3>Join With Us</h3>
-                            <li class="text-center">   <span class="contact-item"><i class="icon-hand-pointer-o"></i> <a href="https://www.srilankantravelguide.com/" target="new"> <span class="contatct-span-style"> www.srilankantravelguide.com</span></a></span></li>
+                            <li class="text-center">   <span class="contact-item"><i class="icon-hand-pointer-o"></i> <a href="https://www.srilankantravelguide.com/" target="new" class="white"> <span class="contatct-span-style"> www.srilankantravelguide.com</span></a></span></li>
 
                         </div>
- 
+
                     </div>
                 </div>
                 <div class="col-md-9 question-form bg-sidebar-item">
@@ -122,7 +122,7 @@
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="col-sm-4">
                                             <div class="div-check" >
-                                                <img src="contact-form/img/checking.gif" id="checking"/>
+                                                <img src="<?php echo actual_link() ?>contact-form/img/checking.gif" id="checking"/>
                                             </div>
                                         </div>
                                         <div class="col-sm-8 text-right">
@@ -162,22 +162,22 @@
 
     <!-- JS Libs & Plugins
     ============================================ -->
-    <script src="<?php echo actual_link()?>js/libs/jquery.modernizr.js"></script>
-    <script src="<?php echo actual_link()?>js/libs/jquery-2.2.4.min.js"></script>
-    <script src="<?php echo actual_link()?>js/libs/jquery-ui.min.js"></script>
-    <script src="<?php echo actual_link()?>js/libs/retina.min.js"></script>
-    <script src="<?php echo actual_link()?>plugins/mad.customselect.js"></script>
-    <script src="<?php echo actual_link()?>plugins/sticky-sidebar.js"></script>
-    <script src="<?php echo actual_link()?>plugins/isotope.pkgd.min.js"></script>
-    <script src="<?php echo actual_link()?>plugins/jquery.queryloader2.min.js"></script>
-    <script src="<?php echo actual_link()?>plugins/bootstrap.js"></script>
-    <script src="<?php echo actual_link()?>plugins/fancybox/jquery.fancybox.min.js"></script>
+    <script src="<?php echo actual_link() ?>js/libs/jquery.modernizr.js"></script>
+    <script src="<?php echo actual_link() ?>js/libs/jquery-2.2.4.min.js"></script>
+    <script src="<?php echo actual_link() ?>js/libs/jquery-ui.min.js"></script>
+    <script src="<?php echo actual_link() ?>js/libs/retina.min.js"></script>
+    <script src="<?php echo actual_link() ?>plugins/mad.customselect.js"></script>
+    <script src="<?php echo actual_link() ?>plugins/sticky-sidebar.js"></script>
+    <script src="<?php echo actual_link() ?>plugins/isotope.pkgd.min.js"></script>
+    <script src="<?php echo actual_link() ?>plugins/jquery.queryloader2.min.js"></script>
+    <script src="<?php echo actual_link() ?>plugins/bootstrap.js"></script>
+    <script src="<?php echo actual_link() ?>plugins/fancybox/jquery.fancybox.min.js"></script>
 
     <!-- JS theme files
     ============================================ -->
-    <script src="<?php echo actual_link()?>js/plugins.js"></script>
-    <script src="<?php echo actual_link()?>js/script.js"></script>
-    <script src="<?php echo actual_link()?>contact-form/scripts.js" type="text/javascript"></script>
+    <script src="<?php echo actual_link() ?>js/plugins.js"></script>
+    <script src="<?php echo actual_link() ?>js/script.js"></script>
+    <script src="<?php echo actual_link() ?>contact-form/scripts.js" type="text/javascript"></script>
 
 </body>
 </html>

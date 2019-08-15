@@ -40,7 +40,8 @@ $WEILCOME_Description = new Page(6);
 
     <link href="<?php echo actual_link() ?>css/bootstrap.css" rel="stylesheet" type="text/css"/>
 
-    <link rel="stylesheet" href="<?php echo actual_link() ?>css/fontello.css">  <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="<?php echo actual_link() ?>css/fontello.css"> 
+    <link rel="stylesheet" href="<?php echo actual_link() ?>css/owl.carousel.css">
 
     <link rel="stylesheet" href="<?php echo actual_link() ?>css/style.css">
 
@@ -76,11 +77,11 @@ $WEILCOME_Description = new Page(6);
 
 
 
-<!--    <div id="loader">
-
-        <div class="box loading"></div>
-
-    </div>-->
+    <!--    <div id="loader">
+    
+            <div class="box loading"></div>
+    
+        </div>-->
 
 
 
@@ -103,9 +104,9 @@ $WEILCOME_Description = new Page(6);
             <div class="owl-carousel container" data-max-items="5" data-item-margin="10" data-dots="false">
 
                 <?php
-                $LOCATIONS = Activities::all();
+                $LOCATIONS = new Activities(NULL);
 
-                foreach ($LOCATIONS as $key => $location) {
+                foreach ($LOCATIONS->all() as $key => $location) {
 
                     if ($key == 8) {
                         
@@ -163,9 +164,9 @@ $WEILCOME_Description = new Page(6);
                         <div class="row">
 
                             <?php
-                            $SERVICE = Service::all();
+                            $SERVICE = new Service(NULL);
 
-                            foreach ($SERVICE as $key => $service) {
+                            foreach ($SERVICE->all() as $key => $service) {
 
                                 if ($key < 6) {
                                     ?>
@@ -228,9 +229,9 @@ $WEILCOME_Description = new Page(6);
                     <div class="owl-carousel container" data-max-items="3" data-item-margin="30" >
 
                         <?php
-                        $PRODUCT = ProductType::all();
+                        $PRODUCT = new ProductType(NULL);
 
-                        foreach ($PRODUCT as $key => $product) {
+                        foreach ($PRODUCT->all() as $key => $product) {
                             ?>
 
                             <!-- Slide -->                  
