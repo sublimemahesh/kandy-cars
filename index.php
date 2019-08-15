@@ -5,22 +5,22 @@ include './main-fuction.php';
 
 #remove the directory path we don't want
 $url = $_SERVER['REQUEST_URI'];
- 
+
 #split the path by '/'
 $params = split("/", $url);
 
-if ($params[0] == '' || $params[0] == '') { 
+if ($params[2] == '' || $params[2] == '') {
     include './home.php';
     exit();
-} elseif ($params[1] == 'home') {
-      include './home.php';
+} elseif ($params[2] == 'home') {
+    include './home.php';
     exit();
-} elseif ($params[1] == 'about-us') {
+} elseif ($params[3] == 'about-us') {
     include './about.php';
     exit();
-} elseif ($params[0] == 'travel') {
-    
-    $title = str_replace("-", " ", strtolower($params[1]));
+} elseif ($params[2] == 'travel') {
+
+    $title = str_replace("-", " ", strtolower($params[3]));
 
     if ($title == '') {
         $title = 'xxxxx';
@@ -28,7 +28,7 @@ if ($params[0] == '' || $params[0] == '') {
 
     $ACTIVITIY = new Activities(NULL);
     $result = $ACTIVITIY->chechExistByName($title);
- 
+
     if ($result == true) {
         $activitiy = $ACTIVITIY->getByName($title);
 
@@ -40,9 +40,9 @@ if ($params[0] == '' || $params[0] == '') {
     }
     include './travel.php';
     exit();
-} elseif ($params[0] == 'services') {
+} elseif ($params[2] == 'services') {
 
-    $title = str_replace("-", " ", strtolower($params[1]));
+    $title = str_replace("-", " ", strtolower($params[3]));
     $SERVICE = new Service(NULL);
 
     if ($title == '') {
@@ -67,9 +67,9 @@ if ($params[0] == '' || $params[0] == '') {
 
     include './service.php';
     exit();
-} elseif ($params[0] == 'vehicles') {
+} elseif ($params[2] == 'vehicles') {
 
-    $title = str_replace("-", " ", strtolower($params[1]));
+    $title = str_replace("-", " ", strtolower($params[3]));
 
     $VEHICLE = new ProductType(NULL);
     if ($title == '') {
@@ -95,19 +95,19 @@ if ($params[0] == '' || $params[0] == '') {
 
     include './vehicle.php';
     exit();
-} elseif ($params[0] == 'gallery') {
+} elseif ($params[2] == 'gallery') {
     include './gallery.php';
     exit();
-} elseif ($params[0] == 'price-list') {
+} elseif ($params[2] == 'price-list') {
     include './price.php';
     exit();
-} elseif ($params[0] == 'contact-us') {
+} elseif ($params[2] == 'contact-us') {
     include './contact.php';
     exit();
-} elseif ($params[0] == 'comment') {
+} elseif ($params[2] == 'comment') {
     include './comments.php';
     exit();
-} elseif ($params[0] == 'not-found') {
+} elseif ($params[2] == 'not-found') {
     include './not-found.php';
     exit();
 } 

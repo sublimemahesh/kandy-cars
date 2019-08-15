@@ -16,7 +16,7 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
     <!-- Basic Page Needs
     ================================================== -->
 
-    <title>Contact Us || www.kandycars.lk</title>
+    <title>Book vehicle || www.kandycars.lk</title>
 
     <!--meta info-->
 
@@ -44,10 +44,10 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
     <link rel="stylesheet" href="<?php echo actual_link() ?>css/responsive.css">
     <link href="<?php echo actual_link() ?>contact-form/style.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo actual_link() ?>css/custom.css" rel="stylesheet" type="text/css"/>
-    <link href="css/jquery.dateselect.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo actual_link() ?>css/jquery.dateselect.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link href="css/timepicki.css" rel="stylesheet" type="text/css"/>    
-    <link href="booking-form/style.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo actual_link() ?>css/timepicki.css" rel="stylesheet" type="text/css"/>    
+    <link href="<?php echo actual_link() ?>booking-form/style.css" rel="stylesheet" type="text/css"/>
 </head>
 
 
@@ -66,10 +66,9 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
 
         <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
         <div class="container margin-top-50">
-            <div class="row"> 
+            <div class="row">   
                 <h2 class="text-center"> <?php echo $PRODUCT_TYPE->name ?></h2>
-                <div class="col-md-12 question-form bg-sidebar-item">
-
+                <div class="col-md-12 question-form bg-sidebar-item"> 
                     <div class="contact-form">
                         <div class="row">
                             <div class="col-sm-6 col-xs-12">
@@ -81,21 +80,28 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                                 <span id="spanPickUpTime" ></span> 
                             </div> 
 
-                            <div class="col-sm-12 col-xs-8 col-md-11"> 
-                                <div class="">
-                                    <div class="controls"> 
-                                        <input type="text" id="origin" class="form-control data-val " name="text" placeholder="Pick up location" autocomplete="off"/> 
-                                    </div>
-                                </div> 
+                            <div class="col-sm-12 col-xs-8 col-md-11">
+                                <div class="controls"> 
+                                    <input type="text" id="origin" class="form-control data-val " name="text" placeholder="Pick up location" autocomplete="off"/> 
+                                </div>
                             </div>
 
                             <div class="col-sm-12 col-xs-4 col-md-1"> 
-                                <button type="submit"  class="btn btn-style-3 btn-sm submit" id="append" name="append" > + </button>
+                                <button type="submit"  class="  btn-style-3  btn-add submit" id="append" name="append" > + </button>
                             </div>                           
                             <div  class="col-md-12">
-                                <div class="inc">
+                                <table class="table table-striped" style="display:none;">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Location</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="inc">
 
-                                </div>
+                                    </tbody>
+                                </table>
+
                             </div>  
 
                             <div class="col-sm-12 col-xs-6 col-md-6">
@@ -135,14 +141,14 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="col-sm-4">
                                         <div class="div-check" >
-                                            <img src="booking-form/img/checking.gif" id="checking"/>
+                                            <img src="<?php echo actual_link() ?>booking-form/img/checking.gif" id="checking"/>
                                         </div>
                                     </div>
                                 </div>
                             </div> 
 
                             <div class="col-sm-12 col-xs-12">
-                                <input type="hidden" name="txtVehicle" id="txtVehicle" value="<?php echo $PRODUCT_TYPE->name?>" />
+                                <input type="hidden" name="txtVehicle" id="txtVehicle" value="<?php echo $PRODUCT_TYPE->name ?>" />
                                 <button type="submit" id="btnSubmit" class="btn btn-style-3 submit">SEND YOUR MESSAGE</button>
                                 <div id="dismessage" align="center"></div>
                             </div>
@@ -182,18 +188,28 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
     <script src="<?php echo actual_link() ?>js/plugins.js"></script>
     <script src="<?php echo actual_link() ?>js/script.js"></script>
     <script src="<?php echo actual_link() ?>contact-form/scripts.js" type="text/javascript"></script>
-    <script src="js/jquery.dateselect.min.js" type="text/javascript"></script>
-    <script src="js/timepicki.js" type="text/javascript"></script>
+    <script src="<?php echo actual_link() ?>js/jquery.dateselect.min.js" type="text/javascript"></script>
+    <script src="<?php echo actual_link() ?>js/timepicki.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
 
     <script>
         $(document).ready(function () {
             $("#append").click(function () {
                 var data_val = $('.data-val').val();
-                $(".inc").append('<div class="controls  col-md-6"><a href="#"> <input type="hidden" name="txtpick_up_location" class="pick_up_location"  id="txtpick_up_location" value="' + data_val + '  "><p>' + data_val + ' <i class="fa fa-times fa-icion-s remove_this" aria-hidden="true"></i></p> </a> </div>');
+                $('table').show();
+                $(".inc").append('<tr class="remove-col"><td scope="row"><p>' + data_val + ' </p></td><td scope="row"> <input type="hidden" name="txtpick_up_location" class="pick_up_location"  id="txtpick_up_location" value="' + data_val + '  "> <a href="#" class="remove_this" id="data-id' + data_val + '" > <p  >Remove<i class="fa fa-times fa-icion-s " aria-hidden="true"></i></p></a> </td></tr>  ');
+                return false;
+            });
+
+            jQuery(document).on('click', '.remove_this', function () {
+                var contentPanelId = jQuery(this).attr("data-id");
+                alert(contentPanelId);
+                $('.remove-col').parent().remove();
                 return false;
             });
         });
+
+
     </script>
 
     <script>
@@ -205,15 +221,9 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
         });
         $('.timepicker1').timepicki();
 
-
-        jQuery(document).on('click', '.remove_this', function () {
-            jQuery(this).parent().remove();
-            return false;
-        });
-
     </script> 
-    <script src="booking-form/scripts.js" type="text/javascript"></script>
-    <script src="js/city.js" type="text/javascript"></script>
+    <script src="<?php echo actual_link() ?>booking-form/scripts.js" type="text/javascript"></script>
+    <script src="<?php echo actual_link() ?>js/city.js" type="text/javascript"></script>
 
 </body>
 </html>

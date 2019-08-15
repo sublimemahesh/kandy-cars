@@ -9,7 +9,7 @@ $id = $_GET['id'];
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900%7COverpass:300,400,600,700,800,900" rel="stylesheet">
 
 
-    <title>Our Vehicles || www.kandycars.lk</title>
+    <title>Vehicles Packages|| www.kandycars.lk</title>
 
     <!--meta info-->
     <meta charset="utf-8">
@@ -60,7 +60,7 @@ $id = $_GET['id'];
                     <!-- Slide -->                  
                     <div class="col-md-4 ">
                         <div class="product" style="margin-bottom:20px;">
-                            <a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($package['title'])); ?>/">
+                            <a href="booking-form.php?id=<?php echo $package['id'] ?>">
                                 <img src="<?php echo actual_link() ?>upload/packages/<?php echo $package["image_name"]; ?>" alt="">
                             </a>
                             <div class="product-description no-rating">

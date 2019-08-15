@@ -7,7 +7,7 @@ include './main-fuction.php';
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900%7COverpass:300,400,600,700,800,900" rel="stylesheet">
 
 
-    <title>Our Vehicles || www.kandycars.lk</title>
+    <title>Vehicles Category || www.kandycars.lk</title>
 
     <!--meta info-->
     <meta charset="utf-8">
@@ -68,7 +68,7 @@ include './main-fuction.php';
                         </div> 
                     </div> 
                 </div> 
-                
+
                 <div class="col-md-4">
                     <div class="product" style="margin-bottom:20px;">
                         <a href="book-vehicle-rent-car.php">
@@ -81,6 +81,23 @@ include './main-fuction.php';
                             </div>  
                             <div class="model-info  pull-left" style="  padding-bottom:12px;">
                                 <div ><a href="book-vehicle-rent-car.php" class="btn-2">vehicles</a></div>
+                            </div> 
+                        </div> 
+                    </div> 
+                </div> 
+
+                <div class="col-md-4">
+                    <div class="product" style="margin-bottom:20px;">
+                        <a href="#">
+                            <img src="upload/packages/-171018635_191032122271_1565603089_n.jpg" alt="">
+                        </a>
+                        <div class="product-description no-rating">
+                            <h4 class="product-name">Chaffer Driven Cars</h4> 
+                            <div class="pricing-area text-justify">
+                                Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator ,as well as a random Lipsum generator
+                            </div>  
+                            <div class="model-info  pull-left" style="  padding-bottom:12px;">
+                                <div ><a href="#" class="btn-2">vehicles</a></div>
                             </div> 
                         </div> 
                     </div> 
