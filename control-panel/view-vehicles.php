@@ -1,13 +1,17 @@
 <?php
 include_once(dirname(__FILE__) . '/../class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
-?> 
+$id = '';
+$id = $_GET['id'];
+$VEHICLE_TYPE = new VehicleType($id);
+$PRODUCT_TYPE = new ProductType(NULL);
+?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Booking Category</title>
+        <title>Vehicle</title>
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
@@ -32,58 +36,54 @@ include_once(dirname(__FILE__) . '/auth.php');
                         <div class="card">
                             <div class="header">
                                 <h2>
-                                    Manage Booking Category
+                                   View vehicles by - " <?php echo $VEHICLE_TYPE->name ?> "
                                 </h2>
                                 <ul class="header-dropdown">
                                     <li>
-                                        <a href="create-packages.php">
+                                        <a href="create-product-type.php">
                                             <i class="material-icons">add</i> 
                                         </a>
                                     </li>
                                 </ul>
                             </div>
-                            <div class="body">  
-                                <div class="row clearfix">  
-                                    <a href="view-all-vehicle.php">
-                                        <div class="col-md-3"   >
-                                            <div class="photo-img-container">
-                                                <img src="../upload/packages/-236196416_190966944490_1565602940_n.jpg" class="img-responsive ">
-                                            </div>
-                                            <div class="img-caption">
-                                                <p class="maxlinetitle">VIP and wedding cars</p> 
-                                            </div>
-                                        </div> 
-                                    </a>
-                                    <a href="view-all-vehicle.php">
-                                        <div class="col-md-3">
-                                            <div class="photo-img-container">
-                                                <img src="../upload/packages/-153804160_191049336746_1565603059_n.jpg" class="img-responsive ">
-                                            </div>
-                                            <div class="img-caption">
-                                                <p class="maxlinetitle">Charff Driving</p> 
-                                            </div>
-                                        </div> 
-                                    </a>
+                            <div class="body">
+                                <!--                                <div class="table-responsive">-->
+                                <div>
+                                    <div class="row clearfix">
+                                        <?php
+                                        $PRODUCT_TYPE = ProductType::getVehiclesByType($id);
+                                        if (count($PRODUCT_TYPE) > 0) {
+                                            foreach ($PRODUCT_TYPE as $key => $product) {
+                                                ?> 
+                                                <div class="col-md-3"   >
+                                                    <div class="photo-img-container">
+                                                        <img src="../upload/product-type/<?php echo $product['image_name']; ?>" class="img-responsive ">
+                                                    </div>
+                                                    <div class="img-caption">
+                                                        <p class="maxlinetitle"><?php echo $product['name']; ?></p> 
+                                                        <div class="d">
+                                                            <a href="create-packages.php?id=<?php echo $product['id']; ?>"><button class="glyphicon glyphicon-briefcase edit-btn" title="Add Packages"></button></a> | 
+                                                            <a href="create-decoration.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-send arrange-btn" title="Add Decoration"></button></a>
+                                                        </div>
+                                                    </div>
+                                                </div>  
+                                                <?php
+                                            }
+                                        } else {
+                                            ?> 
+                                            <b style="padding-left: 15px;">No Products in the database.</b> 
+                                        <?php } ?> 
 
-                                    <a href="view-all-vehicle.php">
-                                        <div class="col-md-3"   >
-                                            <div class="photo-img-container">
-                                                <img src="../upload/packages/-171018635_191032122271_1565603089_n.jpg" class="img-responsive ">
-                                            </div>
-                                            <div class="img-caption">
-                                                <p class="maxlinetitle">Rent a car</p> 
-                                            </div>
-                                        </div> 
-                                    </a>
-
-
-                                </div>  
+                                    </div>
+                                </div>
+                                <!--                                </div>-->
                             </div>
                         </div>
                     </div>
-                    <!-- #END# Manage brand -->
-
                 </div>
+                <!-- #END# Manage brand -->
+
+            </div>
         </section>
 
         <script src="plugins/jquery/jquery.min.js"></script>
@@ -102,13 +102,13 @@ include_once(dirname(__FILE__) . '/auth.php');
         <script src="plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
         <script src="js/admin.js"></script>
         <script src="js/pages/tables/jquery-datatable.js"></script>
+        <script src="js/demo.js"></script>
 
         <script src="plugins/sweetalert/sweetalert.min.js"></script>
         <script src="plugins/bootstrap-notify/bootstrap-notify.js"></script>
         <script src="js/pages/ui/dialogs.js"></script>
         <script src="js/demo.js"></script>
-        <script src="delete/js/package.js" type="text/javascript"></script>
-
+        <script src="delete/js/product-type.js" type="text/javascript"></script>
     </body>
 
 </html> 

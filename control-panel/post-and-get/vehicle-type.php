@@ -4,13 +4,12 @@ include_once(dirname(__FILE__) . '/../../class/include.php');
 
 if (isset($_POST['create'])) {
 
-    $PAGES = new Page(NULL);
+    $VEHICLE_TYPE = new VehicleType(NULL);
     $VALID = new Validator();
 
-    $PAGES->title = $_POST['title'];
-    $PAGES->description = $_POST['description'];
+    $VEHICLE_TYPE->name = $_POST['name']; 
 
-    $dir_dest = '../../upload/page/';
+    $dir_dest = '../../upload/vehicle_type/';
 
     $handle = new Upload($_FILES['image']);
 
@@ -21,8 +20,8 @@ if (isset($_POST['create'])) {
         $handle->file_new_name_ext = 'jpg';
         $handle->image_ratio_crop = 'C';
         $handle->file_new_name_body = Helper::randamId();
-        $handle->image_x = 422;
-        $handle->image_y = 513;
+        $handle->image_x = 370;
+        $handle->image_y = 210;
 
         $handle->Process($dir_dest);
 
@@ -32,16 +31,15 @@ if (isset($_POST['create'])) {
         }
     }
 
-    $PAGES->image_name = $imgName;
+    $VEHICLE_TYPE->image_name = $imgName;
 
-    $VALID->check($PAGES, [
-        'title' => ['required' => TRUE],
-        'description' => ['required' => TRUE],
+    $VALID->check($VEHICLE_TYPE, [
+        'name' => ['required' => TRUE], 
         'image_name' => ['required' => TRUE]
     ]);
 
     if ($VALID->passed()) {
-        $PAGES->create();
+        $VEHICLE_TYPE->create();
 
         if (!isset($_SESSION)) {
             session_start();
@@ -63,7 +61,7 @@ if (isset($_POST['create'])) {
 }
 
 if (isset($_POST['update'])) {
-    $dir_dest = '../../upload/page/';
+    $dir_dest = '../../upload/vehicle_type/';
 
     $handle = new Upload($_FILES['image']);
 
@@ -76,8 +74,8 @@ if (isset($_POST['update'])) {
         $handle->file_new_name_ext = FALSE;
         $handle->image_ratio_crop = 'C';
         $handle->file_new_name_body = $_POST ["oldImageName"];
-        $handle->image_x = 422;
-        $handle->image_y = 513;
+        $handle->image_x = 370;
+        $handle->image_y = 210;
 
         $handle->Process($dir_dest);
 
@@ -87,23 +85,21 @@ if (isset($_POST['update'])) {
         }
     }
 
-    $PAGES = new Page($_POST['id']);
+    $VEHICLE_TYPE = new VehicleType($_POST['id']);
 
-    $PAGES->image_name = $_POST['oldImageName'];
-    $PAGES->title = $_POST['title'];
-    $PAGES->description = $_POST['description'];
+    $VEHICLE_TYPE->image_name = $_POST['oldImageName'];
+    $VEHICLE_TYPE->name = $_POST['name'];
 
 
     $VALID = new Validator();
-    $VALID->check($PAGES, [
-        'title' => ['required' => TRUE],
-        'description' => ['required' => TRUE],
+    $VALID->check($VEHICLE_TYPE, [
+        'name' => ['required' => TRUE], 
         'image_name' => ['required' => TRUE]
     ]);
 
 
     if ($VALID->passed()) {
-        $PAGES->update();
+        $VEHICLE_TYPE->update();
 
         if (!isset($_SESSION)) {
             session_start();

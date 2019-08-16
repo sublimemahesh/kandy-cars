@@ -60,12 +60,13 @@ $PRODUCT_TYPE = new ProductType(NULL);
                                                     <div class="img-caption">
                                                         <p class="maxlinetitle"><?php echo $product['name']; ?></p>
                                                         <div class="d">
-                                                            <a href="#"  class="delete-product-type" data-id="<?php echo $product['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a>
-                                                            <a href="edit-product-type.php?id=<?php echo $product['id']; ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a>
-                                                            <a href="arrange-products.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-random arrange-btn"></button></a>
-                                                            <a href="view-products.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-picture arrange-btn"></button></a>
-<!--                                                            <a href="create-product-info.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-info-sign edit-btn"></button></a>-->
+                                                            <a href="#"  class="delete-product-type" data-id="<?php echo $product['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a> | 
+                                                            <a href="edit-product-type.php?id=<?php echo $product['id']; ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a> | 
+                                                            <a href="arrange-products.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-random arrange-btn"></button></a> | 
+                                                            <a href="view-products.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-picture arrange-btn"></button></a> 
+<!--                                                            <button class="glyphicon glyphicon-map-marker edit-btn" data-toggle="modal" data-target="#exampleModal<?php echo $product['id']; ?>"></button> -->
 
+                                                           
                                                         </div>
                                                     </div>
                                                 </div>
@@ -87,6 +88,9 @@ $PRODUCT_TYPE = new ProductType(NULL);
 
             </div>
         </section>
+
+
+        <!-- Modal -->
 
         <script src="plugins/jquery/jquery.min.js"></script>
         <script src="plugins/bootstrap/js/bootstrap.js"></script>

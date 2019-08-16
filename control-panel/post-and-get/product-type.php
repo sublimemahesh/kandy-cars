@@ -8,6 +8,7 @@ if (isset($_POST['create'])) {
     $VALID = new Validator();
   
     $PRODUCT_TYPE->name = $_POST['name'];
+    $PRODUCT_TYPE->type = $_POST['type'];
     $PRODUCT_TYPE->sd_charge_per_day = $_POST['sd_charge_per_day'];
     $PRODUCT_TYPE->sd_mileage_limit = $_POST['sd_mileage_limit'];
     $PRODUCT_TYPE->sd_excess_mileage = $_POST['sd_excess_mileage'];
@@ -144,11 +145,12 @@ if (isset($_POST['update'])) {
             $imgName = $handle->file_dst_name;
         }
     }
-
+  
     $PRODUCT_TYPE = new ProductType(NULL);
     $PRODUCT_TYPE->id = $_POST['id'];
     $PRODUCT_TYPE->image_name = $_POST['oldImageName'];
     $PRODUCT_TYPE->name =$_POST['name'];
+    $PRODUCT_TYPE->type =$_POST['type'];
     $PRODUCT_TYPE->sd_charge_per_day = $_POST['sd_charge_per_day'];
     $PRODUCT_TYPE->sd_mileage_limit = $_POST['sd_mileage_limit'];
     $PRODUCT_TYPE->sd_excess_mileage = $_POST['sd_excess_mileage'];
