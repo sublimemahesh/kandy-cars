@@ -1,15 +1,13 @@
 <?php
 include_once(dirname(__FILE__) . '/../class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
-
-$PRODUCT_TYPE = new ProductType(NULL);
-?>
+?> 
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Vehicle</title>
+        <title>Manage Vehicle Type</title>
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
@@ -34,57 +32,40 @@ $PRODUCT_TYPE = new ProductType(NULL);
                         <div class="card">
                             <div class="header">
                                 <h2>
-                                   View all vehicle 
+                                    Manage Vehicle Type
                                 </h2>
                                 <ul class="header-dropdown">
                                     <li>
-                                        <a href="create-product-type.php">
+                                        <a href="create-vehicle-type.php">
                                             <i class="material-icons">add</i> 
                                         </a>
                                     </li>
                                 </ul>
                             </div>
-                            <div class="body">
-                                <!--                                <div class="table-responsive">-->
-                                <div>
-                                    <div class="row clearfix">
-                                        <?php
-                                        $PRODUCT_TYPE = ProductType::all();
-                                        if (count($PRODUCT_TYPE) > 0) {
-                                            foreach ($PRODUCT_TYPE as $key => $product) {
-                                                ?>
-
-                                                <div class="col-md-3"   >
-                                                    <div class="photo-img-container">
-                                                        <img src="../upload/product-type/<?php echo $product['image_name']; ?>" class="img-responsive ">
-                                                    </div>
-                                                    <div class="img-caption">
-                                                        <p class="maxlinetitle"><?php echo $product['name']; ?></p> 
-                                                        <div class="d">
-                                                            <a href="create-packages.php?id=<?php echo $product['id']; ?>"><button class="glyphicon glyphicon-briefcase edit-btn" title="Add Packages"></button></a> | 
-                                                            <a href="create-decoration.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-send arrange-btn" title="Add Decoration"></button></a>
-                                                        </div>
-                                                    </div>
+                            <div class="body">  
+                                <div class="row clearfix">  
+                                    <?php
+                                    $VEHICLE_TYPE = new VehicleType(NULL);
+                                    foreach ($VEHICLE_TYPE->all() as $vehicle_type) {
+                                        ?>
+                                        <a href="view-vehicles.php?id=<?php echo $vehicle_type['id'] ?>">
+                                            <div class="col-md-3"   >
+                                                <div class="photo-img-container">
+                                                    <img src="../upload/vehicle_type/<?php echo $vehicle_type['image_name'] ?>" class="img-responsive ">
                                                 </div>
-
-
-                                                <?php
-                                            }
-                                        } else {
-                                            ?> 
-                                            <b style="padding-left: 15px;">No Products in the database.</b> 
-                                        <?php } ?> 
-
-                                    </div>
-                                </div>
-                                <!--                                </div>-->
+                                                <div class="img-caption">
+                                                    <p class="maxlinetitle"><?php echo $vehicle_type['name'] ?></p> 
+                                                </div>
+                                            </div> 
+                                        </a>  
+                                    <?php } ?>
+                                </div>  
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- #END# Manage brand -->
+                    <!-- #END# Manage brand -->
 
-            </div>
+                </div>
         </section>
 
         <script src="plugins/jquery/jquery.min.js"></script>
@@ -103,13 +84,13 @@ $PRODUCT_TYPE = new ProductType(NULL);
         <script src="plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
         <script src="js/admin.js"></script>
         <script src="js/pages/tables/jquery-datatable.js"></script>
-        <script src="js/demo.js"></script>
 
         <script src="plugins/sweetalert/sweetalert.min.js"></script>
         <script src="plugins/bootstrap-notify/bootstrap-notify.js"></script>
         <script src="js/pages/ui/dialogs.js"></script>
         <script src="js/demo.js"></script>
-        <script src="delete/js/product-type.js" type="text/javascript"></script>
+        <script src="delete/js/package.js" type="text/javascript"></script>
+
     </body>
 
 </html> 

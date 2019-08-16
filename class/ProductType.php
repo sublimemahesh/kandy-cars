@@ -15,6 +15,7 @@ class ProductType {
 
     public $id;
     public $name;
+    public $type;
     public $image_name;
     public $sd_charge_per_day;
     public $sd_mileage_limit;
@@ -42,7 +43,7 @@ class ProductType {
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`name`,`image_name`,`sd_charge_per_day`,`sd_mileage_limit`,`sd_excess_mileage`,`sd_delayed_hour`,`wd_mileage`,`wd_charge`,`wd_duration`,`wd_excess_mileage`,`wd_waiting_hour`,`wedd_mileage`,`weed_charge`,`weed_duration`,`weed_excess_mileage`,`weed_waiting_hour`,`weed_decoration`,`parade_mileage`,`parade_charge`,`parade_duration`,`parade_excess_mileage`,`parade_waiting_hour`,`parade_decoration`,`queue` FROM `product_types` WHERE `id`=" . $id;
+            $query = "SELECT `id`,`name`,`type`,`image_name`,`sd_charge_per_day`,`sd_mileage_limit`,`sd_excess_mileage`,`sd_delayed_hour`,`wd_mileage`,`wd_charge`,`wd_duration`,`wd_excess_mileage`,`wd_waiting_hour`,`wedd_mileage`,`weed_charge`,`weed_duration`,`weed_excess_mileage`,`weed_waiting_hour`,`weed_decoration`,`parade_mileage`,`parade_charge`,`parade_duration`,`parade_excess_mileage`,`parade_waiting_hour`,`parade_decoration`,`queue` FROM `product_types` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -50,6 +51,7 @@ class ProductType {
 
             $this->id = $result['id'];
             $this->name = $result['name'];
+            $this->type = $result['type'];
             $this->image_name = $result['image_name'];
 
             $this->sd_charge_per_day = $result['sd_charge_per_day'];
@@ -85,8 +87,9 @@ class ProductType {
 
     public function create() {
 
-        $query = "INSERT INTO `product_types` (`name`,`image_name`,`sd_charge_per_day`,`sd_mileage_limit`,`sd_excess_mileage`,`sd_delayed_hour`,`wd_mileage`,`wd_charge`,`wd_duration`,`wd_excess_mileage`,`wd_waiting_hour`,`wedd_mileage`,`weed_charge`,`weed_duration`,`weed_excess_mileage`,`weed_waiting_hour`,`weed_decoration`,`parade_mileage`,`parade_charge`,`parade_duration`,`parade_excess_mileage`,`parade_waiting_hour`,`parade_decoration`,`queue`) VALUES  ('"
+        $query = "INSERT INTO `product_types` (`name`,`type`,`image_name`,`sd_charge_per_day`,`sd_mileage_limit`,`sd_excess_mileage`,`sd_delayed_hour`,`wd_mileage`,`wd_charge`,`wd_duration`,`wd_excess_mileage`,`wd_waiting_hour`,`wedd_mileage`,`weed_charge`,`weed_duration`,`weed_excess_mileage`,`weed_waiting_hour`,`weed_decoration`,`parade_mileage`,`parade_charge`,`parade_duration`,`parade_excess_mileage`,`parade_waiting_hour`,`parade_decoration`,`queue`) VALUES  ('"
                 . $this->name . "','"
+                . $this->type . "','"
                 . $this->image_name . "', '"
                 . $this->sd_charge_per_day . "', '"
                 . $this->sd_mileage_limit . "', '"
@@ -142,6 +145,7 @@ class ProductType {
 
         $query = "UPDATE  `product_types` SET "
                 . "`name` ='" . $this->name . "', "
+                . "`type` ='" . $this->type . "', "
                 . "`image_name` ='" . $this->image_name . "', "
                 . "`sd_charge_per_day` ='" . $this->sd_charge_per_day . "', "
                 . "`sd_mileage_limit` ='" . $this->sd_mileage_limit . "', "
@@ -207,6 +211,20 @@ class ProductType {
             $PRODUCT->id = $photo["id"];
             $PRODUCT->delete();
         }
+    }
+
+    public function getVehiclesByType($type) {
+
+        $query = "SELECT * FROM `product_types` WHERE `type`='" . $type . "'";
+        $db = new Database();
+        $result = $db->readQuery($query);
+        $array_res = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            array_push($array_res, $row);
+        }
+
+        return $array_res;
     }
 
     public function checkExistVehicle($title) {

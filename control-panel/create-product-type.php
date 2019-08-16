@@ -56,7 +56,22 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             </div>
                                         </div>
                                     </div>
-
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <select name="type" id="type" class="form-control">
+                                                    <option value=""> -- Please select the vehicle type --</option>
+                                                    <?php
+                                                    $VEHICLE_TYPE = new VehicleType(NULL);
+                                                    foreach ($VEHICLE_TYPE->all() as $vehicle_type) {
+                                                        ?>
+                                                        <option value="<?php echo $vehicle_type['id'] ?>"><?php echo $vehicle_type['name'] ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-md-12">                                       
                                         <div class="form-group form-float">
                                             <div class="form-line">
@@ -64,9 +79,9 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             </div>
                                         </div>
                                     </div>
-                                                    
-                                       <div class="col-md-12">
-                                      <h4>Self Driver</h4>
+
+                                    <div class="col-md-12">
+                                        <h4>Self Driver</h4>
                                     </div>   
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
@@ -76,7 +91,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             </div>
                                         </div>
                                     </div>
-                                       <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="rate_per_day" class="form-control" autocomplete="off" name="sd_mileage_limit" required="true">
@@ -92,7 +107,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             </div>
                                         </div>
                                     </div>
-                                       <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="rate_per_day" class="form-control" autocomplete="off" name="sd_delayed_hour" required="true">
@@ -100,10 +115,10 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             </div>
                                         </div>
                                     </div>   
-                            
-                                    
-                                       <div class="col-md-12">
-                                      <h4>With Driver</h4>
+
+
+                                    <div class="col-md-12">
+                                        <h4>With Driver</h4>
                                     </div>   
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
@@ -113,7 +128,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             </div>
                                         </div>
                                     </div>
-                                       <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="rate_per_day" class="form-control" autocomplete="off" name="wd_charge" required="true">
@@ -129,7 +144,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             </div>
                                         </div>
                                     </div>
-                                       <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="rate_per_day" class="form-control" autocomplete="off" name="wd_excess_mileage" required="true">
@@ -145,11 +160,11 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                       <div class="col-md-12">
-                                      <h4>Wedding And Events</h4>
+
+                                    <div class="col-md-12">
+                                        <h4>Wedding And Events</h4>
                                     </div>   
-                                   <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="excess_mileage" class="form-control" autocomplete="off" name="wedd_mileage" required="true">
@@ -157,7 +172,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             </div>
                                         </div>
                                     </div>
-                                       <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="rate_per_day" class="form-control" autocomplete="off" name="weed_charge" required="true">
@@ -173,7 +188,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             </div>
                                         </div>
                                     </div>
-                                       <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="rate_per_day" class="form-control" autocomplete="off" name="weed_excess_mileage" required="true">
@@ -189,7 +204,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             </div>
                                         </div>
                                     </div>
-                                      <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="excess_mileage" class="form-control" autocomplete="off" name="weed_decoration" required="true">
@@ -197,11 +212,11 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                       <div class="col-md-12">
-                                      <h4>Parade</h4>
+
+                                    <div class="col-md-12">
+                                        <h4>Parade</h4>
                                     </div>   
-                                 <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="excess_mileage" class="form-control" autocomplete="off" name="parade_mileage" required="true">
@@ -209,7 +224,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             </div>
                                         </div>
                                     </div>
-                                       <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="rate_per_day" class="form-control" autocomplete="off" name="parade_charge" required="true">
@@ -225,7 +240,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             </div>
                                         </div>
                                     </div>
-                                       <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="rate_per_day" class="form-control" autocomplete="off" name="parade_excess_mileage" required="true">
@@ -249,13 +264,13 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                   
-                     
+
+
+
 
 
                                     <div class="col-md-12"> 
-                                     
+
                                         <input type="submit" name="create" class="btn btn-primary m-t-15 waves-effect" value="create"/>
                                     </div>
                                 </form>

@@ -65,6 +65,27 @@ $PRODUCT_TYPE = new ProductType($id);
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <select name="type" id="type" class="form-control">
+                                                    <option value=""> -- Please select the vehicle type --</option>
+                                                    <?php
+                                                    $VEHICLE_TYPE = new VehicleType(NULL);
+                                                    foreach ($VEHICLE_TYPE->all() as $vehicle_type) {
+                                                        if ($PRODUCT_TYPE->type == $vehicle_type['id']) {
+                                                            ?>
+                                                    <option value="<?php echo $vehicle_type['id'] ?>" selected=""><?php echo $vehicle_type['name'] ?></option>
+                                                        <?php } else { ?>
+                                                            <option value="<?php echo $vehicle_type['id'] ?>"><?php echo $vehicle_type['name'] ?></option>
+                                                        <?php }
+                                                    }
+                                                    ?>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-md-12">                                       
                                         <div class="form-group form-float">
                                             <div class="form-line">
@@ -73,8 +94,8 @@ $PRODUCT_TYPE = new ProductType($id);
                                             </div>
                                         </div>
                                     </div>
-                                         <div class="col-md-12">
-                                      <h4>Self Driver</h4>
+                                    <div class="col-md-12">
+                                        <h4>Self Driver</h4>
                                     </div>   
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
@@ -84,7 +105,7 @@ $PRODUCT_TYPE = new ProductType($id);
                                             </div>
                                         </div>
                                     </div>
-                                       <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="rate_per_day" class="form-control" autocomplete="off"  value="<?php echo $PRODUCT_TYPE->sd_mileage_limit; ?>" name="sd_mileage_limit" required="true">
@@ -100,7 +121,7 @@ $PRODUCT_TYPE = new ProductType($id);
                                             </div>
                                         </div>
                                     </div>
-                                       <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="rate_per_day" class="form-control" autocomplete="off"  value="<?php echo $PRODUCT_TYPE->sd_delayed_hour; ?>" name="sd_delayed_hour" required="true">
@@ -108,10 +129,10 @@ $PRODUCT_TYPE = new ProductType($id);
                                             </div>
                                         </div>
                                     </div>   
-                            
-                                    
-                                       <div class="col-md-12">
-                                      <h4>With Driver</h4>
+
+
+                                    <div class="col-md-12">
+                                        <h4>With Driver</h4>
                                     </div>   
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
@@ -121,7 +142,7 @@ $PRODUCT_TYPE = new ProductType($id);
                                             </div>
                                         </div>
                                     </div>
-                                       <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="rate_per_day" class="form-control" autocomplete="off"  value="<?php echo $PRODUCT_TYPE->wd_charge; ?>" name="wd_charge" required="true">
@@ -137,7 +158,7 @@ $PRODUCT_TYPE = new ProductType($id);
                                             </div>
                                         </div>
                                     </div>
-                                       <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="rate_per_day" class="form-control" autocomplete="off"  value="<?php echo $PRODUCT_TYPE->wd_excess_mileage; ?>" name="wd_excess_mileage" required="true">
@@ -153,11 +174,11 @@ $PRODUCT_TYPE = new ProductType($id);
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                       <div class="col-md-12">
-                                      <h4>Wedding And Events</h4>
+
+                                    <div class="col-md-12">
+                                        <h4>Wedding And Events</h4>
                                     </div>   
-                                   <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="excess_mileage" class="form-control" autocomplete="off"  value="<?php echo $PRODUCT_TYPE->wedd_mileage; ?>" name="wedd_mileage" required="true">
@@ -165,7 +186,7 @@ $PRODUCT_TYPE = new ProductType($id);
                                             </div>
                                         </div>
                                     </div>
-                                       <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="rate_per_day" class="form-control" autocomplete="off"  value="<?php echo $PRODUCT_TYPE->weed_charge; ?>"  name="weed_charge" required="true">
@@ -181,7 +202,7 @@ $PRODUCT_TYPE = new ProductType($id);
                                             </div>
                                         </div>
                                     </div>
-                                       <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="rate_per_day" class="form-control" autocomplete="off"  value="<?php echo $PRODUCT_TYPE->weed_excess_mileage; ?>" name="weed_excess_mileage" required="true">
@@ -197,7 +218,7 @@ $PRODUCT_TYPE = new ProductType($id);
                                             </div>
                                         </div>
                                     </div>
-                                      <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="excess_mileage" class="form-control" autocomplete="off"  value="<?php echo $PRODUCT_TYPE->weed_decoration; ?>" name="weed_decoration" required="true">
@@ -205,11 +226,11 @@ $PRODUCT_TYPE = new ProductType($id);
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                       <div class="col-md-12">
-                                      <h4>Parade</h4>
+
+                                    <div class="col-md-12">
+                                        <h4>Parade</h4>
                                     </div>   
-                                 <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="excess_mileage" class="form-control" autocomplete="off"  value="<?php echo $PRODUCT_TYPE->parade_mileage; ?>" name="parade_mileage" required="true">
@@ -217,7 +238,7 @@ $PRODUCT_TYPE = new ProductType($id);
                                             </div>
                                         </div>
                                     </div>
-                                       <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="rate_per_day" class="form-control" autocomplete="off"  value="<?php echo $PRODUCT_TYPE->parade_charge; ?>" name="parade_charge" required="true">
@@ -233,7 +254,7 @@ $PRODUCT_TYPE = new ProductType($id);
                                             </div>
                                         </div>
                                     </div>
-                                       <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="text" id="rate_per_day" class="form-control" autocomplete="off"  value="<?php echo $PRODUCT_TYPE->parade_excess_mileage; ?>" name="parade_excess_mileage" required="true">
@@ -257,8 +278,8 @@ $PRODUCT_TYPE = new ProductType($id);
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                  
+
+
                                     <div class="col-md-12">
                                         <input type="hidden" id="oldImageName" value="<?php echo $PRODUCT_TYPE->image_name; ?>" name="oldImageName"/>
                                         <input type="hidden" id="id" value="<?php echo $PRODUCT_TYPE->id; ?>" name="id"/>
