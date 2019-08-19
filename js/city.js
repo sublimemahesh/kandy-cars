@@ -2,6 +2,7 @@ var options = {
 //  types: ['(cities)'],
     componentRestrictions: {country: "lk"}
 };
+
 var pickuplocation = document.getElementById('origin');
 
 var pickupAutocomplete = new google.maps.places.Autocomplete(pickuplocation, options);

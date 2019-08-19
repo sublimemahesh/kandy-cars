@@ -64,7 +64,7 @@ $PRODUCT_TYPE = new ProductType(NULL);
                                                         <div class="d">
                                                             <a href="create-packages.php?id=<?php echo $product['id']; ?>"><button class="glyphicon glyphicon-briefcase edit-btn" title="Add Packages"></button></a> | 
                                                             <a href="create-decoration.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-send arrange-btn" title="Add Decoration"></button></a> | 
-                                                            <a href="manage-vehicle-office.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-pencil deffult-btn" title="Add Offices"></button></a>
+                                                            <a href="manage-vehicle-office.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-map-marker deffult-btn" title="Add Offices"></button></a>
                                                         </div>
                                                     </div>
                                                 </div>  
