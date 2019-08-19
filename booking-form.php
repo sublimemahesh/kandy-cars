@@ -72,10 +72,7 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
 
                     <div class="contact-form">
                         <div class="row">
-                            <div class="col-sm-12 col-xs-6 col-md-6">
-                                <input type="text" name="txtEmail" id="txtEmail"  class="form-control input-validater" placeholder="Your Email *">
-                                <span id="spanEmail" ></span> 
-                            </div>
+
                             <div class="col-sm-6 col-xs-12">
                                 <input type="text" name="txtPickUpDate" id="txtPickUpDate" class="form-control" data-select="date"  placeholder="Pick Up date">
                                 <span id="spanPickUpDate" ></span> 
@@ -84,25 +81,17 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                                 <input class="timepicker1" type="text" name="txtPickUpTime"  id="txtPickUpTime" style="padding-left: 10px" placeholder="Pick up time">
                                 <span id="spanPickUpTime" ></span> 
                             </div> 
-                            <div class="col-sm-6 col-xs-12">
-                                <select name="txtDecoration" id="txtDecoration">
-                                    <option value="0">-- Please select the office --</option>
-                                    <?php
-                                    $OFFICE_DETAILS = new OfficeDetail(NULL);
-                                    foreach ($OFFICE_DETAILS->getOfficeByVehicle($PRODUCT_TYPE->id) as $office_details) {
-                                        ?>
-                                        <option value="<?php echo $office_details['office'] ?>"><?php
-                                            $OFFICE = new Office($office_details['office']);
-                                            echo $OFFICE->location
-                                            ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div> 
 
 
-                            <div class="col-sm-12 col-xs-8 col-md-11">
+
+                            <div class="col-sm-12 col-xs-8 col-md-6">
                                 <div class="controls"> 
                                     <input type="text" id="origin" class="form-control data-val " name="text" placeholder="Pick up location" autocomplete="off"/> 
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-xs-8 col-md-5">
+                                <div class="controls"> 
+                                    <input type="text" id="origin" class="form-control data-val " name="text" placeholder="locations" autocomplete="off"/> 
                                 </div>
                             </div>
 
@@ -120,12 +109,8 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                                     <tbody class="inc">
 
                                     </tbody>
-                                </table>
-
-                            </div>  
-
-
-
+                                </table> 
+                            </div>   
                             <div class="col-sm-12 col-xs-6 col-md-6">
                                 <input type="text" name=""  id="destination" class="form-control input-validater" placeholder="Drop off location" autocomplete="off" />
                             </div>
@@ -133,7 +118,7 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                             <div class="col-sm-6 col-xs-12 col-md-6">
                                 <input class="timepicker1" type="text" name="txtDropOfTime" id="txtDropOfTime" style="padding-left: 10px" placeholder="Drop off time" autocomplete="off"/>
                                 <span id="spanDropOfTime" ></span> 
-                            </div> 
+                            </div>
                             <div class="col-sm-6 col-xs-12 col-md-6">
                                 <select name="txtDecoration" id="txtDecoration">
                                     <option value="0">-- Please select the decoration --</option>
@@ -146,6 +131,11 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                                 </select>
 
                             </div> 
+                            <div class="col-sm-12 col-xs-6 col-md-6">
+                                <input type="text" name="txtEmail" id="txtEmail"  class="form-control input-validater" placeholder="Your Email *">
+                                <span id="spanEmail" ></span> 
+                            </div>
+
                         </div>
                         <div class="row">
                             <div class=" form-group">

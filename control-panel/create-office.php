@@ -57,7 +57,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                         <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" id="location" class="form-control"  name="location"  >
+                                                    <input type="text" id="origin" class="form-control"  name="location"  >
                                                 </div>
                                             </div>
                                         </div>  
@@ -121,5 +121,7 @@ include_once(dirname(__FILE__) . '/auth.php');
 
         </script>
     </body>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
 
+    <script src="../js/city.js" type="text/javascript"></script>
 </html>

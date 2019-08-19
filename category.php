@@ -50,58 +50,29 @@ include './main-fuction.php';
 
         <div class="page-section container " >
             <div class="row">
-
-                <!-- Slide -->                  
-                <div class="col-md-4 ">
-                    <div class="product" style="margin-bottom:20px;">
-                        <a href="book-vehicle.php">
-                            <img src="upload/packages/-153804160_191049336746_1565603059_n.jpg" alt="">
-                        </a>
-                        <div class="product-description no-rating">
-                            <h4 class="product-name"> VIP and wedding cars  </h4> 
-                            <div class="pricing-area text-justify">
-                                Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator , as well as a random Lipsum generator
-                            </div>   
-                            <div class="model-info  pull-left" style="  padding-bottom:12px;">
-                                <div ><a href="book-vehicle.php" class="btn-2">vehicles</a></div>
+                <?php
+                $VEHICLE_TYPE = new VehicleType(NULL);
+                foreach ($VEHICLE_TYPE->all() as $vehicle_type) {
+                    ?>                
+                    <div class="col-md-4 ">
+                        <div class="product" style="margin-bottom:20px;">
+                            <a href="book-vehicle.php?id=<?php echo $vehicle_type['id'] ?>">
+                                <img src="upload/vehicle_type/<?php echo $vehicle_type['image_name'] ?>" alt="">
+                            </a>
+                            <div class="product-description no-rating">
+                                <h4 class="product-name"> <?php echo $vehicle_type['name'] ?> </h4> 
+                                <div class="pricing-area text-justify">
+                                    Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator , as well as a random Lipsum generator
+                                </div>   
+                                <div class="model-info  pull-left" style="  padding-bottom:12px;">
+                                    <div>
+                                        <a href="book-vehicle.php?id=<?php echo $vehicle_type['id'] ?>" class="btn-2">vehicles</a>
+                                    </div>
+                                </div> 
                             </div> 
                         </div> 
                     </div> 
-                </div> 
-
-                <div class="col-md-4">
-                    <div class="product" style="margin-bottom:20px;">
-                        <a href="book-vehicle-rent-car.php">
-                            <img src="upload/packages/-171018635_191032122271_1565603089_n.jpg" alt="">
-                        </a>
-                        <div class="product-description no-rating">
-                            <h4 class="product-name">Rent a Car  </h4> 
-                            <div class="pricing-area text-justify">
-                                Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator ,as well as a random Lipsum generator
-                            </div>  
-                            <div class="model-info  pull-left" style="  padding-bottom:12px;">
-                                <div ><a href="book-vehicle-rent-car.php" class="btn-2">vehicles</a></div>
-                            </div> 
-                        </div> 
-                    </div> 
-                </div> 
-
-                <div class="col-md-4">
-                    <div class="product" style="margin-bottom:20px;">
-                        <a href="#">
-                            <img src="upload/packages/-171018635_191032122271_1565603089_n.jpg" alt="">
-                        </a>
-                        <div class="product-description no-rating">
-                            <h4 class="product-name">Chaffer Driven Cars</h4> 
-                            <div class="pricing-area text-justify">
-                                Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator ,as well as a random Lipsum generator
-                            </div>  
-                            <div class="model-info  pull-left" style="  padding-bottom:12px;">
-                                <div ><a href="#" class="btn-2">vehicles</a></div>
-                            </div> 
-                        </div> 
-                    </div> 
-                </div> 
+                <?php } ?>
             </div>
         </div>
 

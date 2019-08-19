@@ -72,7 +72,7 @@ $PRODUCT_TYPE = new ProductType($id);
 
                                     <div class="col-md-12"> 
                                         <input type="hidden" name="id" id="id" value="<?php echo $id ?>">
-                                        <input type="submit" name="create" class="btn btn-primary m-t-15 waves-effect" value="update"/>
+                                        <input type="submit" name="create" class="btn btn-primary m-t-15 waves-effect" value="Create"/>
                                     </div>
                                 </form>
                                 <div class="row">  </div>

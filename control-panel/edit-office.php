@@ -60,18 +60,18 @@ $OFFICE = new Office($id);
                                         <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" id="location" class="form-control"  name="location" value="<?php echo $OFFICE->location ?>" >
+                                                    <input type="text" id="origin" class="form-control"  name="location" value="<?php echo $OFFICE->location ?>" >
                                                 </div>
                                             </div>
                                         </div>
 
-                                        
+
 
                                     </div>
 
 
                                     <div class="row clearfix">
-                                        <input type="hidden" value="<?php echo $OFFICE->id?>" name="id"/>
+                                        <input type="hidden" value="<?php echo $OFFICE->id ?>" name="id"/>
                                         <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5"> 
                                             <input type="submit" name="update" class="btn btn-primary m-t-15 waves-effect" value="update"/>
                                         </div>
@@ -127,6 +127,9 @@ $OFFICE = new Office($id);
 
 
         </script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
+
+        <script src="../js/city.js" type="text/javascript"></script>
     </body>
 
 </html>

@@ -1,6 +1,9 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
 include './main-fuction.php';
+$id = '';
+$id = $_GET['id'];
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -52,15 +55,15 @@ include './main-fuction.php';
             <div class="row">
 
                 <?php
-                $PRODUCT = ProductType::all();
-                foreach ($PRODUCT as $key => $product) {
+                $PRODUCT_TYPE = new ProductType(NULL);
+                foreach ($PRODUCT_TYPE->getVehiclesByType($id) as $key => $product) {
                     ?>
                     <!-- Slide -->                  
                     <div class="col-md-4 "> 
                         <div class="product" style="margin-bottom:20px;">
                             <a href="packages.php?id=<?php echo $product['id']; ?>">
 
-    <!--                            <a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($product['name'])); ?>/">-->
+            <!--                            <a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($product['name'])); ?>/">-->
                                 <img src="<?php echo actual_link() ?>upload/product-type/<?php echo $product["image_name"]; ?>" alt="">
                                 <!--</a>-->
                             </a>
