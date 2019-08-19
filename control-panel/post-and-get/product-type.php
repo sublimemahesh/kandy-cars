@@ -6,35 +6,36 @@ if (isset($_POST['create'])) {
 
     $PRODUCT_TYPE = new ProductType(NULL);
     $VALID = new Validator();
-  
+
     $PRODUCT_TYPE->name = $_POST['name'];
     $PRODUCT_TYPE->type = $_POST['type'];
     $PRODUCT_TYPE->sd_charge_per_day = $_POST['sd_charge_per_day'];
     $PRODUCT_TYPE->sd_mileage_limit = $_POST['sd_mileage_limit'];
     $PRODUCT_TYPE->sd_excess_mileage = $_POST['sd_excess_mileage'];
     $PRODUCT_TYPE->sd_delayed_hour = $_POST['sd_delayed_hour'];
-    
+
     $PRODUCT_TYPE->wd_mileage = $_POST['wd_mileage'];
     $PRODUCT_TYPE->wd_charge = $_POST['wd_charge'];
     $PRODUCT_TYPE->wd_duration = $_POST['wd_duration'];
     $PRODUCT_TYPE->wd_excess_mileage = $_POST['wd_excess_mileage'];
     $PRODUCT_TYPE->wd_waiting_hour = $_POST['wd_waiting_hour'];
-    
+
     $PRODUCT_TYPE->wedd_mileage = $_POST['wedd_mileage'];
     $PRODUCT_TYPE->weed_charge = $_POST['weed_charge'];
-    $PRODUCT_TYPE->weed_duration= $_POST['weed_duration'];
+    $PRODUCT_TYPE->weed_duration = $_POST['weed_duration'];
     $PRODUCT_TYPE->weed_excess_mileage = $_POST['weed_excess_mileage'];
     $PRODUCT_TYPE->weed_waiting_hour = $_POST['weed_waiting_hour'];
     $PRODUCT_TYPE->weed_decoration = $_POST['weed_decoration'];
-    
+
     $PRODUCT_TYPE->parade_mileage = $_POST['parade_mileage'];
     $PRODUCT_TYPE->parade_charge = $_POST['parade_charge'];
-    $PRODUCT_TYPE->parade_duration= $_POST['parade_duration'];
+    $PRODUCT_TYPE->parade_duration = $_POST['parade_duration'];
     $PRODUCT_TYPE->parade_excess_mileage = $_POST['parade_excess_mileage'];
     $PRODUCT_TYPE->parade_waiting_hour = $_POST['parade_waiting_hour'];
     $PRODUCT_TYPE->parade_decoration = $_POST['parade_decoration'];
-    
-   
+
+
+
 //    $PRODUCT_TYPE->rate_per_day = $_POST['rate_per_day'];
 ////    $PRODUCT_TYPE->excess_mileage = $_POST['excess_mileage'];
 ////    $PRODUCT_TYPE->short_description = $_POST['short_description'];
@@ -63,9 +64,9 @@ if (isset($_POST['create'])) {
     }
 
     $PRODUCT_TYPE->image_name = $imgName;
-    
-    
-     $dir_dest1 = '../../upload/product-type/thumb/';
+
+
+    $dir_dest1 = '../../upload/product-type/thumb/';
 
     $handle1 = new Upload($_FILES['image']);
 
@@ -108,7 +109,6 @@ if (isset($_POST['create'])) {
         $VALID->addError("Your data was saved successfully", 'success');
         $_SESSION['ERRORS'] = $VALID->errors();
         header("location: ../view-products.php?id=" . $PRODUCT_TYPE->id);
-       
     } else {
 
         if (!isset($_SESSION)) {
@@ -145,36 +145,38 @@ if (isset($_POST['update'])) {
             $imgName = $handle->file_dst_name;
         }
     }
-  
+
     $PRODUCT_TYPE = new ProductType(NULL);
     $PRODUCT_TYPE->id = $_POST['id'];
     $PRODUCT_TYPE->image_name = $_POST['oldImageName'];
-    $PRODUCT_TYPE->name =$_POST['name'];
-    $PRODUCT_TYPE->type =$_POST['type'];
+    $PRODUCT_TYPE->name = $_POST['name'];
+    $PRODUCT_TYPE->type = $_POST['type'];
     $PRODUCT_TYPE->sd_charge_per_day = $_POST['sd_charge_per_day'];
     $PRODUCT_TYPE->sd_mileage_limit = $_POST['sd_mileage_limit'];
     $PRODUCT_TYPE->sd_excess_mileage = $_POST['sd_excess_mileage'];
     $PRODUCT_TYPE->sd_delayed_hour = $_POST['sd_delayed_hour'];
-    
+
     $PRODUCT_TYPE->wd_mileage = $_POST['wd_mileage'];
     $PRODUCT_TYPE->wd_charge = $_POST['wd_charge'];
     $PRODUCT_TYPE->wd_duration = $_POST['wd_duration'];
     $PRODUCT_TYPE->wd_excess_mileage = $_POST['wd_excess_mileage'];
     $PRODUCT_TYPE->wd_waiting_hour = $_POST['wd_waiting_hour'];
-    
+
     $PRODUCT_TYPE->wedd_mileage = $_POST['wedd_mileage'];
     $PRODUCT_TYPE->weed_charge = $_POST['weed_charge'];
-    $PRODUCT_TYPE->weed_duration= $_POST['weed_duration'];
+    $PRODUCT_TYPE->weed_duration = $_POST['weed_duration'];
     $PRODUCT_TYPE->weed_excess_mileage = $_POST['weed_excess_mileage'];
     $PRODUCT_TYPE->weed_waiting_hour = $_POST['weed_waiting_hour'];
     $PRODUCT_TYPE->weed_decoration = $_POST['weed_decoration'];
-    
+
     $PRODUCT_TYPE->parade_mileage = $_POST['parade_mileage'];
     $PRODUCT_TYPE->parade_charge = $_POST['parade_charge'];
-    $PRODUCT_TYPE->parade_duration= $_POST['parade_duration'];
+    $PRODUCT_TYPE->parade_duration = $_POST['parade_duration'];
     $PRODUCT_TYPE->parade_excess_mileage = $_POST['parade_excess_mileage'];
     $PRODUCT_TYPE->parade_waiting_hour = $_POST['parade_waiting_hour'];
     $PRODUCT_TYPE->parade_decoration = $_POST['parade_decoration'];
+     
+    $PRODUCT_TYPE->offices = $_POST['offices'];
 
     $VALID = new Validator();
     $VALID->check($PRODUCT_TYPE, [
@@ -207,6 +209,8 @@ if (isset($_POST['update'])) {
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 }
+
+ 
 
 if (isset($_POST['save-data'])) {
 

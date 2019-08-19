@@ -33,6 +33,7 @@ include_once(dirname(__FILE__) . '/Package.php');
 include_once(dirname(__FILE__) . '/Decoration.php'); 
 include_once(dirname(__FILE__) . '/VehicleType.php'); 
 include_once(dirname(__FILE__) . '/Office.php'); 
+include_once(dirname(__FILE__) . '/OfficeDetail.php'); 
 
 //include_once(dirname(__FILE__) . '/Type.php');
 //include_once(dirname(__FILE__) . '/ProductInfo.php');
