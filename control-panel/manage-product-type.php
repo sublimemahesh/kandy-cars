@@ -64,9 +64,26 @@ $PRODUCT_TYPE = new ProductType(NULL);
                                                             <a href="edit-product-type.php?id=<?php echo $product['id']; ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a> | 
                                                             <a href="arrange-products.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-random arrange-btn"></button></a> | 
                                                             <a href="view-products.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-picture arrange-btn"></button></a> 
-<!--                                                            <button class="glyphicon glyphicon-map-marker edit-btn" data-toggle="modal" data-target="#exampleModal<?php echo $product['id']; ?>"></button> -->
+ 
+                                                            <div class="modal fade" id="exampleModal<?php echo $product['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <div class="col-md-10">
+                                                                                <h5 class="modal-title" id="exampleModalLabel">Add Office - " <?php echo $product['name']; ?> "</h5>
 
-                                                           
+                                                                            </div>
+                                                                            <div class="col-md-2">
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                </button>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

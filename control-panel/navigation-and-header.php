@@ -390,7 +390,27 @@
                         </li>
                     </ul>
                 </li>
-                 
+                <li class="qqq">
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">chevron_right</i>
+                        <span>Office</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="create-office.php">
+                                <i class="material-icons">add</i>
+                                <span>Add New</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="manage-office.php">
+                                <i class="material-icons">list</i>
+                                <span>Manage</span>
+                            </a>
+                        </li>
+                         
+                    </ul>
+                </li>
 
                 <li class="qqq">
                     <a href="javascript:void(0);" class="menu-toggle">

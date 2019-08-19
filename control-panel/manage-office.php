@@ -1,17 +1,15 @@
 <?php
 include_once(dirname(__FILE__) . '/../class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
-$id = '';
-$id = $_GET['id'];
-$VEHICLE_TYPE = new VehicleType($id);
-$PRODUCT_TYPE = new ProductType(NULL);
-?>
+
+$OFFICE = new Office(NULL);
+?> 
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Vehicle</title>
+        <title>Office</title>
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
@@ -36,11 +34,11 @@ $PRODUCT_TYPE = new ProductType(NULL);
                         <div class="card">
                             <div class="header">
                                 <h2>
-                                   View vehicles by - " <?php echo $VEHICLE_TYPE->name ?> "
+                                    Manage Office
                                 </h2>
                                 <ul class="header-dropdown">
                                     <li>
-                                        <a href="create-product-type.php">
+                                        <a href="create-office.php">
                                             <i class="material-icons">add</i> 
                                         </a>
                                     </li>
@@ -49,33 +47,46 @@ $PRODUCT_TYPE = new ProductType(NULL);
                             <div class="body">
                                 <!--                                <div class="table-responsive">-->
                                 <div>
-                                    <div class="row clearfix">
-                                        <?php
-                                        $PRODUCT_TYPE = ProductType::getVehiclesByType($id);
-                                        if (count($PRODUCT_TYPE) > 0) {
-                                            foreach ($PRODUCT_TYPE as $key => $product) {
-                                                ?> 
-                                                <div class="col-md-3"   >
-                                                    <div class="photo-img-container">
-                                                        <img src="../upload/product-type/<?php echo $product['image_name']; ?>" class="img-responsive ">
-                                                    </div>
-                                                    <div class="img-caption">
-                                                        <p class="maxlinetitle"><?php echo $product['name']; ?></p> 
-                                                        <div class="d">
-                                                            <a href="create-packages.php?id=<?php echo $product['id']; ?>"><button class="glyphicon glyphicon-briefcase edit-btn" title="Add Packages"></button></a> | 
-                                                            <a href="create-decoration.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-send arrange-btn" title="Add Decoration"></button></a> | 
-                                                            <a href="manage-vehicle-office.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-pencil deffult-btn" title="Add Offices"></button></a>
-                                                        </div>
-                                                    </div>
-                                                </div>  
+                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Option</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th> 
+                                                <th>Option</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+
+                                            <?php
+                                            foreach ($OFFICE->all() as $key => $office) {
+                                                $key++;
+                                                ?>
+                                                <tr id="div<?php echo $office['id']; ?>">
+                                                    <td><?php echo $key; ?></td> 
+                                                    <td><?php echo $office['location']; ?></td> 
+
+
+                                                    <td> 
+                                                        <a href="edit-office.php?id=<?php echo $office['id']; ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a> | 
+
+                                                        <a href="arrange-office.php">  <button class="glyphicon glyphicon-random arrange-btn"></button></a> | 
+
+                                                        <a href="#"  class="delete-office" data-id="<?php echo $office['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a>
+
+                                                    </td>
+                                                </tr>
                                                 <?php
                                             }
-                                        } else {
-                                            ?> 
-                                            <b style="padding-left: 15px;">No Products in the database.</b> 
-                                        <?php } ?> 
-
-                                    </div>
+                                            ?>   
+                                        </tbody>
+                                    </table>
                                 </div>
                                 <!--                                </div>-->
                             </div>
@@ -109,7 +120,7 @@ $PRODUCT_TYPE = new ProductType(NULL);
         <script src="plugins/bootstrap-notify/bootstrap-notify.js"></script>
         <script src="js/pages/ui/dialogs.js"></script>
         <script src="js/demo.js"></script>
-        <script src="delete/js/product-type.js" type="text/javascript"></script>
+        <script src="delete/js/office.js" type="text/javascript"></script>
     </body>
 
 </html> 

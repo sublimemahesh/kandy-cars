@@ -69,8 +69,13 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
             <div class="row">   
                 <h2 class="text-center"> <?php echo $PRODUCT_TYPE->name ?></h2>
                 <div class="col-md-12 question-form bg-sidebar-item"> 
+
                     <div class="contact-form">
                         <div class="row">
+                            <div class="col-sm-12 col-xs-6 col-md-6">
+                                <input type="text" name="txtEmail" id="txtEmail"  class="form-control input-validater" placeholder="Your Email *">
+                                <span id="spanEmail" ></span> 
+                            </div>
                             <div class="col-sm-6 col-xs-12">
                                 <input type="text" name="txtPickUpDate" id="txtPickUpDate" class="form-control" data-select="date"  placeholder="Pick Up date">
                                 <span id="spanPickUpDate" ></span> 
@@ -79,6 +84,21 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                                 <input class="timepicker1" type="text" name="txtPickUpTime"  id="txtPickUpTime" style="padding-left: 10px" placeholder="Pick up time">
                                 <span id="spanPickUpTime" ></span> 
                             </div> 
+                            <div class="col-sm-6 col-xs-12">
+                                <select name="txtDecoration" id="txtDecoration">
+                                    <option value="0">-- Please select the office --</option>
+                                    <?php
+                                    $OFFICE_DETAILS = new OfficeDetail(NULL);
+                                    foreach ($OFFICE_DETAILS->getOfficeByVehicle($PRODUCT_TYPE->id) as $office_details) {
+                                        ?>
+                                        <option value="<?php echo $office_details['office'] ?>"><?php
+                                            $OFFICE = new Office($office_details['office']);
+                                            echo $OFFICE->location
+                                            ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div> 
+
 
                             <div class="col-sm-12 col-xs-8 col-md-11">
                                 <div class="controls"> 
@@ -88,7 +108,7 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
 
                             <div class="col-sm-12 col-xs-4 col-md-1"> 
                                 <button type="submit"  class="  btn-style-3  btn-add submit" id="append" name="append" > + </button>
-                            </div>                           
+                            </div>   
                             <div  class="col-md-12">
                                 <table class="table table-striped" style="display:none;">
                                     <thead>
@@ -103,6 +123,8 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                                 </table>
 
                             </div>  
+
+
 
                             <div class="col-sm-12 col-xs-6 col-md-6">
                                 <input type="text" name=""  id="destination" class="form-control input-validater" placeholder="Drop off location" autocomplete="off" />
@@ -124,11 +146,8 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                                 </select>
 
                             </div> 
-                            <div class="col-sm-12 col-xs-6 col-md-6">
-                                <input type="text" name="txtEmail" id="txtEmail"  class="form-control input-validater" placeholder="Your Email *">
-                                <span id="spanEmail" ></span> 
-                            </div>
-
+                        </div>
+                        <div class="row">
                             <div class=" form-group">
                                 <div class="col-sm-6 col-xs-12  col-md-3"> 
                                     <input type="text" name="captchacode" id="captchacode" class="form-control input-validater" placeholder="Enter the Security Code >> ">
@@ -146,13 +165,15 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                                     </div>
                                 </div>
                             </div> 
-
                             <div class="col-sm-12 col-xs-12">
                                 <input type="hidden" name="txtVehicle" id="txtVehicle" value="<?php echo $PRODUCT_TYPE->name ?>" />
                                 <button type="submit" id="btnSubmit" class="btn btn-style-3 submit">SEND YOUR MESSAGE</button>
                                 <div id="dismessage" align="center"></div>
                             </div>
                         </div>
+
+
+
                     </div> 
 
                 </div>
