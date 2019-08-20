@@ -16,11 +16,14 @@ class Decoration {
     public $id;
     public $vehicle;
     public $name; 
+    public $image_name; 
+    public $short_description; 
+    public $charge; 
 
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`vehicle`,`name` FROM `decoration` WHERE `id`=" . $id;
+            $query = "SELECT * FROM `decoration` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -29,6 +32,9 @@ class Decoration {
             $this->id = $result['id'];
             $this->vehicle = $result['vehicle'];
             $this->name = $result['name'];
+            $this->image_name = $result['image_name'];
+            $this->short_description = $result['short_description'];
+            $this->charge = $result['charge'];
 
 
             return $this;
@@ -37,9 +43,12 @@ class Decoration {
 
     public function create() {
 
-        $query = "INSERT INTO `decoration` (`vehicle`,`name`) VALUES  ('"
+        $query = "INSERT INTO `decoration` (`vehicle`,`name`,`image_name`,`short_description`,`charge`) VALUES  ('"
                 . $this->vehicle . "','"
-                . $this->name . "')";
+                . $this->name . "','"
+                . $this->image_name . "','"
+                . $this->short_description . "','"
+                . $this->charge . "')";
 
 
         $db = new Database();

@@ -8,14 +8,14 @@ $url = $_SERVER['REQUEST_URI'];
 
 #split the path by '/'
 $params = split("/", $url);
-
+ 
 if ($params[2] == '' || $params[2] == '') {
     include './home.php';
     exit();
 } elseif ($params[2] == 'home') {
     include './home.php';
     exit();
-} elseif ($params[3] == 'about-us') {
+} elseif ($params[2] == 'about-us') {
     include './about.php';
     exit();
 } elseif ($params[2] == 'travel') {

@@ -86,20 +86,45 @@ $PACKAGE = new Package($id);
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
+                                                <input type="number" id="hours" class="form-control" autocomplete="off" name="hours" required="true" value="<?php echo $PACKAGE->hours; ?>">
+                                                <label class="form-label">Hours</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="number" id="km" class="form-control" autocomplete="off" name="km" required="true" value="<?php echo $PACKAGE->km; ?>">
+                                                <label class="form-label">Km</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
                                                 <input type="number" id="charge" class="form-control" autocomplete="off" name="charge" required="true" value="<?php echo $PACKAGE->charge; ?>">
                                                 <label class="form-label">Charge</label>
                                             </div>
                                         </div>
                                     </div> 
-
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="number" id="mileage_limit" class="form-control" autocomplete="off" name="mileage_limit" required="true" value="<?php echo $PACKAGE->mileage_limit; ?>">
-                                                <label class="form-label">Mileage Limit</label>
+                                                <input type="number" id="ex_per_hour" class="form-control" autocomplete="off" name="ex_per_hour" required="true" value="<?php echo $PACKAGE->ex_per_hour; ?>">
+                                                <label class="form-label">Ex per Hour</label>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="number" id="ex_per_km" class="form-control" autocomplete="off" name="ex_per_km" required="true" value="<?php echo $PACKAGE->ex_per_km; ?>">
+                                                <label class="form-label">Ex per Km</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="col-md-12">
                                         <input type="hidden" id="oldImageName" value="<?php echo $PACKAGE->image_name; ?>" name="oldImageName"/>
                                         <input type="hidden" id="id" value="<?php echo $PACKAGE->id; ?>" name="id"/>

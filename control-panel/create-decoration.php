@@ -55,8 +55,30 @@ $PRODUCT_TYPE = new ProductType($id);
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">                                       
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="file" id="image" class="form-control" name="image"  required="true">
+                                            </div>
+                                        </div>
+                                    </div>
 
-
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="text" id="short_description" class="form-control" autocomplete="off" name="short_description" required="true">
+                                                <label class="form-label">Short Description</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="number" id="charge" class="form-control" autocomplete="off" name="charge" required="true">
+                                                <label class="form-label">Charge</label>
+                                            </div>
+                                        </div>
+                                    </div> 
                                     <div class="col-md-12"> 
                                         <input type="hidden" name="vehicle" id="vehicle" value="<?php echo $id ?>">
                                         <input type="submit" name="create" class="btn btn-primary m-t-15 waves-effect" value="create"/>

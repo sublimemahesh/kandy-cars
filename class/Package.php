@@ -18,14 +18,17 @@ class Package {
     public $title;
     public $image_name;
     public $short_description;
+    public $hours;
+    public $km;
     public $charge;
-    public $mileage_limit;
+    public $ex_per_hour;
+    public $ex_per_km;
     public $queue;
 
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`vehicle`,`title`,`image_name`,`short_description`,`charge`,`mileage_limit`,`queue` FROM `package` WHERE `id`=" . $id;
+            $query = "SELECT * FROM `package` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -36,8 +39,11 @@ class Package {
             $this->title = $result['title'];
             $this->image_name = $result['image_name'];
             $this->short_description = $result['short_description'];
+            $this->hours = $result['hours'];
+            $this->km = $result['km'];
             $this->charge = $result['charge'];
-            $this->mileage_limit = $result['mileage_limit'];
+            $this->ex_per_hour = $result['ex_per_hour'];
+            $this->ex_per_km = $result['ex_per_km'];
             $this->queue = $result['queue'];
 
             return $this;
@@ -46,13 +52,16 @@ class Package {
 
     public function create() {
 
-        $query = "INSERT INTO `package` (`vehicle`,`title`,`image_name`,`short_description`,`charge`,`mileage_limit`,`queue`) VALUES  ('"
+        $query = "INSERT INTO `package` (`vehicle`,`title`,`image_name`,`short_description`,`hours`,`km`,`charge`,`ex_per_hour`,`ex_per_km`,`queue`) VALUES  ('"
                 . $this->vehicle . "','"
                 . $this->title . "','"
                 . $this->image_name . "', '"
                 . $this->short_description . "', '"
+                . $this->hours . "', '"
+                . $this->km . "', '"
                 . $this->charge . "', '"
-                . $this->mileage_limit . "', '"
+                . $this->ex_per_hour . "', '"
+                . $this->ex_per_km . "', '"
                 . $this->queue . "')";
 
         $db = new Database();
@@ -102,8 +111,11 @@ class Package {
                 . "`title` ='" . $this->title . "', "
                 . "`image_name` ='" . $this->image_name . "', "
                 . "`short_description` ='" . $this->short_description . "', "
+                . "`hours` ='" . $this->hours . "', "
+                . "`km` ='" . $this->km . "', "
                 . "`charge` ='" . $this->charge . "', "
-                . "`mileage_limit` ='" . $this->mileage_limit . "', "
+                . "`ex_per_hour` ='" . $this->ex_per_hour . "', "
+                . "`ex_per_km` ='" . $this->ex_per_km . "', "
                 . "`queue` ='" . $this->queue . "' "
                 . "WHERE `id` = '" . $this->id . "'";
 
@@ -119,7 +131,6 @@ class Package {
     }
 
     public function delete() {
-
 
         unlink(Helper::getSitePath() . "upload/packages/" . $this->image_name);
 

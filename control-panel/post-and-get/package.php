@@ -5,14 +5,16 @@ include_once(dirname(__FILE__) . '/../../class/include.php');
 if (isset($_POST['create'])) {
 
     $PACKAGE = new Package(NULL);
-    $VALID = new Validator();
-
+    $VALID = new Validator(); 
 
     $PACKAGE->vehicle = $_POST['vehicle'];
     $PACKAGE->title = $_POST['title'];
     $PACKAGE->short_description = $_POST['short_description'];
+    $PACKAGE->hours = $_POST['hours'];
+    $PACKAGE->km = $_POST['km'];
     $PACKAGE->charge = $_POST['charge'];
-    $PACKAGE->mileage_limit = $_POST['mileage_limit'];
+    $PACKAGE->ex_per_hour = $_POST['ex_per_hour'];
+    $PACKAGE->ex_per_km = $_POST['ex_per_km'];
 
     $dir_dest = '../../upload/packages/';
 
@@ -90,18 +92,21 @@ if (isset($_POST['update'])) {
         }
     }
 
-    $PACKAGE = new Package($_POST['id']); 
+    $PACKAGE = new Package($_POST['id']);
 
     $PACKAGE->image_name = $_POST['oldImageName'];
     $PACKAGE->title = $_POST['title'];
     $PACKAGE->short_description = $_POST['short_description'];
+    $PACKAGE->hours = $_POST['hours'];
+    $PACKAGE->km = $_POST['km'];
     $PACKAGE->charge = $_POST['charge'];
-    $PACKAGE->mileage_limit = $_POST['mileage_limit'];
+    $PACKAGE->ex_per_hour = $_POST['ex_per_hour'];
+    $PACKAGE->ex_per_km = $_POST['ex_per_km'];
 
     $VALID = new Validator();
     $VALID->check($PACKAGE, [
         'title' => ['required' => TRUE],
-        'short_description' => ['required' => TRUE], 
+        'short_description' => ['required' => TRUE],
         'image_name' => ['required' => TRUE]
     ]);
 
