@@ -43,7 +43,7 @@ $PRODUCT_TYPE = new ProductType($id);
                         <div class="card">
                             <div class="header">
                                 <h2>Create Packages -" <?php echo $PRODUCT_TYPE->name ?> "</h2>
-                                 
+
                             </div>
                             <div class="body">
                                 <form class="form-horizontal"  method="post" action="post-and-get/package.php" enctype="multipart/form-data"> 
@@ -72,7 +72,25 @@ $PRODUCT_TYPE = new ProductType($id);
                                             </div>
                                         </div>
                                     </div>
-
+                                    
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="number" id="hours" class="form-control" autocomplete="off" name="hours" required="true">
+                                                <label class="form-label">Hours</label>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="number" id="km" class="form-control" autocomplete="off" name="km" required="true">
+                                                <label class="form-label">Km</label>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
@@ -81,15 +99,26 @@ $PRODUCT_TYPE = new ProductType($id);
                                             </div>
                                         </div>
                                     </div> 
-
+                                    
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="number" id="mileage_limit" class="form-control" autocomplete="off" name="mileage_limit" required="true">
-                                                <label class="form-label">Mileage Limit</label>
+                                                <input type="number" id="ex_per_hour" class="form-control" autocomplete="off" name="ex_per_hour" required="true">
+                                                <label class="form-label">Ex Charges Per Hour</label>
                                             </div>
                                         </div>
                                     </div> 
+                                    
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="number" id="ex_per_km" class="form-control" autocomplete="off" name="ex_per_km" required="true">
+                                                <label class="form-label">Ex Charges Per Km</label>
+                                            </div>
+                                        </div>
+                                    </div> 
+
+
                                     <div class="col-md-12"> 
                                         <input type="hidden" name="vehicle" id="vehicle" value="<?php echo $id ?>">
                                         <input type="submit" name="create" class="btn btn-primary m-t-15 waves-effect" value="create"/>
@@ -160,8 +189,8 @@ $PRODUCT_TYPE = new ProductType($id);
         <script src="js/admin.js"></script>
         <script src="js/demo.js"></script>
         <script src="js/add-new-ad.js" type="text/javascript"></script>
-
-
+        <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+        <script src="delete/js/package.js" type="text/javascript"></script>
         <script src="tinymce/js/tinymce/tinymce.min.js"></script>
         <script>
             tinymce.init({

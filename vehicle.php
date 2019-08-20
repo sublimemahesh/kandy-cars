@@ -1,6 +1,5 @@
 <?php
-include_once(dirname(__FILE__) . '/class/include.php');
-include './main-fuction.php';
+include_once(dirname(__FILE__) . '/class/include.php'); 
 ?>
 <!doctype html>
 <html lang="en">

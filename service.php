@@ -1,6 +1,6 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
-include './main-fuction.php';
+ 
 ?>
 <!doctype html>
 <html lang="en"> 
