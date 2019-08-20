@@ -63,230 +63,244 @@ include './main-fuction.php';
 
         <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
         <div class="container margin-top-50">
-            <div class="row"> 
-                <div class="col-md-12 question-form bg-sidebar-item">
-                    <div class="contact-form">
-                        <div class="row">
-                            <div class="col-sm-6 col-xs-12">
-                                <input type="text" id="date1"   class="form-control date" data-select="date"  placeholder="Pick Up date">
-                            </div>
-                            <div class="col-sm-6 col-xs-12">
-                                <select  style="padding-left: 10px"> 
-                                    <option > -- Select your method --</option>
-                                    <option data-toggle="modal" data-target="#exampleModal"> Collect From Office </option>  
-                                    <option data-toggle="modal" data-target="#exampleModal2"> Home Delivery </option>
-                                </select>                 
-                            </div>  
-
-                            <!--Collect from-->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <div class="col-md-10">
-                                                <h5 class="modal-title" id="exampleModalLabel"> Please Select your near Office </h5>
-
-                                            </div>
-                                            <div class="col-md-2">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-
-                                        </div>
-                                        <div class="modal-body">
-                                            <form class="form-horizontal"  method="post" action="post-and-get/office.php" enctype="multipart/form-data"> 
-                                                <div class=" clearfix">
-                                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                                        <label for="name">Offices</label>
-                                                    </div>
-
-                                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                                        <div class="form-group">
-                                                            <select class="form-control">
-                                                                <?php
-                                                                $OFFICE = new Office(NULL);
-                                                                foreach ($OFFICE->all() as $office) {
-                                                                    ?>
-                                                                    <option value="<?php echo $office['id'] ?>"><?php echo $office['location'] ?></option>
-                                                                <?php } ?>
-                                                            </select>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class=" row modal-footer" style="padding: 12px 10px 0px;"> 
-                                                    <button type="submit" class="  btn-style-3 btn-sm submit" name="update" >Save changes</button>
-                                                </div> 
-                                            </form>
-
-                                        </div> 
-                                    </div>
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="  question-form bg-sidebar-item">
+                        <div class="contact-form">
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12">
+                                    <input type="text" id="pick_up_date"   class="form-control date" data-select="date"  placeholder="Pick Up date">
                                 </div>
-                            </div>
-
-                            <!--Home Delivery-->
-                            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <div class="col-md-10">
-                                                <h5 class="modal-title" id="exampleModalLabel"> Please Select your near by Office </h5>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-
-                                        </div>
-                                        <div class="modal-body">
-                                            <form class="form-horizontal"  method="post" action="post-and-get/office.php" enctype="multipart/form-data"> 
-                                                <div class=" clearfix">
-                                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                                        <label for="name">Offices</label>
-                                                    </div>
-
-                                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                                        <div class="form-group">
-                                                            <select class="form-control">
-                                                                <?php
-                                                                $OFFICE = new Office(NULL);
-                                                                foreach ($OFFICE->all() as $office) {
-                                                                    ?>
-                                                                    <option value="<?php echo $office['id'] ?>"><?php echo $office['location'] ?></option>
-                                                                <?php } ?>
-                                                            </select>
-
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                                        <label for="your_location">Your Location</label>
-                                                    </div>
-                                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                                        <div class="form-group">
-                                                            <div class="form-line">
-                                                                <input type="text" id="orign" class="form-control"  name="name" value=" " style="height:35px" >
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class=" row modal-footer" style="padding: 12px 10px 0px;"> 
-                                                    <button type="submit" class="  btn-style-3 btn-sm submit" name="update" >Save changes</button>
-                                                </div> 
-                                            </form>
-                                        </div> 
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 col-xs-12 col-md-6">
-                                <input class="timepicker1" type="text" name="timepicker1"  style="padding-left: 10px" placeholder="Pick up time"/>
-                            </div> 
-
-                            <div class="col-sm-6 col-xs-12">
-                                <input type="text" id="date2" class="form-control date" data-select="date"  placeholder="Return date">
-                            </div> 
-
-                            <div class="col-sm-6 col-xs-12 col-md-6">
-                                <input   type="text"    style="padding-left: 10px" placeholder="Return Location"/>
-                            </div>
-                            
-                            <div class="col-sm-6 col-xs-12 col-md-6">
-                                <input class="timepicker1" type="text" name="timepicker1"  style="padding-left: 10px" placeholder="Return time"/>
-                            </div> 
-                            
-                            <div class="col-sm-12 col-xs-12">
-                                <div class="row form-group">
-                                    <div class="col-sm-6 col-xs-12"> 
-                                        <label for="comment"><span id="star">*</span>Security Code: </label>
-
-                                        <input type="text" name="captchacode" id="captchacode" class="form-control input-validater" placeholder="Enter the Security Code >> ">
-                                        <span id="capspan" ></span> 
-                                    </div>   
-                                    <div class="col-sm-6 col-xs-12"> 
-                                        <?php include("./booking-rent-car/captchacode-widget.php"); ?> 
-                                    </div>  
-
-                                    <div class="col-xs-12 col-sm-6">
-                                        <div class="col-sm-4">
-                                            <div class="div-check" >
-                                                <img src="booking-rent-car/img/checking.gif" id="checking"/>
-                                            </div>
-                                        </div> 
-                                    </div>
+                                <div class="col-sm-6 col-xs-12">
+                                    <select  style="padding-left: 10px" id="select_method"> 
+                                        <option value=""> -- Select your method --</option>
+                                        <option data-toggle="modal" data-target="#exampleModal" value="Collect From Office"> Collect From Office </option>  
+                                        <option data-toggle="modal" data-target="#exampleModal2"  value="Home Delivery"> Home Delivery </option>
+                                    </select>                 
+                                </div>  
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <input class="timepicker1" type="text" name="timepicker1"  id="pick_up_time" style="padding-left: 10px" placeholder="Pick up time"/>
                                 </div> 
-                            </div>
-                            <div class="col-sm-12 col-xs-12">
-                                <button type="submit" id="btnSubmit" class="btn btn-style-3 submit">SEND YOUR MESSAGE</button>
-                                <div id="dismessage" align="center"></div>
-                            </div>
-                        </div>
-                    </div> 
 
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <input   type="text"  id="drop_location"  style="padding-left: 10px" placeholder="Return Location"/>
+                                </div>
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <input class="timepicker1" type="text" name="timepicker1" id="drop_time"  style="padding-left: 10px" placeholder="Return time"/>
+                                </div> 
+                                <div class="col-sm-6 col-xs-12">
+                                    <input type="text" id="drop_up_date" class="form-control date" data-select="date"  placeholder="Return date">
+                                </div> 
+
+                                <div class="col-sm-12 col-xs-12">
+                                    <div class="row form-group">
+                                        <div class="col-sm-6 col-xs-12"> 
+                                            <label for="comment"><span id="star">*</span>Security Code: </label>
+                                            <input type="text" name="captchacode" id="captchacode" class="form-control input-validater" placeholder="Enter the Security Code >> ">
+                                            <span id="capspan" ></span> 
+                                        </div>   
+                                        <div class="col-sm-6 col-xs-12"> 
+                                            <?php include("./booking-rent-car/captchacode-widget.php"); ?> 
+                                        </div>  
+
+                                        <div class="col-xs-12 col-sm-6">
+                                            <div class="col-sm-4">
+                                                <div class="div-check" >
+                                                    <img src="booking-rent-car/img/checking.gif" id="checking"/>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div class="col-sm-12 col-xs-12">
+                                    <button type="submit" id="btnSubmit" class="btn btn-style-3 submit">SEND YOUR MESSAGE</button>
+                                    <div id="dismessage" align="center"></div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div> 
+                <div class="col-md-3" style=" " >
+                    <div class="" style="  background-color: rgba(0, 0, 0, 0.35);   
+                         text-align: center;
+                         border-top-left-radius: 5px;
+                         border-top-right-radius: 5px;
+                         margin: -15px -15px 0px -15px;
+                         padding: 8px 10px;
+                         font-weight: bold;
+                         line-height: 25px;">
+                        <h4 style=" background-color: rgba(0, 0, 0, 0.35);padding: 10px;
+                            color: white; "><b>Your Price Summary </b></h4>
+                        <span style=" background-color: rgba(0, 0, 0, 0.35); ">
+                            <p style="text-align: left;color: white;">Pick up date: <span id="pick_up_date_append" style="color: black"></span></p>
+                            <p style="text-align: left;color: white;">Pick up method:<span id="select_method_append" style="color: black"></span></p>
+                            <p style="text-align: left;color: white;">office:<span id="select_office_append" style="color: black"></span></p>
+                            <p style="text-align: left;color: white;display: none;" id="location_hide" >Your Location:<span id="your_location_append" style="color: black"></span></p>
+                            <p style="text-align: left;color: white;">Pick up time:<span id="pick_up_time_append" style="color: black"></span></p>
+                            <p style="text-align: left;color: white;">Return date:<span id="drop_up_date_append" style="color: black"></span></p>
+                            <p style="text-align: left;color: white;">Return location:<span id="drop_location_append" style="color: black"></span></p>
+                            <p style="text-align: left; color: white;">Return time:<span id="drop_time_append" style="color: black"></span></p>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
+    </div> 
 
 
+    <!-- - - - - - - - - - - - - end Content - - - - - - - - - - - - - - - -->
 
+    <!-- - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
 
+    <?php include './footer.php'; ?>
 
-        <!-- - - - - - - - - - - - - end Content - - - - - - - - - - - - - - - -->
+    <!-- - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - -->
+</div>
+<!--Collect from-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="col-md-10">
+                    <h5 class="modal-title" id="exampleModalLabel"> Please Select your near Office </h5>
 
-        <!-- - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
 
-        <?php include './footer.php'; ?>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal"   enctype="multipart/form-data"> 
+                    <div class=" clearfix">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                            <label for="name">Offices</label>
+                        </div>
 
-        <!-- - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - -->
+                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                            <div class="form-group">
+                                <select class="form-control" id="select_office">
+                                    <?php
+                                    $OFFICE = new Office(NULL);
+                                    foreach ($OFFICE->all() as $office) {
+                                        ?>
+                                        <option value="<?php echo $office['location'] ?>"><?php echo $office['location'] ?></option>
+                                    <?php } ?>
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class=" row modal-footer" style="padding: 12px 10px 0px;"> 
+                        <button type="submit" class="  btn-style-3 btn-sm submit office_btn" >Save changes</button>
+                    </div> 
+                </div> 
+            </div> 
+        </div>
     </div>
+</div>
 
+<!--Home Delivery-->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="col-md-10">
+                    <h5 class="modal-title" id="exampleModalLabel"> Please Select your near by Office </h5>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
 
-    <!-- - - - - - - - - - - - end Wrapper - - - - - - - - - - - - - - -->
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal"  enctype="multipart/form-data"> 
+                    <div class=" clearfix">
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                            <label for="name">Offices</label>
+                        </div>
 
-    <!-- JS Libs & Plugins
-    ============================================ -->
-    <script src="<?php echo actual_link() ?>js/libs/jquery.modernizr.js"></script>
-    <script src="<?php echo actual_link() ?>js/libs/jquery-2.2.4.min.js"></script>
-    <script src="<?php echo actual_link() ?>js/libs/jquery-ui.min.js"></script>
-    <script src="<?php echo actual_link() ?>js/libs/retina.min.js"></script>
-    <script src="<?php echo actual_link() ?>plugins/mad.customselect.js"></script>
-    <script src="<?php echo actual_link() ?>plugins/sticky-sidebar.js"></script>
-    <script src="<?php echo actual_link() ?>plugins/isotope.pkgd.min.js"></script>
-    <script src="<?php echo actual_link() ?>plugins/jquery.queryloader2.min.js"></script>
-    <script src="<?php echo actual_link() ?>plugins/bootstrap.js"></script>
-    <script src="<?php echo actual_link() ?>plugins/fancybox/jquery.fancybox.min.js"></script>
+                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                            <div class="form-group">
+                                <select class="form-control" id="select_office_home_deliver">
+                                    <?php
+                                    $OFFICE = new Office(NULL);
+                                    foreach ($OFFICE->all() as $office) {
+                                        ?>
+                                        <option value="<?php echo $office['location'] ?>"><?php echo $office['location'] ?></option>
+                                    <?php } ?>
+                                </select>
 
-    <!-- JS theme files
-    ============================================ -->
-    <script src="<?php echo actual_link() ?>js/plugins.js"></script>
-    <script src="<?php echo actual_link() ?>js/script.js"></script>
-    <script src="<?php echo actual_link() ?>contact-form/scripts.js" type="text/javascript"></script>
-    <script src="js/jquery.dateselect.min.js" type="text/javascript"></script>
-    <script src="js/timepicki.js" type="text/javascript"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
+                            </div>
+                        </div>
 
-    <script>
-        $('.btn-date').on('click', function (e) {
-            e.preventDefault();
-            $.dateSelect.show({
-                element: 'input[id="date1"]',
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                            <label for="your_location">Your Location</label>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" id="orign" class="form-control"  name="name" value=" " style="height:35px" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" row modal-footer" style="padding: 12px 10px 0px;"> 
+                        <button type="submit" class="  btn-style-3 btn-sm submit office_btn_1"   >Save changes</button>
+                    </div> 
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
 
-            });
+<!-- - - - - - - - - - - - end Wrapper - - - - - - - - - - - - - - -->
+
+<!-- JS Libs & Plugins
+============================================ -->
+<script src="<?php echo actual_link() ?>js/libs/jquery.modernizr.js"></script>
+<script src="<?php echo actual_link() ?>js/libs/jquery-2.2.4.min.js"></script>
+<script src="<?php echo actual_link() ?>js/libs/jquery-ui.min.js"></script>
+<script src="<?php echo actual_link() ?>js/libs/retina.min.js"></script>
+<script src="<?php echo actual_link() ?>plugins/mad.customselect.js"></script>
+<script src="<?php echo actual_link() ?>plugins/sticky-sidebar.js"></script>
+<script src="<?php echo actual_link() ?>plugins/isotope.pkgd.min.js"></script>
+<script src="<?php echo actual_link() ?>plugins/jquery.queryloader2.min.js"></script>
+<script src="<?php echo actual_link() ?>plugins/bootstrap.js"></script>
+<script src="<?php echo actual_link() ?>plugins/fancybox/jquery.fancybox.min.js"></script>
+
+<!-- JS theme files
+============================================ -->
+<script src="<?php echo actual_link() ?>js/plugins.js"></script>
+<script src="<?php echo actual_link() ?>js/script.js"></script>
+<script src="<?php echo actual_link() ?>contact-form/scripts.js" type="text/javascript"></script>
+<script src="js/jquery.dateselect.min.js" type="text/javascript"></script>
+<script src="js/timepicki.js" type="text/javascript"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
+
+<script>
+    $('.btn-date').on('click', function (e) {
+        e.preventDefault();
+        $.dateSelect.show({
+            element: 'input[id="pick_up_date"]',
         });
+    });
 
-        $('.btn-date').on('click', function (e) {
-            e.preventDefault();
-            $.dateSelect.show({
-                element: 'input[id="date2"]',
+    $('.btn-date').on('click', function (e) {
+        e.preventDefault();
+        $.dateSelect.show({
+            element: 'input[id="drop_up_date"]',
 
-            });
         });
-        $('.timepicker1').timepicki();
-    </script>
-
-    <script src="<?php echo actual_link() ?>js/city.js" type="text/javascript"></script>
+    });
+    $('.timepicker1').timepicki(); 
+</script>
+<script src="js/booking-rent-car.js" type="text/javascript"></script>
+<script src="<?php echo actual_link() ?>js/city.js" type="text/javascript"></script>
 </body>
 </html>
