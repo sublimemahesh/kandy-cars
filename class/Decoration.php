@@ -15,10 +15,10 @@ class Decoration {
 
     public $id;
     public $vehicle;
-    public $name; 
-    public $image_name; 
-    public $short_description; 
-    public $charge; 
+    public $name;
+    public $image_name;
+    public $short_description;
+    public $charge;
 
     public function __construct($id) {
         if ($id) {
@@ -94,8 +94,11 @@ class Decoration {
 
     public function update() {
 
-        $query = "UPDATE  `decoration` SET " 
-                . "`name` ='" . $this->name . "' "
+        $query = "UPDATE  `decoration` SET "
+                . "`name` ='" . $this->name . "', "
+                . "`image_name` ='" . $this->image_name . "', "
+                . "`short_description` ='" . $this->short_description . "', "
+                . "`charge` ='" . $this->charge . "' "
                 . "WHERE `id` = '" . $this->id . "'";
 
         $db = new Database();
@@ -110,7 +113,7 @@ class Decoration {
     }
 
     public function delete() {
-
+        unlink(Helper::getSitePath() . "upload/decoration/" . $this->image_name);
         $query = 'DELETE FROM `decoration` WHERE id="' . $this->id . '"';
 
         $db = new Database();

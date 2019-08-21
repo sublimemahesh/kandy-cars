@@ -12,7 +12,7 @@ $PRODUCT_TYPE = new ProductType($id);
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <title>Packages</title>
+        <title>Decoration</title>
         <!-- Favicon-->
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -96,57 +96,38 @@ $PRODUCT_TYPE = new ProductType($id);
                         <div class="card">
                             <div class="header">
                                 <h2>
-                                    Manage Packages
+                                    Manage Decoration
                                 </h2>
 
                             </div>
-                            <div class="body">
-                                <!--                                <div class="table-responsive">-->
-
-                                <div>
-                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>   
-                                                <th>Option</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>  
-                                                <th>Option</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-
-                                            <?php
-                                            $DECORATION = new Decoration(NULL);
-                                            foreach ($DECORATION->getDecorationsByVehicle($id) as $key => $decoration) {
+                            <div class="body"> 
+                                    <div class="row clearfix">
+                                        <?php
+                                        $DECORATION = Decoration::getDecorationsByVehicle($id);
+                                        if (count($DECORATION) > 0) {
+                                            foreach ($DECORATION as $key => $decoration) {
                                                 ?>
-                                                <tr id="row_<?php echo $decoration['id']; ?>">
-                                                    <td><?php echo $decoration['id']; ?></td> 
-                                                    <td><?php echo $decoration['name']; ?></td> 
-
-
-                                                    <td> 
-                                                        <a href="edit-decoration.php?id=<?php echo $decoration['id']; ?>" class="op-link btn btn-sm btn-default"><i class="glyphicon glyphicon-pencil"></i></a>  
-                                                        | 
-                                                        <a href="#" class="delete-decoration btn btn-sm btn-danger" data-id="<?php echo $decoration['id']; ?>">
-                                                            <i class="waves-effect glyphicon glyphicon-trash" data-type="cancel"></i>
-                                                        </a>   
-
-                                                    </td>
-                                                </tr>
+                                                <div class="col-md-3"  id="row_<?php echo $decoration['id']; ?>">
+                                                    <div class="photo-img-container">
+                                                        <img src="../upload/decoration/<?php echo $decoration['image_name']; ?>" class="img-responsive ">
+                                                    </div>
+                                                    <div class="img-caption">
+                                                        <p class="maxlinetitle"><?php echo $decoration['name']; ?></p>
+                                                        <div class="d">
+                                                            <a href="edit-decoration.php?id=<?php echo $decoration['id']; ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a> | 
+                                                            <a href="arrange-package.php">  <button class="glyphicon glyphicon-random arrange-btn"></button></a> | 
+                                                            <a href="#"  class="delete-decoration" data-id="<?php echo $decoration['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <?php
                                             }
-                                            ?>   
-                                        </tbody>
-                                    </table>
-                                </div> 
+                                        } else {
+                                            ?> 
+                                            <b style="padding-left: 15px;">No decoration in the database.</b> 
+                                        <?php } ?> 
 
-                                <!--                                </div>-->
+                                    </div> 
                             </div>
                         </div>
                     </div>

@@ -166,7 +166,7 @@ $PRODUCT_TYPE = new ProductType($id);
                                             }
                                         } else {
                                             ?> 
-                                            <b style="padding-left: 15px;">No Category in the database.</b> 
+                                            <b style="padding-left: 15px;">No Package in the database.</b> 
                                         <?php } ?> 
 
                                     </div>

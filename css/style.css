@@ -9009,3 +9009,42 @@ table tr td.price{
 .white-color{
     color: black;
 }
+.img-title-2{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    color: #fff;
+    text-align: center;
+    background: #2c2a2a80;
+    width: 100%;
+    margin: 0px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize; 
+}
+.price-summer-header{
+    background-color: rgba(0, 0, 0, 0.35);   
+    text-align: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin: -15px -15px 0px -15px;
+    padding: 8px 10px;
+    font-weight: bold;
+    line-height: 25px;
+}
+.price-summer-header-title{
+    background-color: rgba(0, 0, 0, 0.35);padding: 10px;
+    color: white; 
+}
+.price-summer-span{
+    background-color: rgba(0, 0, 0, 0.35);
+}
+.price-summer-p{
+    text-align: left;color: white;
+}
+.price-summer-p span{
+    color: black;
+}
+.padd-left{
+    padding-left: 10px;
+}
