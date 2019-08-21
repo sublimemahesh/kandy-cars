@@ -50,14 +50,39 @@ $DECORATION = new Decoration($id);
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="text" id="name" class="form-control"  autocomplete="off" name="name" required="true" value="<?php echo $DECORATION->name?>">
+                                                <input type="text" id="name" class="form-control"  autocomplete="off" name="name" required="true" value="<?php echo $DECORATION->name ?>">
                                                 <label class="form-label">Name</label>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">                                       
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="file" id="image" class="form-control" value="<?php echo $DECORATION->image_name; ?>"  name="image">
+                                                <img src="../upload/decoration/<?php echo $DECORATION->image_name; ?>" id="image" class="view-edit-img img img-responsive img-thumbnail" name="image" alt="old image">
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="text" id="short_description" class="form-control" autocomplete="off" name="short_description" required="true" value="<?php echo $DECORATION->short_description; ?>">
+                                                <label class="form-label">Short Description</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="number" id="charge" class="form-control" autocomplete="off" name="charge" required="true" value="<?php echo $DECORATION->charge; ?>"/>
+                                                <label class="form-label">Charge</label>
+                                            </div>
+                                        </div>
+                                    </div> 
 
                                     <div class="col-md-12"> 
+                                        <input type="hidden" id="oldImageName" value="<?php echo $DECORATION->image_name; ?>" name="oldImageName"/>
                                         <input type="hidden" name="id" id="id" value="<?php echo $id ?>">
                                         <input type="submit" name="update" class="btn btn-primary m-t-15 waves-effect" value="update"/>
                                     </div>
@@ -69,7 +94,7 @@ $DECORATION = new Decoration($id);
                     </div>
                 </div>
 
-              
+
                 <!-- #END# Vertical Layout -->
 
             </div>

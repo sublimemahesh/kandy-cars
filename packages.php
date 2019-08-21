@@ -69,16 +69,23 @@ $id = $_GET['id'];
                                 <div class="pricing-area">
                                     <div class="product-price new-price">
 
+                                        <span>Hours per Day</span>  
+                                        <span style="color:#000;font-size:21px;" >Hours</span>
+                                        <span  style="color:#000;font-size:18px;" ><?php echo $package['hours']; ?></span> 
+                                    </div>
+                                    <div class="product-price new-price">
+
+                                        <span>Mileage Limit</span>  
+                                        <span style="color:#000;font-size:21px;" >KM</span>
+                                        <span  style="color:#000;font-size:18px;" ><?php echo $package['km']; ?></span> 
+                                    </div>
+                                    <div class="product-price new-price">
+
                                         <span>Charge Per Day</span>  
                                         <span style="color:#000;font-size:21px;" >LKR</span>
                                         <span  style="color:#000;font-size:18px;" ><?php echo $package['charge']; ?></span> 
                                     </div>
-                                    <div class="product-price new-price">
-                                        <span> Mileage Limit</span> 
-                                        <span style="color:#000;font-size:21px;" >Km</span>
-                                        <span style="color:#000;font-size:18px;" ><?php echo $package['mileage_limit']; ?></span>
-
-                                    </div>
+                                     
                                 </div>
 
                                 <div class="model-info  pull-left" style="  padding-bottom:12px;">
@@ -111,6 +118,7 @@ $id = $_GET['id'];
     <script src="<?php echo actual_link() ?>plugins/owl.carousel.min.js"></script>
 
     <script src="<?php echo actual_link() ?>js/plugins.js"></script>
-    <script src="<?php echo actual_link() ?>js/script.js"></script> 
+    <script src="<?php echo actual_link() ?>js/script.js"></script>
+    <script src="js/booking-wedding-car.js" type="text/javascript"></script>
 </body>
 </html>

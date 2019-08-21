@@ -128,8 +128,7 @@ $PACKAGE = new Package($id);
                                     <div class="col-md-12">
                                         <input type="hidden" id="oldImageName" value="<?php echo $PACKAGE->image_name; ?>" name="oldImageName"/>
                                         <input type="hidden" id="id" value="<?php echo $PACKAGE->id; ?>" name="id"/>
-<!--                                            <input type="hidden" id="authToken" value="<?php echo $_SESSION["authToken"]; ?>" name="authToken"/>-->
-                                        <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="update" value="update">Save Changes</button>
+                                         <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="update" value="update">Save Changes</button>
                                     </div>
                                     <div class="row clearfix">  </div>
                                 </form>
