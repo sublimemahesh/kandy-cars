@@ -91,11 +91,11 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
 
                             <div class="col-sm-12 col-xs-8 col-md-5">
                                 <div class="controls"> 
-                                    <input type="text" id="origin" class="form-control data-val pick_up_location" name="text" placeholder="locations" autocomplete="off"/> 
+                                    <input type="text" id="destination" class="form-control  " name="text" placeholder="locations" autocomplete="off"/> 
                                 </div>
                             </div>
 
-                            <div class="col-sm-12 col-xs-4 col-md-1"> 
+                            <div class="col-sm-12 col-xs-4 col-md-1" style="padding-left: 0px;"> 
                                 <button type="submit"  class="  btn-style-3  btn-add submit" id="append" name="append" > + </button>
                             </div> 
 
@@ -162,7 +162,7 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                             </div> 
                             <div class="col-sm-12 col-xs-12">
                                 <input type="hidden" name="txtVehicle" id="txtVehicle" value="<?php echo $PRODUCT_TYPE->name ?>" />
-                                <button type="submit" id="btnSubmit" class="btn btn-style-3 submit">SEND YOUR MESSAGE</button>
+                                <button type="submit" id="btnSubmit" class="btn btn-style-3 submit">BOOK NOW</button>
                                 <div id="dismessage" align="center"></div>
                             </div>
                         </div> 
@@ -175,7 +175,7 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                             <p class="price-summer-p">Pick up date: <span id="pick_up_date_append"  ></span></p> 
                             <p class="price-summer-p">Pick up time:<span id="pick_up_time_append"  ></span></p>
                             <p class="price-summer-p">Pick up location:<span id="pick_up_location_append"  ></span></p>
-                            <p class="price-summer-p destination " style="text-align: center; display: none;">Your Destinations<span id="pick_up_time_append"  ></span> </p>
+                            <p class="price-summer-p destination " style="text-align: center; display: none;">Your Destinations<span    ></span> </p>
                             <table class="table table-striped  " style=" display: none;" >
                                 <thead>
                                     <tr>
@@ -263,35 +263,28 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
     <!-- JS theme files
     ============================================ -->
     <script src="<?php echo actual_link() ?>js/plugins.js"></script>
-    <script src="<?php echo actual_link() ?>js/script.js"></script>
-    <script src="<?php echo actual_link() ?>contact-form/scripts.js" type="text/javascript"></script>
+    <script src="<?php echo actual_link() ?>js/script.js"></script> 
     <script src="<?php echo actual_link() ?>js/jquery.dateselect.min.js" type="text/javascript"></script>
     <script src="<?php echo actual_link() ?>js/timepicki.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
+
     <script src="js/booking-wedding-car.js" type="text/javascript"></script>
     <script>
-        $(document).ready(function () {
-            jQuery(document).on('click', '.remove_this', function () {
-                var contentPanelId = jQuery(this).attr("data-id");
-                alert(contentPanelId);
-                $('.remove-col').parent().remove();
-                return false;
-            });
-
-        });
+      
 
         $('.btn-date').on('click', function (e) {
-            e.preventDefault();
+            e.preventDefault(); 
             $.dateSelect.show({
                 element: 'input[name="txtPickUpDate"]'
             });
         });
+        
         $('.timepicker1').timepicki({
             max_hour_value: 23,
         });
 
     </script> 
-    <script src="<?php echo actual_link() ?>booking-form/scripts.js" type="text/javascript"></script>
+
     <script src="<?php echo actual_link() ?>js/city.js" type="text/javascript"></script>
 
 </body>

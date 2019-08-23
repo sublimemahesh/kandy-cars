@@ -176,7 +176,7 @@ if (isset($_POST['update'])) {
     $PRODUCT_TYPE->parade_waiting_hour = $_POST['parade_waiting_hour'];
     $PRODUCT_TYPE->parade_decoration = $_POST['parade_decoration'];
      
-    $PRODUCT_TYPE->offices = $_POST['offices'];
+   
 
     $VALID = new Validator();
     $VALID->check($PRODUCT_TYPE, [

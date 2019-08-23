@@ -3,6 +3,8 @@ include_once(dirname(__FILE__) . '/class/include.php');
 include './main-fuction.php';
 
 $id = $_GET['id'];
+$PRODUCT_TYPE = new ProductType($id);
+$VEHICLE_TYPE = new VehicleType($PRODUCT_TYPE->type);
 ?>
 <!doctype html>
 <html lang="en">
@@ -60,21 +62,30 @@ $id = $_GET['id'];
                     <!-- Slide -->                  
                     <div class="col-md-4 ">
                         <div class="product" style="margin-bottom:20px;">
-                            <a href="booking-form.php?id=<?php echo $package['id'] ?>">
-                                <img src="<?php echo actual_link() ?>upload/packages/<?php echo $package["image_name"]; ?>" alt="">
-                            </a>
+                            <?php
+                            if ($VEHICLE_TYPE->id == 1) {
+                                ?>
+                                <a href="booking-form-rent-car.php?id=<?php echo $package['id'] ?>">
+                                    <img src="<?php echo actual_link() ?>upload/packages/<?php echo $package["image_name"]; ?>" alt="">
+                                </a>
+                            <?php } else {
+                                ?>
+                                <a href="booking-form-wedding-car.php?id=<?php echo $package['id'] ?>">
+                                    <img src="<?php echo actual_link() ?>upload/packages/<?php echo $package["image_name"]; ?>" alt="">
+                                </a>
+                            <?php } ?>
+                            
+                           
                             <div class="product-description no-rating">
-                                <h4 class="product-name"><a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($package['title'])); ?>/"><?php echo $package["title"]; ?></a></h4>
+                                <h4 class="product-name"><a href=" "><?php echo $package["title"]; ?></a></h4>
 
                                 <div class="pricing-area">
-                                    <div class="product-price new-price">
-
+                                    <div class="product-price new-price"> 
                                         <span>Hours per Day</span>  
                                         <span style="color:#000;font-size:21px;" >Hours</span>
                                         <span  style="color:#000;font-size:18px;" ><?php echo $package['hours']; ?></span> 
                                     </div>
-                                    <div class="product-price new-price">
-
+                                    <div class="product-price new-price"> 
                                         <span>Mileage Limit</span>  
                                         <span style="color:#000;font-size:21px;" >KM</span>
                                         <span  style="color:#000;font-size:18px;" ><?php echo $package['km']; ?></span> 
@@ -84,12 +95,23 @@ $id = $_GET['id'];
                                         <span>Charge Per Day</span>  
                                         <span style="color:#000;font-size:21px;" >LKR</span>
                                         <span  style="color:#000;font-size:18px;" ><?php echo $package['charge']; ?></span> 
-                                    </div>
-                                     
+                                    </div> 
                                 </div>
 
                                 <div class="model-info  pull-left" style="  padding-bottom:12px;">
-                                    <div ><a href="booking-form.php?id=<?php echo $package['id'] ?>" class="btn-2">Book Now</a></div>
+                                    <?php
+                                    if ($VEHICLE_TYPE->id == 1) {
+                                        ?>
+                                        <div><a href="booking-form-rent-car.php?id=<?php echo $package['id'] ?>" class="btn-2">Book Now</a></div>
+                                    <?php } else if ($VEHICLE_TYPE->id == 2) {
+                                        ?>
+                                        <div><a href="booking-form-wedding-car.php?id=<?php echo $package['id'] ?>" class="btn-2">Book Now</a></div>
+
+                                        <?php
+                                    } else {
+                                        ?>
+                                        <div><a href="booking-form.php?id=<?php echo $package['id'] ?>" class="btn-2">Book Now</a></div>
+                                    <?php } ?>
                                 </div>
 
                             </div> 

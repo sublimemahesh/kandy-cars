@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $("#pick_up_date ,#select_method,#drop_up_date,#drop_location").change(function () {
+    $("#pick_up_date ,#select_method,#drop_up_date,#drop_location,#selection_type").change(function () {
 
         //Pick up date
         var pick_up_date = $('#pick_up_date').val();
@@ -9,6 +9,7 @@ $(document).ready(function () {
         var drop_location = $('#drop_location').val();
         var pick_up_time = $('#pick_up_time').val();
         var drop_time = $('#drop_time').val();
+        var selection_type = $('#selection_type').val();
 
         if (select_method == 'Home Delivery') {
             $('#location_hide').show();
@@ -23,6 +24,7 @@ $(document).ready(function () {
         $('#pick_up_time_append').empty();
         $('#drop_time_append').empty();
         $('#drop_up_date_append').empty();
+        $('#type_append').empty();
 
         //append val
         $('#select_method_append').append(select_method);
@@ -31,6 +33,7 @@ $(document).ready(function () {
         $('#pick_up_time_append').append(pick_up_time);
         $('#drop_time_append').append(drop_time);
         $('#drop_up_date_append').append(drop_up_date);
+        $('#type_append').append(selection_type);
     });
 
     $(".office_btn").click(function () {

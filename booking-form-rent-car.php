@@ -43,8 +43,7 @@ include './main-fuction.php';
     <link href="<?php echo actual_link() ?>css/custom.css" rel="stylesheet" type="text/css"/>
     <link href="css/jquery.dateselect.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link href="css/timepicki.css" rel="stylesheet" type="text/css"/>
-
+    <link href="css/timepicki.css" rel="stylesheet" type="text/css"/> 
 </head>
 
 
@@ -68,9 +67,11 @@ include './main-fuction.php';
                     <div class="  question-form bg-sidebar-item">
                         <div class="contact-form">
                             <div class="row">
+                                
                                 <div class="col-sm-6 col-xs-12">
                                     <input type="text" id="pick_up_date"   class="form-control date" data-select="date"  placeholder="Pick Up date">
                                 </div>
+                                
                                 <div class="col-sm-6 col-xs-12">
                                     <select  style="padding-left: 10px" id="select_method"> 
                                         <option value=""> -- Select your method --</option>
@@ -91,7 +92,12 @@ include './main-fuction.php';
                                 <div class="col-sm-6 col-xs-12">
                                     <input type="text" id="drop_up_date" class="form-control date" data-select="date"  placeholder="Return date">
                                 </div> 
-
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <select  id="selection_type" class="padd-left" >
+                                        <option value="One Way" selected="" > One Way </option>
+                                        <option value="Up and down">  Up and down</option>                                    
+                                    </select>
+                                </div>
                                 <div class="col-sm-12 col-xs-12">
                                     <div class="row form-group">
                                         <div class="col-sm-6 col-xs-12"> 
@@ -113,7 +119,7 @@ include './main-fuction.php';
                                     </div> 
                                 </div>
                                 <div class="col-sm-12 col-xs-12">
-                                    <button type="submit" id="btnSubmit" class="btn btn-style-3 submit">SEND YOUR MESSAGE</button>
+                                    <button type="submit" id="btnSubmit" class="btn btn-style-3 submit">BOOK NOW</button>
                                     <div id="dismessage" align="center"></div>
                                 </div>
                             </div>
@@ -121,25 +127,18 @@ include './main-fuction.php';
                     </div>
                 </div> 
                 <div class="col-md-3" style=" " >
-                    <div class="" style="  background-color: rgba(0, 0, 0, 0.35);   
-                         text-align: center;
-                         border-top-left-radius: 5px;
-                         border-top-right-radius: 5px;
-                         margin: -15px -15px 0px -15px;
-                         padding: 8px 10px;
-                         font-weight: bold;
-                         line-height: 25px;">
-                        <h4 style=" background-color: rgba(0, 0, 0, 0.35);padding: 10px;
-                            color: white; "><b>Your Price Summary </b></h4>
-                        <span style=" background-color: rgba(0, 0, 0, 0.35); ">
-                            <p style="text-align: left;color: white;">Pick up date: <span id="pick_up_date_append" style="color: black"></span></p>
-                            <p style="text-align: left;color: white;">Pick up method:<span id="select_method_append" style="color: black"></span></p>
-                            <p style="text-align: left;color: white;">office:<span id="select_office_append" style="color: black"></span></p>
-                            <p style="text-align: left;color: white;display: none;" id="location_hide" >Your Location:<span id="your_location_append" style="color: black"></span></p>
-                            <p style="text-align: left;color: white;">Pick up time:<span id="pick_up_time_append" style="color: black"></span></p>
-                            <p style="text-align: left;color: white;">Return date:<span id="drop_up_date_append" style="color: black"></span></p>
-                            <p style="text-align: left;color: white;">Return location:<span id="drop_location_append" style="color: black"></span></p>
-                            <p style="text-align: left; color: white;">Return time:<span id="drop_time_append" style="color: black"></span></p>
+                    <div class="price-summer-header">
+                        <h4 class="price-summer-header-title"><b>Your Price Summary </b></h4>
+                        <span class="price-summer-span">
+                            <p class="price-summer-p">Pick up date: <span id="pick_up_date_append"  ></span></p>
+                            <p class="price-summer-p">Pick up method:<span id="select_method_append"  ></span></p>
+                            <p class="price-summer-p">office:<span id="select_office_append"  ></span></p>
+                            <p class="price-summer-p" id="location_hide" style="display: none;">Your Location:<span id="your_location_append"  ></span></p>
+                            <p class="price-summer-p">Pick up time:<span id="pick_up_time_append"  ></span></p>
+                            <p class="price-summer-p">Return date:<span id="drop_up_date_append"  ></span></p>
+                            <p class="price-summer-p">Return location:<span id="drop_location_append"  ></span></p>
+                            <p class="price-summer-p">Return time:<span id="drop_time_append"  ></span></p>
+                            <p class="price-summer-p">Type:<span id="type_append"  ></span></p>
                         </span>
                     </div>
                 </div>
@@ -298,7 +297,7 @@ include './main-fuction.php';
 
         });
     });
-    $('.timepicker1').timepicki(); 
+    $('.timepicker1').timepicki();
 </script>
 <script src="js/booking-rent-car.js" type="text/javascript"></script>
 <script src="<?php echo actual_link() ?>js/city.js" type="text/javascript"></script>
