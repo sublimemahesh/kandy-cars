@@ -38,13 +38,13 @@ class ProductType {
     public $parade_excess_mileage;
     public $parade_waiting_hour;
     public $parade_decoration;
-    public $offices;
+    
     public $queue;
 
     public function __construct($id) {
         if ($id) {
 
-            $query = "SELECT `id`,`name`,`type`,`image_name`,`sd_charge_per_day`,`sd_mileage_limit`,`sd_excess_mileage`,`sd_delayed_hour`,`wd_mileage`,`wd_charge`,`wd_duration`,`wd_excess_mileage`,`wd_waiting_hour`,`wedd_mileage`,`weed_charge`,`weed_duration`,`weed_excess_mileage`,`weed_waiting_hour`,`weed_decoration`,`parade_mileage`,`parade_charge`,`parade_duration`,`parade_excess_mileage`,`parade_waiting_hour`,`parade_decoration`,`offices`,`queue` FROM `product_types` WHERE `id`=" . $id;
+            $query = "SELECT `id`,`name`,`type`,`image_name`,`sd_charge_per_day`,`sd_mileage_limit`,`sd_excess_mileage`,`sd_delayed_hour`,`wd_mileage`,`wd_charge`,`wd_duration`,`wd_excess_mileage`,`wd_waiting_hour`,`wedd_mileage`,`weed_charge`,`weed_duration`,`weed_excess_mileage`,`weed_waiting_hour`,`weed_decoration`,`parade_mileage`,`parade_charge`,`parade_duration`,`parade_excess_mileage`,`parade_waiting_hour`,`parade_decoration`,`queue` FROM `product_types` WHERE `id`=" . $id;
 
             $db = new Database();
 
@@ -79,7 +79,7 @@ class ProductType {
             $this->parade_excess_mileage = $result['parade_excess_mileage'];
             $this->parade_waiting_hour = $result['parade_waiting_hour'];
             $this->parade_decoration = $result['parade_decoration'];
-            $this->offices = $result['offices'];
+            
 
             $this->queue = $result['queue'];
 
@@ -184,21 +184,7 @@ class ProductType {
             return FALSE;
         }
     }
-  public function updateOffice() {
-        $query = "UPDATE  `product_types` SET "                 
-                . "`offices` ='" . $this->offices . "' "
-                . "WHERE `id` = '" . $this->id . "'";
-         
-        $db = new Database();
-
-        $result = $db->readQuery($query);
-
-        if ($result) {
-            return $this->__construct($this->id);
-        } else {
-            return FALSE;
-        }
-    }
+  
     public function delete() {
 
 

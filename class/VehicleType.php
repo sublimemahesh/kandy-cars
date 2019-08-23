@@ -39,9 +39,9 @@ class VehicleType {
     public function create() {
 
         $query = "INSERT INTO `vehicle_type` (`name`,`image_name`) VALUES  ('"
-                . $this->name . "','" 
+                . $this->name . "','"
                 . $this->image_name . "')";
-       
+
         $db = new Database();
 
         $result = $db->readQuery($query);
@@ -57,7 +57,7 @@ class VehicleType {
 
     public function all() {
 
-        $query = "SELECT * FROM `vehicle_type`";
+        $query = "SELECT * FROM `vehicle_type` ORDER BY sort ASC";
         $db = new Database();
         $result = $db->readQuery($query);
         $array_res = array();
@@ -95,6 +95,13 @@ class VehicleType {
         $db = new Database();
 
         return $db->readQuery($query);
+    }
+
+    public function arrange($key, $img) {
+        $query = "UPDATE `vehicle_type` SET `queue` = '" . $key . "'  WHERE id = '" . $img . "'";
+        $db = new Database();
+        $result = $db->readQuery($query);
+        return $result;
     }
 
 }

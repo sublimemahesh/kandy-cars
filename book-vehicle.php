@@ -3,7 +3,6 @@ include_once(dirname(__FILE__) . '/class/include.php');
 include './main-fuction.php';
 $id = '';
 $id = $_GET['id'];
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -53,7 +52,6 @@ $id = $_GET['id'];
 
         <div class="page-section container " >
             <div class="row">
-
                 <?php
                 $PRODUCT_TYPE = new ProductType(NULL);
                 foreach ($PRODUCT_TYPE->getVehiclesByType($id) as $key => $product) {
@@ -62,13 +60,10 @@ $id = $_GET['id'];
                     <div class="col-md-4 "> 
                         <div class="product" style="margin-bottom:20px;">
                             <a href="packages.php?id=<?php echo $product['id']; ?>">
-
-            <!--                            <a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($product['name'])); ?>/">-->
                                 <img src="<?php echo actual_link() ?>upload/product-type/<?php echo $product["image_name"]; ?>" alt="">
-                                <!--</a>-->
                             </a>
                             <div class="product-description no-rating">
-                                <h5 class="product-name"><a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($product['name'])); ?>/"><?php echo $product["name"]; ?></a>
+                                <h5 class="product-name"><a href=""><?php echo $product["name"]; ?></a>
 
                                 </h5>
                                 <div class="model-info  pull-right" style="  padding-bottom:12px;">

@@ -120,3 +120,13 @@ if (isset($_POST['update'])) {
     }
     
 }
+if (isset($_POST['save-data'])) {
+
+    foreach ($_POST['sort'] as $key => $img) {
+        $key = $key + 1;
+
+        $VEHICLE_TYPE = VehicleType::arrange($key, $img);
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+}
