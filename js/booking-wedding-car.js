@@ -1,15 +1,14 @@
-$(document).ready(function () {
-
+ 
+$(document).ready(function () { 
+   
     $("#pick_up_date ,#pick_up_time,#origin,#drop_time,#selection_type,#decoration").change(function () {
 
         //Pick up date
         var pick_up_date = $('#pick_up_date').val();
         var pick_up_time = $('#pick_up_time').val();
-        var pick_up_location = $('#origin').val();
-
+        var pick_up_location = $('#origin').val(); 
         var drop_time = $('#drop_time').val();
         var selection_type = $('#selection_type').val();
-
 
 
         //empty
@@ -38,10 +37,11 @@ $(document).ready(function () {
     });
 
     $("#append").click(function () {
+
         var data_val = $('#destination').val();
         $('table').show();
         $('.destination').show();
-        $(".inc").append('<tr class="remove-col"><td scope="row"><p>' + data_val + ' </p></td><td scope="row"> <input type="hidden" name="txtpick_up_location" class="pick_up_location"  id="txtpick_up_location" value="' + data_val + '  "> <a href="#" class="remove_this" id="data-id' + data_val + '" > <p  >Remove<i class="fa fa-times fa-icion-s " aria-hidden="true"></i></p></a> </td></tr>  ');
+        $(".inc").append('<tr class="remove-col"><td scope="row"><p class="pull-left">' + data_val + ' </p></td><td scope="row"> <input type="hidden" name="txtpick_up_location" class="pick_up_location"  id="txtpick_up_location" value="' + data_val + '  "> <a href="#" class="remove_this" id="data-id' + data_val + '" > <p  ><i class="fa fa-times fa-icion-s " aria-hidden="true"></i></p></a> </td></tr>  ');
         return false;
     });
 
@@ -54,13 +54,14 @@ $(document).ready(function () {
         } else {
             $('#iteam_show').css("display", "none")
         }
-
     });
-});
 
-$(document).ready(function () {
-    jQuery(document).on('click', '.remove_this', function () {
-        $('.remove-col').parent().remove();
-        return false;
+    $("#myTable").on('click', '.remove-col', function () {
+        $(this).closest('tr').remove();
     });
+
+
+
+
+
 });

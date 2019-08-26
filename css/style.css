@@ -9024,13 +9024,12 @@ table tr td.price{
 }
 .price-summer-header{
     background-color: rgba(0, 0, 0, 0.35);   
-    text-align: center;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    margin: -15px -15px 0px -15px;
+    text-align: center;    
+    margin: -15px -15px 30px -15px;
     padding: 8px 10px;
     font-weight: bold;
     line-height: 25px;
+    border-radius: 4px;
 }
 .price-summer-header-title{
     background-color: rgba(0, 0, 0, 0.35);padding: 10px;
@@ -9047,4 +9046,7 @@ table tr td.price{
 }
 .padd-left{
     padding-left: 10px;
+}
+.remove-col{
+   background-color: #e2e5e5; 
 }

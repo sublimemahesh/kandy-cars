@@ -94,7 +94,7 @@ $VEHICLE_TYPE = new VehicleType($PRODUCT_TYPE->type);
 
                                         <span>Charge Per Day</span>  
                                         <span style="color:#000;font-size:21px;" >LKR</span>
-                                        <span  style="color:#000;font-size:18px;" ><?php echo $package['charge']; ?></span> 
+                                        <span  style="color:#000;font-size:18px; text-transform: none;" >Rs: <?php echo number_format($package['charge'],2); ?></span> 
                                     </div> 
                                 </div>
 

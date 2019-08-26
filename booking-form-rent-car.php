@@ -2,6 +2,8 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
 include './main-fuction.php';
+$id = $_GET['id'];
+$PACKAGE = new Package($id); 
 ?>
 <html lang="en">
 
@@ -13,7 +15,7 @@ include './main-fuction.php';
     <!-- Basic Page Needs
     ================================================== -->
 
-    <title>Contact Us || www.kandycars.lk</title>
+    <title>Booking Rent Car || www.kandycars.lk</title>
 
     <!--meta info-->
 
@@ -63,15 +65,16 @@ include './main-fuction.php';
         <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
         <div class="container margin-top-50">
             <div class="row">
+                  <h2 class="text-center"> <?php echo $PACKAGE->title ?></h2>
                 <div class="col-md-9">
                     <div class="  question-form bg-sidebar-item">
                         <div class="contact-form">
                             <div class="row">
-                                
+
                                 <div class="col-sm-6 col-xs-12">
                                     <input type="text" id="pick_up_date"   class="form-control date" data-select="date"  placeholder="Pick Up date">
                                 </div>
-                                
+
                                 <div class="col-sm-6 col-xs-12">
                                     <select  style="padding-left: 10px" id="select_method"> 
                                         <option value=""> -- Select your method --</option>
@@ -84,43 +87,19 @@ include './main-fuction.php';
                                 </div> 
 
                                 <div class="col-sm-6 col-xs-12 col-md-6">
-                                    <input   type="text"  id="drop_location"  style="padding-left: 10px" placeholder="Return Location"/>
+                                    <input   type="text"  id="destination"  style="padding-left: 10px" placeholder="Return Location"/>
                                 </div>
-                                <div class="col-sm-6 col-xs-12 col-md-6">
-                                    <input class="timepicker1" type="text" name="timepicker1" id="drop_time"  style="padding-left: 10px" placeholder="Return time"/>
-                                </div> 
                                 <div class="col-sm-6 col-xs-12">
                                     <input type="text" id="drop_up_date" class="form-control date" data-select="date"  placeholder="Return date">
                                 </div> 
                                 <div class="col-sm-6 col-xs-12 col-md-6">
-                                    <select  id="selection_type" class="padd-left" >
-                                        <option value="One Way" selected="" > One Way </option>
-                                        <option value="Up and down">  Up and down</option>                                    
-                                    </select>
-                                </div>
-                                <div class="col-sm-12 col-xs-12">
-                                    <div class="row form-group">
-                                        <div class="col-sm-6 col-xs-12"> 
-                                            <label for="comment"><span id="star">*</span>Security Code: </label>
-                                            <input type="text" name="captchacode" id="captchacode" class="form-control input-validater" placeholder="Enter the Security Code >> ">
-                                            <span id="capspan" ></span> 
-                                        </div>   
-                                        <div class="col-sm-6 col-xs-12"> 
-                                            <?php include("./booking-rent-car/captchacode-widget.php"); ?> 
-                                        </div>  
+                                    <input class="timepicker1" type="text" name="timepicker1" id="drop_time"  style="padding-left: 10px" placeholder="Return time"/>
+                                </div> 
 
-                                        <div class="col-xs-12 col-sm-6">
-                                            <div class="col-sm-4">
-                                                <div class="div-check" >
-                                                    <img src="booking-rent-car/img/checking.gif" id="checking"/>
-                                                </div>
-                                            </div> 
-                                        </div>
-                                    </div> 
-                                </div>
+
                                 <div class="col-sm-12 col-xs-12">
-                                    <button type="submit" id="btnSubmit" class="btn btn-style-3 submit">BOOK NOW</button>
-                                    <div id="dismessage" align="center"></div>
+                                    <input type="hidden" name="packageId" id="vehicle_id" value=" <?php echo $id ?>" />
+                                    <button type="submit" id="btnSubmit" class="btn btn-style-3 submit">Next</button>
                                 </div>
                             </div>
                         </div> 
@@ -135,10 +114,10 @@ include './main-fuction.php';
                             <p class="price-summer-p">office:<span id="select_office_append"  ></span></p>
                             <p class="price-summer-p" id="location_hide" style="display: none;">Your Location:<span id="your_location_append"  ></span></p>
                             <p class="price-summer-p">Pick up time:<span id="pick_up_time_append"  ></span></p>
-                            <p class="price-summer-p">Return date:<span id="drop_up_date_append"  ></span></p>
                             <p class="price-summer-p">Return location:<span id="drop_location_append"  ></span></p>
+                            <p class="price-summer-p">Return date:<span id="drop_up_date_append"  ></span></p> 
                             <p class="price-summer-p">Return time:<span id="drop_time_append"  ></span></p>
-                            <p class="price-summer-p">Type:<span id="type_append"  ></span></p>
+
                         </span>
                     </div>
                 </div>
@@ -194,7 +173,7 @@ include './main-fuction.php';
                     </div>
 
                     <div class=" row modal-footer" style="padding: 12px 10px 0px;"> 
-                        <button type="submit" class="  btn-style-3 btn-sm submit office_btn" >Save changes</button>
+                        <button type="submit" class="  btn-style-3 btn-sm submit office_btn" >Add</button>
                     </div> 
                 </div> 
             </div> 
@@ -234,7 +213,6 @@ include './main-fuction.php';
                                         <option value="<?php echo $office['location'] ?>"><?php echo $office['location'] ?></option>
                                     <?php } ?>
                                 </select>
-
                             </div>
                         </div>
 
@@ -244,7 +222,7 @@ include './main-fuction.php';
                         <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                             <div class="form-group">
                                 <div class="form-line">
-                                    <input type="text" id="orign" class="form-control"  name="name" value=" " style="height:35px" >
+                                    <input type="text" id="origin" class="form-control"  name="name" value=" " style="height:35px" >
                                 </div>
                             </div>
                         </div>
@@ -280,7 +258,7 @@ include './main-fuction.php';
 <script src="<?php echo actual_link() ?>contact-form/scripts.js" type="text/javascript"></script>
 <script src="js/jquery.dateselect.min.js" type="text/javascript"></script>
 <script src="js/timepicki.js" type="text/javascript"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
+<script src="js/booking-rent-car.js" type="text/javascript"></script>
 
 <script>
     $('.btn-date').on('click', function (e) {
@@ -299,7 +277,9 @@ include './main-fuction.php';
     });
     $('.timepicker1').timepicki();
 </script>
-<script src="js/booking-rent-car.js" type="text/javascript"></script>
-<script src="<?php echo actual_link() ?>js/city.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
+<script src="distance/js/distance-rent-car.js" type="text/javascript"></script>
+
 </body>
 </html>

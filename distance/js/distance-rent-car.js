@@ -9,20 +9,19 @@ var options = {
     componentRestrictions: {country: "lk"}
 };
 
-var pickuplocation = document.getElementById('origin'); 
+var pickuplocation = document.getElementById('origin');  
 var pickupAutocomplete = new google.maps.places.Autocomplete(pickuplocation, options);
 var returnlocation = document.getElementById('destination');
 var returnAutocomplete = new google.maps.places.Autocomplete(returnlocation, options);
 
 
-$(document).ready(function () {
-
+$(document).ready(function () { 
    
     google.maps.event.addListener(returnAutocomplete, 'place_changed', function () {
 
-        pickup = $('#origin').val(); 
+        pickup = $('#origin').val();  
         destination = $('#destination').val();
-        vehicleId = $('#v_id').val();
+        packageId = $('#packageId').val();
 
 
         if (destination && !pickup) {
@@ -47,10 +46,7 @@ $(document).ready(function () {
         } else {
             calPrice();
         }
-
     });
-
-
 });
 
 function calPrice() {
@@ -58,7 +54,11 @@ function calPrice() {
     $.ajax({
         url: "distance/ajax/distance.php",
         type: "POST",
-        data: {pickup: pickup, destination: destination, vehicleId: vehicleId},
+        data: {
+            pickup: pickup,
+            destination: destination, 
+            packageId: packageId
+        },
         dataType: "JSON",
         success: function (jsonStr) {
             if (jsonStr.status) {
