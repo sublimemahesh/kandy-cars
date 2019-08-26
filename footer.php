@@ -11,12 +11,12 @@
                         <h5 class="widget-title">Quick Links</h5>
                         <ul class="info-links">
 
-                            <li><a href="<?php echo actual_link()?>about-us/">About Us</a></li>
-                            <li><a href="<?php echo actual_link()?>services/">Services</a></li>
-                            <li><a href="<?php echo actual_link()?>vehicles/">Vehicle</a></li>
-                            <li><a href="<?php echo actual_link()?>gallery/">Gallery</a></li>
-                            <li><a href="<?php echo actual_link()?>price-list/">Price List</a></li>
-                            <li><a href="<?php echo actual_link()?>contact-us/">Contact Us</a></li>
+                            <li><a href="<?php echo actual_link() ?>about-us/">About Us</a></li>
+                            <li><a href="<?php echo actual_link() ?>services/">Services</a></li>
+                            <li><a href="<?php echo actual_link() ?>vehicles/">Vehicle</a></li>
+                            <li><a href="<?php echo actual_link() ?>gallery/">Gallery</a></li>
+                            <li><a href="<?php echo actual_link() ?>price-list/">Price List</a></li>
+                            <li><a href="<?php echo actual_link() ?>contact-us/">Contact Us</a></li>
 
                         </ul>
                     </div>
@@ -26,7 +26,7 @@
 
                     <div class="widget">
 
-                        <a href="<?php echo actual_link()?>" class="logo"><img src="<?php echo actual_link() ?>images/logo/logo-1.png" width="200" alt=""></a>
+                        <a href="<?php echo actual_link() ?>" class="logo"><img src="<?php echo actual_link() ?>images/logo/logo-1.png" width="200" alt=""></a>
 
                         <ul class="social-icons">
 
@@ -39,12 +39,12 @@
 
                         </ul>
 
-                      
+
                         <a href="https://www.srilankantravelguide.com/" target="new" >  <img src="<?php echo actual_link() ?>images/banner/logo-intro2.png" style="width:50px;height:44px; ">
                         </a>
-                            <a href="https://www.srilankantravelguide.com/" target="new" class="btn btn-style-3 submit">
+                        <a href="https://www.srilankantravelguide.com/" target="new" class="btn btn-style-3 submit">
                             JOIN WITH US</a>
-                        
+
                     </div>
 
                 </div>
@@ -57,14 +57,22 @@
                             </iframe>
                         </ul>
                     </div>
-                     <p class="copyright" style="color: white">
-                            Copyright KandyCars.lk ©   
-                             <?php echo date('Y') ?> All Rights Reserved.Website By:  <i class="fa fa-hand-o-right text-primary heart"  style="color:white;"></i> <a href="https://www.synotec.lk/"  target="_blank"  style="color:white;">  Synotec Holdings (Pvt) Ltd  </a>
-                            <br>
-                            <!--Created By: <a href="https://www.sublime.lk/"><span style="color: white;">Sublime Holdings.</span></a>-->
-                            </p>
+
                 </div>
+
             </div>
+            <div class="row">
+                <div class=" col-md-6 pull-left">
+                    <p   style="color: white">
+                        Copyright KandyCars.lk ©   
+
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <p class="pull-right"> <?php echo date('Y') ?> All Rights Reserved.Website By:  <i class="fa fa-hand-o-right text-primary heart"  style="color:white;"></i> <a href="https://www.synotec.lk/"  target="_blank"  style="color:white;">  Synotec Holdings (Pvt) Ltd  </a>
+                    </p>
+                </div>
+            </div> 
         </div>
     </div>
 
@@ -72,9 +80,11 @@
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128869431-1"></script>
 <script>
- window.dataLayer = window.dataLayer || [];
- function gtag(){dataLayer.push(arguments);}
- gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
 
- gtag('config', 'UA-128869431-1');
+    gtag('config', 'UA-128869431-1');
 </script>

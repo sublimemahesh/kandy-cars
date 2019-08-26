@@ -34,22 +34,23 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
 
     <!-- Vendor CSS
     ============================================ -->
-    <link rel="shortcut icon" href="<?php echo actual_link() ?>./images/logo/img.png">
-    <link rel="stylesheet" href="<?php echo actual_link() ?>font/demo-files/demo.css">
-    <link rel="stylesheet" href="<?php echo actual_link() ?>plugins/fancybox/jquery.fancybox.css">
+    <link rel="shortcut icon" href="/images/logo/img.png">
+    <link rel="stylesheet" href="font/demo-files/demo.css">
+    <link rel="stylesheet" href="plugins/fancybox/jquery.fancybox.css">
 
     <!-- CSS theme files
     ============================================ -->
-    <link href="<?php echo actual_link() ?>css/bootstrap.css" rel="stylesheet" type="text/css"/> 
-    <link rel="stylesheet" href="<?php echo actual_link() ?>css/owl.carousel.css">
-    <link rel="stylesheet" href="<?php echo actual_link() ?>css/style.css">
-    <link rel="stylesheet" href="<?php echo actual_link() ?>css/responsive.css">
-    <link href="<?php echo actual_link() ?>contact-form/style.css" rel="stylesheet" type="text/css"/>
-    <link href="<?php echo actual_link() ?>css/custom.css" rel="stylesheet" type="text/css"/>
-    <link href="<?php echo actual_link() ?>css/jquery.dateselect.css" rel="stylesheet" type="text/css"/>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/> 
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="contact-form/style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/custom.css" rel="stylesheet" type="text/css"/>
+    <link href="css/jquery.dateselect.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link href="<?php echo actual_link() ?>css/timepicki.css" rel="stylesheet" type="text/css"/>    
-    <link href="<?php echo actual_link() ?>booking-form/style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/timepicki.css" rel="stylesheet" type="text/css"/>    
+    <link href="booking-form/style.css" rel="stylesheet" type="text/css"/>
+    <link href="control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
 </head>
 
 
@@ -68,19 +69,20 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
 
         <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
         <div class="container margin-top-50">
+            <img id="loading" src="https://www.vedantalimited.com/SiteAssets/Images/loading.gif" style="display: none; position: absolute;margin-top: 10%;margin-left: 37%;z-index: 999;"/>
             <div class="row">   
-                <h2 class="text-center"> <?php echo $PRODUCT_TYPE->name ?></h2>
+                <h2 class="text-center"> <?php echo $PACKAGE->title ?></h2>
                 <div class="col-md-9 question-form bg-sidebar-item">  
                     <div class="contact-form">
                         <div class="row">
 
                             <div class="col-sm-6 col-xs-12">
-                                <input type="text" name="pick_up_date" id="pick_up_date" class="form-control" data-select="date"  placeholder="Pick Up date">
-                                <span id="spanPickUpDate" ></span> 
+                                <input type="text" name="txtPickUpDate" id="pick_up_date" class="form-control" data-select="date"  placeholder="Pick Up date">
+
                             </div>
                             <div class="col-sm-6 col-xs-12">
                                 <input class="timepicker1 padd-left" type="text" name="pick_up_time"  id="pick_up_time"  placeholder="Pick up time" value="<?php echo date('H:i:s') ?>">
-                                <span id="spanPickUpTime" ></span> 
+
                             </div> 
 
                             <div class="col-sm-12 col-xs-8 col-md-6">
@@ -143,27 +145,10 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                             </div>
                         </div>
                         <div class="row">
-                            <div class=" form-group">
-                                <div class="col-sm-6 col-xs-12  col-md-3"> 
-                                    <input type="text" name="captchacode" id="captchacode" class="form-control input-validater" placeholder="Enter the Security Code >> ">
-                                    <span id="capspan" ></span> 
-                                </div>   
-                                <div class="col-sm-6 col-xs-12 col-md-3"> 
-                                    <?php include("./booking-form/captchacode-widget.php"); ?> 
-                                </div>  
 
-                                <div class="col-xs-12 col-sm-6">
-                                    <div class="col-sm-4">
-                                        <div class="div-check" >
-                                            <img src="<?php echo actual_link() ?>booking-form/img/checking.gif" id="checking"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> 
                             <div class="col-sm-12 col-xs-12">
-                                <input type="hidden" name="txtVehicle" id="txtVehicle" value="<?php echo $PRODUCT_TYPE->name ?>" />
-                                <button type="submit" id="btnSubmit" class="btn btn-style-3 submit">BOOK NOW</button>
-                                <div id="dismessage" align="center"></div>
+                                <input type="hidden" name="packageId" id="packageId" value="<?php echo $id ?>" />
+                                <button type="submit" id="btnSubmit" class="btn btn-style-3 submit">Next</button> 
                             </div>
                         </div> 
                     </div>  
@@ -176,18 +161,18 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                             <p class="price-summer-p">Pick up time:<span id="pick_up_time_append"  ></span></p>
                             <p class="price-summer-p">Pick up location:<span id="pick_up_location_append"  ></span></p>
                             <p class="price-summer-p destination " style="text-align: center; display: none;">Your Destinations<span    ></span> </p>
-                            <table class="table table-striped  " style=" display: none;" >
+                            <table class="table table-striped"  id="myTable" style=" display: none;" >
                                 <thead>
                                     <tr>
                                         <th scope="col">Location</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col" style="width: 20%;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody class="inc">
                                 </tbody>
                             </table> 
                             <p class="price-summer-p">Return time:<span id="drop_time_append"  ></span></p>
-                            <p class="price-summer-p">drive method:<span id="selection_type_append"  ></span></p>
+                            <p class="price-summer-p">Drive method:<span id="selection_type_append"  ></span></p>
                             <p class="price-summer-p">Decoration:<span id="decoration_append"></span></p>
 
                         </span>
@@ -249,43 +234,45 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
 
     <!-- JS Libs & Plugins
     ============================================ -->
-    <script src="<?php echo actual_link() ?>js/libs/jquery.modernizr.js"></script>
-    <script src="<?php echo actual_link() ?>js/libs/jquery-2.2.4.min.js"></script>
-    <script src="<?php echo actual_link() ?>js/libs/jquery-ui.min.js"></script>
-    <script src="<?php echo actual_link() ?>js/libs/retina.min.js"></script>
-    <script src="<?php echo actual_link() ?>plugins/mad.customselect.js"></script>
-    <script src="<?php echo actual_link() ?>plugins/sticky-sidebar.js"></script>
-    <script src="<?php echo actual_link() ?>plugins/isotope.pkgd.min.js"></script>
-    <script src="<?php echo actual_link() ?>plugins/jquery.queryloader2.min.js"></script>
-    <script src="<?php echo actual_link() ?>plugins/bootstrap.js"></script>
-    <script src="<?php echo actual_link() ?>plugins/fancybox/jquery.fancybox.min.js"></script>
-    <script src="<?php echo actual_link() ?>plugins/owl.carousel.min.js"></script>
+    <script src="js/libs/jquery.modernizr.js"></script>
+    <script src="js/libs/jquery-2.2.4.min.js"></script>
+    <script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
+    <script src="distance/js/distance-wedding.js" type="text/javascript"></script>
+
+    <script src="js/libs/jquery-ui.min.js"></script>
+    <script src="js/libs/retina.min.js"></script>
+    <script src="plugins/mad.customselect.js"></script>
+    <script src="plugins/sticky-sidebar.js"></script>
+    <script src="plugins/isotope.pkgd.min.js"></script>
+    <script src="plugins/jquery.queryloader2.min.js"></script>
+    <script src="plugins/bootstrap.js"></script>
+    <script src="plugins/fancybox/jquery.fancybox.min.js"></script>
+    <script src="plugins/owl.carousel.min.js"></script>
     <!-- JS theme files
     ============================================ -->
-    <script src="<?php echo actual_link() ?>js/plugins.js"></script>
-    <script src="<?php echo actual_link() ?>js/script.js"></script> 
-    <script src="<?php echo actual_link() ?>js/jquery.dateselect.min.js" type="text/javascript"></script>
-    <script src="<?php echo actual_link() ?>js/timepicki.js" type="text/javascript"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
-
+    <script src="js/plugins.js"></script>
+    <script src="js/script.js"></script> 
+    <script src="js/jquery.dateselect.min.js" type="text/javascript"></script>
+    <script src="js/timepicki.js" type="text/javascript"></script>
     <script src="js/booking-wedding-car.js" type="text/javascript"></script>
     <script>
-      
+
 
         $('.btn-date').on('click', function (e) {
-            e.preventDefault(); 
+            e.preventDefault();
             $.dateSelect.show({
                 element: 'input[name="txtPickUpDate"]'
             });
         });
-        
+
         $('.timepicker1').timepicki({
             max_hour_value: 23,
         });
 
     </script> 
 
-    <script src="<?php echo actual_link() ?>js/city.js" type="text/javascript"></script>
+
 
 </body>
 </html>
