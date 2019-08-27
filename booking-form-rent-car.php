@@ -3,7 +3,7 @@
 include_once(dirname(__FILE__) . '/class/include.php');
 include './main-fuction.php';
 $id = $_GET['id'];
-$PACKAGE = new Package($id); 
+$PACKAGE = new Package($id);
 ?>
 <html lang="en">
 
@@ -45,7 +45,8 @@ $PACKAGE = new Package($id);
     <link href="<?php echo actual_link() ?>css/custom.css" rel="stylesheet" type="text/css"/>
     <link href="css/jquery.dateselect.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link href="css/timepicki.css" rel="stylesheet" type="text/css"/> 
+
+    <link href="distance/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
 </head>
 
 
@@ -65,14 +66,14 @@ $PACKAGE = new Package($id);
         <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
         <div class="container margin-top-50">
             <div class="row">
-                  <h2 class="text-center"> <?php echo $PACKAGE->title ?></h2>
+                <h2 class="text-center"> <?php echo $PACKAGE->title ?></h2>
                 <div class="col-md-9">
                     <div class="  question-form bg-sidebar-item">
                         <div class="contact-form">
                             <div class="row">
 
                                 <div class="col-sm-6 col-xs-12">
-                                    <input type="text" id="pick_up_date"   class="form-control date" data-select="date"  placeholder="Pick Up date">
+                                    <input type="text" id="pick_up_date"   class="form-control date-time-picker " data-select="date"  placeholder="Pick up date / Time">
                                 </div>
 
                                 <div class="col-sm-6 col-xs-12">
@@ -81,21 +82,14 @@ $PACKAGE = new Package($id);
                                         <option data-toggle="modal" data-target="#exampleModal" value="Collect From Office"> Collect From Office </option>  
                                         <option data-toggle="modal" data-target="#exampleModal2"  value="Home Delivery"> Home Delivery </option>
                                     </select>                 
-                                </div>  
-                                <div class="col-sm-6 col-xs-12 col-md-6">
-                                    <input class="timepicker1" type="text" name="timepicker1"  id="pick_up_time" style="padding-left: 10px" placeholder="Pick up time"/>
-                                </div> 
+                                </div>   
 
                                 <div class="col-sm-6 col-xs-12 col-md-6">
                                     <input   type="text"  id="destination"  style="padding-left: 10px" placeholder="Return Location"/>
                                 </div>
                                 <div class="col-sm-6 col-xs-12">
-                                    <input type="text" id="drop_up_date" class="form-control date" data-select="date"  placeholder="Return date">
-                                </div> 
-                                <div class="col-sm-6 col-xs-12 col-md-6">
-                                    <input class="timepicker1" type="text" name="timepicker1" id="drop_time"  style="padding-left: 10px" placeholder="Return time"/>
-                                </div> 
-
+                                    <input type="text" id="drop_up_date" class="form-control date-time-picker" data-select="date"  placeholder="Return date / Time">
+                                </div>  
 
                                 <div class="col-sm-12 col-xs-12">
                                     <input type="hidden" name="packageId" id="vehicle_id" value=" <?php echo $id ?>" />
@@ -109,15 +103,12 @@ $PACKAGE = new Package($id);
                     <div class="price-summer-header">
                         <h4 class="price-summer-header-title"><b>Your Price Summary </b></h4>
                         <span class="price-summer-span">
-                            <p class="price-summer-p">Pick up date: <span id="pick_up_date_append"  ></span></p>
+                            <p class="price-summer-p">Pick up date & Time: <span id="pick_up_date_append"></span></p>
                             <p class="price-summer-p">Pick up method:<span id="select_method_append"  ></span></p>
                             <p class="price-summer-p">office:<span id="select_office_append"  ></span></p>
                             <p class="price-summer-p" id="location_hide" style="display: none;">Your Location:<span id="your_location_append"  ></span></p>
-                            <p class="price-summer-p">Pick up time:<span id="pick_up_time_append"  ></span></p>
                             <p class="price-summer-p">Return location:<span id="drop_location_append"  ></span></p>
-                            <p class="price-summer-p">Return date:<span id="drop_up_date_append"  ></span></p> 
-                            <p class="price-summer-p">Return time:<span id="drop_time_append"  ></span></p>
-
+                            <p class="price-summer-p">Return date & Time:<span id="drop_up_date_append"  ></span></p>                            
                         </span>
                     </div>
                 </div>
@@ -173,7 +164,7 @@ $PACKAGE = new Package($id);
                     </div>
 
                     <div class=" row modal-footer" style="padding: 12px 10px 0px;"> 
-                        <button type="submit" class="  btn-style-3 btn-sm submit office_btn" >Add</button>
+                        <button type="submit" class="  btn-style-3 btn-sm submit office_btn" >Save changes</button>
                     </div> 
                 </div> 
             </div> 
@@ -255,31 +246,18 @@ $PACKAGE = new Package($id);
 ============================================ -->
 <script src="<?php echo actual_link() ?>js/plugins.js"></script>
 <script src="<?php echo actual_link() ?>js/script.js"></script>
-<script src="<?php echo actual_link() ?>contact-form/scripts.js" type="text/javascript"></script>
-<script src="js/jquery.dateselect.min.js" type="text/javascript"></script>
-<script src="js/timepicki.js" type="text/javascript"></script>
-<script src="js/booking-rent-car.js" type="text/javascript"></script>
+<script src="<?php echo actual_link() ?>contact-form/scripts.js" type="text/javascript"></script> 
+<script src="distance/jquery.datetimepicker.full.js" type="text/javascript"></script>
 
 <script>
-    $('.btn-date').on('click', function (e) {
-        e.preventDefault();
-        $.dateSelect.show({
-            element: 'input[id="pick_up_date"]',
+    jQuery(document).ready(function () {
+        jQuery('.date-time-picker').datetimepicker({
+            dateFormat: 'yy-mm-dd'
         });
     });
-
-    $('.btn-date').on('click', function (e) {
-        e.preventDefault();
-        $.dateSelect.show({
-            element: 'input[id="drop_up_date"]',
-
-        });
-    });
-    $('.timepicker1').timepicki();
 </script>
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
 <script src="distance/js/distance-rent-car.js" type="text/javascript"></script>
-
 </body>
 </html>

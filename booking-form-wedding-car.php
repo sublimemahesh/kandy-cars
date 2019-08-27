@@ -51,6 +51,7 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
     <link href="css/timepicki.css" rel="stylesheet" type="text/css"/>    
     <link href="booking-form/style.css" rel="stylesheet" type="text/css"/>
     <link href="control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
+    <link href="distance/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
 </head>
 
 
@@ -76,22 +77,27 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                     <div class="contact-form">
                         <div class="row">
 
-                            <div class="col-sm-6 col-xs-12">
-                                <input type="text" name="txtPickUpDate" id="pick_up_date" class="form-control" data-select="date"  placeholder="Pick Up date">
-
+                            <div class="col-sm-6 col-xs-12 col-md-6">
+                                <input type="text" name="pick_up_date_time" id="pick_up_date_time" class="form-control date-time-picker" data-select="date"  placeholder="Pick Up date / Time">
                             </div>
-                            <div class="col-sm-6 col-xs-12">
-                                <input class="timepicker1 padd-left" type="text" name="pick_up_time"  id="pick_up_time"  placeholder="Pick up time" value="<?php echo date('H:i:s') ?>">
+                            <div class="col-sm-6 col-xs-12 col-md-6">
+                                <input class="date-time-picker padd-left" type="text" name="drop_time" id="drop_date_time"  placeholder="Drop off date / Time" autocomplete="off"/>
+                            </div>
 
-                            </div> 
-
+                            <div class="col-sm-6 col-xs-12 col-md-6">
+                                <select  id="selection_type" class="padd-left" >
+                                    <option value="One Way" selected="" > One Way </option>
+                                    <option value="Up and down">  Up and down</option>                                    
+                                </select>
+                            </div>
+                            
                             <div class="col-sm-12 col-xs-8 col-md-6">
                                 <div class="controls"> 
                                     <input type="text" id="origin" class="form-control data-val " name="text" placeholder="Pick up location" autocomplete="off"/> 
                                 </div>
                             </div>
-
-                            <div class="col-sm-12 col-xs-8 col-md-5">
+                            
+                            <div class="col-sm-12 col-xs-11 col-md-11">
                                 <div class="controls"> 
                                     <input type="text" id="destination" class="form-control  " name="text" placeholder="locations" autocomplete="off"/> 
                                 </div>
@@ -100,27 +106,25 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                             <div class="col-sm-12 col-xs-4 col-md-1" style="padding-left: 0px;"> 
                                 <button type="submit"  class="  btn-style-3  btn-add submit" id="append" name="append" > + </button>
                             </div> 
-
-                            <div class="col-sm-6 col-xs-12 col-md-6">
-                                <input class="timepicker1 padd-left" type="text" name="drop_time" id="drop_time"  placeholder="Drop off time" autocomplete="off"/>
-                            </div>
-                            <div class="col-sm-6 col-xs-12 col-md-6">
-                                <select  id="selection_type" class="padd-left" >
-                                    <option value="One Way" selected="" > One Way </option>
-                                    <option value="Up and down">  Up and down</option>                                    
-                                </select>
-                            </div>
-                            <div class="col-sm-6 col-xs-12 col-md-6">
+                            
+                            <div class="col-sm-12 col-xs-4 col-md-12" > 
+                                <table class="table table-striped c  table-bordered"  id="myTable" style="display: none;" >
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Locations</th>
+                                            <th scope="col" style="width: 20%;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="inc">
+                                    </tbody>
+                                </table> 
+                            </div> 
+                            <div class="col-sm-6 col-xs-12 col-md-12">
                                 <select name="decoration" id="decoration" class="padd-left" >
                                     <option value="0" selected="" > Without decoration </option>
                                     <option value="1">  With decoration</option>                                    
                                 </select>
-                            </div>
-                            <div class="col-sm-12 col-xs-6 col-md-6">
-                                <input type="text" name="txtEmail" id="txtEmail"  class="form-control input-validater" placeholder="Your Email *">
-                                <span id="spanEmail" ></span> 
-                            </div>
-
+                            </div>  
                         </div>
                         <div  style="margin-top: 20px; margin-bottom: 20px; " >
                             <div class="owl-carousel container" data-max-items="5" data-item-margin="10" data-dots="false" style="display: none;" id="iteam_show">
@@ -148,6 +152,7 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
 
                             <div class="col-sm-12 col-xs-12">
                                 <input type="hidden" name="packageId" id="packageId" value="<?php echo $id ?>" />
+                                <input type="hidden" name="vehicle_id" id="vehicle_id" value="<?php echo $PACKAGE->vehicle ?>" />
                                 <button type="submit" id="btnSubmit" class="btn btn-style-3 submit">Next</button> 
                             </div>
                         </div> 
@@ -157,23 +162,14 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                     <div class="price-summer-header"  >
                         <h4 class="price-summer-header-title"  ><b>Your Price Summary </b></h4>
                         <span  class="price-summer-span">
-                            <p class="price-summer-p">Pick up date: <span id="pick_up_date_append"  ></span></p> 
-                            <p class="price-summer-p">Pick up time:<span id="pick_up_time_append"  ></span></p>
-                            <p class="price-summer-p">Pick up location:<span id="pick_up_location_append"  ></span></p>
-                            <p class="price-summer-p destination " style="text-align: center; display: none;">Your Destinations<span    ></span> </p>
-                            <table class="table table-striped"  id="myTable" style=" display: none;" >
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Location</th>
-                                        <th scope="col" style="width: 20%;">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="inc">
-                                </tbody>
-                            </table> 
-                            <p class="price-summer-p">Return time:<span id="drop_time_append"  ></span></p>
+                            <p class="price-summer-p">Pick up date & Time: <span id="pick_up_date_time_append"  ></span></p>  
+                            <p class="price-summer-p">Pick up location:<span id="pick_up_location_append"  ></span></p> 
+                            <p class="price-summer-p">Drop location:<span id="drop_location_append"  ></span></p> 
+                            <p class="price-summer-p">Distance :<span id="distance_append"  ></span></p> 
+                            <p class="price-summer-p">Price :<span id="distance_append"  ></span></p> 
+                            <p class="price-summer-p">Drop date & Time:<span id="drop_date_time_append"  ></span></p>                            
                             <p class="price-summer-p">Drive method:<span id="selection_type_append"  ></span></p>
-                            <p class="price-summer-p">Decoration:<span id="decoration_append"></span></p>
+                            <p class="price-summer-p">Decoration:<span id="decoration_name_append"></span></p>
 
                         </span>
                     </div>
@@ -207,14 +203,14 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                                                 <p class="text-justify">
                                                     <?php echo $decoration['short_description'] ?> 
                                                 </p>
-                                                <h4>Rs:<?php echo $decoration['charge'] ?>.00 </h4>
+                                                <h4>Rs:<?php echo number_format($decoration['charge'], 2) ?> </h4>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class=" row modal-footer" style="padding: 12px 10px 0px;"> 
-                                    <input type="hidden" value="<?php echo $decoration['name'] ?> " id="decoration_name"/>
-                                    <button type="submit" class="  btn-style-3 btn-sm submit "  id="decoration_btn" >Save changes</button>
+
+                                    <button type="submit" class="  btn-style-3 btn-sm submit decoration_btn" decoration_name="<?php echo $decoration['name'] ?>" decoration_id="<?php echo $decoration['id'] ?>" >Add Now</button>
                                 </div> 
                             </div>
                         </div> 
@@ -238,7 +234,7 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
     <script src="js/libs/jquery-2.2.4.min.js"></script>
     <script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
-    <script src="distance/js/distance-wedding.js" type="text/javascript"></script>
+
 
     <script src="js/libs/jquery-ui.min.js"></script>
     <script src="js/libs/retina.min.js"></script>
@@ -253,26 +249,15 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
     ============================================ -->
     <script src="js/plugins.js"></script>
     <script src="js/script.js"></script> 
-    <script src="js/jquery.dateselect.min.js" type="text/javascript"></script>
-    <script src="js/timepicki.js" type="text/javascript"></script>
-    <script src="js/booking-wedding-car.js" type="text/javascript"></script>
+    <script src="distance/jquery.datetimepicker.full.js" type="text/javascript"></script> 
+    <script src="distance/js/distance-wedding.js" type="text/javascript"></script>
+
     <script>
-
-
-        $('.btn-date').on('click', function (e) {
-            e.preventDefault();
-            $.dateSelect.show({
-                element: 'input[name="txtPickUpDate"]'
+        jQuery(document).ready(function () {
+            jQuery('.date-time-picker').datetimepicker({
+                dateFormat: 'yy-mm-dd'
             });
         });
-
-        $('.timepicker1').timepicki({
-            max_hour_value: 23,
-        });
-
-    </script> 
-
-
-
+    </script>
 </body>
 </html>
