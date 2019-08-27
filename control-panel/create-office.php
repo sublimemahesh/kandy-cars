@@ -122,6 +122,6 @@ include_once(dirname(__FILE__) . '/auth.php');
         </script>
     </body>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
-
-    <script src="../js/city.js" type="text/javascript"></script>
+    <script src="../distance/js/office.js" type="text/javascript"></script>
+   
 </html>

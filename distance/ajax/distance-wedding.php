@@ -1,23 +1,18 @@
 <?php
 
 include_once(dirname(__FILE__) . '/../../class/include.php');
-
-
 header('Content-type: application/json');
 
- 
+
 $PRODUCT_TYPE = new Package($_POST['packageId']);
+$km = $PRODUCT_TYPE->km;
+$extra_per_km = $PRODUCT_TYPE->ex_per_km;
+$charge = $PRODUCT_TYPE->charge;  
 
-////price
-$base_price_val = $PRODUCT_TYPE->base_price;
-$price_per_km_val = $VEHICLE_TYPE->price_per_km;
-
-
-//location
 $pickup = $_POST['pickup'];
 $destination = $_POST['destination'];
 $from = str_replace(" ", "+", $pickup);
-$to = str_replace(" ", "+", $destination);
+$to = str_replace(" ", "+", $destination); 
 
 $apiKey = "AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc";
 
@@ -30,14 +25,19 @@ $string = file_get_contents($url);
 $json = file_get_contents($url);
 $data = json_decode($json, TRUE);
 $distance = $data['rows'][0]['elements'][0]['distance']['text'];
-//echo $string;
-//price calculate
-$price = $base_price_val + ($price_per_km_val * ($distance - 1));
+
+if ($destination >= $km) {
+    $diff_km = $destination - $km;
+    $price = $charge + ($diff_km * $extra_per_km);
+}else{
+      $price = $charge;
+}
 
 
 if ($distance) {
 
-    $d = array("status" => TRUE, "distance" => $distance, "price" => $price);
+    $d = array("status" => TRUE, "distance" => $distance, "price" => 0);
 
     echo json_encode($d);
 }
+ 

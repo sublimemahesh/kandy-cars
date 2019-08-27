@@ -105,6 +105,35 @@ class Package {
         return $array_res;
     }
 
+    public function CheckPackageHours($hours) {
+
+        $query = "SELECT * FROM `package` WHERE `id` =" . $this->id . " AND `hours` <" . $hours . " ORDER BY queue ASC";
+
+        $db = new Database();
+        $result = $db->readQuery($query);
+
+        if ($result) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function getNextPackageByVehicle($vehicle_id,$hours) {
+
+        $query = "SELECT * FROM `package` WHERE `vehicle`=" . $vehicle_id . " AND MIN`hours` >" . $hours .  " AND  ORDER BY queue ASC";
+         
+        $db = new Database();
+        $result = $db->readQuery($query);
+        $array_res = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            array_push($array_res, $row);
+        }
+
+        return $array_res;
+    }
+
     public function update() {
 
         $query = "UPDATE  `package` SET "
