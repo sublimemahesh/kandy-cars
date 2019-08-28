@@ -47,13 +47,7 @@ $PACKAGE = new Package($id);
                                 <h2>
                                     Edit Package
                                 </h2>
-                                <ul class="header-dropdown">
-                                    <li class="">
-                                        <a href="manage-package.php">
-                                            <i class="material-icons">list</i> 
-                                        </a>
-                                    </li>
-                                </ul>
+                                 
                             </div>
                             <div class="body">
                                 <form class="form-horizontal" method="post" action="post-and-get/package.php" enctype="multipart/form-data"> 
@@ -69,10 +63,10 @@ $PACKAGE = new Package($id);
 
                                     <div class="col-md-12">                                       
                                         <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="file" id="image" class="form-control" value="<?php echo $PACKAGE->image_name; ?>"  name="image">
-                                                <img src="../upload/packages/<?php echo $PACKAGE->image_name; ?>" id="image" class="view-edit-img img img-responsive img-thumbnail" name="image" alt="old image">
-                                            </div>
+
+                                            <input type="file" id="image" class="form-control" value="<?php echo $PACKAGE->image_name; ?>"  name="image">
+                                            <img src="../upload/packages/<?php echo $PACKAGE->image_name; ?>" id="image" class="view-edit-img img img-responsive img-thumbnail" name="image" alt="old image">
+
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
@@ -86,8 +80,8 @@ $PACKAGE = new Package($id);
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="number" id="hours" class="form-control" autocomplete="off" name="hours" required="true" value="<?php echo $PACKAGE->hours; ?>">
-                                                <label class="form-label">Hours</label>
+                                                <input type="number" id="dates" class="form-control" autocomplete="off" name="dates" required="true" min="0" value="<?php echo $PACKAGE->dates; ?>">
+                                                <label class="form-label">Dates</label>
                                             </div>
                                         </div>
                                     </div>
@@ -108,14 +102,7 @@ $PACKAGE = new Package($id);
                                             </div>
                                         </div>
                                     </div> 
-                                    <div class="col-md-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="number" id="ex_per_hour" class="form-control" autocomplete="off" name="ex_per_hour" required="true" value="<?php echo $PACKAGE->ex_per_hour; ?>">
-                                                <label class="form-label">Ex per Hour</label>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
@@ -128,7 +115,7 @@ $PACKAGE = new Package($id);
                                     <div class="col-md-12">
                                         <input type="hidden" id="oldImageName" value="<?php echo $PACKAGE->image_name; ?>" name="oldImageName"/>
                                         <input type="hidden" id="id" value="<?php echo $PACKAGE->id; ?>" name="id"/>
-                                         <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="update" value="update">Save Changes</button>
+                                        <button type="submit" class="btn btn-primary m-t-15 waves-effect" name="update" value="update">Save Changes</button>
                                     </div>
                                     <div class="row clearfix">  </div>
                                 </form>

@@ -86,17 +86,18 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
 
                             <div class="col-sm-6 col-xs-12 col-md-6">
                                 <select  id="selection_type" class="padd-left" >
-                                    <option value="One Way" selected="" > One Way </option>
+                                    <option value="" selected="" > -- Select the Way -- </option>
+                                    <option value="One Way"  > One Way </option>
                                     <option value="Up and down">  Up and down</option>                                    
                                 </select>
                             </div>
-                            
+
                             <div class="col-sm-12 col-xs-8 col-md-6">
                                 <div class="controls"> 
                                     <input type="text" id="origin" class="form-control data-val " name="text" placeholder="Pick up location" autocomplete="off"/> 
                                 </div>
                             </div>
-                            
+
                             <div class="col-sm-12 col-xs-11 col-md-11">
                                 <div class="controls"> 
                                     <input type="text" id="destination" class="form-control  " name="text" placeholder="locations" autocomplete="off"/> 
@@ -106,7 +107,7 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                             <div class="col-sm-12 col-xs-4 col-md-1" style="padding-left: 0px;"> 
                                 <button type="submit"  class="  btn-style-3  btn-add submit" id="append" name="append" > + </button>
                             </div> 
-                            
+
                             <div class="col-sm-12 col-xs-4 col-md-12" > 
                                 <table class="table table-striped c  table-bordered"  id="myTable" style="display: none;" >
                                     <thead>
@@ -151,7 +152,7 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                         <div class="row">
 
                             <div class="col-sm-12 col-xs-12">
-                                <input type="hidden" name="packageId" id="packageId" value="<?php echo $id ?>" />
+                                <input type="hidden" name="package_id" id="package_id" value="<?php echo $id ?>" /> 
                                 <input type="hidden" name="vehicle_id" id="vehicle_id" value="<?php echo $PACKAGE->vehicle ?>" />
                                 <button type="submit" id="btnSubmit" class="btn btn-style-3 submit">Next</button> 
                             </div>
@@ -166,7 +167,7 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                             <p class="price-summer-p">Pick up location:<span id="pick_up_location_append"  ></span></p> 
                             <p class="price-summer-p">Drop location:<span id="drop_location_append"  ></span></p> 
                             <p class="price-summer-p">Distance :<span id="distance_append"  ></span></p> 
-                            <p class="price-summer-p">Price :<span id="distance_append"  ></span></p> 
+                            <p class="price-summer-p">Price :<span id="Price"  ></span></p> 
                             <p class="price-summer-p">Drop date & Time:<span id="drop_date_time_append"  ></span></p>                            
                             <p class="price-summer-p">Drive method:<span id="selection_type_append"  ></span></p>
                             <p class="price-summer-p">Decoration:<span id="decoration_name_append"></span></p>
@@ -209,7 +210,7 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                                     </div>
                                 </div>
                                 <div class=" row modal-footer" style="padding: 12px 10px 0px;"> 
-
+                                    <input type="hidden" id="dec_id" value="<?php echo $decoration['id'] ?>" />
                                     <button type="submit" class="  btn-style-3 btn-sm submit decoration_btn" decoration_name="<?php echo $decoration['name'] ?>" decoration_id="<?php echo $decoration['id'] ?>" >Add Now</button>
                                 </div> 
                             </div>

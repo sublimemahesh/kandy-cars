@@ -18,10 +18,9 @@ class Package {
     public $title;
     public $image_name;
     public $short_description;
-    public $hours;
+    public $dates;
     public $km;
-    public $charge;
-    public $ex_per_hour;
+    public $charge; 
     public $ex_per_km;
     public $queue;
 
@@ -39,10 +38,9 @@ class Package {
             $this->title = $result['title'];
             $this->image_name = $result['image_name'];
             $this->short_description = $result['short_description'];
-            $this->hours = $result['hours'];
+            $this->dates = $result['dates'];
             $this->km = $result['km'];
-            $this->charge = $result['charge'];
-            $this->ex_per_hour = $result['ex_per_hour'];
+            $this->charge = $result['charge']; 
             $this->ex_per_km = $result['ex_per_km'];
             $this->queue = $result['queue'];
 
@@ -52,15 +50,14 @@ class Package {
 
     public function create() {
 
-        $query = "INSERT INTO `package` (`vehicle`,`title`,`image_name`,`short_description`,`hours`,`km`,`charge`,`ex_per_hour`,`ex_per_km`,`queue`) VALUES  ('"
+        $query = "INSERT INTO `package` (`vehicle`,`title`,`image_name`,`short_description`,`dates`,`km`,`charge`,`ex_per_km`,`queue`) VALUES  ('"
                 . $this->vehicle . "','"
                 . $this->title . "','"
                 . $this->image_name . "', '"
                 . $this->short_description . "', '"
-                . $this->hours . "', '"
+                . $this->dates . "', '"
                 . $this->km . "', '"
-                . $this->charge . "', '"
-                . $this->ex_per_hour . "', '"
+                . $this->charge . "', '" 
                 . $this->ex_per_km . "', '"
                 . $this->queue . "')";
 
@@ -105,9 +102,9 @@ class Package {
         return $array_res;
     }
 
-    public function CheckPackageHours($hours) {
+    public function CheckPackageHours($dates) {
 
-        $query = "SELECT * FROM `package` WHERE `id` =" . $this->id . " AND `hours` <" . $hours . " ORDER BY queue ASC";
+        $query = "SELECT * FROM `package` WHERE `id` =" . $this->id . " AND `dates` <" . $dates . " ORDER BY queue ASC";
 
         $db = new Database();
         $result = $db->readQuery($query);
@@ -119,9 +116,9 @@ class Package {
         }
     }
 
-    public function getNextPackageByVehicle($vehicle_id,$hours) {
+    public function getNextPackageByVehicle($vehicle_id,$dates) {
 
-        $query = "SELECT * FROM `package` WHERE `vehicle`=" . $vehicle_id . " AND MIN`hours` >" . $hours .  " AND  ORDER BY queue ASC";
+        $query = "SELECT * FROM `package` WHERE `vehicle`=" . $vehicle_id . " AND MIN`dates` >" . $dates .  " AND  ORDER BY queue ASC";
          
         $db = new Database();
         $result = $db->readQuery($query);
@@ -140,14 +137,13 @@ class Package {
                 . "`title` ='" . $this->title . "', "
                 . "`image_name` ='" . $this->image_name . "', "
                 . "`short_description` ='" . $this->short_description . "', "
-                . "`hours` ='" . $this->hours . "', "
+                . "`dates` ='" . $this->dates . "', "
                 . "`km` ='" . $this->km . "', "
-                . "`charge` ='" . $this->charge . "', "
-                . "`ex_per_hour` ='" . $this->ex_per_hour . "', "
+                . "`charge` ='" . $this->charge . "', " 
                 . "`ex_per_km` ='" . $this->ex_per_km . "', "
                 . "`queue` ='" . $this->queue . "' "
                 . "WHERE `id` = '" . $this->id . "'";
-
+        
         $db = new Database();
 
         $result = $db->readQuery($query);

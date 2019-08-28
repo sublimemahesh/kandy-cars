@@ -70,29 +70,79 @@ $PACKAGE = new Package($id);
                 <div class="col-md-9">
                     <div class="  question-form bg-sidebar-item">
                         <div class="contact-form">
-                            <div class="row">
+                            <div class="row"> 
+                                <div class="col-sm-6 col-xs-12 col-md-12">
+                                    <select  style="padding-left: 10px"  >  
+                                        <?php
+                                        $PACKAGES = new Package(NULL);
+                                        foreach ($PACKAGES->getPackagesByVehicle($PACKAGE->vehicle) as $key => $package) {
+                                            if ($package['id'] == $PACKAGE->id) {
+                                                ?>
 
-                                <div class="col-sm-6 col-xs-12">
-                                    <input type="text" id="pick_up_date"   class="form-control date-time-picker " data-select="date"  placeholder="Pick up date / Time">
-                                </div>
+                                                <option  selected="" value="<?php echo $package['id'] ?>"> <?php echo $package['title'] ?></option>
+                                            <?php } else { ?>
 
-                                <div class="col-sm-6 col-xs-12">
-                                    <select  style="padding-left: 10px" id="select_method"> 
-                                        <option value=""> -- Select your method --</option>
-                                        <option data-toggle="modal" data-target="#exampleModal" value="Collect From Office"> Collect From Office </option>  
-                                        <option data-toggle="modal" data-target="#exampleModal2"  value="Home Delivery"> Home Delivery </option>
+                                                <option value="<?php echo $package['id'] ?>"> <?php echo $package['title'] ?></option>  
+                                                <?php
+                                            }
+                                        }
+                                        ?>
                                     </select>                 
-                                </div>   
+                                </div> 
 
                                 <div class="col-sm-6 col-xs-12 col-md-6">
-                                    <input   type="text"  id="destination"  style="padding-left: 10px" placeholder="Return Location"/>
+                                    <input type="text" id="pick_up_date"   class="form-control date-time-picker " data-select="date"  placeholder="Pick up Date / Time">
                                 </div>
+
                                 <div class="col-sm-6 col-xs-12">
-                                    <input type="text" id="drop_up_date" class="form-control date-time-picker" data-select="date"  placeholder="Return date / Time">
+                                    <input type="text" id="drop_up_date" class="form-control date-time-picker-drop" data-select="date"  placeholder="Return Date / Time">
+                                </div>
+
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <select  style="padding-left: 10px" id="select_method"> 
+                                        <option value="0" selected=""> -- How to take a vehicle --</option>
+                                        <option value="Collect From Office"> Collect From Office </option>  
+                                        <option value="Home Delivery"> Home Delivery </option>
+                                    </select>                 
+                                </div>  
+                                <div class="col-sm-6 col-xs-12 col-md-6" >
+                                    <select  style="padding-left: 10px"   > 
+                                        <option value="0" selected=""> -- How to return a vehicle --</option>
+                                        <option value="Collect From Office"> Collect From Office </option>  
+                                        <option value="Home Delivery"> Home Delivery </option>
+                                    </select>                 
+                                </div> 
+                                <div class="col-sm-6 col-xs-12 col-md-12 " style="display: none; " id="collect_office">
+                                    <select  style="padding-left: 10px"  id="office"> 
+                                        <option value="" selected=""> -- Select your near Office --</option>
+                                        <?php
+                                        $OFFICE = new Office(NULL);
+                                        foreach ($OFFICE->all() as $office) {
+                                            ?>
+                                            <option value="<?php echo $office['location'] ?>"><?php echo $office['location'] ?> </option>  
+                                        <?php } ?> 
+                                    </select>                 
                                 </div>  
 
+                                <div class="col-sm-6 col-xs-12 col-md-6" id="collect_office_2" style="display: none">
+                                    <select  style="padding-left: 10px"   id="office">  
+                                        <option value="" selected=""> -- Select your near Office --</option>
+                                        <?php
+                                        foreach ($OFFICE->all() as $office) {
+                                            ?>
+                                            <option value="<?php echo $office['location'] ?>"><?php echo $office['location'] ?> </option>  
+                                        <?php } ?>
+                                    </select>                 
+                                </div>  
+
+                                <div class="col-sm-6 col-xs-12 col-md-6" style="display: none" id="your_location" >
+                                    <input type="text" id="origin" class="form-control"  name="name"  placeholder="Your Location" >            
+                                </div>   
+
+
                                 <div class="col-sm-12 col-xs-12">
-                                    <input type="hidden" name="packageId" id="vehicle_id" value=" <?php echo $id ?>" />
+                                    <input type="hidden" name="dates" id="dates" value="<?php echo $PACKAGE->dates ?>" />
+                                    <input type="hidden" name="package_id" id="package_id" value="<?php echo $id ?>" />
                                     <button type="submit" id="btnSubmit" class="btn btn-style-3 submit">Next</button>
                                 </div>
                             </div>
@@ -105,9 +155,11 @@ $PACKAGE = new Package($id);
                         <span class="price-summer-span">
                             <p class="price-summer-p">Pick up date & Time: <span id="pick_up_date_append"></span></p>
                             <p class="price-summer-p">Pick up method:<span id="select_method_append"  ></span></p>
-                            <p class="price-summer-p">office:<span id="select_office_append"  ></span></p>
+                            <p class="price-summer-p">office:<span id="select_office_append"  ></span></p> 
                             <p class="price-summer-p" id="location_hide" style="display: none;">Your Location:<span id="your_location_append"  ></span></p>
                             <p class="price-summer-p">Return location:<span id="drop_location_append"  ></span></p>
+                            <p class="price-summer-p">Distance:<span id="distance_id"></span></p> 
+                            <p class="price-summer-p">Price:<span id="price_id"></span></p>
                             <p class="price-summer-p">Return date & Time:<span id="drop_up_date_append"  ></span></p>                            
                         </span>
                     </div>
@@ -125,107 +177,7 @@ $PACKAGE = new Package($id);
 
     <!-- - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - -->
 </div>
-<!--Collect from-->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="col-md-10">
-                    <h5 class="modal-title" id="exampleModalLabel"> Please Select your near Office </h5>
 
-                </div>
-                <div class="col-md-2">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-            </div>
-            <div class="modal-body">
-                <div class="form-horizontal"   enctype="multipart/form-data"> 
-                    <div class=" clearfix">
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                            <label for="name">Offices</label>
-                        </div>
-
-                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                            <div class="form-group">
-                                <select class="form-control" id="select_office">
-                                    <?php
-                                    $OFFICE = new Office(NULL);
-                                    foreach ($OFFICE->all() as $office) {
-                                        ?>
-                                        <option value="<?php echo $office['location'] ?>"><?php echo $office['location'] ?></option>
-                                    <?php } ?>
-                                </select>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class=" row modal-footer" style="padding: 12px 10px 0px;"> 
-                        <button type="submit" class="  btn-style-3 btn-sm submit office_btn" >Save changes</button>
-                    </div> 
-                </div> 
-            </div> 
-        </div>
-    </div>
-</div>
-
-<!--Home Delivery-->
-<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="col-md-10">
-                    <h5 class="modal-title" id="exampleModalLabel"> Please Select your near by Office </h5>
-                </div>
-                <div class="col-md-2">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-            </div>
-            <div class="modal-body">
-                <div class="form-horizontal"  enctype="multipart/form-data"> 
-                    <div class=" clearfix">
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                            <label for="name">Offices</label>
-                        </div>
-
-                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                            <div class="form-group">
-                                <select class="form-control" id="select_office_home_deliver">
-                                    <?php
-                                    $OFFICE = new Office(NULL);
-                                    foreach ($OFFICE->all() as $office) {
-                                        ?>
-                                        <option value="<?php echo $office['location'] ?>"><?php echo $office['location'] ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                            <label for="your_location">Your Location</label>
-                        </div>
-                        <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" id="origin" class="form-control"  name="name" value=" " style="height:35px" >
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" row modal-footer" style="padding: 12px 10px 0px;"> 
-                        <button type="submit" class="  btn-style-3 btn-sm submit office_btn_1"   >Save changes</button>
-                    </div> 
-                </div>
-            </div> 
-        </div>
-    </div>
-</div>
 
 <!-- - - - - - - - - - - - end Wrapper - - - - - - - - - - - - - - -->
 
@@ -252,7 +204,9 @@ $PACKAGE = new Package($id);
 <script>
     jQuery(document).ready(function () {
         jQuery('.date-time-picker').datetimepicker({
-            dateFormat: 'yy-mm-dd'
+            dateFormat: 'yy-mm-dd',
+            minDate: 'today',
+            timeFormat: 'HH:mm:ss',
         });
     });
 </script>

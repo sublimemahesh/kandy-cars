@@ -72,16 +72,16 @@ $PRODUCT_TYPE = new ProductType($id);
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="number" id="hours" class="form-control" autocomplete="off" name="hours" required="true">
-                                                <label class="form-label">Hours</label>
+                                                <input type="number" id="dates" class="form-control" autocomplete="off" name="dates" required="true" min="0">
+                                                <label class="form-label">Dates</label>
                                             </div>
                                         </div>
                                     </div> 
-                                    
+
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
@@ -90,7 +90,7 @@ $PRODUCT_TYPE = new ProductType($id);
                                             </div>
                                         </div>
                                     </div> 
-                                    
+
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
@@ -99,16 +99,8 @@ $PRODUCT_TYPE = new ProductType($id);
                                             </div>
                                         </div>
                                     </div> 
-                                    
-                                    <div class="col-md-12">
-                                        <div class="form-group form-float">
-                                            <div class="form-line">
-                                                <input type="number" id="ex_per_hour" class="form-control" autocomplete="off" name="ex_per_hour" required="true">
-                                                <label class="form-label">Ex Charges Per Hour</label>
-                                            </div>
-                                        </div>
-                                    </div> 
-                                    
+  
+
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
