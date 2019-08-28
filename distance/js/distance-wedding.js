@@ -17,16 +17,19 @@ var returnAutocomplete = new google.maps.places.Autocomplete(returnlocation, opt
 
 $(document).ready(function () {
 
+    append();
 
     google.maps.event.addListener(returnAutocomplete, 'place_changed', function () {
 
         pickup = $('#origin').val();
         destination = $('#destination').val();
-        packageId = $('#packageId').val();
+        package_id = $('#package_id').val();
 
         pick_up_date_time = $('#pick_up_date_time').val();
         drop_date_time = $('#drop_date_time').val();
         vehicle_id = $('#vehicle_id').val();
+        selection_type = $('#selection_type').val();
+
 
 
         if (destination && !pickup) {
@@ -50,20 +53,70 @@ $(document).ready(function () {
             $('#destination').val("");
         } else {
             calPrice();
-
         }
     });
 
+    function append() {
+
+        $("#pick_up_date_time,#drop_date_time,#selection_type,#origin,#destination").change(function () {
+
+            selection_type = $('#selection_type').val();
+            drop_date_time = $('#drop_date_time').val();
+            pick_up_date_time = $('#pick_up_date_time').val();
+            pick_up_location = $('#origin').val();
+            destination = $('#destination').val();
+
+
+
+            //empty
+            $('#pick_up_date_time_append').empty();
+            $('#drop_date_time_append').empty();
+            $('#selection_type_append').empty();
+            $('#pick_up_location_append').empty();
+            $('#drop_location_append').empty();
+
+
+            //append val
+            $('#pick_up_date_time_append').append(pick_up_date_time);
+            $('#drop_date_time_append').append(drop_date_time);
+            $('#selection_type_append').append(selection_type);
+            $('#pick_up_location_append').append(pick_up_location);
+            $('#drop_location_append').append(destination);
+
+            calPrice();
+
+        });
+
+    }
+
+    $(".decoration_btn").click(function () {
+
+        var decoration = $(this).attr('decoration_name');
+
+        decoration_id = $(this).attr('decoration_id');
+        $('#decoration_name_append').empty();
+        $('#decoration_name_append').append(decoration);
+        $('#exampleModal' + decoration_id).modal('hide');
+
+        calPrice();
+    });
 
     function calPrice() {
-        $('#loading').show();
+
+//        $('#loading').show();
+
+
+
+
         $.ajax({
             url: "distance/ajax/distance-wedding.php",
             type: "POST",
             data: {
                 pickup: pickup,
                 destination: destination,
-                packageId: packageId,
+                package_id: package_id,
+//                decoration_id: decoration_id,
+                selection_type: selection_type
             },
             dataType: "JSON",
             success: function (jsonStr) {
@@ -71,48 +124,18 @@ $(document).ready(function () {
                     $('#distance_append').empty();
                     $('#distance_append').append(jsonStr.distance);
 
-//                $('#Price').val(jsonStr.price);
+                    $('#Price').empty();
+                    $('#Price').append(jsonStr.price);
                     $('#loading').hide();
 
                 }
             }
         });
+
     }
 
 
 
-
-//Append values for Price Summery
-
-    $("#pick_up_date_time,#drop_date_time,#selection_type").change(function () {
-
-        //Pick up date
-        var pick_up_date_time = $('#pick_up_date_time').val();
-        var drop_date_time = $('#drop_date_time').val();
-        var selection_type = $('#selection_type').val();
-
-
-        //empty
-        $('#pick_up_date_time_append').empty();
-        $('#drop_date_time_append').empty();
-        $('#selection_type_append').empty();
-
-        //append val
-        $('#pick_up_date_time_append').append(pick_up_date_time);
-        $('#drop_date_time_append').append(drop_date_time);
-        $('#selection_type_append').append(selection_type);
-
-    });
-
-    $(".decoration_btn").click(function () {
-
-        var decoration = $(this).attr('decoration_name');
-        var decoration_id = $(this).attr('decoration_id');
-
-        $('#decoration_name_append').empty();
-        $('#decoration_name_append').append(decoration);
-        $('#exampleModal' + decoration_id).modal('hide');
-    });
 
     $("#append").click(function () {
 
@@ -140,16 +163,16 @@ $(document).ready(function () {
             data: {
                 pick_up_date_time: pick_up_date_time,
                 drop_date_time: drop_date_time,
-                packageId: packageId,
+                package_id: package_id,
                 vehicle_id: vehicle_id,
                 action: 'CALHOURS'
             },
             dataType: "JSON",
             success: function (jsonStr) {
 
-                if (jsonStr.status) { 
+                if (jsonStr.status) {
                     swal({
-                        html:true,
+                        html: true,
                         title: "Info",
                         text: "Your Selected hovers are more than selecting package !",
                         type: "warning",
@@ -162,7 +185,7 @@ $(document).ready(function () {
                             url: "delete/ajax/activity-photo.php",
                             type: "POST",
                             data: {
-                                id: id, 
+                                id: id,
                                 option: 'delete'
                             },
                             dataType: "JSON",
@@ -175,11 +198,11 @@ $(document).ready(function () {
                                         type: 'success',
                                         timer: 2000,
                                         showConfirmButton: false
-                                    }); 
+                                    });
                                 }
                             }
                         });
-                    }); 
+                    });
                 }
             }
         });

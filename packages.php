@@ -81,9 +81,9 @@ $VEHICLE_TYPE = new VehicleType($PRODUCT_TYPE->type);
 
                                 <div class="pricing-area">
                                     <div class="product-price new-price"> 
-                                        <span>Hours per Day</span>  
-                                        <span style="color:#000;font-size:21px;" >Hours</span>
-                                        <span  style="color:#000;font-size:18px;" ><?php echo $package['hours']; ?></span> 
+                                        <span>Rent Dates</span>  
+                                        <span style="color:#000;font-size:21px;" >Dates</span>
+                                        <span  style="color:#000;font-size:18px;" ><?php echo $package['dates']; ?></span> 
                                     </div>
                                     <div class="product-price new-price"> 
                                         <span>Mileage Limit</span>  
