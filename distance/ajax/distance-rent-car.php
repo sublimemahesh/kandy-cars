@@ -5,14 +5,19 @@ header('Content-type: application/json');
 
 if ($_POST['action'] == 'CALLPRICEFROMOFFICE') {
 
+    $select_method = '';
+    $select_method_drop = '';
     $PRODUCT_TYPE = new Package($_POST['package_id']);
     $km = $PRODUCT_TYPE->km;
     $extra_per_km = $PRODUCT_TYPE->ex_per_km;
     $charge = $PRODUCT_TYPE->charge;
+    $driver_charge = $PRODUCT_TYPE->driver_charge;
 
     $office = $_POST['office'];
+    $select_method_drop = $_POST['select_method_drop'];
+    $select_method = $_POST['select_method'];
 
-//$pickup = $_POST['pickup'];
+    $pickup = $_POST['pickup'];
     $destination = $_POST['destination'];
 
 
@@ -39,6 +44,12 @@ if ($_POST['action'] == 'CALLPRICEFROMOFFICE') {
     } else {
         $price = $charge;
     }
+
+
+    if ($select_method_drop = 'Home Delivery' || $select_method = 'Home Delivery') {
+        $price += $driver_charge;
+    }
+
 
     if ($distance) {
 
@@ -112,7 +123,7 @@ if ($_POST['action'] == 'CALLPRICEFROMDROPVEHICLE') {
     $pickup = $_POST['pickup'];
     $destination = $_POST['destination'];
     $drop_vehivle_location = $_POST['drop_vehivle_location'];
-     
+
     $from = str_replace(" ", "+", $office);
     $location = str_replace(" ", "+", $pickup);
     $to = str_replace(" ", "+", $destination);

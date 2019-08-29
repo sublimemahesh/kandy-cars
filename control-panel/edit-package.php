@@ -1,4 +1,4 @@
-<?php
+ <?php
 include_once(dirname(__FILE__) . '/../class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
 
@@ -80,7 +80,7 @@ $PACKAGE = new Package($id);
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="number" id="dates" class="form-control" autocomplete="off" name="dates" required="true" min="0" value="<?php echo $PACKAGE->dates; ?>">
+                                                <input type="number" id="dates" class="form-control" autocomplete="off" name="dates" required="true" min="0" value="<?php echo $PACKAGE->dates; ?>" min="0">
                                                 <label class="form-label">Dates</label>
                                             </div>
                                         </div>
@@ -88,7 +88,7 @@ $PACKAGE = new Package($id);
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="number" id="km" class="form-control" autocomplete="off" name="km" required="true" value="<?php echo $PACKAGE->km; ?>">
+                                                <input type="number" id="km" class="form-control" autocomplete="off" name="km" required="true" value="<?php echo $PACKAGE->km; ?>" min="0">
                                                 <label class="form-label">Km</label>
                                             </div>
                                         </div>
@@ -97,8 +97,17 @@ $PACKAGE = new Package($id);
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="number" id="charge" class="form-control" autocomplete="off" name="charge" required="true" value="<?php echo $PACKAGE->charge; ?>">
+                                                <input type="number" id="charge" class="form-control" autocomplete="off" name="charge" required="true" value="<?php echo $PACKAGE->charge; ?>" min="0">
                                                 <label class="form-label">Charge</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="number" id="driver_charge" class="form-control" autocomplete="off" name="driver_charge" required="true" value="<?php echo $PACKAGE->driver_charge; ?>" min="0">
+                                                <label class="form-label">Driver Charge</label>
                                             </div>
                                         </div>
                                     </div> 
@@ -106,7 +115,7 @@ $PACKAGE = new Package($id);
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="number" id="ex_per_km" class="form-control" autocomplete="off" name="ex_per_km" required="true" value="<?php echo $PACKAGE->ex_per_km; ?>">
+                                                <input type="number" id="ex_per_km" class="form-control" autocomplete="off" name="ex_per_km" required="true" value="<?php echo $PACKAGE->ex_per_km; ?>" min="0"> 
                                                 <label class="form-label">Ex per Km</label>
                                             </div>
                                         </div>
