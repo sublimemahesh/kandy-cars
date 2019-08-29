@@ -13,6 +13,7 @@ if (isset($_POST['create'])) {
     $PACKAGE->dates = $_POST['dates'];
     $PACKAGE->km = $_POST['km'];
     $PACKAGE->charge = $_POST['charge']; 
+    $PACKAGE->driver_charge = $_POST['driver_charge']; 
     $PACKAGE->ex_per_km = $_POST['ex_per_km'];
 
     $dir_dest = '../../upload/packages/';
@@ -99,6 +100,7 @@ if (isset($_POST['update'])) {
     $PACKAGE->dates = $_POST['dates'];
     $PACKAGE->km = $_POST['km'];
     $PACKAGE->charge = $_POST['charge'];
+    $PACKAGE->driver_charge = $_POST['driver_charge'];
     
     $PACKAGE->ex_per_km = $_POST['ex_per_km'];
 

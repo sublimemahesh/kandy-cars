@@ -85,7 +85,7 @@ $PRODUCT_TYPE = new ProductType($id);
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="number" id="km" class="form-control" autocomplete="off" name="km" required="true">
+                                                <input type="number" id="km" class="form-control" autocomplete="off" name="km" required="true"  min="0">
                                                 <label class="form-label">Km</label>
                                             </div>
                                         </div>
@@ -94,8 +94,17 @@ $PRODUCT_TYPE = new ProductType($id);
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="number" id="charge" class="form-control" autocomplete="off" name="charge" required="true">
+                                                <input type="number" id="charge" class="form-control" autocomplete="off" name="charge" required="true"  min="0">
                                                 <label class="form-label">Charge</label>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                            <input type="number" id="driver_charge" class="form-control" autocomplete="off" name="driver_charge" required="true" min="0">
+                                                <label class="form-label">Driver Charge</label>
                                             </div>
                                         </div>
                                     </div> 
@@ -104,7 +113,7 @@ $PRODUCT_TYPE = new ProductType($id);
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
-                                                <input type="number" id="ex_per_km" class="form-control" autocomplete="off" name="ex_per_km" required="true">
+                                                <input type="number" id="ex_per_km" class="form-control" autocomplete="off" name="ex_per_km" required="true"  min="0">
                                                 <label class="form-label">Ex Charges Per Km</label>
                                             </div>
                                         </div>

@@ -2,7 +2,8 @@ var office;
 var pickup;
 var destination;
 var drop_vehivle_location;
-
+var select_method;
+var select_method_drop;
 
 
 var options = {
@@ -27,6 +28,8 @@ $(document).ready(function () {
         office = $('#office').val();
         destination = $('#destination').val();
         package_id = $('#package_id').val();
+        select_method = $('#select_method').val();
+        select_method_drop = $('#select_method_drop').val();
 
         if (destination && !office) {
 
@@ -62,6 +65,8 @@ $(document).ready(function () {
         package_id = $('#package_id').val();
         drop_vehivle_location = $('#dropvehiclelocation').val();
 
+        select_method = $('#select_method').val();
+        select_method_drop = $('#select_method_drop').val();
 
         if (destination && !office) {
 
@@ -119,7 +124,7 @@ $(document).ready(function () {
             month = "0" + month;
         }
         var date = year + "/" + month + "/" + day + " 23:59:00";
-         
+
         //empty
 
         $('#select_method_append').empty();
@@ -214,6 +219,8 @@ $(document).ready(function () {
                 pickup: pickup,
                 destination: destination,
                 package_id: package_id,
+                select_method_drop: select_method_drop,
+                select_method: select_method,
                 action: 'CALLPRICEFROMOFFICE'
             },
             dataType: "JSON",
@@ -247,6 +254,8 @@ $(document).ready(function () {
                 pickup: pickup,
                 destination: destination,
                 package_id: package_id,
+                select_method_drop: select_method_drop,
+                select_method: select_method,
                 action: 'CALLPRICEFROMHOMEDELIVER'
             },
             dataType: "JSON",
@@ -282,6 +291,8 @@ $(document).ready(function () {
                 destination: destination,
                 package_id: package_id,
                 drop_vehivle_location: drop_vehivle_location,
+                select_method_drop: select_method_drop,
+                select_method: select_method,
                 action: 'CALLPRICEFROMDROPVEHICLE'
             },
             dataType: "JSON",

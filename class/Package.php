@@ -21,6 +21,7 @@ class Package {
     public $dates;
     public $km;
     public $charge; 
+    public $driver_charge; 
     public $ex_per_km;
     public $queue;
 
@@ -41,6 +42,7 @@ class Package {
             $this->dates = $result['dates'];
             $this->km = $result['km'];
             $this->charge = $result['charge']; 
+            $this->driver_charge = $result['driver_charge']; 
             $this->ex_per_km = $result['ex_per_km'];
             $this->queue = $result['queue'];
 
@@ -50,7 +52,7 @@ class Package {
 
     public function create() {
 
-        $query = "INSERT INTO `package` (`vehicle`,`title`,`image_name`,`short_description`,`dates`,`km`,`charge`,`ex_per_km`,`queue`) VALUES  ('"
+        $query = "INSERT INTO `package` (`vehicle`,`title`,`image_name`,`short_description`,`dates`,`km`,`charge`,`driver_charge`,`ex_per_km`,`queue`) VALUES  ('"
                 . $this->vehicle . "','"
                 . $this->title . "','"
                 . $this->image_name . "', '"
@@ -58,6 +60,7 @@ class Package {
                 . $this->dates . "', '"
                 . $this->km . "', '"
                 . $this->charge . "', '" 
+                . $this->driver_charge . "', '" 
                 . $this->ex_per_km . "', '"
                 . $this->queue . "')";
 
@@ -140,6 +143,7 @@ class Package {
                 . "`dates` ='" . $this->dates . "', "
                 . "`km` ='" . $this->km . "', "
                 . "`charge` ='" . $this->charge . "', " 
+                . "`driver_charge` ='" . $this->driver_charge . "', " 
                 . "`ex_per_km` ='" . $this->ex_per_km . "', "
                 . "`queue` ='" . $this->queue . "' "
                 . "WHERE `id` = '" . $this->id . "'";
