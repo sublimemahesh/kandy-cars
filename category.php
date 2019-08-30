@@ -56,18 +56,35 @@ include './main-fuction.php';
                     ?>                
                     <div class="col-md-4 ">
                         <div class="product" style="margin-bottom:20px;">
-                            <a href="book-vehicle.php?id=<?php echo $vehicle_type['id'] ?>">
-                                <img src="upload/vehicle_type/<?php echo $vehicle_type['image_name'] ?>" alt="">
-                            </a>
+                            <?php
+                            if ($vehicle_type['id'] == 3) {
+                                ?>
+                                <a href="booking-form-chauffeur.php">
+                                    <img src="upload/vehicle_type/<?php echo $vehicle_type['image_name'] ?>" alt="">
+                                </a>
+                            <?php } else { ?>
+                                <a href="book-vehicle.php?id=<?php echo $vehicle_type['id'] ?>">
+                                    <img src="upload/vehicle_type/<?php echo $vehicle_type['image_name'] ?>" alt="">
+                                </a>
+                            <?php } ?>
                             <div class="product-description no-rating">
                                 <h4 class="product-name"> <?php echo $vehicle_type['name'] ?> </h4> 
                                 <div class="pricing-area text-justify">
                                     Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator , as well as a random Lipsum generator
                                 </div>   
                                 <div class="model-info  pull-left" style="  padding-bottom:12px;">
-                                    <div>
-                                        <a href="book-vehicle.php?id=<?php echo $vehicle_type['id'] ?>" class="btn-2">vehicles</a>
-                                    </div>
+                                    <?php
+                                    if ($vehicle_type['id'] == 3) {
+                                        ?>
+
+                                        <div>
+                                            <a href="booking-form-chauffeur.php" class="btn-2">Contact</a>
+                                        </div>
+                                    <?php } else { ?>
+                                        <div>
+                                            <a href="book-vehicle.php?id=<?php echo $vehicle_type['id'] ?>" class="btn-2">vehicles</a>
+                                        </div>
+                                    <?php } ?>
                                 </div> 
                             </div> 
                         </div> 

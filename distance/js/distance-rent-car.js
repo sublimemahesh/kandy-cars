@@ -51,8 +51,11 @@ $(document).ready(function () {
             }, );
             $('#destination').val("");
         } else {
+
+
             calPrice();
             calPriceFromOffice();
+
 
         }
     });
@@ -88,12 +91,13 @@ $(document).ready(function () {
             }, );
             $('#destination').val("");
         } else {
+
             calPriceHomeDelivery();
         }
     });
 
 
-    $("#pick_up_date ,#drop_up_date,#destination,#office").mouseleave(function () {
+    $("#pick_up_date ,#drop_up_date,#destination,#office,#xdsoft_date").mouseleave(function () {
         $('#loading').show();
         var pickup = $('#office').val();
 
@@ -103,13 +107,13 @@ $(document).ready(function () {
         var destination = $('#destination').val();
         var select_method = $('#select_method').val();
 
-
         var dates = $('#dates').val();
 
         var pick_update = new Date(pick_up_date);
-        var drop = new Date();
+        var drop = new Date(pick_up_date);
 
         var drop = drop.setDate(pick_update.getDate() + parseInt(dates) - 1);
+
         var drop_date = new Date(drop);
 
 
@@ -147,11 +151,9 @@ $(document).ready(function () {
         $('#loading').hide();
     });
 
+    $("#office,#select_method,#select_method_drop,#packages").change(function () {
 
-
-    $("#office,#select_method,#select_method_drop").change(function () {
         var pickup = $('#office').val();
-
         var select_method = $('#select_method').val();
         var select_method_drop = $('#select_method_drop').val();
 
@@ -166,6 +168,36 @@ $(document).ready(function () {
         $('#select_office_val').val(pickup);
         $('#select_method_drop').val(select_method);
         $('#select_method_drop').val(select_method_drop);
+
+
+        var package_id = $('#packages').val();
+
+        $.ajax({
+            url: "distance/ajax/distance-rent-car.php",
+            type: "POST",
+            data: {
+                package_id: package_id,
+                action: 'GETTHEPACKAGEBYID'
+            },
+            dataType: "JSON",
+            success: function (jsonStr) {
+
+                var html = '<tr>';
+                $.each(jsonStr, function (i, data) {
+                    html += '<td>' + data.title + '</td>';
+                    html += '<td>' + data.dates + '</td>';
+                    html += '<td>' + data.km + ' Km</td>';
+                    html += '<td> Rs:' + data.charge + '.00</td>';
+                    
+                });
+                html += '</tr>';
+                $('#package_body').empty();
+                $('#package_body').append(html);
+                $('#table-bar').show();
+
+            }
+        });
+
     });
 
     $("#select_method,#select_method_drop").click(function () {
@@ -177,22 +209,29 @@ $(document).ready(function () {
             $('.collect_office').css("display", "none");
             $('#your_location').css("display", "none");
 
+
+
         } else if (select_method == 'Collect From Office') {
 
             $('.collect_office').css("display", "block");
             $('#your_location').css("display", "none");
 
 
+
         } else if (select_method == 'Home Delivery') {
 
             $('.collect_office').css("display", "block");
             $('#your_location').css("display", "block");
+
+
         }
 
         if (select_method_drop == '') {
             $('.drop_office').css("display", "none");
             $('#drop_office_2').css("display", "none");
             $('#your_drop_location').css("display", "none");
+
+
 
         } else if (select_method_drop == 'Collect From Office') {
 
@@ -201,16 +240,19 @@ $(document).ready(function () {
             $('#your_drop_location').css("display", "none");
 
 
+
         } else if (select_method_drop == 'Home Delivery') {
             $('.drop_office').css("display", "block");
             $('#drop_office_2').css("display", "block");
             $('#your_drop_location').css("display", "block");
+
+
         }
 
     });
 
     function calPrice() {
-        $('#loading').show();
+
         $.ajax({
             url: "distance/ajax/distance-rent-car.php",
             type: "POST",
@@ -231,6 +273,7 @@ $(document).ready(function () {
                     $('.distance_all').empty();
                     $('#ex_km').empty();
                     $('#ex_per_km').empty();
+                    $('#driver_charge').empty();
 
 
                     $('#distance_all').append(jsonStr.distance_all + ' Km');
@@ -238,14 +281,15 @@ $(document).ready(function () {
                     $('#ex_km').append(jsonStr.ex_km + ' Km');
                     $('#ex_per_km').append(jsonStr.ex_per_km);
                     $('#price_id').append(jsonStr.price);
-                    $('#loading').hide();
+                    $('#driver_charge').append(jsonStr.driver_charge);
+
                 }
             }
         });
     }
 
     function calPriceFromOffice() {
-        $('#loading').show();
+
         $.ajax({
             url: "distance/ajax/distance-rent-car.php",
             type: "POST",
@@ -266,6 +310,7 @@ $(document).ready(function () {
                     $('.distance_all').empty();
                     $('#ex_km').empty();
                     $('#ex_per_km').empty();
+                    $('#driver_charge').empty();
 
 
                     $('#distance_all').append(jsonStr.distance_all + ' Km');
@@ -274,6 +319,7 @@ $(document).ready(function () {
                     $('#ex_per_km').append(jsonStr.ex_per_km);
                     $('#price_id').append(jsonStr.price);
                     $('#loading').hide();
+                    $('#driver_charge').append(jsonStr.driver_charge);
                 }
             }
         });
@@ -281,7 +327,7 @@ $(document).ready(function () {
 
     }
     function calPriceHomeDelivery() {
-        $('#loading').show();
+
         $.ajax({
             url: "distance/ajax/distance-rent-car.php",
             type: "POST",
@@ -303,6 +349,7 @@ $(document).ready(function () {
                     $('.distance').empty();
                     $('#ex_km').empty();
                     $('#ex_per_km').empty();
+                    $('#driver_charge').empty();
 
                     $('#distance_all').append(jsonStr.distance_all + ' Km');
                     $('.distance').append(jsonStr.distance);
@@ -310,6 +357,7 @@ $(document).ready(function () {
                     $('#ex_per_km').append(jsonStr.ex_per_km);
                     $('#price_id').append(jsonStr.price);
                     $('#loading').hide();
+                    $('#driver_charge').append(jsonStr.driver_charge);
                 }
             }
         });

@@ -5,8 +5,7 @@ header('Content-type: application/json');
 
 if ($_POST['action'] == 'CALLPRICEFROMOFFICE') {
 
-    $select_method = '';
-    $select_method_drop = '';
+
     $PRODUCT_TYPE = new Package($_POST['package_id']);
     $km = $PRODUCT_TYPE->km;
     $extra_per_km = $PRODUCT_TYPE->ex_per_km;
@@ -14,8 +13,8 @@ if ($_POST['action'] == 'CALLPRICEFROMOFFICE') {
     $driver_charge = $PRODUCT_TYPE->driver_charge;
 
     $office = $_POST['office'];
-    $select_method_drop = $_POST['select_method_drop'];
-    $select_method = $_POST['select_method'];
+
+
 
     $pickup = $_POST['pickup'];
     $destination = $_POST['destination'];
@@ -31,7 +30,6 @@ if ($_POST['action'] == 'CALLPRICEFROMOFFICE') {
     $string = file_get_contents($url);
 
 
-
     $json = file_get_contents($url);
     $data = json_decode($json, TRUE);
     $distance = $data['rows'][0]['elements'][0]['distance']['text'];
@@ -45,15 +43,28 @@ if ($_POST['action'] == 'CALLPRICEFROMOFFICE') {
         $price = $charge;
     }
 
+    if (isset($_POST['select_method'])) {
+        $select_method = $_POST['select_method'];
 
-    if ($select_method_drop = 'Home Delivery' || $select_method = 'Home Delivery') {
-        $price += $driver_charge;
+        if ($select_method == 'Home Delivery') {
+
+            $price += $driver_charge;
+        }
     }
 
+    if (isset($_POST['select_method_drop'])) {
+        $select_method_drop = $_POST['select_method_drop'];
+
+        if ($select_method_drop == 'Home Delivery') {
+
+            $price += $driver_charge;
+            $driver_charge += $driver_charge;
+        }
+    }
 
     if ($distance) {
 
-        $data_res = array("status" => TRUE, "distance_all" => $distance_all_km, "distance" => $distance, "ex_km" => $diff_km, "ex_per_km" => number_format($extra_per_km, 2), "charge" => $charge, "price" => number_format($price, 2));
+        $data_res = array("status" => TRUE, "distance_all" => $distance_all_km, "distance" => $distance, "ex_km" => $diff_km, "ex_per_km" => number_format($extra_per_km, 2), "charge" => $charge, "price" => number_format($price, 2), "driver_charge" => number_format($driver_charge, 2));
 
         echo json_encode($data_res);
     }
@@ -66,11 +77,19 @@ if ($_POST['action'] == 'CALLPRICEFROMHOMEDELIVER') {
     $km = $PRODUCT_TYPE->km;
     $extra_per_km = $PRODUCT_TYPE->ex_per_km;
     $charge = $PRODUCT_TYPE->charge;
+    $driver_charge = $PRODUCT_TYPE->driver_charge;
 
     $office = $_POST['office'];
     $pickup = $_POST['pickup'];
     $destination = $_POST['destination'];
 
+    if (isset($_POST['select_method_drop'])) {
+        $select_method_drop = $_POST['select_method_drop'];
+    }
+
+    if (isset($_POST['select_method'])) {
+        $select_method = $_POST['select_method'];
+    }
 
     $from = str_replace(" ", "+", $office);
     $location = str_replace(" ", "+", $pickup);
@@ -93,8 +112,8 @@ if ($_POST['action'] == 'CALLPRICEFROMHOMEDELIVER') {
     $json = file_get_contents($url);
     $data = json_decode($json, TRUE);
     $distance_drop = $data['rows'][0]['elements'][0]['distance']['text'];
+    $distance = $distance_office + $distance_drop;
 
-    dd($distance_drop);
     $distance_all_km = 2 * ($distance);
 
     if ($distance_all_km > $km) {
@@ -104,9 +123,28 @@ if ($_POST['action'] == 'CALLPRICEFROMHOMEDELIVER') {
         $price = $charge;
     }
 
+    if (isset($_POST['select_method'])) {
+        $select_method = $_POST['select_method'];
+
+        if ($select_method == 'Home Delivery') {
+
+            $price += $driver_charge;
+        }
+    }
+
+    if (isset($_POST['select_method_drop'])) {
+        $select_method_drop = $_POST['select_method_drop'];
+
+        if ($select_method_drop == 'Home Delivery') {
+
+            $price += $driver_charge;
+            $driver_charge += $driver_charge;
+        }
+    }
+
     if ($distance) {
 
-        $data_res = array("status" => TRUE, "distance_all" => $distance_all_km, "distance" => $distance, "ex_km" => $diff_km, "ex_per_km" => number_format($extra_per_km, 2), "charge" => $charge, "price" => number_format($price, 2));
+        $data_res = array("status" => TRUE, "distance_all" => $distance_all_km, "distance" => $distance, "ex_km" => $diff_km, "ex_per_km" => number_format($extra_per_km, 2), "charge" => $charge, "price" => number_format($price, 2), "driver_charge" => $driver_charge);
 
         echo json_encode($data_res);
     }
@@ -118,6 +156,8 @@ if ($_POST['action'] == 'CALLPRICEFROMDROPVEHICLE') {
     $km = $PRODUCT_TYPE->km;
     $extra_per_km = $PRODUCT_TYPE->ex_per_km;
     $charge = $PRODUCT_TYPE->charge;
+    $driver_charge = $PRODUCT_TYPE->driver_charge;
+
 
     $office = $_POST['office'];
     $pickup = $_POST['pickup'];
@@ -129,7 +169,13 @@ if ($_POST['action'] == 'CALLPRICEFROMDROPVEHICLE') {
     $to = str_replace(" ", "+", $destination);
     $drop_location = str_replace(" ", "+", $drop_vehivle_location);
 
+    if (isset($_POST['select_method_drop'])) {
+        $select_method_drop = $_POST['select_method_drop'];
+    }
 
+    if (isset($_POST['select_method'])) {
+        $select_method = $_POST['select_method'];
+    }
 
     $apiKey = "AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc";
 
@@ -169,10 +215,38 @@ if ($_POST['action'] == 'CALLPRICEFROMDROPVEHICLE') {
         $price = $charge;
     }
 
+    if (isset($_POST['select_method'])) {
+        $select_method = $_POST['select_method'];
+
+        if ($select_method == 'Home Delivery') {
+
+            $price += $driver_charge;
+        }
+    }
+
+    if (isset($_POST['select_method_drop'])) {
+        $select_method_drop = $_POST['select_method_drop'];
+
+        if ($select_method_drop == 'Home Delivery') {
+
+            $price += $driver_charge;
+            $driver_charge += $driver_charge;
+        }
+    }
+
     if ($distance) {
 
-        $data_res = array("status" => TRUE, "distance_all" => $distance_all_km, "distance" => $distance, "ex_km" => $diff_km, "ex_per_km" => number_format($extra_per_km, 2), "charge" => $charge, "price" => number_format($price, 2));
+        $data_res = array("status" => TRUE, "distance_all" => $distance_all_km, "distance" => $distance, "ex_km" => $diff_km, "ex_per_km" => number_format($extra_per_km, 2), "charge" => $charge, "price" => number_format($price, 2), "driver_charge" => $driver_charge);
 
         echo json_encode($data_res);
     }
+}
+
+if ($_POST['action'] == 'GETTHEPACKAGEBYID') {
+
+    $PRODUCT_TYPE = new Package($_POST['package_id']);
+    $result = $PRODUCT_TYPE->getPackagesById($_POST["package_id"]);
+    echo json_encode($result);
+    header('Content-type: application/json');
+    exit();
 }
