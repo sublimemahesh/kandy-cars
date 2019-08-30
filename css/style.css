@@ -9039,7 +9039,8 @@ table tr td.price{
     background-color: rgba(0, 0, 0, 0.35);
 }
 .price-summer-p{
-    text-align: left;color: white;
+    text-align: left;color: black;
+    font-weight: 500;
 }
 .price-summer-p span{
     color: black;
