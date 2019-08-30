@@ -1,7 +1,6 @@
 var office;
 var pickup;
 var destination;
-var drop_vehivle_location;
 var select_method;
 var select_method_drop;
 
@@ -17,19 +16,17 @@ var pickupAutocomplete = new google.maps.places.Autocomplete(pickuplocation, opt
 var returnlocation = document.getElementById('destination');
 var returnAutocomplete = new google.maps.places.Autocomplete(returnlocation, options);
 
-var dropvehiclelocation = document.getElementById('dropvehiclelocation');
-var dropvehicleAutocomplete = new google.maps.places.Autocomplete(dropvehiclelocation, options);
+
 
 $(document).ready(function () {
+
 
     google.maps.event.addListener(returnAutocomplete, 'place_changed', function () {
 
         pickup = $('#origin').val();
         office = $('#office').val();
-        destination = $('#destination').val();
         package_id = $('#package_id').val();
-        select_method = $('#select_method').val();
-        select_method_drop = $('#select_method_drop').val();
+        destination = $('#destination').val();
 
         if (destination && !office) {
 
@@ -51,54 +48,14 @@ $(document).ready(function () {
             }, );
             $('#destination').val("");
         } else {
-
-
             calPrice();
-            calPriceFromOffice();
-
-
         }
-    });
 
-    google.maps.event.addListener(dropvehicleAutocomplete, 'place_changed', function () {
-
-        pickup = $('#origin').val();
-        office = $('#office').val();
-        destination = $('#destination').val();
-        package_id = $('#package_id').val();
-        drop_vehivle_location = $('#dropvehiclelocation').val();
-
-        select_method = $('#select_method').val();
-        select_method_drop = $('#select_method_drop').val();
-
-        if (destination && !office) {
-
-            swal({
-                title: "Hey",
-                text: "Please select pickup location first",
-                type: 'error',
-                timer: 3000,
-                showConfirmButton: false
-            }, );
-            $('#destination').val("");
-        } else if (destination === office) {
-            swal({
-                title: "Hey",
-                text: "Please select differnt destination",
-                type: 'error',
-                timer: 3000,
-                showConfirmButton: false
-            }, );
-            $('#destination').val("");
-        } else {
-
-            calPriceHomeDelivery();
-        }
     });
 
 
-    $("#pick_up_date ,#drop_up_date,#destination,#office,#xdsoft_date").mouseleave(function () {
-        $('#loading').show();
+    $("#pick_up_date ,#drop_up_date,#destination,#office").mouseleave(function () {
+
         var pickup = $('#office').val();
 
         //Pick up date
@@ -151,11 +108,14 @@ $(document).ready(function () {
         $('#loading').hide();
     });
 
-    $("#office,#select_method,#select_method_drop,#packages").change(function () {
+    $("#office,#select_method,#select_method_drop").change(function () {
 
         var pickup = $('#office').val();
+
         var select_method = $('#select_method').val();
         var select_method_drop = $('#select_method_drop').val();
+
+
 
         $('.select_office_append').empty();
         $('.select_method_drop_append').empty();
@@ -170,37 +130,42 @@ $(document).ready(function () {
         $('#select_method_drop').val(select_method_drop);
 
 
+    });
+    $("#packages").change(function () {
+
         var package_id = $('#packages').val();
 
-        $.ajax({
-            url: "distance/ajax/distance-rent-car.php",
-            type: "POST",
-            data: {
-                package_id: package_id,
-                action: 'GETTHEPACKAGEBYID'
-            },
-            dataType: "JSON",
-            success: function (jsonStr) {
+        if (package_id == 0) {
+            $('#table-bar').hide();
+        } else {
+            $.ajax({
+                url: "distance/ajax/distance-rent-car.php",
+                type: "POST",
+                data: {
+                    package_id: package_id,
+                    action: 'GETTHEPACKAGEBYID'
+                },
+                dataType: "JSON",
+                success: function (jsonStr) {
 
-                var html = '<tr>';
-                $.each(jsonStr, function (i, data) {
-                    html += '<td>' + data.title + '</td>';
-                    html += '<td>' + data.dates + '</td>';
-                    html += '<td>' + data.km + ' Km</td>';
-                    html += '<td> Rs:' + data.charge + '.00</td>';
-                    
-                });
-                html += '</tr>';
-                $('#package_body').empty();
-                $('#package_body').append(html);
-                $('#table-bar').show();
-
-            }
-        });
-
+                    var html = '<tr>';
+                    $.each(jsonStr, function (i, data) {
+                        html += '<td>' + data.title + '</td>';
+                        html += '<td>' + data.dates + '</td>';
+                        html += '<td>' + data.km + ' Km</td>';
+                        html += '<td> Rs:' + data.charge + '.00</td>';
+                    });
+                    html += '</tr>';
+                    $('#package_body').empty();
+                    $('#package_body').append(html);
+                    $('#table-bar').show();
+                }
+            });
+        } 
     });
 
     $("#select_method,#select_method_drop").click(function () {
+        
         var select_method = $('#select_method').val();
         var select_method_drop = $('#select_method_drop').val();
 
@@ -209,21 +174,16 @@ $(document).ready(function () {
             $('.collect_office').css("display", "none");
             $('#your_location').css("display", "none");
 
-
-
         } else if (select_method == 'Collect From Office') {
 
             $('.collect_office').css("display", "block");
             $('#your_location').css("display", "none");
 
 
-
         } else if (select_method == 'Home Delivery') {
 
             $('.collect_office').css("display", "block");
             $('#your_location').css("display", "block");
-
-
         }
 
         if (select_method_drop == '') {
@@ -231,21 +191,16 @@ $(document).ready(function () {
             $('#drop_office_2').css("display", "none");
             $('#your_drop_location').css("display", "none");
 
-
-
         } else if (select_method_drop == 'Collect From Office') {
 
             $('.drop_office').css("display", "block");
             $('#drop_office_2').css("display", "none");
             $('#your_drop_location').css("display", "none");
 
-
-
         } else if (select_method_drop == 'Home Delivery') {
             $('.drop_office').css("display", "block");
             $('#drop_office_2').css("display", "block");
             $('#your_drop_location').css("display", "block");
-
 
         }
 
@@ -261,8 +216,8 @@ $(document).ready(function () {
                 pickup: pickup,
                 destination: destination,
                 package_id: package_id,
-                select_method_drop: select_method_drop,
-                select_method: select_method,
+                select_method_drop: 'Home Delivery',
+                select_method: 'Home Delivery',
                 action: 'CALLPRICEFROMOFFICE'
             },
             dataType: "JSON",
@@ -296,10 +251,9 @@ $(document).ready(function () {
             data: {
                 office: office,
                 pickup: pickup,
-                destination: destination,
                 package_id: package_id,
-                select_method_drop: select_method_drop,
-                select_method: select_method,
+                select_method_drop: 'Home Delivery',
+                select_method: 'Home Delivery',
                 action: 'CALLPRICEFROMHOMEDELIVER'
             },
             dataType: "JSON",

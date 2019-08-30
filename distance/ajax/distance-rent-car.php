@@ -4,8 +4,7 @@ include_once(dirname(__FILE__) . '/../../class/include.php');
 header('Content-type: application/json');
 
 if ($_POST['action'] == 'CALLPRICEFROMOFFICE') {
-
-
+ 
     $PRODUCT_TYPE = new Package($_POST['package_id']);
     $km = $PRODUCT_TYPE->km;
     $extra_per_km = $PRODUCT_TYPE->ex_per_km;
@@ -13,8 +12,6 @@ if ($_POST['action'] == 'CALLPRICEFROMOFFICE') {
     $driver_charge = $PRODUCT_TYPE->driver_charge;
 
     $office = $_POST['office'];
-
-
 
     $pickup = $_POST['pickup'];
     $destination = $_POST['destination'];
