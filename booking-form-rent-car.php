@@ -67,14 +67,15 @@ $PACKAGE = new Package($id);
         <div class="container margin-top-50">
             <img id="loading" src="https://www.vedantalimited.com/SiteAssets/Images/loading.gif" style="display: none; position: absolute;margin-top: 10%;margin-left: 37%;z-index: 999;"/>
 
-            <h2 class="text-center"> <?php echo $PACKAGE->title ?></h2>
+            <h2 class="text-center"  > <?php echo $PACKAGE->title ?></h2>
             <div class="col-md-9">
                 <div class="  question-form bg-sidebar-item">
                     <div class="contact-form">
                         <div class="row"> 
                             <div class="col-sm-6 col-xs-12 col-md-12">
                                 <label>Package Name</label>
-                                <select  style="padding-left: 10px"  >  
+                                <select  style="padding-left: 10px" id="packages" >  
+                                    <option value=""> -- Select the other packages -- </option>  
                                     <?php
                                     $PACKAGES = new Package(NULL);
                                     foreach ($PACKAGES->getPackagesByVehicle($PACKAGE->vehicle) as $key => $package) {
@@ -92,6 +93,25 @@ $PACKAGE = new Package($id);
                                 </select>                 
                             </div> 
                         </div> 
+                        <div class="row" style="display: none" id="table-bar"> 
+                            <div class="col-sm-6 col-xs-12 col-md-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Package Name</th>
+                                            <th>Dates</th>
+                                            <th>Millage Limit</th>
+                                            <th>charge per date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="package_body">
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                         <div class="row"> 
                             <div class="col-sm-6 col-xs-12 col-md-6">
                                 <label>Pick up Date / Time</label>
@@ -125,34 +145,38 @@ $PACKAGE = new Package($id);
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-6 col-xs-12 col-md-6 collect_office" style="display: none; "  >
-                                <label>Your nearest office</label>
-                                <select  style="padding-left: 10px"  id="office"> 
-                                    <option value="" selected=""> -- Select your near Office --</option>
-                                    <?php
-                                    $OFFICE = new Office(NULL);
-                                    foreach ($OFFICE->all() as $office) {
-                                        ?>
-                                        <option value="<?php echo $office['location'] ?>"><?php echo $office['location'] ?> </option>  
-                                    <?php } ?> 
-                                </select>                 
-                            </div> 
-                            <div class="col-sm-6 col-xs-12 col-md-6 drop_office" style="display: none"  >
-                                <label>The return location</label>
-                                <input type="text" id="select_office_val" class="form-control"  name="name"  placeholder="Your Location" disabled="">            
-                            </div> 
-                        </div>
+                            <div class="col-sm-6 col-xs-12 col-md-6 "  >
+                                <div class="collect_office" style="display: none" > 
+                                    <label>Your nearest office</label>
+                                    <select  style="padding-left: 10px"  id="office"> 
+                                        <option value="" selected=""> -- Select your near Office --</option>
+                                        <?php
+                                        $OFFICE = new Office(NULL);
+                                        foreach ($OFFICE->all() as $office) {
+                                            ?>
+                                            <option value="<?php echo $office['location'] ?>"><?php echo $office['location'] ?> </option>  
+                                        <?php } ?> 
+                                    </select>
+                                </div>
+                                <div id="your_location" style="display: none" >
+                                    <label>The place you get the vehicle</label>
+                                    <input type="text"  id="origin" class="form-control"  name="name"  placeholder="Your Location" >                
 
-                        <div class="row">
-                            <div class="col-sm-6 col-xs-12 col-md-6" id="your_location" style="display: none">
-                                <label>The place you get the vehicle</label>
-                                <input type="text"  id="origin" class="form-control"  name="name"  placeholder="Your Location" >                
+                                </div>
+
                             </div> 
-                            <div class="col-sm-6 col-xs-12 col-md-6" style="display: none" id="your_drop_location" >
-                                <label>The place you deliver the vehicle</label>
-                                <input type="text" class="form-control drop_vehivle_location"  id="dropvehiclelocation" name="name"  placeholder="Drop of Your Location" >            
+                            <div class="col-sm-6 col-xs-12 col-md-6 "  >
+                                <div class="drop_office"  style="display: none"> 
+                                    <label>The return location</label>
+                                    <input type="text" id="select_office_val" class="form-control"  name="name"  placeholder="Your Location" disabled="">            
+                                </div>
+                                <div  style="display: none" id="your_drop_location">
+                                    <label>The place you deliver the vehicle</label>
+                                    <input type="text" class="form-control drop_vehivle_location"  id="dropvehiclelocation" name="name"  placeholder="Drop of Your Location" >            
+                                </div>
                             </div>
                         </div>
+
                         <div class="row"> 
                             <div class="col-sm-6 col-xs-12 col-md-12">
                                 <label>Your Destination</label>
@@ -182,11 +206,12 @@ $PACKAGE = new Package($id);
                         <p class="price-summer-p" id="location_hide" style="display: none;">Your Location:<span id="your_location_append"  ></span></p>
                         <p class="price-summer-p">Destination:<span id="drop_location_append"  ></span></p>
                         <p class="price-summer-p">Return Office:<span  class="select_office_append"  ></span></p>
-                        <p class="price-summer-p">Pick up / Destination:<span  class="distance"  ></span></p>
-                        <p class="price-summer-p">Destination / Return Office:<span  class="distance"  ></span></p>
+                        <p class="price-summer-p">Pick up to Destination:<span  class="distance"  ></span></p>
+                        <p class="price-summer-p">Destination to Return Office:<span  class="distance"  ></span></p>
                         <p class="price-summer-p">Extra Km:<span  id="ex_km" ></span> Extra Price km:<span  id="ex_per_km" ></span></p>
 
                         <p class="price-summer-p">Distance:<span id="distance_all"></span></p> 
+                        <p class="price-summer-p">Drive Charge:<span id="driver_charge"></span></p>
                         <p class="price-summer-p">Price:<span id="price_id"></span></p>
                         <p class="price-summer-p">Return date & Time:<span id="drop_up_date_append"  ></span></p>                            
                     </span>

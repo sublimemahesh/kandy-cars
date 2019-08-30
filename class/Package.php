@@ -20,8 +20,8 @@ class Package {
     public $short_description;
     public $dates;
     public $km;
-    public $charge; 
-    public $driver_charge; 
+    public $charge;
+    public $driver_charge;
     public $ex_per_km;
     public $queue;
 
@@ -41,8 +41,8 @@ class Package {
             $this->short_description = $result['short_description'];
             $this->dates = $result['dates'];
             $this->km = $result['km'];
-            $this->charge = $result['charge']; 
-            $this->driver_charge = $result['driver_charge']; 
+            $this->charge = $result['charge'];
+            $this->driver_charge = $result['driver_charge'];
             $this->ex_per_km = $result['ex_per_km'];
             $this->queue = $result['queue'];
 
@@ -59,8 +59,8 @@ class Package {
                 . $this->short_description . "', '"
                 . $this->dates . "', '"
                 . $this->km . "', '"
-                . $this->charge . "', '" 
-                . $this->driver_charge . "', '" 
+                . $this->charge . "', '"
+                . $this->driver_charge . "', '"
                 . $this->ex_per_km . "', '"
                 . $this->queue . "')";
 
@@ -105,6 +105,20 @@ class Package {
         return $array_res;
     }
 
+    public function getPackagesById($id) {
+
+        $query = "SELECT * FROM `package` WHERE `id`=" . $id . " ORDER BY queue ASC";
+        $db = new Database();
+        $result = $db->readQuery($query);
+        $array_res = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            array_push($array_res, $row);
+        }
+
+        return $array_res;
+    }
+
     public function CheckPackageHours($dates) {
 
         $query = "SELECT * FROM `package` WHERE `id` =" . $this->id . " AND `dates` <" . $dates . " ORDER BY queue ASC";
@@ -119,10 +133,10 @@ class Package {
         }
     }
 
-    public function getNextPackageByVehicle($vehicle_id,$dates) {
+    public function getNextPackageByVehicle($vehicle_id, $dates) {
 
-        $query = "SELECT * FROM `package` WHERE `vehicle`=" . $vehicle_id . " AND MIN`dates` >" . $dates .  " AND  ORDER BY queue ASC";
-         
+        $query = "SELECT * FROM `package` WHERE `vehicle`=" . $vehicle_id . " AND MIN`dates` >" . $dates . " AND  ORDER BY queue ASC";
+
         $db = new Database();
         $result = $db->readQuery($query);
         $array_res = array();
@@ -142,12 +156,12 @@ class Package {
                 . "`short_description` ='" . $this->short_description . "', "
                 . "`dates` ='" . $this->dates . "', "
                 . "`km` ='" . $this->km . "', "
-                . "`charge` ='" . $this->charge . "', " 
-                . "`driver_charge` ='" . $this->driver_charge . "', " 
+                . "`charge` ='" . $this->charge . "', "
+                . "`driver_charge` ='" . $this->driver_charge . "', "
                 . "`ex_per_km` ='" . $this->ex_per_km . "', "
                 . "`queue` ='" . $this->queue . "' "
                 . "WHERE `id` = '" . $this->id . "'";
-        
+
         $db = new Database();
 
         $result = $db->readQuery($query);
