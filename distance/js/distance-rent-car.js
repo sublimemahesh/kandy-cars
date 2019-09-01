@@ -28,7 +28,7 @@ $(document).ready(function () {
         package_id = $('#package_id').val();
         destination = $('#destination').val();
 
-        if (destination && !office) {
+        if (pickup && !office) {
 
             swal({
                 title: "Hey",
@@ -38,7 +38,7 @@ $(document).ready(function () {
                 showConfirmButton: false
             }, );
             $('#destination').val("");
-        } else if (destination === office) {
+        } else if (pickup === office) {
             swal({
                 title: "Hey",
                 text: "Please select differnt destination",
@@ -48,13 +48,13 @@ $(document).ready(function () {
             }, );
             $('#destination').val("");
         } else {
-            calPrice();
+
         }
 
     });
 
+    $('#wrapper').on('change', '#pick_up_date ,#drop_up_date,#destination,#office', function () {
 
-    $("#pick_up_date ,#drop_up_date,#destination,#office").mouseleave(function () {
 
         var pickup = $('#office').val();
 
@@ -108,6 +108,7 @@ $(document).ready(function () {
         $('#loading').hide();
     });
 
+
     $("#office,#select_method,#select_method_drop").change(function () {
 
         var pickup = $('#office').val();
@@ -120,6 +121,7 @@ $(document).ready(function () {
         $('.select_office_append').empty();
         $('.select_method_drop_append').empty();
         $('#select_method_append').empty();
+        $('#origin').empty();
 
         $('.select_method_drop_append').append(select_method_drop);
         $('#select_method_append').append(select_method);
@@ -129,8 +131,32 @@ $(document).ready(function () {
         $('#select_method_drop').val(select_method);
         $('#select_method_drop').val(select_method_drop);
 
+        var office = $('#office').val();
+        var package_id = $('#package_id').val();
+
+        $.ajax({
+            url: "distance/ajax/distance-rent-car.php",
+            type: "POST",
+            data: {
+                office: office,
+                package_id: package_id,
+                action: 'OFFICE_PRICE'
+            },
+            dataType: "JSON",
+            success: function (jsonStr) {
+
+                //Empty value
+                $('#price_id').empty();
+
+                //Append
+                $('#price_id').append(jsonStr.price);
+
+
+            }
+        });
 
     });
+
     $("#packages").change(function () {
 
         var package_id = $('#packages').val();
@@ -161,11 +187,11 @@ $(document).ready(function () {
                     $('#table-bar').show();
                 }
             });
-        } 
+        }
     });
 
     $("#select_method,#select_method_drop").click(function () {
-        
+
         var select_method = $('#select_method').val();
         var select_method_drop = $('#select_method_drop').val();
 
@@ -173,23 +199,41 @@ $(document).ready(function () {
         if (select_method == '') {
             $('.collect_office').css("display", "none");
             $('#your_location').css("display", "none");
+            $('#destination').empty();
+            $('#origin').empty();
+
 
         } else if (select_method == 'Collect From Office') {
 
+
             $('.collect_office').css("display", "block");
             $('#your_location').css("display", "none");
+
+            $('#distance_id').empty();
+            $('#price_id').empty();
+            $('#ex_km').empty();
+            $('#ex_per_km').empty();
+            $('#driver_charge').empty();
+            $('#distance').empty();
+            $('#distance_price').empty();
+            $('#destination').empty();
+
 
 
         } else if (select_method == 'Home Delivery') {
 
             $('.collect_office').css("display", "block");
             $('#your_location').css("display", "block");
+            $('#destination').empty();
+
+
         }
 
         if (select_method_drop == '') {
             $('.drop_office').css("display", "none");
             $('#drop_office_2').css("display", "none");
             $('#your_drop_location').css("display", "none");
+            $('#destination').empty();
 
         } else if (select_method_drop == 'Collect From Office') {
 
@@ -197,126 +241,155 @@ $(document).ready(function () {
             $('#drop_office_2').css("display", "none");
             $('#your_drop_location').css("display", "none");
 
+            $('#destination').empty();
+
         } else if (select_method_drop == 'Home Delivery') {
             $('.drop_office').css("display", "block");
             $('#drop_office_2').css("display", "block");
             $('#your_drop_location').css("display", "block");
-
+            $('#destination').empty();
         }
 
     });
 
-    function calPrice() {
+
+
+    $("#origin").click(function () {
+
+
+        var package_id = $('#package_id').val();
+        var office = $('#office').val();
+        var pickup = $('#origin').val();
 
         $.ajax({
             url: "distance/ajax/distance-rent-car.php",
             type: "POST",
             data: {
-                office: office,
                 pickup: pickup,
-                destination: destination,
+                office: office,
                 package_id: package_id,
-                select_method_drop: 'Home Delivery',
-                select_method: 'Home Delivery',
-                action: 'CALLPRICEFROMOFFICE'
+                action: 'DISTANCE_BY_HOME_DELIVERY'
             },
             dataType: "JSON",
             success: function (jsonStr) {
-                if (jsonStr.status) {
+
+                //Empty value
+                $('#distance_id').empty();
+                $('#price_id').empty();
+                $('#ex_km').empty();
+                $('#ex_per_km').empty();
+                $('#driver_charge').empty();
+                $('#distance').empty();
+                $('#distance_price').empty();
+
+                //Show val
+                $('#distance_hide').show();
+                $('#ex_per_km_hide').show();
+                $('#distance_price_hide').show();
+                $('#driver_charge_hide').show();
+
+                //Append
+                $('#distance').append(jsonStr.distance);
+                $('#distance_price').append(jsonStr.distance_price);
+                $('#ex_km').append(jsonStr.ex_per_km + ' Km');
+                $('#ex_per_km').append(jsonStr.ex_per_km);
+                $('#price_id').append(jsonStr.price);
+                $('#driver_charge').append(jsonStr.driver_charge);
+            }
+
+        });
+
+    });
+
+    $("#destination").click(function () {
+
+        var package_id = $('#package_id').val();
+        var office = $('#office').val();
+        var destination = $('#destination').val();
+
+        pickup = $('#origin').val();
+        if (!pickup) {
+
+            $.ajax({
+                url: "distance/ajax/distance-rent-car.php",
+                type: "POST",
+                data: {
+                    destination: destination,
+                    office: office,
+                    package_id: package_id,
+                    action: 'DISTANCE_DROP_HOME_DELIVERY'
+                },
+                dataType: "JSON",
+                success: function (jsonStr) {
+                    //Empty value
                     $('#distance_id').empty();
                     $('#price_id').empty();
-                    $('.distance_all').empty();
                     $('#ex_km').empty();
                     $('#ex_per_km').empty();
                     $('#driver_charge').empty();
+                    $('#distance').empty();
+                    $('#distance_price').empty();
 
+                    //Show val
+                    $('#distance_hide').show();
+                    $('#ex_per_km_hide').show();
+                    $('#distance_price_hide').show();
+                    $('#driver_charge_hide').show();
 
-                    $('#distance_all').append(jsonStr.distance_all + ' Km');
-                    $('.distance').append(jsonStr.distance);
-                    $('#ex_km').append(jsonStr.ex_km + ' Km');
+                    //Append
+                    $('#distance').append(jsonStr.distance);
+                    $('#distance_price').append(jsonStr.distance_price);
+                    $('#ex_km').append(jsonStr.ex_per_km + ' Km');
                     $('#ex_per_km').append(jsonStr.ex_per_km);
                     $('#price_id').append(jsonStr.price);
                     $('#driver_charge').append(jsonStr.driver_charge);
-
                 }
-            }
-        });
-    }
 
-    function calPriceFromOffice() {
+            });
+        } else {
 
-        $.ajax({
-            url: "distance/ajax/distance-rent-car.php",
-            type: "POST",
-            data: {
-                office: office,
-                pickup: pickup,
-                package_id: package_id,
-                select_method_drop: 'Home Delivery',
-                select_method: 'Home Delivery',
-                action: 'CALLPRICEFROMHOMEDELIVER'
-            },
-            dataType: "JSON",
-            success: function (jsonStr) {
-                if (jsonStr.status) {
+            $.ajax({
+                url: "distance/ajax/distance-rent-car.php",
+                type: "POST",
+                data: {
+                    pickup: pickup,
+                    destination: destination,
+                    office: office,
+                    package_id: package_id,
+                    action: 'DISTANCE_PICK_UP_DROP_HOME_DELIVERY'
+                },
+                dataType: "JSON",
+                success: function (jsonStr) {
+
+                    //Empty value
                     $('#distance_id').empty();
                     $('#price_id').empty();
-                    $('.distance_all').empty();
                     $('#ex_km').empty();
                     $('#ex_per_km').empty();
                     $('#driver_charge').empty();
+                    $('#distance').empty();
+                    $('#distance_price').empty();
 
+                    //Show val
+                    $('#distance_hide').show();
+                    $('#ex_per_km_hide').show();
+                    $('#distance_price_hide').show();
+                    $('#driver_charge_hide').show();
 
-                    $('#distance_all').append(jsonStr.distance_all + ' Km');
-                    $('.distance').append(jsonStr.distance);
-                    $('#ex_km').append(jsonStr.ex_km + ' Km');
+                    //Append
+                    $('#distance').append(jsonStr.distance);
+                    $('#distance_price').append(jsonStr.distance_price);
+                    $('#ex_km').append(jsonStr.ex_per_km + ' Km');
                     $('#ex_per_km').append(jsonStr.ex_per_km);
                     $('#price_id').append(jsonStr.price);
-                    $('#loading').hide();
                     $('#driver_charge').append(jsonStr.driver_charge);
                 }
-            }
-        });
+
+            });
+        }
 
 
-    }
-    function calPriceHomeDelivery() {
+    });
 
-        $.ajax({
-            url: "distance/ajax/distance-rent-car.php",
-            type: "POST",
-            data: {
-                office: office,
-                pickup: pickup,
-                destination: destination,
-                package_id: package_id,
-                drop_vehivle_location: drop_vehivle_location,
-                select_method_drop: select_method_drop,
-                select_method: select_method,
-                action: 'CALLPRICEFROMDROPVEHICLE'
-            },
-            dataType: "JSON",
-            success: function (jsonStr) {
-                if (jsonStr.status) {
-                    $('#distance_all').empty();
-                    $('#price_id').empty();
-                    $('.distance').empty();
-                    $('#ex_km').empty();
-                    $('#ex_per_km').empty();
-                    $('#driver_charge').empty();
-
-                    $('#distance_all').append(jsonStr.distance_all + ' Km');
-                    $('.distance').append(jsonStr.distance);
-                    $('#ex_km').append(jsonStr.ex_km + ' Km');
-                    $('#ex_per_km').append(jsonStr.ex_per_km);
-                    $('#price_id').append(jsonStr.price);
-                    $('#loading').hide();
-                    $('#driver_charge').append(jsonStr.driver_charge);
-                }
-            }
-        });
-
-
-    }
 
 });
