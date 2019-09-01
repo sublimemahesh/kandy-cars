@@ -64,8 +64,8 @@ $PACKAGE = new Package($id);
         <?php include './header.php'; ?>
 
         <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
-        <div class="container margin-top-50">  
-            <div class="col-md-9">
+        <div class="container margin-top-50  "     >  
+            <div class="col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h4> <b><?php echo $PACKAGE->title ?></b></h4></div>
                     <div class="panel-body"> 
@@ -95,7 +95,7 @@ $PACKAGE = new Package($id);
                                                     ?>
                                                 </select>                 
                                             </div> 
-                                            <div style="display: none" id="table-bar"> 
+                                            <div  id="table-bar" style="display: none"> 
                                                 <div class="col-sm-6 col-xs-12 col-md-12">
                                                     <table class="table table-bordered">
                                                         <thead>
@@ -134,7 +134,6 @@ $PACKAGE = new Package($id);
                                         <div class="panel-heading">How to take a vehicle</div>
                                         <div class="panel-body">
                                             <div class="col-sm-6 col-xs-12 col-md-12">
-
                                                 <select  style="padding-left: 10px" id="select_method"> 
                                                     <option value="" selected=""> -- How to take a vehicle --</option>
                                                     <option value="Collect From Office"> Collect From Office </option>  
@@ -159,7 +158,7 @@ $PACKAGE = new Package($id);
                                             <div class="col-md-6">
                                                 <div id="your_location" style="display: none" >
                                                     <label>The place you get the vehicle</label>
-                                                    <input type="text"  id="origin" class="form-control"  name="name"  placeholder="Your Location" >                
+                                                    <input type="text"  id="origin" class="form-control"  name="name"  placeholder="Your Location" autocomplete="off">                
 
                                                 </div>
                                             </div> 
@@ -187,7 +186,7 @@ $PACKAGE = new Package($id);
                                             <div class="col-sm-6 col-xs-12 col-md-6 "  >
                                                 <div  style="display: none" id="your_drop_location">
                                                     <label>The place you deliver the vehicle</label>
-                                                    <input type="text" class="form-control drop_vehivle_location"  id="destination" name="name"  placeholder="Drop of Your Location" >            
+                                                    <input type="text" class="form-control drop_vehivle_location"  id="destination" name="name"  placeholder="Drop of Your Location" autocomplete="off" >            
                                                 </div>
                                             </div>
                                         </div>
@@ -211,7 +210,7 @@ $PACKAGE = new Package($id);
 
 
 
-            <div class="col-md-3" style=" " >
+            <div class="col-md-4" style=" " >
                 <div class="panel panel-default">
                     <div class="panel-heading text-center">
                         <b>Your Price Summary </b> 
@@ -222,9 +221,12 @@ $PACKAGE = new Package($id);
                         <p class="price-summer-p">Drop method:<span class="select_method_drop_append "  ></span></p>
                         <p class="price-summer-p">Pick up office:<span class="select_office_append"  ></span></p> 
                         <p class="price-summer-p">Return Office:<span  class="select_office_append"  ></span></p>
-                        <p class="price-summer-p">Distance:<span id="distance_all"></span></p> 
-                        <p class="price-summer-p">Drive Charge:<span id="driver_charge"></span></p>
+                        <p class="price-summer-p " id="distance_hide" style="display: none">Distance:<span id="distance"></span></p> 
+                        <p class="price-summer-p" id="ex_per_km_hide" style="display: none">Ex per km:<span id="ex_per_km"></span></p> 
+                        <p class="price-summer-p" id="distance_price_hide" style="display: none">Distance Charge:<span id="distance_price"></span></p> 
+                        <p class="price-summer-p" id="driver_charge_hide" style="display: none">Drive Charge:<span id="driver_charge"></span></p>
                         <p class="price-summer-p">Price:<span id="price_id"></span></p>
+                        <p class="price-summer-p">Tax:<span id="tax"></span></p>
                         <p class="price-summer-p">Return D / T:<span id="drop_up_date_append"  ></span></p>  
                     </div>
                 </div>

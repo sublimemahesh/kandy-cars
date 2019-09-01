@@ -3,19 +3,68 @@
 include_once(dirname(__FILE__) . '/../../class/include.php');
 header('Content-type: application/json');
 
-if ($_POST['action'] == 'CALLPRICEFROMOFFICE') {
- 
+if ($_POST['action'] == 'OFFICE_PRICE') {
+    $price = 0;
     $PRODUCT_TYPE = new Package($_POST['package_id']);
-    $km = $PRODUCT_TYPE->km;
+    $charge = $PRODUCT_TYPE->charge;
+
+
+    $price += $charge;
+
+    if ($price) {
+
+        $data_res = array("status" => TRUE, "price" => number_format($price, 2));
+
+        echo json_encode($data_res);
+    }
+}
+
+if ($_POST['action'] == 'DISTANCE_BY_HOME_DELIVERY') {
+
+    $PRODUCT_TYPE = new Package($_POST['package_id']);
     $extra_per_km = $PRODUCT_TYPE->ex_per_km;
     $charge = $PRODUCT_TYPE->charge;
     $driver_charge = $PRODUCT_TYPE->driver_charge;
 
     $office = $_POST['office'];
-
     $pickup = $_POST['pickup'];
-    $destination = $_POST['destination'];
 
+    $from = str_replace(" ", "+", $office);
+    $to = str_replace(" ", "+", $pickup);
+
+    $apiKey = "AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc";
+
+    $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" . $from . "&destinations=" . $to . "&key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc";
+
+    $string = file_get_contents($url);
+
+
+    $json = file_get_contents($url);
+    $data = json_decode($json, TRUE);
+    $distance = $data['rows'][0]['elements'][0]['distance']['text'];
+
+    $distance_price = $distance * $extra_per_km;
+    $price = $distance_price;
+    $price += $driver_charge;
+    $price += $charge;
+
+    if ($distance) {
+
+        $data_res = array("status" => TRUE, "distance" => $distance, "ex_per_km" => number_format($extra_per_km, 2), "distance_price" => number_format($distance_price, 2), "charge" => $charge, "price" => number_format($price, 2), "driver_charge" => number_format($driver_charge, 2));
+
+        echo json_encode($data_res);
+    }
+}
+
+if ($_POST['action'] == 'DISTANCE_DROP_HOME_DELIVERY') {
+
+    $PRODUCT_TYPE = new Package($_POST['package_id']);
+    $extra_per_km = $PRODUCT_TYPE->ex_per_km;
+    $charge = $PRODUCT_TYPE->charge;
+    $driver_charge = $PRODUCT_TYPE->driver_charge;
+
+    $office = $_POST['office'];
+    $destination = $_POST['destination'];
 
     $from = str_replace(" ", "+", $office);
     $to = str_replace(" ", "+", $destination);
@@ -31,47 +80,22 @@ if ($_POST['action'] == 'CALLPRICEFROMOFFICE') {
     $data = json_decode($json, TRUE);
     $distance = $data['rows'][0]['elements'][0]['distance']['text'];
 
-    $distance_all_km = 2 * ($distance);
-
-    if ($distance_all_km > $km) {
-        $diff_km = $distance_all_km - $km;
-        $price = $charge + ($diff_km * $extra_per_km);
-    } else {
-        $price = $charge;
-    }
-
-    if (isset($_POST['select_method'])) {
-        $select_method = $_POST['select_method'];
-
-        if ($select_method == 'Home Delivery') {
-
-            $price += $driver_charge;
-        }
-    }
-
-    if (isset($_POST['select_method_drop'])) {
-        $select_method_drop = $_POST['select_method_drop'];
-
-        if ($select_method_drop == 'Home Delivery') {
-
-            $price += $driver_charge;
-            $driver_charge += $driver_charge;
-        }
-    }
+    $distance_price = $distance * $extra_per_km;
+    $price = $distance_price;
+    $price += $driver_charge;
+    $price += $charge;
 
     if ($distance) {
 
-        $data_res = array("status" => TRUE, "distance_all" => $distance_all_km, "distance" => $distance, "ex_km" => $diff_km, "ex_per_km" => number_format($extra_per_km, 2), "charge" => $charge, "price" => number_format($price, 2), "driver_charge" => number_format($driver_charge, 2));
+        $data_res = array("status" => TRUE, "distance" => $distance, "ex_per_km" => number_format($extra_per_km, 2), "distance_price" => number_format($distance_price, 2), "charge" => $charge, "price" => number_format($price, 2), "driver_charge" => number_format($driver_charge, 2));
 
         echo json_encode($data_res);
     }
 }
 
-
-if ($_POST['action'] == 'CALLPRICEFROMHOMEDELIVER') {
+if ($_POST['action'] == 'DISTANCE_PICK_UP_DROP_HOME_DELIVERY') {
 
     $PRODUCT_TYPE = new Package($_POST['package_id']);
-    $km = $PRODUCT_TYPE->km;
     $extra_per_km = $PRODUCT_TYPE->ex_per_km;
     $charge = $PRODUCT_TYPE->charge;
     $driver_charge = $PRODUCT_TYPE->driver_charge;
@@ -80,160 +104,45 @@ if ($_POST['action'] == 'CALLPRICEFROMHOMEDELIVER') {
     $pickup = $_POST['pickup'];
     $destination = $_POST['destination'];
 
-    if (isset($_POST['select_method_drop'])) {
-        $select_method_drop = $_POST['select_method_drop'];
-    }
-
-    if (isset($_POST['select_method'])) {
-        $select_method = $_POST['select_method'];
-    }
 
     $from = str_replace(" ", "+", $office);
-    $location = str_replace(" ", "+", $pickup);
+    $to = str_replace(" ", "+", $pickup);
+
+    $apiKey = "AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc";
+
+    $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" . $from . "&destinations=" . $to . "&key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc";
+
+    $string = file_get_contents($url);
+
+
+    $json = file_get_contents($url);
+    $data = json_decode($json, TRUE);
+    $distance_pick_up = $data['rows'][0]['elements'][0]['distance']['text'];
+
+    $from = str_replace(" ", "+", $office);
     $to = str_replace(" ", "+", $destination);
 
     $apiKey = "AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc";
 
-    $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" . $from . "&destinations=" . $location . "&key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc";
+    $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" . $from . "&destinations=" . $to . "&key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc";
 
     $string = file_get_contents($url);
 
-    $json = file_get_contents($url);
-    $data = json_decode($json, TRUE);
-    $distance_office = $data['rows'][0]['elements'][0]['distance']['text'];
-
-    $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" . $location . "&destinations=" . $to . "&key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc";
-
-    $string = file_get_contents($url);
-
-    $json = file_get_contents($url);
-    $data = json_decode($json, TRUE);
-    $distance_drop = $data['rows'][0]['elements'][0]['distance']['text'];
-    $distance = $distance_office + $distance_drop;
-
-    $distance_all_km = 2 * ($distance);
-
-    if ($distance_all_km > $km) {
-        $diff_km = $distance_all_km - $km;
-        $price = $charge + ($diff_km * $extra_per_km);
-    } else {
-        $price = $charge;
-    }
-
-    if (isset($_POST['select_method'])) {
-        $select_method = $_POST['select_method'];
-
-        if ($select_method == 'Home Delivery') {
-
-            $price += $driver_charge;
-        }
-    }
-
-    if (isset($_POST['select_method_drop'])) {
-        $select_method_drop = $_POST['select_method_drop'];
-
-        if ($select_method_drop == 'Home Delivery') {
-
-            $price += $driver_charge;
-            $driver_charge += $driver_charge;
-        }
-    }
-
-    if ($distance) {
-
-        $data_res = array("status" => TRUE, "distance_all" => $distance_all_km, "distance" => $distance, "ex_km" => $diff_km, "ex_per_km" => number_format($extra_per_km, 2), "charge" => $charge, "price" => number_format($price, 2), "driver_charge" => $driver_charge);
-
-        echo json_encode($data_res);
-    }
-}
-
-if ($_POST['action'] == 'CALLPRICEFROMDROPVEHICLE') {
-
-    $PRODUCT_TYPE = new Package($_POST['package_id']);
-    $km = $PRODUCT_TYPE->km;
-    $extra_per_km = $PRODUCT_TYPE->ex_per_km;
-    $charge = $PRODUCT_TYPE->charge;
-    $driver_charge = $PRODUCT_TYPE->driver_charge;
-
-
-    $office = $_POST['office'];
-    $pickup = $_POST['pickup'];
-    $destination = $_POST['destination'];
-    $drop_vehivle_location = $_POST['drop_vehivle_location'];
-
-    $from = str_replace(" ", "+", $office);
-    $location = str_replace(" ", "+", $pickup);
-    $to = str_replace(" ", "+", $destination);
-    $drop_location = str_replace(" ", "+", $drop_vehivle_location);
-
-    if (isset($_POST['select_method_drop'])) {
-        $select_method_drop = $_POST['select_method_drop'];
-    }
-
-    if (isset($_POST['select_method'])) {
-        $select_method = $_POST['select_method'];
-    }
-
-    $apiKey = "AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc";
-
-    $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" . $from . "&destinations=" . $location . "&key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc";
-
-    $string = file_get_contents($url);
-
-    $json = file_get_contents($url);
-    $data = json_decode($json, TRUE);
-    $distance_office = $data['rows'][0]['elements'][0]['distance']['text'];
-
-    $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" . $location . "&destinations=" . $to . "&key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc";
-
-    $string = file_get_contents($url);
 
     $json = file_get_contents($url);
     $data = json_decode($json, TRUE);
     $distance_drop = $data['rows'][0]['elements'][0]['distance']['text'];
 
-    $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" . $to . "&destinations=" . $drop_location . "&key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc";
 
-    $string = file_get_contents($url);
-
-    $json = file_get_contents($url);
-    $data = json_decode($json, TRUE);
-    $distance_vehicle = $data['rows'][0]['elements'][0]['distance']['text'];
-
-
-    $distance = $distance_office + $distance_drop + $distance_vehicle;
-
-    $distance_all_km = 2 * ($distance);
-
-    if ($distance_all_km > $km) {
-        $diff_km = $distance_all_km - $km;
-        $price = $charge + ($diff_km * $extra_per_km);
-    } else {
-        $price = $charge;
-    }
-
-    if (isset($_POST['select_method'])) {
-        $select_method = $_POST['select_method'];
-
-        if ($select_method == 'Home Delivery') {
-
-            $price += $driver_charge;
-        }
-    }
-
-    if (isset($_POST['select_method_drop'])) {
-        $select_method_drop = $_POST['select_method_drop'];
-
-        if ($select_method_drop == 'Home Delivery') {
-
-            $price += $driver_charge;
-            $driver_charge += $driver_charge;
-        }
-    }
+    $distance = $distance_pick_up + $distance_drop;
+    $distance_price = $distance * $extra_per_km;
+    $price = $distance_price;
+    $price += $driver_charge;
+    $price += $charge;
 
     if ($distance) {
 
-        $data_res = array("status" => TRUE, "distance_all" => $distance_all_km, "distance" => $distance, "ex_km" => $diff_km, "ex_per_km" => number_format($extra_per_km, 2), "charge" => $charge, "price" => number_format($price, 2), "driver_charge" => $driver_charge);
+        $data_res = array("status" => TRUE, "distance" => $distance, "ex_per_km" => number_format($extra_per_km, 2), "distance_price" => number_format($distance_price, 2), "charge" => $charge, "price" => number_format($price, 2), "driver_charge" => number_format($driver_charge, 2));
 
         echo json_encode($data_res);
     }
