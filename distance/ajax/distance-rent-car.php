@@ -5,22 +5,32 @@ header('Content-type: application/json');
 
 if ($_POST['action'] == 'OFFICE_PRICE') {
     $price = 0;
+    $total_price = 0;
     $PRODUCT_TYPE = new Package($_POST['package_id']);
     $charge = $PRODUCT_TYPE->charge;
-
+    $TAX = new Tax(1);
 
     $price += $charge;
-
+    $tax = ($price / 100) * $TAX->tax;
+    $total_price += $price + $tax;
     if ($price) {
 
-        $data_res = array("status" => TRUE, "price" => number_format($price, 2));
+        $data_res = array(
+            "status" => TRUE,
+            "tax" => number_format($tax, 2),
+            "price" => number_format($price, 2),
+            "total_price" => number_format($total_price, 2)
+        );
 
         echo json_encode($data_res);
     }
 }
 
 if ($_POST['action'] == 'DISTANCE_BY_HOME_DELIVERY') {
+    $price = 0;
+    $total_price = 0;
 
+    $TAX = new Tax(1);
     $PRODUCT_TYPE = new Package($_POST['package_id']);
     $extra_per_km = $PRODUCT_TYPE->ex_per_km;
     $charge = $PRODUCT_TYPE->charge;
@@ -48,16 +58,33 @@ if ($_POST['action'] == 'DISTANCE_BY_HOME_DELIVERY') {
     $price += $driver_charge;
     $price += $charge;
 
+    $tax = ($price / 100) * $TAX->tax;
+    $total_price += $price + $tax;
+
+
     if ($distance) {
 
-        $data_res = array("status" => TRUE, "distance" => $distance, "ex_per_km" => number_format($extra_per_km, 2), "distance_price" => number_format($distance_price, 2), "charge" => $charge, "price" => number_format($price, 2), "driver_charge" => number_format($driver_charge, 2));
+        $data_res = array(
+            "status" => TRUE,
+            "distance" => $distance,
+            "ex_per_km" => number_format($extra_per_km, 2),
+            "distance_price" => number_format($distance_price, 2),
+            "charge" => $charge,
+            "price" => number_format($price, 2),
+            "tax" => number_format($tax, 2),
+            "total_price" => number_format($total_price, 2),
+            "driver_charge" => number_format($driver_charge, 2)
+        );
 
         echo json_encode($data_res);
     }
 }
 
 if ($_POST['action'] == 'DISTANCE_DROP_HOME_DELIVERY') {
+    $price = 0;
+    $total_price = 0;
 
+    $TAX = new Tax(1);
     $PRODUCT_TYPE = new Package($_POST['package_id']);
     $extra_per_km = $PRODUCT_TYPE->ex_per_km;
     $charge = $PRODUCT_TYPE->charge;
@@ -84,17 +111,32 @@ if ($_POST['action'] == 'DISTANCE_DROP_HOME_DELIVERY') {
     $price = $distance_price;
     $price += $driver_charge;
     $price += $charge;
+    $tax = ($price / 100) * $TAX->tax;
+    $total_price += $price + $tax;
 
     if ($distance) {
 
-        $data_res = array("status" => TRUE, "distance" => $distance, "ex_per_km" => number_format($extra_per_km, 2), "distance_price" => number_format($distance_price, 2), "charge" => $charge, "price" => number_format($price, 2), "driver_charge" => number_format($driver_charge, 2));
+        $data_res = array(
+            "status" => TRUE,
+            "distance" => $distance,
+            "ex_per_km" => number_format($extra_per_km, 2),
+            "distance_price" => number_format($distance_price, 2),
+            "charge" => $charge,
+            "price" => number_format($price, 2),
+            "tax" => number_format($tax, 2),
+            "total_price" => number_format($total_price, 2),
+            "driver_charge" => number_format($driver_charge, 2)
+        );
 
         echo json_encode($data_res);
     }
 }
 
 if ($_POST['action'] == 'DISTANCE_PICK_UP_DROP_HOME_DELIVERY') {
+    $price = 0;
+    $total_price = 0;
 
+    $TAX = new Tax(1);
     $PRODUCT_TYPE = new Package($_POST['package_id']);
     $extra_per_km = $PRODUCT_TYPE->ex_per_km;
     $charge = $PRODUCT_TYPE->charge;
@@ -140,9 +182,20 @@ if ($_POST['action'] == 'DISTANCE_PICK_UP_DROP_HOME_DELIVERY') {
     $price += $driver_charge;
     $price += $charge;
 
+    $tax = ($price / 100) * $TAX->tax;
+    $total_price += $price + $tax;
     if ($distance) {
 
-        $data_res = array("status" => TRUE, "distance" => $distance, "ex_per_km" => number_format($extra_per_km, 2), "distance_price" => number_format($distance_price, 2), "charge" => $charge, "price" => number_format($price, 2), "driver_charge" => number_format($driver_charge, 2));
+        $data_res = array(
+            "status" => TRUE,
+            "distance" => $distance,
+            "tax" => number_format($tax, 2),
+            "total_price" => number_format($total_price, 2),
+            "ex_per_km" => number_format($extra_per_km, 2),
+            "distance_price" => number_format($distance_price, 2),
+            "charge" => $charge, "price" => number_format($price, 2),
+            "driver_charge" => number_format($driver_charge, 2)
+        );
 
         echo json_encode($data_res);
     }
