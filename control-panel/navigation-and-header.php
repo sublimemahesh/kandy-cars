@@ -365,6 +365,13 @@
                     </ul>
                 </li>
                 <li class="qqq">
+                    <a href="create-tax.php" class="">
+                        <i class="material-icons">chevron_right</i>
+                        <span>Tax</span>
+                    </a>
+
+                </li>
+                <li class="qqq">
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">chevron_right</i>
                         <span>Vehicles</span>
@@ -408,7 +415,7 @@
                                 <span>Manage</span>
                             </a>
                         </li>
-                         
+
                     </ul>
                 </li>
 

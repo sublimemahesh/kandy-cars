@@ -225,8 +225,10 @@ $PACKAGE = new Package($id);
                         <p class="price-summer-p" id="ex_per_km_hide" style="display: none">Ex per km:<span id="ex_per_km"></span></p> 
                         <p class="price-summer-p" id="distance_price_hide" style="display: none">Distance Charge:<span id="distance_price"></span></p> 
                         <p class="price-summer-p" id="driver_charge_hide" style="display: none">Drive Charge:<span id="driver_charge"></span></p>
+                        <p class="price-summer-p" id="package_charge_hide" style="display: none">Package Charge:<span id="package_charge"></span></p>
                         <p class="price-summer-p">Price:<span id="price_id"></span></p>
                         <p class="price-summer-p">Tax:<span id="tax"></span></p>
+                        <p class="price-summer-p">Total price:<span id="total_price"></span></p>
                         <p class="price-summer-p">Return D / T:<span id="drop_up_date_append"  ></span></p>  
                     </div>
                 </div>

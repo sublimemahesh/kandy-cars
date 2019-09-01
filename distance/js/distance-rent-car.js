@@ -64,27 +64,46 @@ $(document).ready(function () {
         var destination = $('#destination').val();
         var select_method = $('#select_method').val();
 
-        var dates = $('#dates').val();
 
-        var pick_update = new Date(pick_up_date);
-        var drop = new Date(pick_up_date);
+        if (!pick_up_date) {
+            
+            var d = new Date();
+            var day = d.getDate();
+            var month = d.getMonth() + 1;
+            var year = d.getFullYear();
+            if (day < 10) {
+                day = "0" + day;
+            }
+            if (month < 10) {
+                month = "0" + month;
+            }
+            var date = year + "/" + month + "/" + day + " 23:59:00";
+             
 
-        var drop = drop.setDate(pick_update.getDate() + parseInt(dates) - 1);
+        } else {
+            var dates = $('#dates').val();
 
-        var drop_date = new Date(drop);
+            var pick_update = new Date(pick_up_date);
+            var drop = new Date(pick_up_date);
+
+            var drop = drop.setDate(pick_update.getDate() + parseInt(dates) - 1);
+
+            var drop_date = new Date(drop);
 
 
-        var d = new Date(drop_date);
-        var day = d.getDate();
-        var month = d.getMonth() + 1;
-        var year = d.getFullYear();
-        if (day < 10) {
-            day = "0" + day;
+            var d = new Date(drop_date);
+            var day = d.getDate();
+            var month = d.getMonth() + 1;
+            var year = d.getFullYear();
+            if (day < 10) {
+                day = "0" + day;
+            }
+            if (month < 10) {
+                month = "0" + month;
+            }
+            var date = year + "/" + month + "/" + day + " 23:59:00";
         }
-        if (month < 10) {
-            month = "0" + month;
-        }
-        var date = year + "/" + month + "/" + day + " 23:59:00";
+
 
         //empty
 
@@ -112,7 +131,6 @@ $(document).ready(function () {
     $("#office,#select_method,#select_method_drop").change(function () {
 
         var pickup = $('#office').val();
-
         var select_method = $('#select_method').val();
         var select_method_drop = $('#select_method_drop').val();
 
@@ -147,9 +165,13 @@ $(document).ready(function () {
 
                 //Empty value
                 $('#price_id').empty();
+                $('#tax').empty();
+                $('#total_price').empty();
 
                 //Append
                 $('#price_id').append(jsonStr.price);
+                $('#tax').append(jsonStr.tax);
+                $('#total_price').append(jsonStr.total_price);
 
 
             }
@@ -281,12 +303,16 @@ $(document).ready(function () {
                 $('#driver_charge').empty();
                 $('#distance').empty();
                 $('#distance_price').empty();
+                $('#package_charge').empty();
+                $('#tax').empty();
+                $('#total_price').empty();
 
                 //Show val
                 $('#distance_hide').show();
                 $('#ex_per_km_hide').show();
                 $('#distance_price_hide').show();
                 $('#driver_charge_hide').show();
+                $('#package_charge_hide').show();
 
                 //Append
                 $('#distance').append(jsonStr.distance);
@@ -295,6 +321,9 @@ $(document).ready(function () {
                 $('#ex_per_km').append(jsonStr.ex_per_km);
                 $('#price_id').append(jsonStr.price);
                 $('#driver_charge').append(jsonStr.driver_charge);
+                $('#tax').append(jsonStr.tax);
+                $('#total_price').append(jsonStr.total_price);
+                $('#package_charge').append(jsonStr.charge);
             }
 
         });
@@ -329,20 +358,27 @@ $(document).ready(function () {
                     $('#driver_charge').empty();
                     $('#distance').empty();
                     $('#distance_price').empty();
+                    $('#tax').empty();
+                    $('#total_price').empty();
+                    $('#package_charge').empty();
 
                     //Show val
                     $('#distance_hide').show();
                     $('#ex_per_km_hide').show();
                     $('#distance_price_hide').show();
                     $('#driver_charge_hide').show();
+                    $('#package_charge_hide').show();
 
-                    //Append
+                    //Append 
+                    $('#tax').append(jsonStr.tax);
+                    $('#total_price').append(jsonStr.total_price);
                     $('#distance').append(jsonStr.distance);
                     $('#distance_price').append(jsonStr.distance_price);
                     $('#ex_km').append(jsonStr.ex_per_km + ' Km');
                     $('#ex_per_km').append(jsonStr.ex_per_km);
                     $('#price_id').append(jsonStr.price);
                     $('#driver_charge').append(jsonStr.driver_charge);
+                    $('#package_charge').append(jsonStr.charge);
                 }
 
             });
@@ -369,20 +405,27 @@ $(document).ready(function () {
                     $('#driver_charge').empty();
                     $('#distance').empty();
                     $('#distance_price').empty();
+                    $('#tax').empty();
+                    $('#total_price').empty();
+                    $('#package_charge').empty();
 
                     //Show val
                     $('#distance_hide').show();
                     $('#ex_per_km_hide').show();
                     $('#distance_price_hide').show();
                     $('#driver_charge_hide').show();
+                    $('#package_charge_hide').show();
 
                     //Append
+                    $('#tax').append(jsonStr.tax);
+                    $('#total_price').append(jsonStr.total_price);
                     $('#distance').append(jsonStr.distance);
                     $('#distance_price').append(jsonStr.distance_price);
                     $('#ex_km').append(jsonStr.ex_per_km + ' Km');
                     $('#ex_per_km').append(jsonStr.ex_per_km);
                     $('#price_id').append(jsonStr.price);
                     $('#driver_charge').append(jsonStr.driver_charge);
+                    $('#package_charge').append(jsonStr.charge);
                 }
 
             });
