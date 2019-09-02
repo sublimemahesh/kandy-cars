@@ -69,7 +69,7 @@ if ($_POST['action'] == 'DISTANCE_BY_HOME_DELIVERY') {
             "distance" => $distance,
             "ex_per_km" => number_format($extra_per_km, 2),
             "distance_price" => number_format($distance_price, 2),
-            "charge" => $charge,
+            "charge" => number_format($charge, 2),
             "price" => number_format($price, 2),
             "tax" => number_format($tax, 2),
             "total_price" => number_format($total_price, 2),
@@ -121,7 +121,7 @@ if ($_POST['action'] == 'DISTANCE_DROP_HOME_DELIVERY') {
             "distance" => $distance,
             "ex_per_km" => number_format($extra_per_km, 2),
             "distance_price" => number_format($distance_price, 2),
-            "charge" => $charge,
+            "charge" => number_format($charge, 2),
             "price" => number_format($price, 2),
             "tax" => number_format($tax, 2),
             "total_price" => number_format($total_price, 2),
@@ -133,6 +133,7 @@ if ($_POST['action'] == 'DISTANCE_DROP_HOME_DELIVERY') {
 }
 
 if ($_POST['action'] == 'DISTANCE_PICK_UP_DROP_HOME_DELIVERY') {
+    
     $price = 0;
     $total_price = 0;
 
@@ -178,6 +179,9 @@ if ($_POST['action'] == 'DISTANCE_PICK_UP_DROP_HOME_DELIVERY') {
 
     $distance = $distance_pick_up + $distance_drop;
     $distance_price = $distance * $extra_per_km;
+
+    $driver_charge = $driver_charge + $driver_charge;
+
     $price = $distance_price;
     $price += $driver_charge;
     $price += $charge;
@@ -193,7 +197,8 @@ if ($_POST['action'] == 'DISTANCE_PICK_UP_DROP_HOME_DELIVERY') {
             "total_price" => number_format($total_price, 2),
             "ex_per_km" => number_format($extra_per_km, 2),
             "distance_price" => number_format($distance_price, 2),
-            "charge" => $charge, "price" => number_format($price, 2),
+            "charge" => number_format($charge, 2),
+            "price" => number_format($price, 2),
             "driver_charge" => number_format($driver_charge, 2)
         );
 

@@ -50,6 +50,9 @@ include './main-fuction.php';
     <link href="control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
     <link href="distance/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
     <link href="booking-chaufferur/style.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="css/countrySelect.min.css" rel="stylesheet" type="text/css"/>
+
 </head>
 
 
@@ -236,7 +239,6 @@ include './main-fuction.php';
 <script src="distance/jquery.datetimepicker.full.js" type="text/javascript"></script> 
 <script src="distance/js/chauffeur.js" type="text/javascript"></script>
 <script src="booking-chaufferur/scripts.js" type="text/javascript"></script>
-
 <script>
     jQuery(document).ready(function () {
         jQuery('.date-time-picker').datetimepicker({
@@ -245,8 +247,10 @@ include './main-fuction.php';
         });
     });
 </script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="js/countrySelect.min.js" type="text/javascript"></script>
 
-
+<!--
 <script type="text/javascript">
 
 
@@ -269,24 +273,14 @@ include './main-fuction.php';
         }
     }
 
-
+// $("#").countrySelect();
     function googleTranslateElementInit() {
         new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
     }
-
-
-</script>     
+</script>-->
 
 <script src="code.js" type="text/javascript"></script>
-<script>
 
-    $("#txtCountryCode").intlTelInput({
 
-        autoFormat: false,
-        autoHideDialCode: false,
-        responsiveDropdown: true
-
-    });
-</script>
 </body>
 </html>

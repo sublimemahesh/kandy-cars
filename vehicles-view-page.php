@@ -136,7 +136,7 @@ include_once(dirname(__FILE__) . '/class/include.php');
 
 <body class="page-section-bg">
 
- 
+
 
 
 
@@ -162,118 +162,119 @@ include_once(dirname(__FILE__) . '/class/include.php');
                             foreach ($PRODUCT_PHOTO as $key => $product_photo) {
                                 ?>   
                                 <a href="<?php echo actual_link() ?>upload/product-type/product/<?php echo $product_photo['image_name']; ?>">
-                                    <img src="<?php echo actual_link() ?>upload/product-type/product/<?php echo $product_photo['image_name']; ?>" data-title="" >
+                                    <img src="<?php echo actual_link() ?>upload/product-type/product/<?php echo $product_photo['image_name']; ?>" data-title=""  class="img-responsive">
                                 </a>
                                 <?php
                             }
                             ?>
                         </div> 
 
-                        <div style="padding-top:30px; ">
-                            <p  style="margin-top: 50px;font-size:24px;"><?php echo $vehicle['name'] ?></p>
-                            <hr>
-                            <div class="pricing-area">
-
-                                <table>
-                                    <caption>Self Drive</caption>
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Charge Per Day</th>
-                                            <th scope="col">Mileage Limit</th>
-                                            <th scope="col">Charge Per Excess Mileage</th>
-                                            <th scope="col">Charge Per Delayed Hour</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                    <caption>Self Drive</caption>
-                                    <td data-label="Charge Per Day"><?php echo $vehicle['sd_charge_per_day'] ?>(LKR)</td>
-                                    <td data-label="Mileage Limit"><?php echo $vehicle['sd_mileage_limit'] ?>(KM)</td>
-                                    <td data-label="Charge Per Excess Mileage"><?php echo $vehicle['sd_excess_mileage'] ?>(LKR)</td>
-                                    <td data-label="Charge Per Delayed Hour"><?php echo $vehicle['sd_delayed_hour'] ?>(LKR)</td>
-                                    </tr>
-
-                                    </tbody>
-                                </table>
-                                <table>
-                                    <th>With Driver</th>
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Charge</th>
-                                            <th scope="col">Excess Mileage</th>
-                                            <th scope="col">Duration</th>
-                                            <th scope="col">Charge Per Excess Mileage</th>
-                                            <th scope="col">Charge Per Waiting Hour</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td data-label="Charge"><?php echo $vehicle['wd_charge'] ?>(LKR)</td>
-                                            <td data-label="Excess Mileage"><?php echo $vehicle['wd_mileage'] ?>(LKR)</td>
-                                            <td data-label="Duration"><?php echo $vehicle['wd_duration'] ?></td>
-                                            <td data-label="Charge Per Excess Mileage"><?php echo $vehicle['wd_excess_mileage'] ?>(LKR)</td>
-                                            <td data-label="Charge Per Waiting Hour"><?php echo $vehicle['wd_waiting_hour'] ?>(LKR)</td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                                <table>
-                                    <caption>Wedding And Events</caption>
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Charge</th>
-                                            <th scope="col">Excess Mileage</th>
-                                            <th scope="col">Duration</th>
-                                            <th scope="col">Charge Per Excess Mileage</th>
-                                            <th scope="col">Charge Per Waiting Hour</th>
-                                            <th scope="col">Charge For Decoration</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td data-label="Charge"><?php echo $vehicle['weed_charge']; ?>(LKR)</td>
-                                            <td data-label="Excess Mileage"><?php echo $vehicle['wedd_mileage']; ?>(LKR)</td>
-                                            <td data-label="Duration"><?php echo $vehicle['weed_duration']; ?></td>
-                                            <td data-label="Charge Per Excess Mileage"><?php echo $vehicle['weed_excess_mileage']; ?>(LKR)</td>
-                                            <td data-label="Charge Per Waiting Hour"><?php echo $vehicle['weed_waiting_hour'] ?>(LKR)</td>
-                                            <td data-label="Charge For Decoration"><?php echo $vehicle['weed_decoration']; ?>(LKR)</td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                                <table>
-                                    <caption>Parade</caption>
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Charge</th>
-                                            <th scope="col">Excess Mileage</th>
-                                            <th scope="col">Duration</th>
-                                            <th scope="col">Charge Per Excess Mileage</th>
-                                            <th scope="col">Charge Per Waiting Hour</th>
-                                            <th scope="col">Charge For Decoration</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td data-label="Charge"><?php echo $vehicle['parade_charge']; ?>(LKR)</td>
-                                            <td data-label="Excess Mileage"><?php echo $vehicle['parade_mileage']; ?>(LKR)</td>
-                                            <td data-label="Duration"><?php echo $vehicle['parade_duration']; ?></td>
-                                            <td data-label="Charge Per Excess Mileage"><?php echo $vehicle['parade_excess_mileage']; ?>(LKR)</td>
-                                            <td data-label="Charge Per Waiting Hour"><?php echo $vehicle['parade_waiting_hour']; ?>(LKR)</td>
-                                            <td data-label="Charge For Decoration"><?php echo $vehicle['parade_decoration']; ?>(LKR)</td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                                <div class="model-info pull-right" style="padding-left: 10px; padding-bottom:12px;">
-                                    <div ><a href="<?php echo actual_link(); ?>contact-us/" class="btn">Inquiry</a></div>
-                                </div>
-                            </div>
-                        </div>
+                        <!--                        <div style="padding-top:30px; ">
+                                                    <p  style="margin-top: 50px;font-size:24px;"><?php echo $vehicle['name'] ?></p>
+                                                    <hr>
+                                                    <div class="pricing-area">
+                        
+                                                        <table>
+                                                            <caption>Self Drive</caption>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">Charge Per Day</th>
+                                                                    <th scope="col">Mileage Limit</th>
+                                                                    <th scope="col">Charge Per Excess Mileage</th>
+                                                                    <th scope="col">Charge Per Delayed Hour</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                            <caption>Self Drive</caption>
+                                                            <td data-label="Charge Per Day"><?php echo $vehicle['sd_charge_per_day'] ?>(LKR)</td>
+                                                            <td data-label="Mileage Limit"><?php echo $vehicle['sd_mileage_limit'] ?>(KM)</td>
+                                                            <td data-label="Charge Per Excess Mileage"><?php echo $vehicle['sd_excess_mileage'] ?>(LKR)</td>
+                                                            <td data-label="Charge Per Delayed Hour"><?php echo $vehicle['sd_delayed_hour'] ?>(LKR)</td>
+                                                            </tr>
+                        
+                                                            </tbody>
+                                                        </table>
+                                                        <table>
+                                                            <th>With Driver</th>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">Charge</th>
+                                                                    <th scope="col">Excess Mileage</th>
+                                                                    <th scope="col">Duration</th>
+                                                                    <th scope="col">Charge Per Excess Mileage</th>
+                                                                    <th scope="col">Charge Per Waiting Hour</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td data-label="Charge"><?php echo $vehicle['wd_charge'] ?>(LKR)</td>
+                                                                    <td data-label="Excess Mileage"><?php echo $vehicle['wd_mileage'] ?>(LKR)</td>
+                                                                    <td data-label="Duration"><?php echo $vehicle['wd_duration'] ?></td>
+                                                                    <td data-label="Charge Per Excess Mileage"><?php echo $vehicle['wd_excess_mileage'] ?>(LKR)</td>
+                                                                    <td data-label="Charge Per Waiting Hour"><?php echo $vehicle['wd_waiting_hour'] ?>(LKR)</td>
+                                                                </tr>
+                        
+                                                            </tbody>
+                                                        </table>
+                                                        <table>
+                                                            <caption>Wedding And Events</caption>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">Charge</th>
+                                                                    <th scope="col">Excess Mileage</th>
+                                                                    <th scope="col">Duration</th>
+                                                                    <th scope="col">Charge Per Excess Mileage</th>
+                                                                    <th scope="col">Charge Per Waiting Hour</th>
+                                                                    <th scope="col">Charge For Decoration</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td data-label="Charge"><?php echo $vehicle['weed_charge']; ?>(LKR)</td>
+                                                                    <td data-label="Excess Mileage"><?php echo $vehicle['wedd_mileage']; ?>(LKR)</td>
+                                                                    <td data-label="Duration"><?php echo $vehicle['weed_duration']; ?></td>
+                                                                    <td data-label="Charge Per Excess Mileage"><?php echo $vehicle['weed_excess_mileage']; ?>(LKR)</td>
+                                                                    <td data-label="Charge Per Waiting Hour"><?php echo $vehicle['weed_waiting_hour'] ?>(LKR)</td>
+                                                                    <td data-label="Charge For Decoration"><?php echo $vehicle['weed_decoration']; ?>(LKR)</td>
+                                                                </tr>
+                        
+                                                            </tbody>
+                                                        </table>
+                                                        <table>
+                                                            <caption>Parade</caption>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">Charge</th>
+                                                                    <th scope="col">Excess Mileage</th>
+                                                                    <th scope="col">Duration</th>
+                                                                    <th scope="col">Charge Per Excess Mileage</th>
+                                                                    <th scope="col">Charge Per Waiting Hour</th>
+                                                                    <th scope="col">Charge For Decoration</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td data-label="Charge"><?php echo $vehicle['parade_charge']; ?>(LKR)</td>
+                                                                    <td data-label="Excess Mileage"><?php echo $vehicle['parade_mileage']; ?>(LKR)</td>
+                                                                    <td data-label="Duration"><?php echo $vehicle['parade_duration']; ?></td>
+                                                                    <td data-label="Charge Per Excess Mileage"><?php echo $vehicle['parade_excess_mileage']; ?>(LKR)</td>
+                                                                    <td data-label="Charge Per Waiting Hour"><?php echo $vehicle['parade_waiting_hour']; ?>(LKR)</td>
+                                                                    <td data-label="Charge For Decoration"><?php echo $vehicle['parade_decoration']; ?>(LKR)</td>
+                                                                </tr>
+                        
+                                                            </tbody>
+                                                        </table>
+                                                        <div class="model-info pull-right" style="padding-left: 10px; padding-bottom:12px;">
+                                                            <div ><a href="<?php echo actual_link(); ?>contact-us/" class="btn">Inquiry</a></div>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
                     </div>
                     <div class="col-md-4">
-                        <div class="widget">
-                            <h3 class="widget-title">Other Vehicle</h3>
+                        <h3 class="widget-title text-center">Other Vehicle</h3>
+                        <div class="widget" style="overflow-y: auto;   height: 453px;">
+
                             <?php
                             $PRODUCT = ProductType::all();
                             foreach ($PRODUCT as $key => $product) {

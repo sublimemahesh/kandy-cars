@@ -1169,7 +1169,7 @@ a.top-tooltip .tooltip:after{
 
 .header-2 #main-navigation > ul > li > a
 {
-    padding: 19px 34px 17px;
+    padding: 19px 52px 17px;
     margin-bottom: 0;
     text-decoration: none;
 }
@@ -3513,13 +3513,11 @@ form.lineform .btn i{
 
 fieldset{
     border-radius: 8px;
-    padding: 20px;
+   
     border-color: #f1f1f1;
 }
 
-fieldset:not(:last-child){
-    margin-bottom: 15px;
-}
+ 
 
 /* Price Scale */
 
