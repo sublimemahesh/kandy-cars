@@ -103,7 +103,8 @@ $PACKAGE = new Package($id);
                                                                 <th>Package Name</th>
                                                                 <th>Dates</th>
                                                                 <th>Millage Limit</th>
-                                                                <th>charge per date</th>
+                                                                <th>Charge per date</th>
+                                                                <th>Driver charge</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="package_body">
@@ -117,7 +118,7 @@ $PACKAGE = new Package($id);
 
                                             <div class="col-sm-6 col-xs-12 col-md-6">
                                                 <label>Pick up Date / Time</label>
-                                                <input type="text" id="pick_up_date"   class="form-control date-time-picker " data-select="date"  placeholder="Pick up Date / Time">
+                                                <input type="text" id="pick_up_date"   class="form-control date-time-picker " data-select="date"  placeholder="Pick up Date / Time" autocomplete="off">
                                             </div>
 
                                             <div class="col-sm-6 col-xs-12 col-md-6">
@@ -172,7 +173,7 @@ $PACKAGE = new Package($id);
                                             <div class="col-sm-6 col-xs-12 col-md-12" > 
                                                 <select  style="padding-left: 10px"  id="select_method_drop" > 
                                                     <option value="" selected=""> -- How to return a vehicle --</option>
-                                                    <option value="Collect From Office"> Drop From Office </option>  
+                                                    <option value="Drop From Office"> Drop From Office </option>  
                                                     <option value="Home Delivery"> Home Delivery </option>
                                                 </select>                 
                                             </div> 
@@ -215,21 +216,45 @@ $PACKAGE = new Package($id);
                     <div class="panel-heading text-center">
                         <b>Your Price Summary </b> 
                     </div> 
-                    <div class="panel-body">
-                        <p class="price-summer-p">Pick up D / T: <span id="pick_up_date_append"></span></p>
-                        <p class="price-summer-p">Pick up method:<span id="select_method_append"  ></span></p>
-                        <p class="price-summer-p">Drop method:<span class="select_method_drop_append "  ></span></p>
-                        <p class="price-summer-p">Pick up office:<span class="select_office_append"  ></span></p> 
-                        <p class="price-summer-p">Return Office:<span  class="select_office_append"  ></span></p>
-                        <p class="price-summer-p " id="distance_hide" style="display: none">Distance:<span id="distance"></span></p> 
-                        <p class="price-summer-p" id="ex_per_km_hide" style="display: none">Ex per km:<span id="ex_per_km"></span></p> 
-                        <p class="price-summer-p" id="distance_price_hide" style="display: none">Distance Charge:<span id="distance_price"></span></p> 
-                        <p class="price-summer-p" id="driver_charge_hide" style="display: none">Drive Charge:<span id="driver_charge"></span></p>
-                        <p class="price-summer-p" id="package_charge_hide" style="display: none">Package Charge:<span id="package_charge"></span></p>
-                        <p class="price-summer-p">Price:<span id="price_id"></span></p>
-                        <p class="price-summer-p">Tax:<span id="tax"></span></p>
-                        <p class="price-summer-p">Total price:<span id="total_price"></span></p>
-                        <p class="price-summer-p">Return D / T:<span id="drop_up_date_append"  ></span></p>  
+                    <div class="panel-body"> 
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p">Pick up D / T: </p> 
+                                <p class="price-summer-p">Return D / T:</p>  
+                                <p class="price-summer-p">Pick up method:</p>
+                                <p class="price-summer-p" id="select_method_drop_hide" style="display: none">Drop method:</p>
+                                <p class="price-summer-p">Pick up office:</p> 
+                                <p class="price-summer-p">Return Office:</p>
+                                <p class="price-summer-p " id="distance_hide" style="display: none">Distance:</p> 
+                                <p class="price-summer-p" id="ex_per_km_hide" style="display: none">Per km:</p> 
+                                <p class="price-summer-p" id="distance_price_hide" style="display: none">Distance Charge:</p> 
+                                <p class="price-summer-p" id="driver_charge_hide" style="display: none">Drive Charge:</p>
+                                <p class="price-summer-p" id="package_charge_hide" style="display: none">Package Charge:</p>
+                                <p class="price-summer-p">Price:</p>  
+                                <p class="price-summer-p">Tax:</p>
+                                <p class="price-summer-p">Total price:</p>
+
+                            </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="pick_up_date_append"></span></p> 
+                                <p class="price-summer-p"><span id="drop_up_date_append"  ></span></p>
+                                <p class="price-summer-p"><span id="select_method_append"></span></p> 
+                                <p class="price-summer-p"><span class="select_method_drop_append "></span></p>
+                                <p class="price-summer-p"><span class="select_office_append"></span></p>
+                                <p class="price-summer-p"><span  class="select_office_append"></span></p>
+                                <p class="price-summer-p"><span id="distance"></span></p>
+                                <p class="price-summer-p"><span id="ex_per_km"></span></p>
+                                <p class="price-summer-p"><span id="distance_price"></span></p>
+                                <p class="price-summer-p"><span id="driver_charge"></span></p>
+                                <p class="price-summer-p"><span id="package_charge"></span></p>
+                                <p class="price-summer-p"><span id="price_id"></span></p>
+                                <p class="price-summer-p"><span id="tax"></span></p>
+                                <p class="price-summer-p"><span id="total_price"></span></p>
+
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

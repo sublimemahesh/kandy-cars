@@ -1,8 +1,10 @@
 <?php
-include_once(dirname(__FILE__) . '/class/include.php'); 
+include_once(dirname(__FILE__) . '/class/include.php');
 $Contact1 = new Page(2);
 $Contact2 = new Page(9);
 ?>
+
+
 <header id="header" class="header-2">
     <div class="top-header">
         <div class="container">
@@ -31,25 +33,15 @@ $Contact2 = new Page(9);
             <div class="menu-wrap" >
                 <div class="nav-item" id="nav-item">
                     <nav id="main-navigation" class="main-navigation">
-                        <ul id="menu" class="clearfix">
+
+                        <ul id="menu" class="clearfix ">
                             <li ><a href="<?php echo actual_link() ?>home/">Home</a> </li>
                             <li ><a href="<?php echo actual_link() ?>about-us/">About</a>  </li>
-                            <li ><a href="<?php echo actual_link() ?>services/">Services</a>  </li>
                             <li ><a href="<?php echo actual_link() ?>vehicles/">Vehicles</a>  </li>
-                            <li ><a href="<?php echo actual_link() ?>gallery/">Gallery</a>  </li>
+                            <li ><a href="<?php echo actual_link() ?>services/">Services</a>  </li>
                             <li ><a href="<?php echo actual_link() ?>price-list/">Rates</a> </li>
-                            <li class=""> <a href="<?php echo actual_link() ?>travel/">Travel</a>  </li>
                             <li ><a href="<?php echo actual_link() ?>contact-us">Contact</a> </li> 
-                            <li style="background-color: beige;"><a href="category.php">Book Now</a> </li>
-                            <!--                            
-                                                        <li ><a href="about.php">About</a>  </li>
-                                                        <li ><a href="service.php">Services</a>  </li>
-                                                        <li ><a href="vehicle.php">Vehicles</a>  </li>
-                                                        <li ><a href="gallery.php">Gallery</a>  </li>
-                                                        <li ><a href="price.php">Rates</a> </li>
-                                                        <li class=""> <a href="travel.php">Travel</a>  </li>
-                                                        <li ><a href="contact.php">Contact</a> </li>-->
-                             
+                            <li style="background-color: beige;"><a href="category.php">Book Now</a> </li> 
                         </ul>
                     </nav>
                 </div>

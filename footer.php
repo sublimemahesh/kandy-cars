@@ -14,6 +14,7 @@
                             <li><a href="<?php echo actual_link() ?>about-us/">About Us</a></li>
                             <li><a href="<?php echo actual_link() ?>services/">Services</a></li>
                             <li><a href="<?php echo actual_link() ?>vehicles/">Vehicle</a></li>
+                            <li> <a href="<?php echo actual_link() ?>travel/">RENT</a>  </li> 
                             <li><a href="<?php echo actual_link() ?>gallery/">Gallery</a></li>
                             <li><a href="<?php echo actual_link() ?>price-list/">Price List</a></li>
                             <li><a href="<?php echo actual_link() ?>contact-us/">Contact Us</a></li>

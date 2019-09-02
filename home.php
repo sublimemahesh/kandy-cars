@@ -12,7 +12,7 @@ $WEILCOME_Description = new Page(6);
 
 <html lang="en">
 
-    <title>Rent a Car in Kandy || Taxi Services in Kandy  || www.kandycars.lk  </title>
+    <title>KANDY CARS Sri Lanka-Rental Cars ||  Wedding Cars || Car Import Dealers </title>
 
     <!--meta info-->
 
@@ -252,58 +252,9 @@ $WEILCOME_Description = new Page(6);
 
                                         <h5 class="product-name"><a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($product['name'])); ?>/"><?php echo $product["name"]; ?></a></h5>
 
-                                        <span>Self Drive</span>                                                                       
-
-                                        <div class="pricing-area">
-
-                                            <div class="product-price new-price">
-
-                                                <span>Charge Per Day</span>  
-
-                                                <span style="color:#000;font-size:21px;" >LKR</span>
-
-                                                <span  style="color:#000;font-size:18px;" ><?php echo $product['sd_charge_per_day']; ?></span> 
-
-                                            </div>
-
-                                            <div class="product-price new-price">
-
-                                                <span> Mileage Limit</span> 
-
-                                                <span style="color:#000;font-size:21px;" >LKR</span>
-
-                                                <span style="color:#000;font-size:18px;" ><?php echo $product['sd_mileage_limit']; ?></span>
-
-                                            </div>
-
-                                            <center>
-
-                                                <div class="model-info pull-right" style="padding-left: 10px; padding-top:15px;">
-
-                                                    <div ><a href="<?php echo actual_link(); ?>contact-us/" class="btn-2">Inquiry</a></div>
-
-                                                </div>
-
-                                                <div class="model-info pull-right" style="  padding-top:15px;">
-
-                                                    <div ><a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($product['name'])); ?>/" class="btn-2">View</a></div>
-
-
-
-                                                </div>
-
-                                            </center>
-
-                                        </div>
-
-
-
-
-
-                                    </div>
-
-
-
+                                       
+                                          
+                                    </div> 
                                 </div> 
 
                             </div> 

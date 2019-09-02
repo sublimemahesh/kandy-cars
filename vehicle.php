@@ -62,26 +62,8 @@ include_once(dirname(__FILE__) . '/class/include.php');
                             </a>
                             <div class="product-description no-rating">
                                 <h5 class="product-name"><a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($product['name'])); ?>/"><?php echo $product["name"]; ?></a></h5>
-                                <span>Self Drive</span>            
-                                <div class="pricing-area">
-                                    <div class="product-price new-price">
-
-                                        <span>Charge Per Day</span>  
-                                        <span style="color:#000;font-size:21px;" >LKR</span>
-                                        <span  style="color:#000;font-size:18px;" ><?php echo $product['sd_charge_per_day']; ?></span> 
-                                    </div>
-                                    <div class="product-price new-price">
-                                        <span> Mileage Limit</span> 
-                                        <span style="color:#000;font-size:21px;" >Km</span>
-                                        <span style="color:#000;font-size:18px;" ><?php echo $product['sd_mileage_limit']; ?></span>
-
-                                    </div>
-                                </div> 
-
-                                <div class="model-info  pull-left" style="  padding-bottom:12px;">
-                                    <div ><a href="<?php echo actual_link(); ?>contact-us/" class="btn-2">Inquiry</a></div>
-                                </div>
-                                <div class="model-info  pull-left " style="margin-left: 10px;  padding-bottom:12px;">
+                                
+                                <div class="model-info  pull-right " style="margin-left: 10px;  padding-bottom:12px;">
                                     <div ><a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($product['name'])); ?>/" class="btn-2">View</a></div>
 
                                 </div>
