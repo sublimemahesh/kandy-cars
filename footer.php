@@ -69,10 +69,10 @@
 
                     </p>
                 </div>
-                <div class="col-md-6">
+<!--                <div class="col-md-6">
                     <p class="pull-right"> <?php echo date('Y') ?> All Rights Reserved.Website By:  <i class="fa fa-hand-o-right text-primary heart"  style="color:white;"></i> <a href="https://www.synotec.lk/"  target="_blank"  style="color:white;">  Synotec Holdings (Pvt) Ltd  </a>
                     </p>
-                </div>
+                </div>-->
             </div> 
         </div>
     </div>
