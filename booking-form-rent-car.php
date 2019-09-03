@@ -66,6 +66,8 @@ $PACKAGE = new Package($id);
         <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
         <div class="container margin-top-50  "     >  
             <div class="col-md-8">
+                <img id="loading" src="https://www.vedantalimited.com/SiteAssets/Images/loading.gif" style="display: none; position: absolute;margin-top: 40%;margin-left: 37%;z-index: 999;"/>
+
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h4> <b><?php echo $PACKAGE->title ?></b></h4></div>
                     <div class="panel-body"> 
@@ -103,8 +105,8 @@ $PACKAGE = new Package($id);
                                                                 <th>Package Name</th>
                                                                 <th>Dates</th>
                                                                 <th>Millage Limit</th>
-                                                                <th>Charge per date</th>
-                                                                <th>Driver charge</th>
+                                                                <th>Package Price</th>
+
                                                             </tr>
                                                         </thead>
                                                         <tbody id="package_body">
@@ -187,7 +189,7 @@ $PACKAGE = new Package($id);
                                             <div class="col-sm-6 col-xs-12 col-md-6 "  >
                                                 <div  style="display: none" id="your_drop_location">
                                                     <label>The place you deliver the vehicle</label>
-                                                    <input type="text" class="form-control drop_vehivle_location"  id="destination" name="name"  placeholder="Drop of Your Location" autocomplete="off" >            
+                                                    <input type="text" class="form-control  "  id="destination" name="name"  placeholder="Drop of Your Location" autocomplete="off" >            
                                                 </div>
                                             </div>
                                         </div>
@@ -219,47 +221,152 @@ $PACKAGE = new Package($id);
                     <div class="panel-body"> 
                         <div class="row">
                             <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p">Pick up D / T: </p> 
-                                <p class="price-summer-p">Return D / T:</p>  
-                                <p class="price-summer-p">Pick up method:</p>
-                                <p class="price-summer-p" id="select_method_drop_hide" style="display: none">Drop method:</p>
-                                <p class="price-summer-p">Pick up office:</p> 
-                                <p class="price-summer-p">Return Office:</p>
-                                <p class="price-summer-p " id="distance_hide" style="display: none">Distance:</p> 
-                                <p class="price-summer-p" id="ex_per_km_hide" style="display: none">Per km:</p> 
-                                <p class="price-summer-p" id="distance_price_hide" style="display: none">Distance Charge:</p> 
-                                <p class="price-summer-p" id="driver_charge_hide" style="display: none">Drive Charge:</p>
-                                <p class="price-summer-p" id="package_charge_hide" style="display: none">Package Charge:</p>
-                                <p class="price-summer-p">Price:</p>  
-                                <p class="price-summer-p">Tax:</p>
-                                <p class="price-summer-p">Total price:</p>
+                                <p class="price-summer-p">Pick up D / T: </p>  
 
                             </div>
                             <div class="col-md-7">
                                 <p class="price-summer-p"><span id="pick_up_date_append"></span></p> 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p">Return D / T:</p> 
+
+                            </div>
+                            <div class="col-md-7">
                                 <p class="price-summer-p"><span id="drop_up_date_append"  ></span></p>
-                                <p class="price-summer-p"><span id="select_method_append"></span></p> 
-                                <p class="price-summer-p"><span class="select_method_drop_append "></span></p>
-                                <p class="price-summer-p"><span class="select_office_append"></span></p>
-                                <p class="price-summer-p"><span  class="select_office_append"></span></p>
-                                <p class="price-summer-p"><span id="distance"></span></p>
-                                <p class="price-summer-p"><span id="ex_per_km"></span></p>
-                                <p class="price-summer-p"><span id="distance_price"></span></p>
-                                <p class="price-summer-p"><span id="driver_charge"></span></p>
-                                <p class="price-summer-p"><span id="package_charge"></span></p>
-                                <p class="price-summer-p"><span id="price_id"></span></p>
-                                <p class="price-summer-p"><span id="tax"></span></p>
-                                <p class="price-summer-p"><span id="total_price"></span></p>
-
-
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p">Pick up method:</p>
+
+                            </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="select_method_append"></span></p> 
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p" id="select_method_drop_hide" style="display: none">Drop method:</p>
+
+                            </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="select_method_drop_append"></span></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p">Pick up office:</p> 
+                            </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="select_office_append"></span></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p" id="return_office" style="display: none">Return Office:</p>
+                            </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span  id="select_office_drop_append"></span></p> 
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p" id="deliver_charge_hide" style="display: none">Deliver Charges:</p>
+                            </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="deliver_charge"></span></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p" id="package_charge_hide" style="display: none">Package Charge:</p>                            </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="package_charge"></span></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p">Price:</p>   
+                            </div>
+
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="price_id"></span></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p">Tax:</p>                            </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="tax"></span></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p">Total price:</p>                         </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="total_price"></span></p>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p" id="driver_charge_hide" style="display: none">Drive Charge:</p>                            </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="distance"></span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p" id="distance_price_hide" style="display: none">Distance Charge:</p>                            </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="ex_per_km"></span></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p" id="ex_per_km_hide" style="display: none">Per km:</p>                         </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="distance_price"></span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p " id="distance_hide" style="display: none">Distance:</p> 
+                            </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="driver_charge"></span></p>
+                            </div>
+                        </div>
+
+                    </div> 
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">
+                        <b>Tearm and Conditions </b> 
+                    </div> 
+                    <div class="panel-body"> 
                     </div>
                 </div>
             </div>
         </div>
+
+
     </div>
+</div>
+</div>
 </div> 
 
 

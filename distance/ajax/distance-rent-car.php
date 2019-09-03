@@ -57,7 +57,7 @@ if ($_POST['action'] == 'DISTANCE_BY_HOME_DELIVERY') {
     $price = $distance_price;
     $price += $driver_charge;
     $price += $charge;
-
+    $deliver_charge = $distance_price + $driver_charge;
     $tax = ($price / 100) * $TAX->tax;
     $total_price += $price + $tax;
 
@@ -70,6 +70,7 @@ if ($_POST['action'] == 'DISTANCE_BY_HOME_DELIVERY') {
             "ex_per_km" => number_format($extra_per_km, 2),
             "distance_price" => number_format($distance_price, 2),
             "charge" => number_format($charge, 2),
+            "deliver_charge" => number_format($deliver_charge, 2),
             "price" => number_format($price, 2),
             "tax" => number_format($tax, 2),
             "total_price" => number_format($total_price, 2),
@@ -113,6 +114,7 @@ if ($_POST['action'] == 'DISTANCE_DROP_HOME_DELIVERY') {
     $price += $charge;
     $tax = ($price / 100) * $TAX->tax;
     $total_price += $price + $tax;
+    $deliver_charge = $distance_price + $driver_charge;
 
     if ($distance) {
 
@@ -122,6 +124,7 @@ if ($_POST['action'] == 'DISTANCE_DROP_HOME_DELIVERY') {
             "ex_per_km" => number_format($extra_per_km, 2),
             "distance_price" => number_format($distance_price, 2),
             "charge" => number_format($charge, 2),
+            "deliver_charge" => number_format($deliver_charge, 2),
             "price" => number_format($price, 2),
             "tax" => number_format($tax, 2),
             "total_price" => number_format($total_price, 2),
@@ -133,7 +136,7 @@ if ($_POST['action'] == 'DISTANCE_DROP_HOME_DELIVERY') {
 }
 
 if ($_POST['action'] == 'DISTANCE_PICK_UP_DROP_HOME_DELIVERY') {
-    
+
     $price = 0;
     $total_price = 0;
 
@@ -188,6 +191,8 @@ if ($_POST['action'] == 'DISTANCE_PICK_UP_DROP_HOME_DELIVERY') {
 
     $tax = ($price / 100) * $TAX->tax;
     $total_price += $price + $tax;
+
+    $deliver_charge = $distance_price + $driver_charge ;
     if ($distance) {
 
         $data_res = array(
@@ -199,6 +204,7 @@ if ($_POST['action'] == 'DISTANCE_PICK_UP_DROP_HOME_DELIVERY') {
             "distance_price" => number_format($distance_price, 2),
             "charge" => number_format($charge, 2),
             "price" => number_format($price, 2),
+            "deliver_charge" => number_format($deliver_charge, 2),
             "driver_charge" => number_format($driver_charge, 2)
         );
 
