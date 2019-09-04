@@ -6,6 +6,8 @@ header('Content-type: application/json');
 if ($_POST['action'] == 'OFFICE_PRICE') {
     $price = 0;
     $total_price = 0;
+    $payment = 0;
+
     $PRODUCT_TYPE = new Package($_POST['package_id']);
     $charge = $PRODUCT_TYPE->charge;
     $TAX = new Tax(1);
@@ -13,13 +15,15 @@ if ($_POST['action'] == 'OFFICE_PRICE') {
     $price += $charge;
     $tax = ($price / 100) * $TAX->tax;
     $total_price += $price + $tax;
+    $payment = $total_price;
     if ($price) {
 
         $data_res = array(
             "status" => TRUE,
             "tax" => number_format($tax, 2),
             "price" => number_format($price, 2),
-            "total_price" => number_format($total_price, 2)
+            "total_price" => number_format($total_price, 2),
+            "payment" => $payment,
         );
 
         echo json_encode($data_res);
@@ -29,12 +33,16 @@ if ($_POST['action'] == 'OFFICE_PRICE') {
 if ($_POST['action'] == 'DISTANCE_BY_HOME_DELIVERY') {
     $price = 0;
     $total_price = 0;
+    $distance = 0;
+    $distance_price = 0;
+    $payment = 0;
 
     $TAX = new Tax(1);
     $PRODUCT_TYPE = new Package($_POST['package_id']);
     $extra_per_km = $PRODUCT_TYPE->ex_per_km;
     $charge = $PRODUCT_TYPE->charge;
     $driver_charge = $PRODUCT_TYPE->driver_charge;
+
 
     $office = $_POST['office'];
     $pickup = $_POST['pickup'];
@@ -47,8 +55,6 @@ if ($_POST['action'] == 'DISTANCE_BY_HOME_DELIVERY') {
     $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" . $from . "&destinations=" . $to . "&key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc";
 
     $string = file_get_contents($url);
-
-
     $json = file_get_contents($url);
     $data = json_decode($json, TRUE);
     $distance = $data['rows'][0]['elements'][0]['distance']['text'];
@@ -61,8 +67,10 @@ if ($_POST['action'] == 'DISTANCE_BY_HOME_DELIVERY') {
     $tax = ($price / 100) * $TAX->tax;
     $total_price += $price + $tax;
 
+    $payment = $total_price;
 
-    if ($distance) {
+
+    if ($total_price) {
 
         $data_res = array(
             "status" => TRUE,
@@ -74,6 +82,7 @@ if ($_POST['action'] == 'DISTANCE_BY_HOME_DELIVERY') {
             "price" => number_format($price, 2),
             "tax" => number_format($tax, 2),
             "total_price" => number_format($total_price, 2),
+            "payment" => $payment,
             "driver_charge" => number_format($driver_charge, 2)
         );
 
@@ -84,6 +93,8 @@ if ($_POST['action'] == 'DISTANCE_BY_HOME_DELIVERY') {
 if ($_POST['action'] == 'DISTANCE_DROP_HOME_DELIVERY') {
     $price = 0;
     $total_price = 0;
+    $distance = 0;
+    $payment = 0;
 
     $TAX = new Tax(1);
     $PRODUCT_TYPE = new Package($_POST['package_id']);
@@ -116,6 +127,8 @@ if ($_POST['action'] == 'DISTANCE_DROP_HOME_DELIVERY') {
     $total_price += $price + $tax;
     $deliver_charge = $distance_price + $driver_charge;
 
+    $payment = $total_price;
+
     if ($distance) {
 
         $data_res = array(
@@ -128,6 +141,7 @@ if ($_POST['action'] == 'DISTANCE_DROP_HOME_DELIVERY') {
             "price" => number_format($price, 2),
             "tax" => number_format($tax, 2),
             "total_price" => number_format($total_price, 2),
+            "payment" => $payment,
             "driver_charge" => number_format($driver_charge, 2)
         );
 
@@ -139,6 +153,9 @@ if ($_POST['action'] == 'DISTANCE_PICK_UP_DROP_HOME_DELIVERY') {
 
     $price = 0;
     $total_price = 0;
+    $distance = 0;
+    $payment = 0;
+
 
     $TAX = new Tax(1);
     $PRODUCT_TYPE = new Package($_POST['package_id']);
@@ -182,24 +199,26 @@ if ($_POST['action'] == 'DISTANCE_PICK_UP_DROP_HOME_DELIVERY') {
 
     $distance = $distance_pick_up + $distance_drop;
     $distance_price = $distance * $extra_per_km;
-
     $driver_charge = $driver_charge + $driver_charge;
+
 
     $price = $distance_price;
     $price += $driver_charge;
     $price += $charge;
-
     $tax = ($price / 100) * $TAX->tax;
     $total_price += $price + $tax;
+    $payment = $total_price;
 
-    $deliver_charge = $distance_price + $driver_charge ;
-    if ($distance) {
+
+    $deliver_charge = $distance_price + $driver_charge;
+    if ($distance_price) {
 
         $data_res = array(
             "status" => TRUE,
             "distance" => $distance,
             "tax" => number_format($tax, 2),
             "total_price" => number_format($total_price, 2),
+            "payment" => $payment,
             "ex_per_km" => number_format($extra_per_km, 2),
             "distance_price" => number_format($distance_price, 2),
             "charge" => number_format($charge, 2),

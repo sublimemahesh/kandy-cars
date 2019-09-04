@@ -44,7 +44,7 @@ include_once(dirname(__FILE__) . '/class/include.php');
 </head>
 
 <body class="page-section-bg">
-   
+
     <div id="wrapper" class="wrapper-container">
 
         <!-- - - - - - - - - - - - - Mobile Menu - - - - - - - - - - - - - - -->
@@ -68,7 +68,7 @@ include_once(dirname(__FILE__) . '/class/include.php');
                             <?php
                             $SERVICE = Service::all();
                             foreach ($SERVICE as $key => $service) {
-                                if ($key < 5) {
+                                if ($key < 6) {
                                     ?>
                                     <div class="grid">
                                         <a href="<?php echo actual_link(); ?>services/<?php echo str_replace(" ", "-", strtolower($service['title'])); ?>/">
@@ -91,34 +91,37 @@ include_once(dirname(__FILE__) . '/class/include.php');
                         <div class="widget">
 
                             <h3 class="widget-title">Other Location</h3>
-                            <?php
-                            $LOCATIONS = Activities::all();
-                            foreach ($LOCATIONS as $key => $locations) {
+                            <div class="entry-body" style="height: 773px;  overflow-y: auto;">
+                                 <?php
+                                 $LOCATIONS = Activities::all();
+                                 foreach ($LOCATIONS as $key => $locations) {
+                                     ?>
+                                    <a href="<?php echo actual_link(); ?>travel/<?php echo str_replace(" ", "-", strtolower($locations['title'])); ?>/">
+
+                                        <div class="row">
+
+                                            <div class="col-md-4" style="margin-top: 15px;">
+                                                <div class=" thumbnail-attachment">
+                                                    <img src="<?php echo actual_link() ?>upload/activity/<?php echo $locations['image_name']; ?>" alt="<?php echo $locations['title']; ?>" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 description-service " style="margin-top: 15px;">
+
+                                                <div class="entry-meta">
+                                                    <h4>  
+                                                        <?php echo $locations['title']; ?>
+                                                    </h4>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </a>
+
+                                    <?php
+                                }
                                 ?>
-                                <a href="<?php echo actual_link(); ?>travel/<?php echo str_replace(" ", "-", strtolower($locations['title'])); ?>/">
-                                    <div class="entry-body">
-
-                                        <div class="col-md-4" style="margin-top: 15px;">
-                                            <div class=" thumbnail-attachment">
-                                                <img src="<?php echo actual_link() ?>upload/activity/<?php echo $locations['image_name']; ?>" alt="<?php echo $locations['title']; ?>" >
-                                            </div>
-                                        </div>
-                                        <div class="col-md-8 description-service " style="margin-top: 15px;">
-
-                                            <div class="entry-meta">
-                                                <h4>  
-                                                    <?php echo $locations['title']; ?>
-                                                </h4>
-                                            </div>
-                                            <?php echo substr($locations['short_description'], 0, 60); ?>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <?php
-                            }
-                            ?>
-
+                            </div>
 
                         </div>
                     </div>

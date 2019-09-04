@@ -4,6 +4,15 @@ include_once(dirname(__FILE__) . '/class/include.php');
 include './main-fuction.php';
 $id = $_GET['id'];
 $PACKAGE = new Package($id);
+
+$ORDER = new Order(NULL);
+$LASTID = $ORDER->getLastID();
+$order_id = $LASTID + 1;
+
+if (isset($_GET["order_id"])) {
+    $ID = $_GET["order_id"];
+    $paymentSatusCode = $ORDER->getPaymentStatusCode($ID);
+}
 ?>
 <html lang="en">
 
@@ -47,6 +56,8 @@ $PACKAGE = new Package($id);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
     <link href="control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
     <link href="distance/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="css/countrySelect.min.css" rel="stylesheet" type="text/css"/>
 </head>
 
 
@@ -64,13 +75,33 @@ $PACKAGE = new Package($id);
         <?php include './header.php'; ?>
 
         <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
-        <div class="container margin-top-50  "     >  
-            <div class="col-md-8">
+        <div class="container margin-top-50  "      >  
+            <div class="alert hidden" id="beautypress-form-msg">
+                <?php
+                if (isset($_GET["order_id"])) {
+                    if ($paymentSatusCode == 2) {
+                        ?>
+                        <div class="alert alert-success alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Success!</strong> Your Payment has been succeeded.
+                        </div>
+                        <?php
+                    } else {
+                        ?>
+                        <div class="alert alert-danger alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Error!</strong> Your Payment was not successful. Please do your reservation again.
+                        </div>
+                        <?php
+                    }
+                }
+                ?>
+            </div>
+            <div class="col-md-8" id="package_panel">
                 <img id="loading" src="https://www.vedantalimited.com/SiteAssets/Images/loading.gif" style="display: none; position: absolute;margin-top: 40%;margin-left: 37%;z-index: 999;"/>
-
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h4> <b><?php echo $PACKAGE->title ?></b></h4></div>
-                    <div class="panel-body"> 
+                    <div class="panel-body" > 
                         <div class="  question-form bg-sidebar-item">
                             <div class="contact-form">  
                                 <div class="row"> 
@@ -97,6 +128,36 @@ $PACKAGE = new Package($id);
                                                     ?>
                                                 </select>                 
                                             </div> 
+
+                                            <div  id="table-bar-display"  > 
+                                                <div class="col-sm-6 col-xs-12 col-md-12">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Package Name</th>
+                                                                <th>Dates</th>
+                                                                <th>Millage Limit</th>
+                                                                <th>Package Price</th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody  >
+                                                        <td>
+                                                            <?php echo $PACKAGE->title ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $PACKAGE->dates ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $PACKAGE->km ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $PACKAGE->charge ?>
+                                                        </td> 
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                             <div  id="table-bar" style="display: none"> 
                                                 <div class="col-sm-6 col-xs-12 col-md-12">
                                                     <table class="table table-bordered">
@@ -109,9 +170,7 @@ $PACKAGE = new Package($id);
 
                                                             </tr>
                                                         </thead>
-                                                        <tbody id="package_body">
-
-
+                                                        <tbody id="package_body"> 
 
                                                         </tbody>
                                                     </table>
@@ -162,7 +221,6 @@ $PACKAGE = new Package($id);
                                                 <div id="your_location" style="display: none" >
                                                     <label>The place you get the vehicle</label>
                                                     <input type="text"  id="origin" class="form-control"  name="name"  placeholder="Your Location" autocomplete="off">                
-
                                                 </div>
                                             </div> 
                                         </div>
@@ -201,7 +259,7 @@ $PACKAGE = new Package($id);
                                     <div class="col-sm-12 col-xs-12"> 
                                         <input type="hidden" name="dates" id="dates" value="<?php echo $PACKAGE->dates ?>" />
                                         <input type="hidden" name="package_id" id="package_id" value="<?php echo $id ?>" />
-                                        <button type="submit" id="btnSubmit" class="btn btn-style-3 submit">Next</button>
+                                        <button type="submit" id="next" class="btn btn-style-3 submit">Next</button>
                                     </div>
                                 </div>
                             </div> 
@@ -209,11 +267,104 @@ $PACKAGE = new Package($id);
                     </div>
                 </div> 
             </div>
+            <div class="col-md-8" id="customer_panel" style="display: none"> 
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center"><h4> <b>Customer Details</b></h4></div>
+                    <div class="panel-body" > 
+
+                        <form name="order_from" id="payments" class="order_from" action="https://sandbox.payhere.lk/pay/checkout" method="post" autocomplete="off">
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <label>First Name</label>
+                                    <input type="text" id="first_name" class="form-control"  name="first_name"  placeholder="First Name"  >            
+                                </div> 
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <label>Last Name</label>
+                                    <input type="text" id="last_name" class="form-control"  name="last_name"  placeholder="Last Name"  >            
+                                </div> 
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <label>Email Address</label>
+                                    <input type="text" id="email" class="form-control"  name="email"  placeholder="Email Address"  >            
+                                </div> 
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <label>Phone Number</label>
+                                    <input type="text" id="phone_number" class="form-control"  name="phone_number"  placeholder="Phone Number"  >            
+                                </div> 
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <label>City</label>
+                                    <input type="text" id="city" class="form-control"  name="city"  placeholder="City"  >            
+                                </div> 
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <label>Address</label>
+                                    <input type="text" id="address" class="form-control"  name="address"  placeholder="Address"  >            
+                                </div> 
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12 col-md-4">
+                                    <label>Country</label>
+                                    <input type="text" id="country" class="form-control"  name="country"  placeholder="City"  >            
+                                </div>
+
+                                <div class="col-sm-6 col-xs-12 col-md-4">
+                                    <label>Security Code</label>
+                                    <input type="text" id="captchacode" class="form-control"  name="captchacode"  placeholder="Security Code"  >            
+                                </div> 
+                                <div class="col-sm-6 col-xs-12 col-md-4">
+                                    <div class="col-sm-6 col-xs-12 col-md-12"> 
+                                        <?php include("./booking-rent-car/captchacode-widget.php"); ?> 
+                                    </div> 
+                                </div> 
+                            </div>
+                            <div class="row hidden">
+                                <div class="col-sm-6 col-xs-12 col-md-12">
+                                    <label>Postal Code</label>
+                                    <input type="text" id="postal_code" class="form-control"  name="postal_code"  placeholder="City"  >            
+                                </div>  
+                            </div>
+ 
+                            <div class="row"> 
+                                <div class="col-xs-12   " style="margin-bottom: 10px;">  
+                                    <label class="cont-check">Click here to indicate that you have read and agree to the booking <a href="term-and-condition.php" target="_blank" class="text-primary">terms and conditions</a>.
+                                        <input type="checkbox"   id="agree" style="float: left;margin-right:10px;">
+                                        <span class="checkmark" style="margin-left: 10px;"></span>
+                                    </label>
+                                </div>
+                            </div>
 
 
+                            <!--sandbox merchant id-->
+                            <input type="hidden" name="merchant_id" value="1213021">  
+                            <!--live merchant id-->
 
+                            <input type="hidden" name="return_url" value="https://kandycars.lk/booking-form-rent-car.php?id=<?php echo $id ?>">
+                            <input type="hidden" name="cancel_url" value="https://kandycars.lk/order-form.php?cancelled">
+                            <input type="hidden" name="notify_url" value="https://kandycars.lk/payments/notify.php">
+                            <input type="hidden" name="package_id" id="package_id" value="<?php echo $id ?>" />
+                            <input name="order_id" id="order_id" type="hidden" value="<?php echo $order_id; ?>" />
+                            <input name="amount" id="amount" type="hidden"    class="payment"/>
+                            <input name="items" id="items" type="hidden"   value="1"/>
+                            <input type="hidden" name="currency" value="LKR">
 
-            <div class="col-md-4" style=" " >
+                            <div class="row"> 
+                                <div class="col-sm-6 col-xs-12 col-md-6 pull-left">
+                                    <button type="submit" id="back" class="btn btn-style-3 submit">Back</button>
+                                </div> 
+                                <div class="col-sm-6 col-xs-12 col-md-3 pull-right">
+                                    <button type="submit" id="pay" class="btn btn-style-3 submit">Pay Now</button>
+                                </div> 
+                            </div>
+
+                        </form>
+                    </div>
+                </div> 
+            </div> 
+
+            <div class="col-md-4"   >
                 <div class="panel panel-default">
                     <div class="panel-heading text-center">
                         <b>Your Price Summary </b> 
@@ -251,7 +402,6 @@ $PACKAGE = new Package($id);
                         <div class="row">
                             <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
                                 <p class="price-summer-p" id="select_method_drop_hide" style="display: none">Drop method:</p>
-
                             </div>
                             <div class="col-md-7">
                                 <p class="price-summer-p"><span id="select_method_drop_append"></span></p>
@@ -285,9 +435,9 @@ $PACKAGE = new Package($id);
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row" id="package_charge_hide" style="display: none">
                             <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p" id="package_charge_hide" style="display: none">Package Charge:</p>                            </div>
+                                <p class="price-summer-p" >Package Charge:</p></div>
                             <div class="col-md-7">
                                 <p class="price-summer-p"><span id="package_charge"></span></p>
                             </div>
@@ -305,7 +455,8 @@ $PACKAGE = new Package($id);
 
                         <div class="row">
                             <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p">Tax:</p>                            </div>
+                                <p class="price-summer-p">Tax:</p>      
+                            </div>
                             <div class="col-md-7">
                                 <p class="price-summer-p"><span id="tax"></span></p>
                             </div>
@@ -315,7 +466,7 @@ $PACKAGE = new Package($id);
                             <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
                                 <p class="price-summer-p">Total price:</p>                         </div>
                             <div class="col-md-7">
-                                <p class="price-summer-p"><span id="total_price"></span></p>
+                                <p class="price-summer-p"><span class="total_price"></span></p>
                             </div>
                         </div>
 
@@ -324,33 +475,32 @@ $PACKAGE = new Package($id);
                             <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
                                 <p class="price-summer-p" id="driver_charge_hide" style="display: none">Drive Charge:</p>                            </div>
                             <div class="col-md-7">
+                                <p class="price-summer-p"><span id="driver_charge"></span></p>
+                            </div>
+                        </div>
+                        <div class="row" id="distance_hide" style="display: none">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p " >Distance:</p> 
+                            </div>
+                            <div class="col-md-7">
                                 <p class="price-summer-p"><span id="distance"></span></p>
+                            </div>
+                        </div>
+                        <div class="row"  id="ex_per_km_hide" style="display: none">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p">Per km:</p>                         </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="ex_per_km"></span></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
                                 <p class="price-summer-p" id="distance_price_hide" style="display: none">Distance Charge:</p>                            </div>
                             <div class="col-md-7">
-                                <p class="price-summer-p"><span id="ex_per_km"></span></p>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p" id="ex_per_km_hide" style="display: none">Per km:</p>                         </div>
-                            <div class="col-md-7">
                                 <p class="price-summer-p"><span id="distance_price"></span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p " id="distance_hide" style="display: none">Distance:</p> 
-                            </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="driver_charge"></span></p>
-                            </div>
-                        </div>
 
+                            </div>
+                        </div> 
                     </div> 
                 </div>
                 <div class="panel panel-default">
@@ -361,22 +511,26 @@ $PACKAGE = new Package($id);
                     </div>
                 </div>
             </div>
+
+
+
+
+
+
         </div>
 
 
     </div>
-</div>
-</div>
-</div> 
 
 
-<!-- - - - - - - - - - - - - end Content - - - - - - - - - - - - - - - -->
 
-<!-- - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
+    <!-- - - - - - - - - - - - - end Content - - - - - - - - - - - - - - - -->
 
-<?php include './footer.php'; ?>
+    <!-- - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
 
-<!-- - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - -->
+    <?php include './footer.php'; ?>
+
+    <!-- - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - -->
 </div>
 
 
@@ -415,5 +569,16 @@ $PACKAGE = new Package($id);
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
 <script src="distance/js/distance-rent-car.js" type="text/javascript"></script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="js/countrySelect.min.js" type="text/javascript"></script>
+
+
+<script>
+    $("#country").countrySelect({
+        defaultCountry: "lk",
+        responsiveDropdown: true
+    });
+</script>
 </body>
 </html>

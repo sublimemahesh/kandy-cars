@@ -2,12 +2,12 @@
 $captchacode = rand();
 ?>               
 
-<img src="<?php echo actual_link() ?>booking-form/Generate_Captcha_Code.php?rand=<?php echo $captchacode; ?>" id='captchaimg'  style="margin-top: 15px;" >  
+<img src="<?php echo actual_link() ?>booking-rent-car/Generate_Captcha_Code.php?rand=<?php echo $captchacode; ?>" id='captchaimg'  style="margin-top: 25px;" >  
 
 <a href='javascript: refreshCaptcha();' class="contact-details">
     <div class="refreshbox">
         <div class="refresh-img">        
-            <img style="border:none;" src="<?php echo actual_link() ?>booking-form/img/refresh.png" title="Click to change the code" />
+            <img style="border:none;" src="<?php echo actual_link() ?>booking-rent-car/img/refresh.png" title="Click to change the code" />
         </div>
     </div>
 </a>

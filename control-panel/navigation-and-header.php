@@ -372,6 +372,13 @@
 
                 </li>
                 <li class="qqq">
+                    <a href="create-term-condition.php" class="">
+                        <i class="material-icons">chevron_right</i>
+                        <span>Term and Conditions</span>
+                    </a>
+
+                </li>
+                <li class="qqq">
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">chevron_right</i>
                         <span>Vehicles</span>
