@@ -35,6 +35,8 @@ include_once(dirname(__FILE__) . '/VehicleType.php');
 include_once(dirname(__FILE__) . '/Office.php'); 
 include_once(dirname(__FILE__) . '/OfficeDetail.php'); 
 include_once(dirname(__FILE__) . '/Tax.php'); 
+include_once(dirname(__FILE__) . '/Order.php'); 
+include_once(dirname(__FILE__) . '/TermAndCondition.php'); 
 
 //include_once(dirname(__FILE__) . '/Type.php');
 //include_once(dirname(__FILE__) . '/ProductInfo.php');
