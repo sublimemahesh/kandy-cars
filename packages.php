@@ -79,8 +79,17 @@ include_once(dirname(__FILE__) . '/class/include.php');
 
                                 <div class="pricing-area">
                                     <div class="product-price new-price"> 
-                                        <span>Rent Dates</span>  
+                                        <span>Rental</span>  
+                                          <?php
+                            if ($VEHICLE_TYPE->id == 1) {
+                                ?>
                                         <span style="color:#000;font-size:21px;" >Dates</span>
+                                        <?php
+                            }else{
+                                ?>
+                                         <span style="color:#000;font-size:21px;" >Hours</span>
+                                        <?php
+                            }?>
                                         <span  style="color:#000;font-size:18px;" ><?php echo $package['dates']; ?></span> 
                                     </div>
                                     <div class="product-price new-price"> 
@@ -90,7 +99,7 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                     </div>
                                     <div class="product-price new-price">
 
-                                        <span>Charge Per Day</span>  
+                                        <span>Price</span>  
                                         <span style="color:#000;font-size:21px;" >LKR</span>
                                         <span  style="color:#000;font-size:18px; text-transform: none;" >Rs: <?php echo number_format($package['charge'], 2); ?></span> 
                                     </div> 
