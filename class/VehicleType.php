@@ -104,4 +104,31 @@ class VehicleType {
         return $result;
     }
 
+    public function checkExistVehicleType($title) {
+
+        $query = "SELECT * FROM `vehicle_type` WHERE `name`='" . $title . "'";
+        $db = new Database();
+
+        $result = $db->readQuery($query);
+
+        if ($result) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function getVehicleTypeName($title) {
+        $query = "SELECT * FROM `vehicle_type` WHERE `name`='" . $title . "'";
+        $db = new Database();
+        $result = $db->readQuery($query);
+        $array_res = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            array_push($array_res, $row);
+        }
+
+        return $array_res;
+    }
+
 }

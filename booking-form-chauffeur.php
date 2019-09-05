@@ -3,7 +3,7 @@
 date_default_timezone_set("Asia/Calcutta");
 
 include_once(dirname(__FILE__) . '/class/include.php');
-include './main-fuction.php';
+ 
 ?>
 <html lang="en">
 
@@ -15,7 +15,7 @@ include './main-fuction.php';
     <!-- Basic Page Needs
     ================================================== -->
 
-    <title>Book vehicle || www.kandycars.lk</title>
+    <title>Book Chauffeur || www.kandycars.lk</title>
 
     <!--meta info-->
 
@@ -37,20 +37,20 @@ include './main-fuction.php';
 
     <!-- CSS theme files
     ============================================ -->
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/> 
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <link href="contact-form/style.css" rel="stylesheet" type="text/css"/>
-    <link href="css/custom.css" rel="stylesheet" type="text/css"/>
-    <link href="css/jquery.dateselect.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo actual_link(); ?>css/bootstrap.css" rel="stylesheet" type="text/css"/> 
+    <link rel="stylesheet" href="<?php echo actual_link(); ?>css/owl.carousel.css">
+    <link rel="stylesheet" href="<?php echo actual_link(); ?>css/style.css">
+    <link rel="stylesheet" href="<?php echo actual_link(); ?>css/responsive.css">
+    <link href="<?php echo actual_link(); ?>contact-form/style.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo actual_link(); ?>css/custom.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo actual_link(); ?>css/jquery.dateselect.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link href="css/timepicki.css" rel="stylesheet" type="text/css"/>     
-    <link href="control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
-    <link href="distance/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
-    <link href="booking-chaufferur/style.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo actual_link(); ?>css/timepicki.css" rel="stylesheet" type="text/css"/>     
+    <link href="<?php echo actual_link(); ?>control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo actual_link(); ?>distance/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo actual_link(); ?>booking-chaufferur/style.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link href="css/countrySelect.min.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo actual_link(); ?>css/countrySelect.min.css" rel="stylesheet" type="text/css"/>
 
 </head>
 
@@ -146,14 +146,14 @@ include './main-fuction.php';
                                 </div> 
                             </div>
                             <div class="row"> 
-                                <div class="col-sm-12 col-xs-11 col-md-11">
+                                <div class="col-sm-12 col-xs-10 col-md-11">
                                     <label>Destination</label>
                                     <div class="controls"> 
                                         <input type="text" id="destination" class="form-control  " name="text" placeholder="locations" autocomplete="off"/> 
                                     </div>
                                 </div>
 
-                                <div class="col-sm-12 col-xs-4 col-md-1" style="padding-left: 0px; margin-top: 25px;"> 
+                                <div class="col-sm-12 col-xs-2 col-md-1" style="padding-left: 0px; margin-top: 25px;"> 
                                     <button type="submit"  class="  btn-style-3  btn-add submit" id="append" name="append" > + </button>
                                 </div>  
                             </div>
@@ -290,28 +290,28 @@ include './main-fuction.php';
 
 <!-- JS Libs & Plugins
 ============================================ -->
-<script src="js/libs/jquery.modernizr.js"></script>
-<script src="js/libs/jquery-2.2.4.min.js"></script>
-<script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+<script src="<?php echo actual_link(); ?>js/libs/jquery.modernizr.js"></script>
+<script src="<?php echo actual_link(); ?>js/libs/jquery-2.2.4.min.js"></script>
+<script src="<?php echo actual_link(); ?>control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
 
 
-<script src="js/libs/jquery-ui.min.js"></script>
-<script src="js/libs/retina.min.js"></script>
-<script src="plugins/mad.customselect.js"></script>
-<script src="plugins/sticky-sidebar.js"></script>
-<script src="plugins/isotope.pkgd.min.js"></script>
-<script src="plugins/jquery.queryloader2.min.js"></script>
-<script src="plugins/bootstrap.js"></script>
-<script src="plugins/fancybox/jquery.fancybox.min.js"></script>
-<script src="plugins/owl.carousel.min.js"></script>
+<script src="<?php echo actual_link(); ?>js/libs/jquery-ui.min.js"></script>
+<script src="<?php echo actual_link(); ?>js/libs/retina.min.js"></script>
+<script src="<?php echo actual_link(); ?>plugins/mad.customselect.js"></script>
+<script src="<?php echo actual_link(); ?>plugins/sticky-sidebar.js"></script>
+<script src="<?php echo actual_link(); ?>plugins/isotope.pkgd.min.js"></script>
+<script src="<?php echo actual_link(); ?>plugins/jquery.queryloader2.min.js"></script>
+<script src="<?php echo actual_link(); ?>plugins/bootstrap.js"></script>
+<script src="<?php echo actual_link(); ?>plugins/fancybox/jquery.fancybox.min.js"></script>
+<script src="<?php echo actual_link(); ?>plugins/owl.carousel.min.js"></script>
 <!-- JS theme files
 ============================================ -->
-<script src="js/plugins.js"></script>
-<script src="js/script.js"></script> 
-<script src="distance/jquery.datetimepicker.full.js" type="text/javascript"></script> 
-<script src="distance/js/chauffeur.js" type="text/javascript"></script>
-<script src="booking-chaufferur/scripts.js" type="text/javascript"></script>
+<script src="<?php echo actual_link(); ?>js/plugins.js"></script>
+<script src="<?php echo actual_link(); ?>js/script.js"></script> 
+<script src="<?php echo actual_link(); ?>distance/jquery.datetimepicker.full.js" type="text/javascript"></script> 
+<script src="<?php echo actual_link(); ?>distance/js/chauffeur.js" type="text/javascript"></script>
+<script src="<?php echo actual_link(); ?>booking-chaufferur/scripts.js" type="text/javascript"></script>
 <script>
     jQuery(document).ready(function () {
         jQuery('.date-time-picker').datetimepicker({
@@ -352,7 +352,7 @@ include './main-fuction.php';
     }
 </script>
 
-<script src="code.js" type="text/javascript"></script>
+<script src="<?php echo actual_link(); ?>code.js" type="text/javascript"></script>
 
 
 </body>
