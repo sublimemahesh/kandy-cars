@@ -24,13 +24,10 @@ $(document).ready(function () {
         pickup = $('#origin').val();
         destination = $('#destination').val();
         package_id = $('#package_id').val();
-
         pick_up_date_time = $('#pick_up_date_time').val();
         drop_date_time = $('#drop_date_time').val();
         vehicle_id = $('#vehicle_id').val();
         selection_type = $('#selection_type').val();
-
-
 
         if (destination && !pickup) {
 
