@@ -252,8 +252,8 @@ $WEILCOME_Description = new Page(6);
 
                                         <h5 class="product-name"><a href="<?php echo actual_link(); ?>vehicles/<?php echo str_replace(" ", "-", strtolower($product['name'])); ?>/"><?php echo $product["name"]; ?></a></h5>
 
-                                       
-                                          
+
+
                                     </div> 
                                 </div> 
 
@@ -429,6 +429,21 @@ $WEILCOME_Description = new Page(6);
 
     <script src="<?php echo actual_link() ?>js/script.js"></script>
 
+   <script>
+        $(document).ready(function () {
+             alert("hello");
+            $(".dropdown").mouseover(function () {
+                alert("hello");
+            });
+        });
+
+//        $('.dropdown-toggle').hover(function () {
+//        alert();
+//        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+//        }, function () {
+//        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+//        });
+    </script>
 </body>
 
 </html>

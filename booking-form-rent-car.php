@@ -399,9 +399,9 @@ if (isset($_GET["order_id"])) {
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row" id="select_method_drop_hide" style="display: none">
                             <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p" id="select_method_drop_hide" style="display: none">Drop method:</p>
+                                <p class="price-summer-p" >Drop method:</p>
                             </div>
                             <div class="col-md-7">
                                 <p class="price-summer-p"><span id="select_method_drop_append"></span></p>
@@ -471,9 +471,9 @@ if (isset($_GET["order_id"])) {
                         </div>
 
                         <hr>
-                        <div class="row">
+                        <div class="row" id="driver_charge_hide" style="display: none">
                             <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p" id="driver_charge_hide" style="display: none">Drive Charge:</p>                            </div>
+                                <p class="price-summer-p" >Drive Charge:</p>                            </div>
                             <div class="col-md-7">
                                 <p class="price-summer-p"><span id="driver_charge"></span></p>
                             </div>

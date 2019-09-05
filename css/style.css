@@ -1325,15 +1325,7 @@ a.top-tooltip .tooltip:after{
     background: #fff;
 }
 
-#main-navigation > ul > li.dropdown > a:after{
-    font-family: 'fontello';
-    content: '\f107';
-    margin-left: 10px;
-    font-size: 12px;
-    display: inline-block;
-    vertical-align: top;
-    font-weight: normal;
-}
+ 
 
 .sub-menu-wrap{
     position: absolute;
@@ -3089,7 +3081,7 @@ form.with-icon input+button:hover{
 
 /* Inputs & Textarea */
 
-input[type="text"],
+input[type="text"],[type="number"],[type="email"],
 textarea, select, 
 .auto-custom-select .auto-selected-option{
     width: 100%;
