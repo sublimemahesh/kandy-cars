@@ -209,4 +209,32 @@ class Package {
         return $result;
     }
 
+    public function checkExistPackage($title) {
+
+        $query = "SELECT * FROM `package` WHERE `title`='" . $title . "'";
+        $db = new Database();
+
+        $result = $db->readQuery($query);
+
+        if ($result) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function getPackageByName($title) {
+        
+        $query = "SELECT * FROM `package` WHERE `title`='" . $title . "'";
+        $db = new Database();
+        $result = $db->readQuery($query);
+        $array_res = array();
+
+        while ($row = mysql_fetch_array($result)) {
+            array_push($array_res, $row);
+        }
+
+        return $array_res;
+    }
+
 }
