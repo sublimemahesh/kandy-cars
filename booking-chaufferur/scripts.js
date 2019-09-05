@@ -5,13 +5,17 @@ jQuery(document).ready(function () {
     jQuery("#txtFullName").blur(function () {
         validateEmpty("txtFullName", "spanFullName");
     });
-    
-    jQuery("#txtPickUpDate").blur(function () {
-        validateEmpty("txtPickUpDate", "spanPickUpDate");
-    });
 
     jQuery("#txtEmail").blur(function () {
         ValidateEmail("txtEmail", "spanEmail");
+    });
+
+    jQuery("#txtNationality").blur(function () {
+        validateEmpty("txtNationality", "spanNationality");
+    });
+
+    jQuery("#txtPickUpDate").blur(function () {
+        validateEmpty("txtPickUpDate", "spanPickUpDate");
     });
 
     jQuery("#txtDropOfDateTime").blur(function () {
@@ -21,7 +25,7 @@ jQuery(document).ready(function () {
     jQuery("#txtNumAdult").blur(function () {
         validateEmpty("txtNumAdult", "spanNumAdult");
     });
-    
+
     jQuery("#txtAccommodation").blur(function () {
         validateEmpty("txtAccommodation", "spanAccommodation");
     });
@@ -59,14 +63,14 @@ jQuery(document).ready(function () {
 
 function validate() {
     if (
-            validateEmpty("txtPickUpDate", "spanPickUpDate") &
-            validateEmpty("txtPickUpDate", "spanPickUpDate") &
             validateEmpty("txtFullName", "spanFullName") &
+            ValidateEmail("txtEmail", "spanEmail") &
+            validateEmpty("txtNationality", "spanNationality") &
+            validateEmpty("txtPickUpDate", "spanPickUpDate") &
             validateEmpty("txtDropOfDateTime", "spanDropDateTime") &
             validateEmpty("txtNumAdult", "spanNumAdult") &
             validateEmpty("txtNumChild", "spanNumChild") &
             validateEmpty("txtAccommodation", "spanAccommodation") &
-            ValidateEmail("txtEmail", "spanEmail") &
             validateEmpty("captchacode", "capspan")
             )
     {
@@ -83,27 +87,27 @@ function validate() {
 
 function sendForm() {
 
-    var destination = [];
-    $(".destination").each(function () {
-        destination.push($(this).val());
-    });
 
+
+    alert(jQuery('.destination').val(), );
     jQuery.ajax({
-        url: "booking-form/send-email.php",
+        url: "booking-chaufferur/send-email.php",
         cache: false,
         dataType: "json",
         type: "POST",
         data: {
-            captchacode: jQuery('#captchacode').val(),
-            visitor_pickup_date_time: jQuery('#txtPickUpDate').val(),
-            visitor_accomadation: jQuery('#txtAccommodation').val(),
-            visitor_decoration: jQuery('#txtDecoration').val(),
-            visitor_destination: destination,
             visitor_name: jQuery('#txtFullName').val(),
             visitor_email: jQuery('#txtEmail').val(),
+            visitor_nationality: jQuery('#txtNationality').val(),
+            visitor_pickup_date_time: jQuery('#txtPickUpDate').val(),
+            visitor_drop_date_time: jQuery('#txtDropOfDateTime').val(),
+            visitor_destination: destination,
             visitor_number_adults: jQuery('#txtNumAdult').val(),
-            visitor_number_child: jQuery('#txtNumChild').val()
-
+            visitor_number_child: jQuery('#txtNumChild').val(),
+            visitor_accomadation: jQuery('#txtAccommodation').val(),
+            visitor_vehicle: jQuery('#txtVehicleName').val(),
+            visitor_seat: jQuery('#txtSeat').val(),
+            captchacode: jQuery('#captchacode').val(),
 
         },
         success: function (html) {

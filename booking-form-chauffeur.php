@@ -45,8 +45,7 @@ include './main-fuction.php';
     <link href="css/custom.css" rel="stylesheet" type="text/css"/>
     <link href="css/jquery.dateselect.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link href="css/timepicki.css" rel="stylesheet" type="text/css"/>    
-    <link href="booking-form/style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/timepicki.css" rel="stylesheet" type="text/css"/>     
     <link href="control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
     <link href="distance/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
     <link href="booking-chaufferur/style.css" rel="stylesheet" type="text/css"/>
@@ -71,145 +70,219 @@ include './main-fuction.php';
 
         <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
         <div class="container margin-top-50">
-            <div class="row">   
-                <h2 class="text-center"> Chauffeur driven car </h2>
-                <div class="col-md-12 question-form bg-sidebar-item">  
-                    <div class="contact-form">
-                        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center"><h4> <b>Chauffeur driven car</b></h4></div>
+                <div class="panel-body" > 
 
-                            <div class="col-sm-6 col-xs-12 col-md-4">
-                                <label>Your Name</label>
-                                <input type="text" name="txtFullName" id="txtFullName" class="form-control  "   placeholder="Your Name">
-                                <div class="col-md-12">
-                                    <span id="spanFullName" ></span>
-                                </div>
-
-                            </div>
-                            <div class="col-sm-6 col-xs-12 col-md-4">
-                                <label>Your Email</label>
-                                <input class="  padd-left" type="email" name="txtEmail" id="txtEmail"  placeholder="Your Email" autocomplete="off"/>
-                                <div class="col-md-12">
-                                    <span id="spanEmail" ></span>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 col-xs-12 col-md-4">
-                                <label>Nationality</label>
-                                <input type="text" name="txtNationality" id="txtNationality"  placeholder="Nationality" class="form-control input-validater">
-                                <div class="col-md-12">
-                                    <span id="" ></span>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 col-xs-12 col-md-6">
-                                <label>Pick up Date / Time</label>
-                                <input type="text" name="txtPickUpDate" id="txtPickUpDate" class="form-control date-time-picker" data-select="date"  placeholder="Pick Up date / Time">
-                                <div class="col-md-12">
-                                    <span id="spanPickUpDate" ></span>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6 col-xs-12 col-md-6">
-                                <label>Drop Date / Time</label>
-                                <input class="date-time-picker padd-left" type="text" name="txtDropOfDateTime" id="txtDropOfDateTime"  placeholder="Drop off date / Time" autocomplete="off"/>
-                                <div class="col-md-12">
-                                    <span id="spanDropDateTime" ></span>
-                                </div>
-                            </div> 
-
-                            <div class="col-sm-12 col-xs-11 col-md-11">
-                                <label>Destination</label>
-                                <div class="controls"> 
-                                    <input type="text" id="destination" class="form-control  " name="text" placeholder="locations" autocomplete="off"/> 
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12 col-xs-4 col-md-1" style="padding-left: 0px; margin-top: 25px;"> 
-                                <button type="submit"  class="  btn-style-3  btn-add submit" id="append" name="append" > + </button>
-                            </div> 
-
-                            <div class="col-sm-12 col-xs-4 col-md-12" > 
-                                <table class="table table-striped c  table-bordered"  id="myTable" style="display: none;" >
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Locations</th>
-                                            <th scope="col" style="width: 20%;">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="inc">
-                                    </tbody>
-                                </table> 
-                            </div> 
-
-                            <div class="col-sm-6 col-xs-12 col-md-6">
-                                <label>Num Adults</label>
-                                <input type="number" name="txtNumAdult"  id="txtNumAdult" class="form-control"    placeholder="Num Adults" min="0">
-                                <div class="col-md-12">
-                                    <span id="spanNumAdult" ></span>
-                                </div>
-
-                            </div>
-                            <div class="col-sm-6 col-xs-12 col-md-6">
-                                <label>Num Child</label>
-                                <input class="  padd-left" type="number" name="txtNumChild" id="txtNumChild"  placeholder="Num Child" autocomplete="off" min="0"/>
-                                <div class="col-md-12">
-                                    <span id="spanNumChild" ></span>
-                                </div>
-
-                            </div>
-                            <div class="col-sm-6 col-xs-12 col-md-12">
-                                <label>Accommodation</label>
-                                <select name="txtAccommodation" id="txtAccommodation" class="padd-left" >
-                                    <option value="No Accommodation" selected="" > No Accommodation </option>
-                                    <option value="1">  </option>                                    
-                                </select>
-                                <div class="col-md-12">
-                                    <span id="spanAccommodation" ></span>
-                                </div>                                
-                            </div>
-
-                            <div class="col-sm-12 col-xs-12 col-md-6">
-
-                                <label for="comment"><span id="star">*</span>Security Code: </label>
-
-                                <input type="text" name="captchacode" id="captchacode" class="form-control input-validater" placeholder="Enter the Security Code >> ">
-                                <span id="capspan" ></span> 
-
-                            </div>   
-                            <div class=" form-group">
-
-                                <div class="col-sm-6 col-xs-12"> 
-                                    <?php include("./booking-chaufferur/captchacode-widget.php"); ?> 
-                                    <div class="div-check" >
-                                        <img src="<?php echo actual_link() ?>contact-form/img/checking.gif" id="checking"/>
+                    <div class="col-md-12 question-form bg-sidebar-item">  
+                        <div class="contact-form">
+                            <div class="row"> 
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <label>Your Name</label>
+                                    <input type="text" name="txtFullName" id="txtFullName" class="form-control  "   placeholder="Your Name">
+                                    <div class="col-md-12">
+                                        <span id="spanFullName" ></span>
                                     </div>
+
+                                </div>
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <label>Your Email</label>
+                                    <input class=" form-control padd-left" type="email" name="txtEmail" id="txtEmail"  placeholder="Your Email" autocomplete="off"/>
+                                    <div class="col-md-12">
+                                        <span id="spanEmail" ></span>
+                                    </div>
+                                </div> 
+
+                                
+                            </div>
+                            <div class="row"> 
+                                <div class="col-sm-6 col-xs-12 col-md-4">
+                                    <label>Nationality</label>
+                                    <input type="text" name="txtNationality" id="txtNationality"  placeholder="Nationality" class="form-control input-validater">
+                                    <div class="col-md-12">
+                                        <span id="spanNationality" ></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-12 col-md-4">
+                                    <label>Mobile Number</label>
+                                    <input type="text" name="txtPickUpDate" id="txtPickUpDate" class="form-control date-time-picker" data-select="date"  placeholder="Mobile Number">
+                                    <div class="col-md-12">
+                                        <span id="spanPickUpDate" ></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-xs-12 col-md-2" style="margin-top: 40px">
+
+                                    <label class="cont-check"> Whats App   
+                                        <input type="checkbox"   id="agree" style="float: left;margin-right:10px;">
+                                        <span class="checkmark" style="margin-left: 10px;"></span>
+                                    </label>
+                                </div>
+                                <div class="col-sm-6 col-xs-12 col-md-2" style="margin-top: 40px">
+
+                                    <label class="cont-check"> Viber
+                                        <input type="checkbox"   id="agree" style="float: left;margin-right:10px;">
+                                        <span class="checkmark" style="margin-left: 10px;"></span>
+                                    </label>
+                                </div>
+
+
+                            </div>
+                            <div class="row"> 
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <label>Pick up Date / Time</label>
+                                    <input type="text" name="txtPickUpDate" id="txtPickUpDate" class="form-control date-time-picker" data-select="date"  placeholder="Pick Up date / Time">
+                                    <div class="col-md-12">
+                                        <span id="spanPickUpDate" ></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <label>Drop Date / Time</label>
+                                    <input class="date-time-picker padd-left" type="text" name="txtDropOfDateTime" id="txtDropOfDateTime"  placeholder="Drop off date / Time" autocomplete="off"/>
+                                    <div class="col-md-12">
+                                        <span id="spanDropDateTime" ></span>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="row"> 
+                                <div class="col-sm-12 col-xs-11 col-md-11">
+                                    <label>Destination</label>
+                                    <div class="controls"> 
+                                        <input type="text" id="destination" class="form-control  " name="text" placeholder="locations" autocomplete="off"/> 
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-xs-4 col-md-1" style="padding-left: 0px; margin-top: 25px;"> 
+                                    <button type="submit"  class="  btn-style-3  btn-add submit" id="append" name="append" > + </button>
                                 </div>  
+                            </div>
+                            <div class="row"> 
+                                <div class="col-sm-12 col-xs-4 col-md-12" > 
+                                    <table class="table table-striped c  table-bordered"  id="myTable" style="display: none;" >
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Locations</th>
+                                                <th scope="col" style="width: 20%;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="inc">
+                                        </tbody>
+                                    </table> 
+                                </div>  
+                            </div>
+
+                            <div class="row"> 
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <label>Number of Adults</label>
+                                    <input type="number" name="txtNumAdult"  id="txtNumAdult" class="form-control"    placeholder="Number of Adults" min="0">
+                                    <div class="col-md-12">
+                                        <span id="spanNumAdult" ></span>
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <label>Number of Child</label>
+                                    <input   type="number" class="form-control" name="txtNumChild" id="txtNumChild"  placeholder="Number of Child" autocomplete="off" min="0"/>
+                                    <div class="col-md-12">
+                                        <span id="spanNumChild" ></span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row"> 
+                                <div class="col-sm-6 col-xs-12 col-md-12">
+                                    <label>Accommodation</label>
+                                    <select name="txtAccommodation" id="txtAccommodation" class="padd-left" >
+                                        <option value="No Accommodation" selected="" > No Accommodation </option>
+                                        <option value="1">  </option>                                    
+                                    </select>
+                                    <div class="col-md-12">
+                                        <span id="spanAccommodation" ></span>
+                                    </div>                                
+                                </div>
+                            </div>
+                            <div class="row"> 
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <label>Vehicle Name</label>
+                                    <select name="txtVehicleName" id="txtVehicleName" class="padd-left" >
+                                        <option value="" selected="" > -- Please select the vehicle -- </option>
+                                        <option value="van"> van </option>                                    
+                                        <option value="car"> car </option>                                     
+                                    </select>
+
+                                </div>
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <label>Number of Seat</label>
+                                    <select name="txtSeat" id="txtSeat" class="padd-left" >
+                                        <option value="" selected="" > -- Please select the number of seat --   </option>
+                                        <option value="4"> 4 </option>                                    
+                                        <option value="4"> 6 </option>                                    
+                                        <option value="4"> 8 </option>                                    
+                                        <option value="4"> 12 </option>                                    
+                                        <option value="4"> 16 </option>                                    
+                                        <option value="4"> 18 </option>                                    
+                                        <option value="4"> 20 </option>                                    
+                                    </select>
+                                    <div class="col-md-12">
+                                        <span id="spanNumChild" ></span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row"> 
+                                <div class="col-sm-12 col-xs-12 col-md-6">
+                                    <label for="comment">Security Code:<span id="star">*</span> </label>
+                                    <input type="text" name="captchacode" id="captchacode" class="form-control input-validater" placeholder="Enter the Security Code >> ">
+                                    <span id="capspan" ></span>  
+                                </div>   
+                                <div class=" form-group">
+                                    <div class="col-sm-6 col-xs-12"> 
+                                        <?php include("./booking-chaufferur/captchacode-widget.php"); ?> 
+                                        <div class="div-check" >
+                                            <img src="<?php echo actual_link() ?>booking-chaufferur/img/checking.gif" id="checking"/>
+                                        </div>
+                                    </div>   
+                                </div>  
+                                <div class="col-sm-6 col-xs-12 col-md-4"  >
+
+                                    <label class="cont-check"> Contact me through email
+                                        <input type="checkbox"   id="agree" style="float: left;margin-right:10px;">
+                                        <span class="checkmark" style="margin-left: 10px;"></span>
+                                    </label>
+                                </div>
+                                <div class="col-sm-6 col-xs-12 col-md-4"  >
+
+                                    <label class="cont-check"> Contact me over the phone
+                                        <input type="checkbox"   id="agree" style="float: left;margin-right:10px;">
+                                        <span class="checkmark" style="margin-left: 10px;"></span>
+                                    </label>
+                                </div>
+                            </div>
 
 
+                            <div class="row" style="margin-top: 15px;">
+                                <div class="col-sm-12 col-xs-12"> 
+                                    <button type="submit" id="btnSubmit" class="btn btn-style-3">Submit</button> 
+                                    <div id="dismessage" align="center"></div>
+                                </div>
                             </div> 
                         </div>
-                    </div>
-
-
-
-                    <div class="row">
-                        <div class="col-sm-12 col-xs-12">
-                            <input type="hidden" name="package_id" id="package_id" value="<?php echo $id ?>" />  
-                            <button type="submit" id="btnSubmit" class="btn btn-style-3">Submit</button> 
-                        </div>
-                    </div> 
-                </div>  
+                    </div>   
+                </div>
             </div>
+        </div> 
+    </div>
+</div> 
+<!-- - - - - - - - - - - - - end Content - - - - - - - - - - - - - - - -->
 
-        </div>
-    </div> 
-    <!-- - - - - - - - - - - - - end Content - - - - - - - - - - - - - - - -->
+<!-- - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
 
-    <!-- - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
+<?php include './footer.php'; ?>
 
-    <?php include './footer.php'; ?>
-
-    <!-- - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - -->
+<!-- - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - -->
 </div>
 
 
@@ -250,12 +323,12 @@ include './main-fuction.php';
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="js/countrySelect.min.js" type="text/javascript"></script>
 
-<!--
+
 <script type="text/javascript">
 
 
     $("#txtNationality").countrySelect({
-        preferredCountries: ["xx"]
+        preferredCountries: ["lk"]
     });
 
     blankFlag.call(this);
@@ -277,7 +350,7 @@ include './main-fuction.php';
     function googleTranslateElementInit() {
         new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
     }
-</script>-->
+</script>
 
 <script src="code.js" type="text/javascript"></script>
 
