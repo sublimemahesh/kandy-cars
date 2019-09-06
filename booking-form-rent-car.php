@@ -1,9 +1,11 @@
 <!doctype html>
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
- 
- 
-$PACKAGE = new Package($package['id']);
+include './main-fuction.php';
+$id = $_GET['id'];
+$PACKAGE = new Package($id);
+
+$PACKAGE = new Package($id);
 
 $ORDER = new Order(NULL);
 $LASTID = $ORDER->getLastID();
@@ -52,12 +54,18 @@ if (isset($_GET["order_id"])) {
     <link rel="stylesheet" href="<?php echo actual_link() ?>css/responsive.css">
     <link href="<?php echo actual_link() ?>contact-form/style.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo actual_link() ?>css/custom.css" rel="stylesheet" type="text/css"/>
-    <link href="<?php echo actual_link() ?>css/jquery.dateselect.css" rel="stylesheet" type="text/css"/>
+    <link href="css/jquery.dateselect.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link href="<?php echo actual_link() ?>control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
-    <link href="<?php echo actual_link() ?>distance/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
+    <link href="control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
+    <link href="distance/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link href="<?php echo actual_link() ?>css/countrySelect.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/countrySelect.min.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .product-name{
+            font-size: 14px;
+        }
+    </style>
+        
 </head>
 
 
@@ -66,14 +74,11 @@ if (isset($_GET["order_id"])) {
 
 
     <div id="wrapper" class="wrapper-container">
-
         <!-- - - - - - - - - - - - - Mobile Menu - - - - - - - - - - - - - - -->
-
         <nav id="mobile-advanced" class="mobile-advanced" style="text-align:center;"></nav>
 
         <!-- - - - - - - - - - - - - - Header - - - - - - - - - - - - - - - - -->
         <?php include './header.php'; ?>
-
         <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
         <div class="container margin-top-50  "      >  
             <div class="alert hidden" id="beautypress-form-msg">
@@ -326,7 +331,7 @@ if (isset($_GET["order_id"])) {
                                     <input type="text" id="postal_code" class="form-control"  name="postal_code"  placeholder="City"  >            
                                 </div>  
                             </div>
- 
+
                             <div class="row"> 
                                 <div class="col-xs-12   " style="margin-bottom: 10px;">  
                                     <label class="cont-check">Click here to indicate that you have read and agree to the booking <a href="term-and-condition.php" target="_blank" class="text-primary">terms and conditions</a>.
@@ -508,18 +513,24 @@ if (isset($_GET["order_id"])) {
                         <b>Tearm and Conditions </b> 
                     </div> 
                     <div class="panel-body"> 
+                        <div class="row">
+                            <div class="col-md-12" >
+                                
+                                    <?php
+                                    $TERM_AND_CONDITION = new TermAndCondition(1);
+                                    echo $TERM_AND_CONDITION->discription;
+                                    ?>
+                                
+                            </div>
+                        </div>
+                        <p> 
+
+
+                        </p>
                     </div>
                 </div>
-            </div>
-
-
-
-
-
-
-        </div>
-
-
+            </div>  
+        </div> 
     </div>
 
 
@@ -554,8 +565,8 @@ if (isset($_GET["order_id"])) {
 <script src="<?php echo actual_link() ?>js/plugins.js"></script>
 <script src="<?php echo actual_link() ?>js/script.js"></script>
 <script src="<?php echo actual_link() ?>contact-form/scripts.js" type="text/javascript"></script> 
-<script src="<?php echo actual_link() ?>distance/jquery.datetimepicker.full.js" type="text/javascript"></script>
-<script src="<?php echo actual_link() ?>control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+<script src="distance/jquery.datetimepicker.full.js" type="text/javascript"></script>
+<script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
 <script>
     jQuery(document).ready(function () {
         jQuery('.date-time-picker').datetimepicker({
@@ -568,9 +579,10 @@ if (isset($_GET["order_id"])) {
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
-<script src="<?php echo actual_link() ?>distance/js/distance-rent-car.js" type="text/javascript"></script>
-<script src="<?php echo actual_link() ?>js/countrySelect.min.js" type="text/javascript"></script>
+<script src="distance/js/distance-rent-car.js" type="text/javascript"></script>
 
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="js/countrySelect.min.js" type="text/javascript"></script>
 
 
 

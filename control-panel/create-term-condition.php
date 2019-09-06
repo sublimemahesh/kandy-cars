@@ -1,7 +1,12 @@
 <?php
 include_once(dirname(__FILE__) . '/../class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
-$TERM_AND_CONDITION = new TermAndCondition(1);
+$id = '';
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+}
+$VEHICLE_TYPE = new VehicleType($id);
+$TERM_AND_CONDITION = new TermAndCondition($id); 
 ?>
 <!DOCTYPE html>
 <html> 
@@ -38,7 +43,7 @@ $TERM_AND_CONDITION = new TermAndCondition(1);
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
-                                <h2>Term and condition</h2>
+                                <h2>Create Term and condition - "<?php echo $VEHICLE_TYPE->name ?>"</h2>
                                 <ul class="header-dropdown">
                                     <li class="">
                                         <a href="#">
@@ -49,8 +54,6 @@ $TERM_AND_CONDITION = new TermAndCondition(1);
                             </div>
                             <div class="body">
                                 <form class="form-horizontal"  method="post" action="post-and-get/term-condition.php" enctype="multipart/form-data"> 
-
-
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <label for="description">Description</label>
                                         <div class="form-line">
@@ -59,7 +62,7 @@ $TERM_AND_CONDITION = new TermAndCondition(1);
 
                                     </div>
                                     <div class="col-md-12"> 
-                                        <input type="hidden" name="id" value="1">
+                                        <input type="hidden" name="id" value="<?php echo $id ?>">
                                         <input type="submit" name="update" class="btn btn-primary m-t-15 waves-effect" value="Update"/>
                                     </div>
                                 </form>

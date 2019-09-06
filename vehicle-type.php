@@ -1,5 +1,6 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
+include './main-fuction.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -58,12 +59,12 @@ include_once(dirname(__FILE__) . '/class/include.php');
                             <?php
                             if ($vehicle_type['id'] == 3) {
                                 ?>
-                                <a href="<?php echo actual_link(); ?>category/<?php echo str_replace(" ", "-", strtolower($vehicle_type['name'])); ?>/">
-                                    <img src="<?php echo actual_link() ?>upload/vehicle_type/<?php echo $vehicle_type['image_name'] ?>" alt="">
+                                <a href="booking-form-chauffeur.php">
+                                    <img src="upload/vehicle_type/<?php echo $vehicle_type['image_name'] ?>" alt="">
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo actual_link(); ?>category/<?php echo str_replace(" ", "-", strtolower($vehicle_type['name'])); ?>/">
-                                    <img src="<?php echo actual_link() ?>upload/vehicle_type/<?php echo $vehicle_type['image_name'] ?>" alt="">
+                                <a href="book-vehicle.php?id=<?php echo $vehicle_type['id'] ?>">
+                                    <img src="upload/vehicle_type/<?php echo $vehicle_type['image_name'] ?>" alt="">
                                 </a>
                             <?php } ?>
                             <div class="product-description no-rating">
@@ -81,7 +82,7 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                         </div>
                                     <?php } else { ?>
                                         <div>
-                                            <a href="<?php echo actual_link(); ?>category/<?php echo str_replace(" ", "-", strtolower($vehicle_type['name'])); ?>/" class="btn-2">vehicles</a>
+                                            <a href="book-vehicle.php?id=<?php echo $vehicle_type['id'] ?>" class="btn-2">vehicles</a>
                                         </div>
                                     <?php } ?>
                                 </div> 

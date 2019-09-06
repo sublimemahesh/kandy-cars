@@ -1,9 +1,8 @@
 <!doctype html>
 <?php
 date_default_timezone_set("Asia/Calcutta");
-
+include './main-fuction.php';
 include_once(dirname(__FILE__) . '/class/include.php');
- 
 ?>
 <html lang="en">
 
@@ -93,7 +92,7 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                     </div>
                                 </div> 
 
-                                
+
                             </div>
                             <div class="row"> 
                                 <div class="col-sm-6 col-xs-12 col-md-4">
@@ -262,7 +261,14 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                 </div>
                             </div>
 
-
+                            <div class="row"> 
+                                <div class="col-xs-12   " style="margin-bottom: 10px;">  
+                                    <label class="cont-check">Click here to indicate that you have read and agree to the booking <a href="term-and-condition.php" target="_blank" class="text-primary">terms and conditions</a>.
+                                        <input type="checkbox"   id="agree" style="float: left;margin-right:10px;">
+                                        <span class="checkmark" style="margin-left: 10px;"></span>
+                                    </label>
+                                </div>
+                            </div>
                             <div class="row" style="margin-top: 15px;">
                                 <div class="col-sm-12 col-xs-12"> 
                                     <button type="submit" id="btnSubmit" class="btn btn-style-3">Submit</button> 
