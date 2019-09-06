@@ -210,16 +210,16 @@ class Order {
             $status = "Unsuccessfull. Please resume your order.";
         }
 
-        $comany_name = "MSR Marketing";
-        $website_name = "www.msrbeauty.com";
+        $comany_name = "kandycars";
+        $website_name = "www.kandycars.lk";
         $comConNumber = "+94 77 365 7856";
-        $comEmail = "info@msrbeauty.com";
+        $comEmail = "booking@kandycars.lk";
         $site_link = "http://" . $_SERVER['HTTP_HOST'];
 
 
         $subject = 'Website Order Enquiry  - #' . $this->id;
-        $from = 'info@msrbeauty.com'; // give from email address
-        $replay = 'info@msrbeauty.com';
+        $from = 'booking@kandycars.lk'; // give from email address
+        $replay = 'booking@kandycars.lk';
 
         $headers = "From: " . $from . "\r\n";
         $headers .= "Reply-To: " . $comEmail . "\r\n";
@@ -282,7 +282,7 @@ class Order {
                                         <td width="2%">&nbsp;</td>
                                         <td width="96%" align="center" style="border-bottom:1px solid #000000" height="50">
                                             <font style="font-family: Verdana, Geneva, sans-serif; color:#1400FF; font-size:18px; " >
-                                                   <h4>Product Order Enquiry - #' . $this->id . '</h4>
+                                                   <h4> Order Enquiry - #' . $this->id . '</h4>
                                             </font>
                                         </td>
                                         <td width="2%">&nbsp;</td>
@@ -370,11 +370,7 @@ class Order {
                                                     </font>
                                                 </li>
                                                   <li>
-                                                    <font style="font-family: Verdana, Geneva, sans-serif; color:#68696a; font-size:14px; " >
-                                                         Product : ' . $PRODUCT->name . '
-                                                    </font>
-                                                </li>
-                                                 
+                                                  
                                                 <li>
                                                     <font style="font-family: Verdana, Geneva, sans-serif; color:#68696a; font-size:14px; " >
                                                         Total Amount: ' . $this->amount . ' LKR
@@ -489,8 +485,10 @@ class Order {
             $status = "Unsuccessfull.";
         }
 
-        $comany_name = "MSR Marketinglas";
-        $comEmail = "info@msrbeauty.com";
+        $comany_name = "kandycars";
+        $website_name = "www.kandycars.lk";
+        $comConNumber = "+94 77 365 7856";
+        $comEmail = "booking@kandycars.lk";
         $site_link = "http://" . $_SERVER['HTTP_HOST'];
 
 
@@ -605,11 +603,7 @@ class Order {
                                                          Country : ' . $this->country . '
                                                     </font>
                                                 </li>
-                                                  <li>
-                                                    <font style="font-family: Verdana, Geneva, sans-serif; color:#68696a; font-size:14px; " >
-                                                         Product : ' . $PRODUCT->name . '
-                                                    </font>
-                                                </li>
+                                                 
                                                 
                                                 <li>
                                                     <font style="font-family: Verdana, Geneva, sans-serif; color:#68696a; font-size:14px; " >

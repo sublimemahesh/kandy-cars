@@ -7,7 +7,7 @@ if (isset($_POST['create'])) {
     $VEHICLE_TYPE = new VehicleType(NULL);
     $VALID = new Validator();
 
-    $VEHICLE_TYPE->name = $_POST['name']; 
+    $VEHICLE_TYPE->name = $_POST['name'];
 
     $dir_dest = '../../upload/vehicle_type/';
 
@@ -34,7 +34,7 @@ if (isset($_POST['create'])) {
     $VEHICLE_TYPE->image_name = $imgName;
 
     $VALID->check($VEHICLE_TYPE, [
-        'name' => ['required' => TRUE], 
+        'name' => ['required' => TRUE],
         'image_name' => ['required' => TRUE]
     ]);
 
@@ -93,7 +93,7 @@ if (isset($_POST['update'])) {
 
     $VALID = new Validator();
     $VALID->check($VEHICLE_TYPE, [
-        'name' => ['required' => TRUE], 
+        'name' => ['required' => TRUE],
         'image_name' => ['required' => TRUE]
     ]);
 
@@ -118,8 +118,42 @@ if (isset($_POST['update'])) {
 
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
-    
 }
+
+if (isset($_POST['update-term'])) {
+      
+    $VEHICLE_TYPE = new VehicleType($_POST['id']);
+
+    $VEHICLE_TYPE->term_and_condition = $_POST['term_and_condition'];
+     
+    $VALID = new Validator();
+    $VALID->check($VEHICLE_TYPE, [
+        'term_and_condition' => ['required' => TRUE],  
+    ]);
+
+
+    if ($VALID->passed()) {
+        $VEHICLE_TYPE->updateTermAndCondition();
+
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $VALID->addError("Your changes saved successfully", 'success');
+        $_SESSION['ERRORS'] = $VALID->errors();
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    } else {
+
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+
+        $_SESSION['ERRORS'] = $VALID->errors();
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+}
+
 if (isset($_POST['save-data'])) {
 
     foreach ($_POST['sort'] as $key => $img) {

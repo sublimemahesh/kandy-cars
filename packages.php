@@ -1,9 +1,7 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
- include './main-fuction.php';
-
-$id = $_GET['id'];
-$PRODUCT_TYPE = new ProductType($id);
+  
+$PRODUCT_TYPE = new ProductType($vehicle['id']);
 $VEHICLE_TYPE = new VehicleType($PRODUCT_TYPE->type);
 ?>
 <!doctype html>
@@ -56,7 +54,7 @@ $VEHICLE_TYPE = new VehicleType($PRODUCT_TYPE->type);
             <div class="row">
 
                 <?php
-                $PACKAGE = Package::getPackagesByVehicle($id);
+                $PACKAGE = Package::getPackagesByVehicle($vehicle['id']);
                 foreach ($PACKAGE as $key => $package) {
                     ?>
                     <!-- Slide -->                  
@@ -82,16 +80,16 @@ $VEHICLE_TYPE = new VehicleType($PRODUCT_TYPE->type);
                                 <div class="pricing-area">
                                     <div class="product-price new-price"> 
                                         <span>Rental</span>  
-                                          <?php
-                            if ($VEHICLE_TYPE->id == 1) {
-                                ?>
-                                        <span style="color:#000;font-size:21px;" >Dates</span>
                                         <?php
-                            }else{
-                                ?>
-                                         <span style="color:#000;font-size:21px;" >Hours</span>
-                                        <?php
-                            }?>
+                                        if ($VEHICLE_TYPE->id == 1) {
+                                            ?>
+                                            <span style="color:#000;font-size:21px;" >Dates</span>
+                                            <?php
+                                        } else {
+                                            ?>
+                                            <span style="color:#000;font-size:21px;" >Hours</span>
+                                            <?php }
+                                        ?>
                                         <span  style="color:#000;font-size:18px;" ><?php echo $package['dates']; ?></span> 
                                     </div>
                                     <div class="product-price new-price"> 

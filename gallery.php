@@ -30,6 +30,7 @@ include_once(dirname(__FILE__) . '/class/include.php');
     <link rel="stylesheet" href="<?php echo actual_link() ?>font/demo-files/demo.css">
     <link rel="stylesheet" href="<?php echo actual_link() ?>plugins/fancybox/jquery.fancybox.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
     <!-- CSS theme files
     ============================================ -->
     <link href="<?php echo actual_link() ?>css/bootstrap.css" rel="stylesheet" type="text/css"/>

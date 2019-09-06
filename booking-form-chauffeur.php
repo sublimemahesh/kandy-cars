@@ -58,8 +58,7 @@ include_once(dirname(__FILE__) . '/class/include.php');
 
 
 
-    <div id="wrapper" class="wrapper-container">
-
+    <div id="wrapper" class="wrapper-container"> 
         <!-- - - - - - - - - - - - - Mobile Menu - - - - - - - - - - - - - - -->
 
         <nav id="mobile-advanced" class="mobile-advanced" style="text-align:center;"></nav>
@@ -91,8 +90,6 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                         <span id="spanEmail" ></span>
                                     </div>
                                 </div> 
-
-
                             </div>
                             <div class="row"> 
                                 <div class="col-sm-6 col-xs-12 col-md-4">
@@ -104,28 +101,24 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                 </div>
                                 <div class="col-sm-6 col-xs-12 col-md-4">
                                     <label>Mobile Number</label>
-                                    <input type="text" name="txtPickUpDate" id="txtPickUpDate" class="form-control date-time-picker" data-select="date"  placeholder="Mobile Number">
+                                    <input type="text" name="txtMobileNumber" id="txtMobileNumber" class="form-control  " data-select="date"  placeholder="Mobile Number">
                                     <div class="col-md-12">
-                                        <span id="spanPickUpDate" ></span>
+                                        <span id="spanMobileNumber" ></span>
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6 col-xs-12 col-md-2" style="margin-top: 40px">
-
+                                <div class="col-sm-6 col-xs-12 col-md-2" style="margin-top: 40px"> 
                                     <label class="cont-check"> Whats App   
-                                        <input type="checkbox"   id="agree" style="float: left;margin-right:10px;">
+                                        <input type="checkbox" value="Whats App" class="contact_number_type"  id="agree" style="float: left;margin-right:10px;">
                                         <span class="checkmark" style="margin-left: 10px;"></span>
                                     </label>
                                 </div>
                                 <div class="col-sm-6 col-xs-12 col-md-2" style="margin-top: 40px">
-
                                     <label class="cont-check"> Viber
-                                        <input type="checkbox"   id="agree" style="float: left;margin-right:10px;">
+                                        <input type="checkbox" value="Viber"  class="contact_number_type"  id="agree" style="float: left;margin-right:10px;">
                                         <span class="checkmark" style="margin-left: 10px;"></span>
                                     </label>
                                 </div>
-
-
                             </div>
                             <div class="row"> 
                                 <div class="col-sm-6 col-xs-12 col-md-6">
@@ -177,8 +170,7 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                     <input type="number" name="txtNumAdult"  id="txtNumAdult" class="form-control"    placeholder="Number of Adults" min="0">
                                     <div class="col-md-12">
                                         <span id="spanNumAdult" ></span>
-                                    </div>
-
+                                    </div> 
                                 </div>
                                 <div class="col-sm-6 col-xs-12 col-md-6">
                                     <label>Number of Child</label>
@@ -191,44 +183,75 @@ include_once(dirname(__FILE__) . '/class/include.php');
                             </div>
 
                             <div class="row"> 
-                                <div class="col-sm-6 col-xs-12 col-md-12">
+                                <div class="col-sm-6 col-xs-12 col-md-6">
                                     <label>Accommodation</label>
                                     <select name="txtAccommodation" id="txtAccommodation" class="padd-left" >
                                         <option value="No Accommodation" selected="" > No Accommodation </option>
-                                        <option value="1">  </option>                                    
+                                        <option value="Hotels">Hotels</option>                                    
+                                        <option value="Planing Trip">Planing Trip</option>                                    
+                                        <option value="Tours">Tours</option>                                    
+                                        <option value="Villa">Villa</option>                                    
                                     </select>
                                     <div class="col-md-12">
                                         <span id="spanAccommodation" ></span>
                                     </div>                                
                                 </div>
-                            </div>
-                            <div class="row"> 
                                 <div class="col-sm-6 col-xs-12 col-md-6">
-                                    <label>Vehicle Name</label>
+                                    <label>Vehicle Type and Seats</label>
                                     <select name="txtVehicleName" id="txtVehicleName" class="padd-left" >
                                         <option value="" selected="" > -- Please select the vehicle -- </option>
-                                        <option value="van"> van </option>                                    
-                                        <option value="car"> car </option>                                     
-                                    </select>
-
+                                        <option value="Suzuki WagonR Car"> Suzuki WagonR Car  </option>  
+                                        <option value="Suzuki Spacia car"> Suzuki Spacia car </option>  
+                                        <option value="Toyota aqua car"> Toyota aqua car </option>                                    
+                                        <option value="Honda Fit car"> Honda Fit car  </option>     
+                                        <option value="Honda Fit Shuttle car"> Honda Fit Shuttle car  </option>     
+                                        <option value="Toyota Prius car"> Toyota Prius car </option>     
+                                        <option value="Toyota Axio car"> Toyota Axio car  </option>     
+                                        <option value="Honda Grace car"> Honda Grace car </option>     
+                                        <option value="Honda Vezzel Mini SUV"> Honda Vezzel Mini SUV </option>     
+                                        <option value="Toyota CHR mini SUV"> Toyota CHR mini SUV </option>     
+                                        <option value="MG ZS mini SUV"> MG ZS mini SUV</option>     
+                                        <option value="Mitsubishi OutLander mini SUV"> Mitsubishi OutLander mini SUV </option>     
+                                        <option value="Mitsubishi Montero SUV"> Mitsubishi Montero SUV </option>     
+                                        <option value="Toyota Prado 150 SUV"> Toyota Prado 150 SUV </option>     
+                                        <option value="Toyota Prado TX SUV"> Toyota Prado TX SUV </option>     
+                                        <option value="Toyota Prado V8 SUV"> Toyota Prado V8 SUV </option>     
+                                        <option value="Land rover defender 90"> Land rover defender 90 </option>     
+                                        <option value="Land Rover Defender 110"> Land Rover Defender 110 </option>     
+                                        <option value="Land rover discovery SUV"> Land rover discovery SUV </option>     
+                                        <option value="Land rover range rover mini SUV"> Land rover range rover mini SUV </option>     
+                                        <option value="BMW 520d 5 series Car"> BMW 520d 5 series Car </option>     
+                                        <option value="BMW 523 I car"> BMW 523 I car </option>     
+                                        <option value="BMW 320d 3 series car">BMW 320d 3 series car </option>     
+                                        <option value="Benz CLA 180 car">Benz CLA 180 car</option>     
+                                        <option value="Benz CLA 200 car">Benz CLA 200 car</option>     
+                                        <option value="Benz C200 car">Benz C200 car </option>     
+                                        <option value="Benz S class car">Benz S class car </option>     
+                                        <option value="Benz E Class Car">Benz E Class Car </option>     
+                                        <option value="Benz E Class Soft Top">Benz E Class Soft Top </option>     
+                                        <option value="convertible car">convertible car </option>     
+                                        <option value="Toyota Voxy van (5 seats)">Toyota Voxy van (5 seats) </option>     
+                                        <option value="Cars - 3 seats">Cars - 3 seats</option>     
+                                        <option value="Mini suv s - 3 seats">Mini suv s - 3 seats</option>     
+                                        <option value="Suv s - 7 seats(exluding driving seats) ">Suv s - 7 seats(exluding driving seats) </option>     
+                                        <option value="Toyota KDH Flat roof van (7 or 8 seats) "> Toyota KDH Flat roof van (7 or 8 seats) </option>     
+                                        <option value="Toyota KDH CV Flat roof with more luggage space van (3 or 5 seats) ">   Toyota KDH CV Flat roof with more luggage space van (3 or 5 seats)  </option>     
+                                        <option value="Toyota KDH High roof van(12 or 14 seats)">Toyota KDH High roof van(12 or 14 seats)</option>     
+                                        <option value="Toyota KDH high roof with more luggage space van (5 to 7 seats)">Toyota KDH high roof with more luggage space van (5 to 7 seats)</option>     
+                                        <option value="Toyota KDH High roof luxury van (6 seats)">Toyota KDH High roof luxury van (6 seats)</option>     
+                                        <option value="Benz Vito Van (6 seats)">Benz Vito Van (6 seats)</option>     
+                                    </select> 
                                 </div>
-                                <div class="col-sm-6 col-xs-12 col-md-6">
-                                    <label>Number of Seat</label>
-                                    <select name="txtSeat" id="txtSeat" class="padd-left" >
-                                        <option value="" selected="" > -- Please select the number of seat --   </option>
-                                        <option value="4"> 4 </option>                                    
-                                        <option value="4"> 6 </option>                                    
-                                        <option value="4"> 8 </option>                                    
-                                        <option value="4"> 12 </option>                                    
-                                        <option value="4"> 16 </option>                                    
-                                        <option value="4"> 18 </option>                                    
-                                        <option value="4"> 20 </option>                                    
-                                    </select>
-                                    <div class="col-md-12">
-                                        <span id="spanNumChild" ></span>
-                                    </div>
+                            </div>
 
+                            <div class="row"> 
+                                <div class="col-sm-6 col-xs-12 col-md-12">
+                                    <label>Message</label>
+                                    <textarea name="txtMessage"  id="txtMessage" rows="6" class="form-control" placeholder="Write Message Here"></textarea>
                                 </div>
+                                <div class="col-md-12">
+                                    <span id="spanMessage" ></span>
+                                </div> 
                             </div>
 
                             <div class="row"> 
@@ -248,27 +271,18 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                 <div class="col-sm-6 col-xs-12 col-md-4"  >
 
                                     <label class="cont-check"> Contact me through email
-                                        <input type="checkbox"   id="agree" style="float: left;margin-right:10px;">
+                                        <input type="checkbox"  value="Contact me through email" class="contact_type" id="agree" style="float: left;margin-right:10px;">
                                         <span class="checkmark" style="margin-left: 10px;"></span>
                                     </label>
                                 </div>
-                                <div class="col-sm-6 col-xs-12 col-md-4"  >
-
+                                <div class="col-sm-6 col-xs-12 col-md-4"  > 
                                     <label class="cont-check"> Contact me over the phone
-                                        <input type="checkbox"   id="agree" style="float: left;margin-right:10px;">
+                                        <input type="checkbox"  value="Contact me over the phone" class="contact_type" id="agree" style="float: left;margin-right:10px;">
                                         <span class="checkmark" style="margin-left: 10px;"></span>
                                     </label>
                                 </div>
                             </div>
-
-                            <div class="row"> 
-                                <div class="col-xs-12   " style="margin-bottom: 10px;">  
-                                    <label class="cont-check">Click here to indicate that you have read and agree to the booking <a href="term-and-condition.php" target="_blank" class="text-primary">terms and conditions</a>.
-                                        <input type="checkbox"   id="agree" style="float: left;margin-right:10px;">
-                                        <span class="checkmark" style="margin-left: 10px;"></span>
-                                    </label>
-                                </div>
-                            </div>
+ 
                             <div class="row" style="margin-top: 15px;">
                                 <div class="col-sm-12 col-xs-12"> 
                                     <button type="submit" id="btnSubmit" class="btn btn-style-3">Submit</button> 
@@ -317,7 +331,7 @@ include_once(dirname(__FILE__) . '/class/include.php');
 <script src="<?php echo actual_link(); ?>js/script.js"></script> 
 <script src="<?php echo actual_link(); ?>distance/jquery.datetimepicker.full.js" type="text/javascript"></script> 
 <script src="<?php echo actual_link(); ?>distance/js/chauffeur.js" type="text/javascript"></script>
-<script src="<?php echo actual_link(); ?>booking-chaufferur/scripts.js" type="text/javascript"></script>
+<script src="booking-chaufferur/scripts.js" type="text/javascript"></script>
 <script>
     jQuery(document).ready(function () {
         jQuery('.date-time-picker').datetimepicker({
@@ -334,7 +348,8 @@ include_once(dirname(__FILE__) . '/class/include.php');
 
 
     $("#txtNationality").countrySelect({
-        preferredCountries: ["lk"]
+        preferredCountries: ["lk"],
+        
     });
 
     blankFlag.call(this);

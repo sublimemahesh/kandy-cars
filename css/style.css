@@ -91,7 +91,7 @@ time, mark, audio, video{
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
- 
+
 
 iframe{width: 100%;}
 
@@ -1456,8 +1456,8 @@ header:not([class*="header"]) .responsive-nav-button{
 .responsive-nav-button:hover{color: #0072bb;}
 
 .responsive-nav-button:before{
-    font-family: 'fontello';
-    content: "\e895";
+    content: "\f039";
+    font-family: FontAwesome;
 }
 
 .header-2 .responsive-nav-button{

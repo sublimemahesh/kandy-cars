@@ -4,8 +4,9 @@ include_once(dirname(__FILE__) . '/class/include.php');
 include './main-fuction.php';
 $id = $_GET['id'];
 $PACKAGE = new Package($id);
+$VEHICLE = new ProductType($PACKAGE->vehicle);
+$VEHICLE_TYPE = new VehicleType($VEHICLE->type);
 
-$PACKAGE = new Package($id);
 
 $ORDER = new Order(NULL);
 $LASTID = $ORDER->getLastID();
@@ -65,7 +66,7 @@ if (isset($_GET["order_id"])) {
             font-size: 14px;
         }
     </style>
-        
+
 </head>
 
 
@@ -515,12 +516,11 @@ if (isset($_GET["order_id"])) {
                     <div class="panel-body"> 
                         <div class="row">
                             <div class="col-md-12" >
-                                
-                                    <?php
-                                    $TERM_AND_CONDITION = new TermAndCondition(1);
-                                    echo $TERM_AND_CONDITION->discription;
-                                    ?>
-                                
+
+                                <?php 
+                                echo $VEHICLE_TYPE->term_and_condition;
+                                ?>
+
                             </div>
                         </div>
                         <p> 

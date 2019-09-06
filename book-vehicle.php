@@ -68,8 +68,7 @@ $id = $_GET['id'];
                                 </h5>
                                 <div class="model-info  pull-right" style="  padding-bottom:12px;">
                                     <div ><a href="packages.php?id=<?php echo $product['id']; ?>" class="btn-2">Packages</a></div>
-                                </div>
-
+                                </div> 
                             </div> 
                         </div> 
                     </div>

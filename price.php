@@ -19,7 +19,7 @@ $PRICE = new Page(3);
     <!--meta info-->
     <meta charset="utf-8">
     <meta name="author" content="">
-     <meta name="keywords" content="rent a car in kandy, kandy rent car ,kandy car rent, rent a car in sri lanka, self drive vehicle rentals, wedding car hire kandy, wedding car hire sri lanka, airport transfer in sri lanka, budget rent a car sri lanka">
+    <meta name="keywords" content="rent a car in kandy, kandy rent car ,kandy car rent, rent a car in sri lanka, self drive vehicle rentals, wedding car hire kandy, wedding car hire sri lanka, airport transfer in sri lanka, budget rent a car sri lanka">
     <meta name="description" content="Kandy Car provide you with access to a variety of luxury automobiles suitable for any occasion according to your choice and for the best deals….">
 
 
@@ -29,12 +29,13 @@ $PRICE = new Page(3);
 
     <!-- Vendor CSS
     ============================================ -->
- <link rel="shortcut icon" href="<?php echo actual_link() ?>./images/logo/img.png">
+    <link rel="shortcut icon" href="<?php echo actual_link() ?>./images/logo/img.png">
     <link rel="stylesheet" href="<?php echo actual_link() ?>font/demo-files/demo.css"><!--
     <link rel="stylesheet" href="plugins/fancybox/jquery.fancybox.css">
     -->  
     <link href="<?php echo actual_link() ?>css/custom.css" rel="stylesheet" type="text/css"/>
-    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
     <!-- CSS theme files
     ============================================ -->
     <link href="<?php echo actual_link() ?>css/bootstrap.css" rel="stylesheet" type="text/css"/>
@@ -42,7 +43,7 @@ $PRICE = new Page(3);
     -->  <link rel="stylesheet" href="<?php echo actual_link() ?>css/owl.carousel.css">
     <link rel="stylesheet" href="<?php echo actual_link() ?>css/style.css">
     <link rel="stylesheet" href="<?php echo actual_link() ?>css/responsive.css">
-      <link href="<?php echo actual_link() ?>css/custom.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo actual_link() ?>css/custom.css" rel="stylesheet" type="text/css"/>
     <style>
         .service-title{
             text-align: center;
@@ -86,7 +87,7 @@ Generic Styling, for Desktops/Laptops
         }
         .table-wrapper-scroll-x {
             display: block;
-/*                        max-height: 200px;*/
+            /*                        max-height: 200px;*/
             overflow-x: auto;
             -ms-overflow-style: -ms-autohiding-scrollbar;
         }
@@ -99,13 +100,13 @@ Generic Styling, for Desktops/Laptops
             }
         }
 
-       
+
     </style>
 </head>
 
 <body>
 
-   
+
 
 
     <!-- - - - - - - - - - - - - - Wrapper - - - - - - - - - - - - - - - - -->
@@ -117,8 +118,8 @@ Generic Styling, for Desktops/Laptops
         <nav id="mobile-advanced" class="mobile-advanced" style="text-align:center;"></nav>
 
         <!-- - - - - - - - - - - - - - Header - - - - - - - - - - - - - - - - -->
-<?php include './header.php'; ?>
- 
+        <?php include './header.php'; ?>
+
         <div  class="container margin-bottom-50 margin-top-75  table-wrapper-scroll-x" >
 
             <?php echo $PRICE->description; ?>
@@ -131,7 +132,7 @@ Generic Styling, for Desktops/Laptops
 
         <!-- - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
 
-<?php include './footer.php'; ?>
+        <?php include './footer.php'; ?>
 
         <!-- - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - -->
 
@@ -144,7 +145,7 @@ Generic Styling, for Desktops/Laptops
     <script src="<?php echo actual_link() ?>js/libs/jquery.modernizr.js"></script>
     <script src="<?php echo actual_link() ?>js/libs/jquery-2.2.4.min.js"></script>
     <script src="<?php echo actual_link() ?>js/libs/jquery-ui.min.js"></script>
-  
+
     <script src="<?php echo actual_link() ?>plugins/owl.carousel.min.js"></script>
 
     <!-- JS theme files
