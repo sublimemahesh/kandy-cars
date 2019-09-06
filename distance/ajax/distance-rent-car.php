@@ -2,12 +2,12 @@
 
 include_once(dirname(__FILE__) . '/../../class/include.php');
 header('Content-type: application/json');
-
+ 
 if ($_POST['action'] == 'OFFICE_PRICE') {
     $price = 0;
     $total_price = 0;
     $payment = 0;
-
+  
     $PRODUCT_TYPE = new Package($_POST['package_id']);
     $charge = $PRODUCT_TYPE->charge;
     $TAX = new Tax(1);

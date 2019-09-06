@@ -3,11 +3,9 @@
 date_default_timezone_set("Asia/Calcutta");
 include_once(dirname(__FILE__) . '/class/include.php');
 
-include './main-fuction.php';
 $id = $_GET['id'];
 $PACKAGE = new Package($id);
-$PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
-;
+$PRODUCT_TYPE = new ProductType($PACKAGE->vehicle); 
 $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
 ?>
 <html lang="en">
@@ -91,7 +89,7 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Package Details - Pick  And Drop ( Date / Time)</div>
                                         <div class="panel-body">
-                                            <div class="col-sm-6 col-xs-12 col-md-12">
+                                            <div class="col-sm-12 col-xs-12 col-md-12">
                                                 <label>Package Name</label>
                                                 <select  style="padding-left: 10px" id="packages" >  
                                                     <option value="0"> -- Select the other packages -- </option>  
@@ -112,7 +110,7 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
                                                 </select>                 
                                             </div>
                                             <div  id="table-bar-display"  > 
-                                                <div class="col-sm-6 col-xs-12 col-md-12">
+                                                <div class="col-sm-12 col-xs-12 col-md-12 table-responsive">
                                                     <table class="table table-bordered">
                                                         <thead>
                                                             <tr>
@@ -131,10 +129,10 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
                                                             <?php echo $PACKAGE->dates ?>
                                                         </td>
                                                         <td>
-                                                            <?php echo $PACKAGE->km ?>
+                                                           <?php echo $PACKAGE->km ?> km
                                                         </td>
                                                         <td>
-                                                            <?php echo $PACKAGE->charge ?>
+                                                            Rs: <?php echo number_format($PACKAGE->charge, 2) ?>
                                                         </td> 
                                                         </tbody>
                                                     </table>

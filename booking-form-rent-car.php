@@ -1,9 +1,8 @@
 <!doctype html>
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
-include './main-fuction.php';
-$id = $_GET['id'];
-$PACKAGE = new Package($id);
+
+$PACKAGE = new Package($package['id']);
 $VEHICLE = new ProductType($PACKAGE->vehicle);
 $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
 
@@ -55,12 +54,12 @@ if (isset($_GET["order_id"])) {
     <link rel="stylesheet" href="<?php echo actual_link() ?>css/responsive.css">
     <link href="<?php echo actual_link() ?>contact-form/style.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo actual_link() ?>css/custom.css" rel="stylesheet" type="text/css"/>
-    <link href="css/jquery.dateselect.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo actual_link() ?>css/jquery.dateselect.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link href="control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
-    <link href="distance/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo actual_link() ?>control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo actual_link() ?>distance/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link href="css/countrySelect.min.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo actual_link() ?>css/countrySelect.min.css" rel="stylesheet" type="text/css"/>
     <style>
         .product-name{
             font-size: 14px;
@@ -155,18 +154,18 @@ if (isset($_GET["order_id"])) {
                                                             <?php echo $PACKAGE->dates ?>
                                                         </td>
                                                         <td>
-                                                            <?php echo $PACKAGE->km ?>
+                                                            <?php echo $PACKAGE->km ?> km
                                                         </td>
                                                         <td>
-                                                            <?php echo $PACKAGE->charge ?>
+                                                            Rs: <?php echo number_format($PACKAGE->charge, 2) ?>
                                                         </td> 
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
                                             <div  id="table-bar" style="display: none"> 
-                                                <div class="col-sm-6 col-xs-12 col-md-12">
-                                                    <table class="table table-bordered">
+                                                <div class="col-sm-6 col-xs-12 col-md-12 table-responsive">
+                                                    <table class="table table-bordered ">
                                                         <thead>
                                                             <tr>
                                                                 <th>Package Name</th>
@@ -264,7 +263,7 @@ if (isset($_GET["order_id"])) {
                                 <div class="row">
                                     <div class="col-sm-12 col-xs-12"> 
                                         <input type="hidden" name="dates" id="dates" value="<?php echo $PACKAGE->dates ?>" />
-                                        <input type="hidden" name="package_id" id="package_id" value="<?php echo $id ?>" />
+                                        <input type="hidden" name="package_id" id="package_id" value="<?php echo $PACKAGE->id ?>" />
                                         <button type="submit" id="next" class="btn btn-style-3 submit">Next</button>
                                     </div>
                                 </div>
@@ -517,7 +516,7 @@ if (isset($_GET["order_id"])) {
                         <div class="row">
                             <div class="col-md-12" >
 
-                                <?php 
+                                <?php
                                 echo $VEHICLE_TYPE->term_and_condition;
                                 ?>
 
@@ -565,8 +564,8 @@ if (isset($_GET["order_id"])) {
 <script src="<?php echo actual_link() ?>js/plugins.js"></script>
 <script src="<?php echo actual_link() ?>js/script.js"></script>
 <script src="<?php echo actual_link() ?>contact-form/scripts.js" type="text/javascript"></script> 
-<script src="distance/jquery.datetimepicker.full.js" type="text/javascript"></script>
-<script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+<script src="<?php echo actual_link() ?>distance/jquery.datetimepicker.full.js" type="text/javascript"></script>
+<script src="<?php echo actual_link() ?>control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
 <script>
     jQuery(document).ready(function () {
         jQuery('.date-time-picker').datetimepicker({
@@ -579,10 +578,10 @@ if (isset($_GET["order_id"])) {
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
-<script src="distance/js/distance-rent-car.js" type="text/javascript"></script>
+<script src="<?php echo actual_link() ?>distance/js/distance-rent-car.js" type="text/javascript"></script>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="js/countrySelect.min.js" type="text/javascript"></script>
+<script src="<?php echo actual_link() ?>js/countrySelect.min.js" type="text/javascript"></script>
 
 
 
