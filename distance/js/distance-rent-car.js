@@ -265,7 +265,7 @@ $("#office,#select_method,#select_method_drop,#origin").change(function () {
         $('#your_location').css("display", "block");
         $('#distance_hide').css("display", "none");
         $('#ex_per_km_hide').css("display", "none");
-        $('#distance_price_hide').css("display", "none"); 
+        $('#distance_price_hide').css("display", "none");
         $('#package_charge_hide').css("display", "none");
         $('#select_method_pick_up_hide').css("display", "none");
         $('#select_method_drop_hide').css("display", "none");
@@ -287,7 +287,7 @@ $("#office,#select_method,#select_method_drop,#origin").change(function () {
 
 
     } else if (select_method_drop == 'Drop From Office' && select_method == 'Home Delivery') {
-        
+
         $('#select_method_drop_hide').css("display", "block");
         $('#distance_hide').css("display", "block");
         $('#ex_per_km_hide').css("display", "block");
@@ -315,7 +315,7 @@ $("#office,#select_method,#select_method_drop,#origin").change(function () {
         $('#select_method_drop_append').empty();
 
     } else if (select_method_drop == 'Drop From Office') {
-         
+
         $('.drop_office').css("display", "block");
         $('#your_drop_location').css("display", "none");
 
@@ -387,7 +387,7 @@ $('#wrapper').on('change', '#packages', function () {
         $('#table-bar').hide();
     } else {
         $.ajax({
-            url: "distance/ajax/distance-rent-car.php",
+            url: "../../distance/ajax/distance-rent-car.php",
             type: "POST",
             data: {
                 package_id: package_id,
@@ -460,7 +460,7 @@ function calPrice() {
     var package_id = $('#package_id').val();
 
     $.ajax({
-        url: "distance/ajax/distance-rent-car.php",
+        url: "../../distance/ajax/distance-rent-car.php",
         type: "POST",
         data: {
             office: office,
@@ -489,7 +489,7 @@ function  calHomePrice() {
     if (pickup != null && destination != null) {
 
         $.ajax({
-            url: "distance/ajax/distance-rent-car.php",
+            url: "../../distance/ajax/distance-rent-car.php",
             type: "POST",
             data: {
                 pickup: pickup,
@@ -542,7 +542,7 @@ function  calHomePrice() {
 
         $('#loading').show();
         $.ajax({
-            url: "distance/ajax/distance-rent-car.php",
+            url: "../../distance/ajax/distance-rent-car.php",
             type: "POST",
             data: {
                 destination: destination,
@@ -597,7 +597,7 @@ function  calHomePrice() {
 function calDropHome() {
     $('#loading').show();
     $.ajax({
-        url: "distance/ajax/distance-rent-car.php",
+        url: "../../distance/ajax/distance-rent-car.php",
         type: "POST",
         data: {
             pickup: pickup,
@@ -653,7 +653,7 @@ $("#next").click(function () {
     var office = $('#office').val();
 
 
-    if (!pick_up_date) {
+    if (!pick_up_date || pick_up_date == 'Pick up Date / Time') {
         swal({
             title: "Hey",
             text: "Please select pickup Pick up Date / Time",
@@ -785,7 +785,7 @@ $("#pay").click(function (event) {
 
         $.ajax({
             type: 'POST',
-            url: 'distance/ajax/pay.php',
+            url: '../../distance/ajax/pay.php',
             dataType: "json",
             data: {
                 fname: fname,

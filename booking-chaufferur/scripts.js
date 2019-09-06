@@ -78,8 +78,7 @@ function validate() {
             validateEmpty("txtDropOfDateTime", "spanDropDateTime") &
             validateEmpty("txtNumAdult", "spanNumAdult") &
             validateEmpty("txtNumChild", "spanNumChild") &
-            validateEmpty("txtAccommodation", "spanAccommodation") &
-            validateEmpty("txtAgrey", "spanAgrey") &
+            validateEmpty("txtAccommodation", "spanAccommodation") & 
             validateEmpty("txtMessage", "spanMessage") &
             validateEmpty("captchacode", "capspan")
             )
@@ -119,7 +118,7 @@ function sendForm() {
     });
 
     jQuery.ajax({
-        url: "booking-chaufferur/send-email.php",
+        url: "../../booking-chaufferur/send-email.php",
         cache: false,
         dataType: "json",
         type: "POST",

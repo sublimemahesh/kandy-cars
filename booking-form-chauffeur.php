@@ -1,7 +1,7 @@
 <!doctype html>
 <?php
 date_default_timezone_set("Asia/Calcutta");
-include './main-fuction.php';
+
 include_once(dirname(__FILE__) . '/class/include.php');
 ?>
 <html lang="en">
@@ -30,9 +30,9 @@ include_once(dirname(__FILE__) . '/class/include.php');
 
     <!-- Vendor CSS
     ============================================ -->
-    <link rel="shortcut icon" href="/images/logo/img.png">
-    <link rel="stylesheet" href="font/demo-files/demo.css">
-    <link rel="stylesheet" href="plugins/fancybox/jquery.fancybox.css">
+    <link rel="shortcut icon" href="<?php echo actual_link(); ?>/images/logo/img.png">
+    <link rel="stylesheet" href="<?php echo actual_link(); ?>font/demo-files/demo.css">
+    <link rel="stylesheet" href="<?php echo actual_link(); ?>plugins/fancybox/jquery.fancybox.css">
 
     <!-- CSS theme files
     ============================================ -->
@@ -71,7 +71,6 @@ include_once(dirname(__FILE__) . '/class/include.php');
             <div class="panel panel-default">
                 <div class="panel-heading text-center"><h4> <b>Chauffeur driven car</b></h4></div>
                 <div class="panel-body" > 
-
                     <div class="col-md-12 question-form bg-sidebar-item">  
                         <div class="contact-form">
                             <div class="row"> 
@@ -113,14 +112,17 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                         <span class="checkmark" style="margin-left: 10px;"></span>
                                     </label>
                                 </div>
+
                                 <div class="col-sm-6 col-xs-12 col-md-2" style="margin-top: 40px">
                                     <label class="cont-check"> Viber
                                         <input type="checkbox" value="Viber"  class="contact_number_type"  id="agree" style="float: left;margin-right:10px;">
                                         <span class="checkmark" style="margin-left: 10px;"></span>
                                     </label>
                                 </div>
+
                             </div>
                             <div class="row"> 
+
                                 <div class="col-sm-6 col-xs-12 col-md-6">
                                     <label>Pick up Date / Time</label>
                                     <input type="text" name="txtPickUpDate" id="txtPickUpDate" class="form-control date-time-picker" data-select="date"  placeholder="Pick Up date / Time">
@@ -136,6 +138,7 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                         <span id="spanDropDateTime" ></span>
                                     </div>
                                 </div> 
+
                             </div>
                             <div class="row"> 
                                 <div class="col-sm-12 col-xs-10 col-md-11">
@@ -164,7 +167,8 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                 </div>  
                             </div>
 
-                            <div class="row"> 
+                            <div class="row">
+
                                 <div class="col-sm-6 col-xs-12 col-md-6">
                                     <label>Number of Adults</label>
                                     <input type="number" name="txtNumAdult"  id="txtNumAdult" class="form-control"    placeholder="Number of Adults" min="0">
@@ -172,21 +176,24 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                         <span id="spanNumAdult" ></span>
                                     </div> 
                                 </div>
+
                                 <div class="col-sm-6 col-xs-12 col-md-6">
                                     <label>Number of Child</label>
                                     <input   type="number" class="form-control" name="txtNumChild" id="txtNumChild"  placeholder="Number of Child" autocomplete="off" min="0"/>
                                     <div class="col-md-12">
                                         <span id="spanNumChild" ></span>
                                     </div>
-
                                 </div>
+
                             </div>
 
                             <div class="row"> 
+
                                 <div class="col-sm-6 col-xs-12 col-md-6">
                                     <label>Accommodation</label>
                                     <select name="txtAccommodation" id="txtAccommodation" class="padd-left" >
-                                        <option value="No Accommodation" selected="" > No Accommodation </option>
+                                        <option value=""  selected=""> -- Please select the Accomadation -- </option>
+                                        <option value="No Accommodation"  > No Accommodation </option>
                                         <option value="Hotels">Hotels</option>                                    
                                         <option value="Planing Trip">Planing Trip</option>                                    
                                         <option value="Tours">Tours</option>                                    
@@ -196,6 +203,7 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                         <span id="spanAccommodation" ></span>
                                     </div>                                
                                 </div>
+
                                 <div class="col-sm-6 col-xs-12 col-md-6">
                                     <label>Vehicle Type and Seats</label>
                                     <select name="txtVehicleName" id="txtVehicleName" class="padd-left" >
@@ -255,11 +263,13 @@ include_once(dirname(__FILE__) . '/class/include.php');
                             </div>
 
                             <div class="row"> 
+
                                 <div class="col-sm-12 col-xs-12 col-md-6">
                                     <label for="comment">Security Code:<span id="star">*</span> </label>
                                     <input type="text" name="captchacode" id="captchacode" class="form-control input-validater" placeholder="Enter the Security Code >> ">
                                     <span id="capspan" ></span>  
-                                </div>   
+                                </div> 
+
                                 <div class=" form-group">
                                     <div class="col-sm-6 col-xs-12"> 
                                         <?php include("./booking-chaufferur/captchacode-widget.php"); ?> 
@@ -267,27 +277,31 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                             <img src="<?php echo actual_link() ?>booking-chaufferur/img/checking.gif" id="checking"/>
                                         </div>
                                     </div>   
-                                </div>  
-                                <div class="col-sm-6 col-xs-12 col-md-4"  >
+                                </div>
 
+                                <div class="col-sm-6 col-xs-12 col-md-4"  > 
                                     <label class="cont-check"> Contact me through email
                                         <input type="checkbox"  value="Contact me through email" class="contact_type" id="agree" style="float: left;margin-right:10px;">
                                         <span class="checkmark" style="margin-left: 10px;"></span>
                                     </label>
                                 </div>
+
                                 <div class="col-sm-6 col-xs-12 col-md-4"  > 
                                     <label class="cont-check"> Contact me over the phone
                                         <input type="checkbox"  value="Contact me over the phone" class="contact_type" id="agree" style="float: left;margin-right:10px;">
                                         <span class="checkmark" style="margin-left: 10px;"></span>
                                     </label>
                                 </div>
+
                             </div>
- 
+
                             <div class="row" style="margin-top: 15px;">
+
                                 <div class="col-sm-12 col-xs-12"> 
                                     <button type="submit" id="btnSubmit" class="btn btn-style-3">Submit</button> 
                                     <div id="dismessage" align="center"></div>
                                 </div>
+
                             </div> 
                         </div>
                     </div>   
@@ -295,86 +309,88 @@ include_once(dirname(__FILE__) . '/class/include.php');
             </div>
         </div> 
     </div>
-</div> 
-<!-- - - - - - - - - - - - - end Content - - - - - - - - - - - - - - - -->
-
-<!-- - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
-
-<?php include './footer.php'; ?>
-
-<!-- - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - -->
-</div>
 
 
-<!-- - - - - - - - - - - - end Wrapper - - - - - - - - - - - - - - -->
-
-<!-- JS Libs & Plugins
-============================================ -->
-<script src="<?php echo actual_link(); ?>js/libs/jquery.modernizr.js"></script>
-<script src="<?php echo actual_link(); ?>js/libs/jquery-2.2.4.min.js"></script>
-<script src="<?php echo actual_link(); ?>control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
+    <?php include './footer.php'; ?>
 
 
-<script src="<?php echo actual_link(); ?>js/libs/jquery-ui.min.js"></script>
-<script src="<?php echo actual_link(); ?>js/libs/retina.min.js"></script>
-<script src="<?php echo actual_link(); ?>plugins/mad.customselect.js"></script>
-<script src="<?php echo actual_link(); ?>plugins/sticky-sidebar.js"></script>
-<script src="<?php echo actual_link(); ?>plugins/isotope.pkgd.min.js"></script>
-<script src="<?php echo actual_link(); ?>plugins/jquery.queryloader2.min.js"></script>
-<script src="<?php echo actual_link(); ?>plugins/bootstrap.js"></script>
-<script src="<?php echo actual_link(); ?>plugins/fancybox/jquery.fancybox.min.js"></script>
-<script src="<?php echo actual_link(); ?>plugins/owl.carousel.min.js"></script>
-<!-- JS theme files
-============================================ -->
-<script src="<?php echo actual_link(); ?>js/plugins.js"></script>
-<script src="<?php echo actual_link(); ?>js/script.js"></script> 
-<script src="<?php echo actual_link(); ?>distance/jquery.datetimepicker.full.js" type="text/javascript"></script> 
-<script src="<?php echo actual_link(); ?>distance/js/chauffeur.js" type="text/javascript"></script>
-<script src="booking-chaufferur/scripts.js" type="text/javascript"></script>
-<script>
-    jQuery(document).ready(function () {
-        jQuery('.date-time-picker').datetimepicker({
-            dateFormat: 'yy-mm-dd',
-            minDate: 'today'
+
+    <!-- JS Libs & Plugins
+    ============================================ -->
+    <script src="<?php echo actual_link(); ?>js/libs/jquery.modernizr.js"></script>
+    <script src="<?php echo actual_link(); ?>js/libs/jquery-2.2.4.min.js"></script>
+    <script src="<?php echo actual_link(); ?>control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
+
+
+    <script src="<?php echo actual_link(); ?>js/libs/jquery-ui.min.js"></script>
+    <script src="<?php echo actual_link(); ?>js/libs/retina.min.js"></script>
+    <script src="<?php echo actual_link(); ?>plugins/mad.customselect.js"></script>
+    <script src="<?php echo actual_link(); ?>plugins/sticky-sidebar.js"></script>
+    <script src="<?php echo actual_link(); ?>plugins/isotope.pkgd.min.js"></script>
+    <script src="<?php echo actual_link(); ?>plugins/jquery.queryloader2.min.js"></script>
+    <script src="<?php echo actual_link(); ?>plugins/bootstrap.js"></script>
+    <script src="<?php echo actual_link(); ?>plugins/fancybox/jquery.fancybox.min.js"></script>
+    <script src="<?php echo actual_link(); ?>plugins/owl.carousel.min.js"></script>
+
+    <!-- 
+    JS theme files
+    ============================================ 
+    -->
+
+
+    <script src="<?php echo actual_link(); ?>js/plugins.js"></script>
+    <script src="<?php echo actual_link(); ?>js/script.js"></script> 
+    <script src="<?php echo actual_link(); ?>distance/js/chauffeur.js" type="text/javascript"></script>
+
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="<?php echo actual_link(); ?>js/countrySelect.min.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+
+
+        $("#txtNationality").countrySelect({
+            preferredCountries: ["lk"],
+
         });
-    });
-</script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="js/countrySelect.min.js" type="text/javascript"></script>
 
+        blankFlag.call(this);
 
-<script type="text/javascript">
+        $("#txtNationality").on('change', blankFlag);
 
+        function blankFlag(e) {
+            if ($('.flag').hasClass('xx')) {
 
-    $("#txtNationality").countrySelect({
-        preferredCountries: ["lk"],
-        
-    });
+                $('.xx').addClass('blank');
 
-    blankFlag.call(this);
+            } else {
 
-    $("#txtNationality").on('change', blankFlag);
-
-    function blankFlag(e) {
-        if ($('.flag').hasClass('xx')) {
-
-            $('.xx').addClass('blank');
-
-        } else {
-
-            return false;
+                return false;
+            }
         }
-    }
 
-// $("#").countrySelect();
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
-    }
-</script>
+        // $("#").countrySelect();
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+        }
+    </script>
 
-<script src="<?php echo actual_link(); ?>code.js" type="text/javascript"></script>
+    <script src="<?php echo actual_link(); ?>distance/jquery.datetimepicker.full.js" type="text/javascript"></script> 
+    <script src="<?php echo actual_link(); ?>code.js" type="text/javascript"></script>
+    <script src="<?php echo actual_link(); ?>booking-chaufferur/scripts.js" type="text/javascript"></script>
 
+    <script>
+
+        jQuery(document).ready(function () {
+            jQuery('.date-time-picker').datetimepicker({
+                dateFormat: 'yy-mm-dd',
+                minDate: 'today'
+            });
+        });
+
+    </script>
 
 </body>
 </html>

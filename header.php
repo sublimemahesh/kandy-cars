@@ -94,7 +94,7 @@ $Contact2 = new Page(9);
                             </li>
                             <li ><a href="<?php echo actual_link() ?>price-list/">Rates</a> </li>
                             <li ><a href="<?php echo actual_link() ?>contact-us">Contact</a> </li> 
-                            <li style="background-color: beige;"><a href="vehicle-type.php">Book Now</a> </li>  
+                            <li style="background-color: beige;"><a href="<?php echo actual_link() ?>vehicle-type/">Book Now</a> </li>  
                         </ul>
                     </nav>
                 </div>
