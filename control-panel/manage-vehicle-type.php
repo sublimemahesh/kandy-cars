@@ -48,20 +48,20 @@ include_once(dirname(__FILE__) . '/auth.php');
                                     $VEHICLE_TYPE = new VehicleType(NULL);
                                     foreach ($VEHICLE_TYPE->all() as $vehicle_type) {
                                         ?>
-                                             <div class="col-md-3" id="div<?php echo $vehicle_type['id']; ?>"  >
-                                                <div class="photo-img-container">
-                                                    <img src="../upload/vehicle_type/<?php echo $vehicle_type['image_name'] ?>" class="img-responsive ">
+                                        <div class="col-md-3" id="div<?php echo $vehicle_type['id']; ?>"  >
+                                            <div class="photo-img-container">
+                                                <img src="../upload/vehicle_type/<?php echo $vehicle_type['image_name'] ?>" class="img-responsive ">
+                                            </div>
+                                            <div class="img-caption">
+                                                <p class="maxlinetitle"><?php echo $vehicle_type['name'] ?></p>
+                                                <div class="d"> 
+                                                    <a href="edit-vehicle-type.php?id=<?php echo $vehicle_type['id']; ?>" title="Edit"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a> | 
+                                                    <a href="arrange-vehicle-type.php?id=<?php echo $vehicle_type['id']; ?>" title="Arrange">  <button class="glyphicon glyphicon-random arrange-btn"></button></a> | 
+                                                    <a href="view-vehicles.php?id=<?php echo $vehicle_type['id'] ?>" title="Add Vehicle">  <button class="glyphicon   glyphicon-scale arrange-btn"></button></a> | 
+                                                    <a href="create-term-condition.php?id=<?php echo $vehicle_type['id'] ?>"  title="Add Term And Condition"> <button class="glyphicon   glyphicon-alert delete-btn"></button></a>
                                                 </div>
-                                                <div class="img-caption">
-                                                    <p class="maxlinetitle"><?php echo $vehicle_type['name'] ?></p>
-                                                    <div class="d">
-<!--                                                        <a href="#"  class="delete-vehicle-type" data-id="<?php echo $vehicle_type['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a>-->
-                                                        <a href="edit-vehicle-type.php?id=<?php echo $vehicle_type['id']; ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a>
-                                                        <a href="arrange-vehicle-type.php?id=<?php echo $vehicle_type['id']; ?>">  <button class="glyphicon glyphicon-random arrange-btn"></button></a>
-                                                        <a href="view-vehicles.php?id=<?php echo $vehicle_type['id'] ?>">  <button class="glyphicon glyphicon-time arrange-btn"></button></a>
-                                                    </div>
-                                                </div>
-                                            </div> 
+                                            </div>
+                                        </div> 
                                     <?php } ?>
                                 </div>  
                             </div>

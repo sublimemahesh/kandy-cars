@@ -1,11 +1,13 @@
 <!doctype html>
 <?php
 date_default_timezone_set("Asia/Calcutta");
-
 include_once(dirname(__FILE__) . '/class/include.php');
 
-
 $PACKAGE = new Package($package['id']);
+
+include './main-fuction.php';
+$id = $_GET['id'];
+$PACKAGE = new Package($id);
 $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
 ?>
 <html lang="en">
@@ -54,6 +56,11 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
     <link href="<?php echo actual_link() ?>distance/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="<?php echo actual_link() ?>css/countrySelect.min.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .product-name{
+            font-size: 14px;
+        }
+    </style>
 </head>
 
 
@@ -498,6 +505,28 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                                 </div>
                             </div> 
                         </span>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-center">
+                            <b>Tearm and Conditions </b> 
+                        </div> 
+                        <div class="panel-body"> 
+                            <div class="row">
+                                <div class="col-md-12" >
+
+                                    <?php
+                                    $TERM_AND_CONDITION = new TermAndCondition(2);
+                                    echo $TERM_AND_CONDITION->discription;
+                                    ?>
+
+                                </div>
+                            </div>
+                            <p> 
+
+
+                            </p>
+                        </div>
                     </div>
                 </div>
 

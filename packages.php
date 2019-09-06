@@ -1,5 +1,10 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
+ include './main-fuction.php';
+
+$id = $_GET['id'];
+$PRODUCT_TYPE = new ProductType($id);
+$VEHICLE_TYPE = new VehicleType($PRODUCT_TYPE->type);
 ?>
 <!doctype html>
 <html lang="en">
@@ -51,10 +56,7 @@ include_once(dirname(__FILE__) . '/class/include.php');
             <div class="row">
 
                 <?php
-                
-                $PRODUCT_TYPE = new ProductType($vehicle['id']);
-                $VEHICLE_TYPE = new VehicleType($PRODUCT_TYPE->type);
-                $PACKAGE = Package::getPackagesByVehicle($vehicle['id']);
+                $PACKAGE = Package::getPackagesByVehicle($id);
                 foreach ($PACKAGE as $key => $package) {
                     ?>
                     <!-- Slide -->                  
@@ -63,12 +65,12 @@ include_once(dirname(__FILE__) . '/class/include.php');
                             <?php
                             if ($VEHICLE_TYPE->id == 1) {
                                 ?>
-                                <a href="<?php echo actual_link(); ?>booking-rent-car/<?php echo str_replace(" ", "-", strtolower($package["title"])); ?>/">
+                                <a href="booking-form-rent-car.php?id=<?php echo $package['id'] ?>">
                                     <img src="<?php echo actual_link() ?>upload/packages/<?php echo $package["image_name"]; ?>" alt="">
                                 </a>
                             <?php } else {
                                 ?>
-                                <a href="<?php echo actual_link(); ?>booking-wedding/<?php echo str_replace(" ", "-", strtolower($package["title"])); ?>/">
+                                <a href="booking-form-wedding-car.php?id=<?php echo $package['id'] ?>">
                                     <img src="<?php echo actual_link() ?>upload/packages/<?php echo $package["image_name"]; ?>" alt="">
                                 </a>
                             <?php } ?>
@@ -109,10 +111,10 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                     <?php
                                     if ($VEHICLE_TYPE->id == 1) {
                                         ?>
-                                        <div><a href="<?php echo actual_link(); ?>booking/<?php echo str_replace(" ", "-", strtolower($package["title"])); ?>/" class="btn-2">Book Now</a></div>
+                                        <div><a href="booking-form-rent-car.php?id=<?php echo $package['id'] ?>" class="btn-2">Book Now</a></div>
                                     <?php } else if ($VEHICLE_TYPE->id == 2) {
                                         ?>
-                                        <div><a href="<?php echo actual_link(); ?>booking-wedding/<?php echo str_replace(" ", "-", strtolower($package["title"])); ?>/" class="btn-2">Book Now</a></div>
+                                        <div><a href="booking-form-wedding-car.php?id=<?php echo $package['id'] ?>" class="btn-2">Book Now</a></div>
 
                                         <?php
                                     } else {

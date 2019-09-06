@@ -2,7 +2,7 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
 include './main-fuction.php';
-$TERM_AND_CONDITION = new TermAndCondition(1);
+$PAGES = new Page(11);
 ?>
 <html lang="en">
 
@@ -14,7 +14,7 @@ $TERM_AND_CONDITION = new TermAndCondition(1);
     <!-- Basic Page Needs
     ================================================== -->
 
-    <title>Booking Rent Car || www.kandycars.lk</title>
+    <title>Term and condition || www.kandycars.lk</title>
 
     <!--meta info-->
 
@@ -67,7 +67,7 @@ $TERM_AND_CONDITION = new TermAndCondition(1);
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h4> <b>Term and Conditions</b></h4></div>
                     <div class="panel-body" > 
-                          <p><?php echo $TERM_AND_CONDITION->discription ?></p>
+                          <p><?php echo $PAGES->description ?></p>
                     </div>
                 </div> 
             </div>

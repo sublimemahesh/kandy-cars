@@ -13,8 +13,8 @@
  */
 class TermAndCondition {
 
-    public $id;
-    public $discription; 
+    public $id; 
+    public $discription;
 
     public function __construct($id) {
         if ($id) {
@@ -25,8 +25,8 @@ class TermAndCondition {
 
             $result = mysql_fetch_array($db->readQuery($query));
 
-            $this->id = $result['id'];
-            $this->discription = $result['discription']; 
+            $this->id = $result['id']; 
+            $this->discription = $result['discription'];
 
             return $this;
         }
@@ -34,7 +34,7 @@ class TermAndCondition {
 
     public function create() {
 
-        $query = "INSERT INTO `term_and_condition` (`discription`) VALUES  ('"               
+        $query = "INSERT INTO `term_and_condition` (`discription`) VALUES  ('"
                 . $this->discription . "')";
 
 
@@ -63,7 +63,7 @@ class TermAndCondition {
         }
 
         return $array_res;
-    } 
+    }
 
     public function update() {
 
@@ -82,6 +82,6 @@ class TermAndCondition {
         }
     }
 
-  
+   
 
 }
