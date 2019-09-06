@@ -13,6 +13,9 @@ jQuery(document).ready(function () {
     jQuery("#txtNationality").blur(function () {
         validateEmpty("txtNationality", "spanNationality");
     });
+    jQuery("#txtMobileNumber").blur(function () {
+        validateEmpty("txtMobileNumber", "spanMobileNumber");
+    });
 
     jQuery("#txtPickUpDate").blur(function () {
         validateEmpty("txtPickUpDate", "spanPickUpDate");
@@ -32,6 +35,10 @@ jQuery(document).ready(function () {
 
     jQuery("#captchacode").blur(function () {
         validateEmpty("captchacode", "capspan");
+    });
+
+    jQuery("#txtMessage").blur(function () {
+        validateEmpty("txtMessage", "spanMessage");
     });
 
     jQuery("#btnSubmit").bind('click', function () {
@@ -66,11 +73,14 @@ function validate() {
             validateEmpty("txtFullName", "spanFullName") &
             ValidateEmail("txtEmail", "spanEmail") &
             validateEmpty("txtNationality", "spanNationality") &
+            validateEmpty("txtMobileNumber", "spanMobileNumber") &
             validateEmpty("txtPickUpDate", "spanPickUpDate") &
             validateEmpty("txtDropOfDateTime", "spanDropDateTime") &
             validateEmpty("txtNumAdult", "spanNumAdult") &
             validateEmpty("txtNumChild", "spanNumChild") &
             validateEmpty("txtAccommodation", "spanAccommodation") &
+            validateEmpty("txtAgrey", "spanAgrey") &
+            validateEmpty("txtMessage", "spanMessage") &
             validateEmpty("captchacode", "capspan")
             )
     {
@@ -87,9 +97,27 @@ function validate() {
 
 function sendForm() {
 
+    var contact_number_type = [];
+    $('.contact_number_type').each(function () {
+        var val = this.checked ? this.value : '';
+        if (val) {
+            contact_number_type.push(val);
+        }
+    });
 
+    var contact_type = [];
+    $('.contact_type').each(function () {
+        var val = this.checked ? this.value : '';
+        if (val) {
+            contact_type.push(val);
+        }
+    });
 
-    alert(jQuery('.destination').val(), );
+    var destination = [];
+    $('.destination').each(function () {
+        destination.push($(this).val());
+    });
+
     jQuery.ajax({
         url: "booking-chaufferur/send-email.php",
         cache: false,
@@ -99,16 +127,27 @@ function sendForm() {
             visitor_name: jQuery('#txtFullName').val(),
             visitor_email: jQuery('#txtEmail').val(),
             visitor_nationality: jQuery('#txtNationality').val(),
+
+            ///
+            visitor_mobile_number: jQuery('#txtMobileNumber').val(),
+            visitor_contact_number_type: contact_number_type,
+            ///
+
             visitor_pickup_date_time: jQuery('#txtPickUpDate').val(),
             visitor_drop_date_time: jQuery('#txtDropOfDateTime').val(),
+
+            ///
             visitor_destination: destination,
+
+            ///
             visitor_number_adults: jQuery('#txtNumAdult').val(),
             visitor_number_child: jQuery('#txtNumChild').val(),
             visitor_accomadation: jQuery('#txtAccommodation').val(),
             visitor_vehicle: jQuery('#txtVehicleName').val(),
             visitor_seat: jQuery('#txtSeat').val(),
+            visitor_message: jQuery('#txtMessage').val(),
             captchacode: jQuery('#captchacode').val(),
-
+            visitor_contact_type: contact_type,
         },
         success: function (html) {
             var status = html.status;

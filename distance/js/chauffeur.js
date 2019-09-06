@@ -42,7 +42,7 @@ $(document).ready(function () {
             var destination = $('#destination').val();
             $('table').show();
             $('.destination').show();
-            $(".inc").append('<tr class="remove-col"><td scope="row"><input type="hidden" name="destination[]" class="destination"><p class="pull-left">' + destination + ' </p></td><td scope="row"> <input type="hidden" name="txtpick_up_location" class="pick_up_location"  id="txtpick_up_location" value="' + destination + '  "> <a href="#" class="remove_this" id="data-id' + destination + '" > <p  >Remove <i class="fa fa-times fa-icion-s " aria-hidden="true"></i></p></a> </td></tr>  ');
+            $(".inc").append('<tr class="remove-col"><td scope="row"><input type="hidden" name="destination" class="destination" value="' + destination + '"><p class="pull-left">' + destination + ' </p></td><td scope="row"> <input type="hidden" name="txtpick_up_location" class="pick_up_location"  id="txtpick_up_location" value="' + destination + '  "> <a href="#" class="remove_this" id="data-id' + destination + '" > <p  >Remove <i class="fa fa-times fa-icion-s " aria-hidden="true"></i></p></a> </td></tr>  ');
 
 
             var pick_up_location = $('#origin').val();

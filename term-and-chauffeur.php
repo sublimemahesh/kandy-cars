@@ -2,6 +2,8 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
 include './main-fuction.php';
+$TERM_AND_CONDITION = new TermAndCondition(3);
+
 ?>
 <html lang="en">
 
@@ -13,7 +15,7 @@ include './main-fuction.php';
     <!-- Basic Page Needs
     ================================================== -->
 
-    <title>Booking Rent Car || www.kandycars.lk</title>
+    <title>Term and condition || www.kandycars.lk</title>
 
     <!--meta info-->
 
@@ -33,52 +35,46 @@ include './main-fuction.php';
     <link rel="stylesheet" href="<?php echo actual_link() ?>font/demo-files/demo.css">
     <link rel="stylesheet" href="<?php echo actual_link() ?>plugins/fancybox/jquery.fancybox.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
     <!-- CSS theme files
     ============================================ -->
     <link href="<?php echo actual_link() ?>css/bootstrap.css" rel="stylesheet" type="text/css"/> 
     <link rel="stylesheet" href="<?php echo actual_link() ?>css/owl.carousel.css">
     <link rel="stylesheet" href="<?php echo actual_link() ?>css/style.css">
-    <link rel="stylesheet" href="<?php echo actual_link() ?>css/responsive.css">  
-    <link href="<?php echo actual_link() ?>css/custom.css" rel="stylesheet" type="text/css"/> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
-
-</head> 
-
-<body>
+    <link rel="stylesheet" href="<?php echo actual_link() ?>css/responsive.css">
+    <link href="<?php echo actual_link() ?>contact-form/style.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo actual_link() ?>css/custom.css" rel="stylesheet" type="text/css"/>
 
 
+</head>
 
-    <div id="wrapper" class="wrapper-container">
 
-        <!-- - - - - - - - - - - - - Mobile Menu - - - - - - - - - - - - - - -->
+<body> 
 
-        <nav id="mobile-advanced" class="mobile-advanced" style="text-align:center;"></nav>
-
+    <div id="wrapper" class="wrapper-container"> 
+        <!-- - - - - - - - - - - - - Mobile Menu - - - - - - - - - - - - - - --> 
+        <nav id="mobile-advanced" class="mobile-advanced" style="text-align:center;"></nav> 
         <!-- - - - - - - - - - - - - - Header - - - - - - - - - - - - - - - - -->
         <?php include './header.php'; ?>
 
         <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
-        <div class="container margin-top-50  "     >  
-            
-        </div>
+        <div class="container margin-top-50  "  >   
+            <div class="col-md-12"  >
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center"><h4> <b>Term and Conditions</b></h4></div>
+                    <div class="panel-body" > 
+                        <p><?php echo $TERM_AND_CONDITION->discription; ?></p>
+                    </div>
+                </div> 
+            </div> 
+        </div>  
+    </div> 
+    <!-- - - - - - - - - - - - - end Content - - - - - - - - - - - - - - - -->
 
+    <!-- - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
 
-    </div>
-</div>
-</div>
-</div> 
+    <?php include './footer.php'; ?>
 
-
-<!-- - - - - - - - - - - - - end Content - - - - - - - - - - - - - - - -->
-
-<!-- - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
-
-<?php include './footer.php'; ?>
-
-<!-- - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - -->
+    <!-- - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - -->
 </div>
 
 
@@ -102,20 +98,9 @@ include './main-fuction.php';
 <script src="<?php echo actual_link() ?>js/plugins.js"></script>
 <script src="<?php echo actual_link() ?>js/script.js"></script>
 <script src="<?php echo actual_link() ?>contact-form/scripts.js" type="text/javascript"></script> 
-<script src="distance/jquery.datetimepicker.full.js" type="text/javascript"></script>
-<script src="control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
-<script>
-    jQuery(document).ready(function () {
-        jQuery('.date-time-picker').datetimepicker({
-            dateFormat: 'yy-mm-dd',
-            minDate: 'today',
-            timeFormat: 'HH:mm:ss',
-        });
-    });
-</script>
 
 
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
-<script src="distance/js/distance-rent-car.js" type="text/javascript"></script>
+
+
 </body>
 </html>

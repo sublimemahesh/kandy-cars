@@ -16,6 +16,7 @@ class VehicleType {
     public $id;
     public $name;
     public $image_name;
+    public $term_and_condition;
     public $sort;
 
     public function __construct($id) {
@@ -30,6 +31,7 @@ class VehicleType {
             $this->id = $result['id'];
             $this->name = $result['name'];
             $this->image_name = $result['image_name'];
+            $this->term_and_condition = $result['term_and_condition'];
             $this->sort = $result['sort'];
 
             return $this;
@@ -74,6 +76,23 @@ class VehicleType {
         $query = "UPDATE  `vehicle_type` SET "
                 . "`name` ='" . $this->name . "', "
                 . "`image_name` ='" . $this->image_name . "' "
+                . "WHERE `id` = '" . $this->id . "'";
+
+        $db = new Database();
+
+        $result = $db->readQuery($query);
+
+        if ($result) {
+            return $this->__construct($this->id);
+        } else {
+            return FALSE;
+        }
+    }
+    
+    public function updateTermAndCondition() {
+
+        $query = "UPDATE  `vehicle_type` SET " 
+                . "`term_and_condition` ='" . $this->term_and_condition . "' "
                 . "WHERE `id` = '" . $this->id . "'";
 
         $db = new Database();

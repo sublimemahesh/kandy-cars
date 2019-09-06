@@ -39,8 +39,7 @@ $PAGES = new Page(11);
     <link href="<?php echo actual_link() ?>css/bootstrap.css" rel="stylesheet" type="text/css"/> 
     <link rel="stylesheet" href="<?php echo actual_link() ?>css/owl.carousel.css">
     <link rel="stylesheet" href="<?php echo actual_link() ?>css/style.css">
-    <link rel="stylesheet" href="<?php echo actual_link() ?>css/responsive.css">
-    <link href="<?php echo actual_link() ?>contact-form/style.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="<?php echo actual_link() ?>css/responsive.css"> 
     <link href="<?php echo actual_link() ?>css/custom.css" rel="stylesheet" type="text/css"/>
 
 

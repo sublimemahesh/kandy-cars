@@ -6,7 +6,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
 $VEHICLE_TYPE = new VehicleType($id);
-$TERM_AND_CONDITION = new TermAndCondition($id); 
+ 
 ?>
 <!DOCTYPE html>
 <html> 
@@ -53,17 +53,17 @@ $TERM_AND_CONDITION = new TermAndCondition($id);
                                 </ul>
                             </div>
                             <div class="body">
-                                <form class="form-horizontal"  method="post" action="post-and-get/term-condition.php" enctype="multipart/form-data"> 
+                                <form class="form-horizontal"  method="post" action="post-and-get/vehicle-type.php" enctype="multipart/form-data"> 
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <label for="description">Description</label>
                                         <div class="form-line">
-                                            <textarea id="description" name="description" class="form-control" rows="5"><?php echo $TERM_AND_CONDITION->discription ?></textarea> 
+                                            <textarea id="description" name="term_and_condition" class="form-control" rows="5"><?php echo $VEHICLE_TYPE->term_and_condition ?></textarea> 
                                         </div>
 
                                     </div>
                                     <div class="col-md-12"> 
                                         <input type="hidden" name="id" value="<?php echo $id ?>">
-                                        <input type="submit" name="update" class="btn btn-primary m-t-15 waves-effect" value="Update"/>
+                                        <input type="submit" name="update-term" class="btn btn-primary m-t-15 waves-effect" value="Update"/>
                                     </div>
                                 </form>
                                 <div class="row clearfix">  </div>

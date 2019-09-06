@@ -3,12 +3,12 @@
 date_default_timezone_set("Asia/Calcutta");
 include_once(dirname(__FILE__) . '/class/include.php');
 
-$PACKAGE = new Package($package['id']);
-
 include './main-fuction.php';
 $id = $_GET['id'];
 $PACKAGE = new Package($id);
 $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
+;
+$VEHICLE_TYPE = new VehicleType($VEHICLE->type);
 ?>
 <html lang="en">
 
@@ -513,19 +513,13 @@ $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
                         </div> 
                         <div class="panel-body"> 
                             <div class="row">
-                                <div class="col-md-12" >
-
+                                <div class="col-md-12" > 
                                     <?php
-                                    $TERM_AND_CONDITION = new TermAndCondition(2);
-                                    echo $TERM_AND_CONDITION->discription;
+                                    echo $VEHICLE_TYPE->term_and_condition;
                                     ?>
 
                                 </div>
-                            </div>
-                            <p> 
-
-
-                            </p>
+                            </div> 
                         </div>
                     </div>
                 </div>
