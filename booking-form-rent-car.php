@@ -64,6 +64,12 @@ if (isset($_GET["order_id"])) {
         .product-name{
             font-size: 14px;
         }
+ 
+        th, td { 
+            width: 100%;
+        }
+
+        tr:nth-child(even){background-color: #f2f2f2}
     </style>
 
 </head>
@@ -111,7 +117,7 @@ if (isset($_GET["order_id"])) {
                             <div class="contact-form">  
                                 <div class="row"> 
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">Package Details - Pick  And Drop ( Date / Time)</div>
+                                        <div class="panel-heading">Package Details - Pick up And Return ( Date / Time)</div>
                                         <div class="panel-body">
                                             <div class="col-sm-6 col-xs-12 col-md-12">
                                                 <label>Package Name</label>
@@ -134,19 +140,19 @@ if (isset($_GET["order_id"])) {
                                                 </select>                 
                                             </div> 
 
-                                            <div  id="table-bar-display"  > 
-                                                <div class="col-sm-6 col-xs-12 col-md-12">
-                                                    <table class="table table-bordered">
+                                            <div  id="table-bar-display"   > 
+                                                <div  class="col-sm-6 col-xs-12 col-md-12" style="display: flex;  overflow: auto;  white-space: nowrap;">
+                                                    <table class="table table-bordered" id="table-res">
                                                         <thead>
                                                             <tr>
-                                                                <th>Package Name</th>
-                                                                <th>Dates</th>
-                                                                <th>Millage Limit</th>
-                                                                <th>Package Price</th>
+                                                                <th>Name</th>
+                                                                <th>Number of dates</th>
+                                                                <th>Mileage Limit</th>
+                                                                <th>Price</th>
 
                                                             </tr>
                                                         </thead>
-                                                        <tbody  >
+                                                        <tbody>
                                                         <td>
                                                             <?php echo $PACKAGE->title ?>
                                                         </td>
@@ -168,10 +174,10 @@ if (isset($_GET["order_id"])) {
                                                     <table class="table table-bordered ">
                                                         <thead>
                                                             <tr>
-                                                                <th>Package Name</th>
-                                                                <th>Dates</th>
-                                                                <th>Millage Limit</th>
-                                                                <th>Package Price</th>
+                                                                <th>Name</th>
+                                                                <th>Number of dates</th>
+                                                                <th>Mileage Limit</th>
+                                                                <th>Price</th>
 
                                                             </tr>
                                                         </thead>
@@ -198,20 +204,20 @@ if (isset($_GET["order_id"])) {
 
                                 <div class="row"> 
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">How to take a vehicle</div>
+                                        <div class="panel-heading">Select pick up location</div>
                                         <div class="panel-body">
                                             <div class="col-sm-6 col-xs-12 col-md-12">
                                                 <select  style="padding-left: 10px" id="select_method"> 
-                                                    <option value="" selected=""> -- How to take a vehicle --</option>
+                                                    <option value="" selected=""> -- Select pick up location --</option>
                                                     <option value="Collect From Office"> Collect From Office </option>  
                                                     <option value="Home Delivery"> Home Delivery </option>
                                                 </select>                 
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="collect_office" style="display: none" > 
-                                                    <label>Your nearest office</label>
+                                                    <label>Select your nearest office</label>
                                                     <select  style="padding-left: 10px"  id="office"> 
-                                                        <option value="" selected=""> -- Select your near Office --</option>
+                                                        <option value="" selected=""> -- Select your nearest office --</option>
                                                         <?php
                                                         $OFFICE = new Office(NULL);
                                                         foreach ($OFFICE->all() as $office) {
@@ -224,7 +230,7 @@ if (isset($_GET["order_id"])) {
 
                                             <div class="col-md-6">
                                                 <div id="your_location" style="display: none" >
-                                                    <label>The place you get the vehicle</label>
+                                                    <label>Where you wont to deliver the vehicle</label>
                                                     <input type="text"  id="origin" class="form-control"  name="name"  placeholder="Your Location" autocomplete="off">                
                                                 </div>
                                             </div> 
@@ -233,12 +239,12 @@ if (isset($_GET["order_id"])) {
                                 </div>
                                 <div class="row"> 
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">How to return a vehicle</div>
+                                        <div class="panel-heading">Select return location </div>
                                         <div class="panel-body"> 
                                             <div class="col-sm-6 col-xs-12 col-md-12" > 
                                                 <select  style="padding-left: 10px"  id="select_method_drop" > 
-                                                    <option value="" selected=""> -- How to return a vehicle --</option>
-                                                    <option value="Drop From Office"> Drop From Office </option>  
+                                                    <option value="" selected=""> -- Select return location --</option>
+                                                    <option value="Drop From Office"> Return at Office </option>  
                                                     <option value="Home Delivery"> Home Delivery </option>
                                                 </select>                 
                                             </div> 
@@ -251,7 +257,7 @@ if (isset($_GET["order_id"])) {
                                             </div>
                                             <div class="col-sm-6 col-xs-12 col-md-6 "  >
                                                 <div  style="display: none" id="your_drop_location">
-                                                    <label>The place you deliver the vehicle</label>
+                                                    <label>Where you return the vehicle</label>
                                                     <input type="text" class="form-control  "  id="destination" name="name"  placeholder="Drop of Your Location" autocomplete="off" >            
                                                 </div>
                                             </div>
@@ -334,7 +340,7 @@ if (isset($_GET["order_id"])) {
 
                             <div class="row"> 
                                 <div class="col-xs-12   " style="margin-bottom: 10px;">  
-                                    <label class="cont-check">Click here to indicate that you have read and agree to the booking <a href="term-and-condition.php" target="_blank" class="text-primary">terms and conditions</a>.
+                                    <label class="cont-check">Click here to accept that you have read and agreed to our terms and conditions regarding reservation  <a href="term-and-condition.php" target="_blank" class="text-primary">terms and conditions</a>.
                                         <input type="checkbox"   id="agree" style="float: left;margin-right:10px;">
                                         <span class="checkmark" style="margin-left: 10px;"></span>
                                     </label>
@@ -372,7 +378,7 @@ if (isset($_GET["order_id"])) {
             <div class="col-md-4"   >
                 <div class="panel panel-default">
                     <div class="panel-heading text-center">
-                        <b>Your Price Summary </b> 
+                        <b>Price Summary </b> 
                     </div> 
                     <div class="panel-body"> 
                         <div class="row">
@@ -510,7 +516,7 @@ if (isset($_GET["order_id"])) {
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading text-center">
-                        <b>Tearm and Conditions </b> 
+                        <b>Terms and Conditions </b> 
                     </div> 
                     <div class="panel-body"> 
                         <div class="row">
