@@ -5,7 +5,7 @@ include_once(dirname(__FILE__) . '/class/include.php');
 
 $id = $_GET['id'];
 $PACKAGE = new Package($id);
-$PRODUCT_TYPE = new ProductType($PACKAGE->vehicle); 
+$PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
 $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
 ?>
 <html lang="en">
@@ -58,6 +58,12 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
         .product-name{
             font-size: 14px;
         }
+
+        th, td { 
+            width: 100%;
+        }
+
+        tr:nth-child(even){background-color: #f2f2f2}
     </style>
 </head>
 
@@ -110,8 +116,8 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
                                                 </select>                 
                                             </div>
                                             <div  id="table-bar-display"  > 
-                                                <div class="col-sm-12 col-xs-12 col-md-12 table-responsive">
-                                                    <table class="table table-bordered">
+                                                <div class="col-sm-12 col-xs-12 col-md-12 table-responsive" style="display: flex;  overflow: auto;  white-space: nowrap;">
+                                                    <table class="table table-bordered" id="table-res">
                                                         <thead>
                                                             <tr>
                                                                 <th>Package Name</th>
@@ -129,7 +135,7 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
                                                             <?php echo $PACKAGE->dates ?>
                                                         </td>
                                                         <td>
-                                                           <?php echo $PACKAGE->km ?> km
+                                                            <?php echo $PACKAGE->km ?> km
                                                         </td>
                                                         <td>
                                                             Rs: <?php echo number_format($PACKAGE->charge, 2) ?>

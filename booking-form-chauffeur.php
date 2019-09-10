@@ -46,11 +46,11 @@ include_once(dirname(__FILE__) . '/class/include.php');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
     <link href="<?php echo actual_link(); ?>css/timepicki.css" rel="stylesheet" type="text/css"/>     
     <link href="<?php echo actual_link(); ?>control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
-    <link href="<?php echo actual_link(); ?>distance/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
+   
     <link href="<?php echo actual_link(); ?>booking-chaufferur/style.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="<?php echo actual_link(); ?>css/countrySelect.min.css" rel="stylesheet" type="text/css"/>
-
+    <link href="<?php echo actual_link(); ?>distance/js/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
 </head>
 
 
@@ -332,7 +332,7 @@ include_once(dirname(__FILE__) . '/class/include.php');
     <script src="<?php echo actual_link(); ?>plugins/bootstrap.js"></script>
     <script src="<?php echo actual_link(); ?>plugins/fancybox/jquery.fancybox.min.js"></script>
     <script src="<?php echo actual_link(); ?>plugins/owl.carousel.min.js"></script>
-
+ 
     <!-- 
     JS theme files
     ============================================ 
@@ -377,20 +377,22 @@ include_once(dirname(__FILE__) . '/class/include.php');
         }
     </script>
 
-    <script src="<?php echo actual_link(); ?>distance/jquery.datetimepicker.full.js" type="text/javascript"></script> 
+    
     <script src="<?php echo actual_link(); ?>code.js" type="text/javascript"></script>
     <script src="<?php echo actual_link(); ?>booking-chaufferur/scripts.js" type="text/javascript"></script>
-
+    <script src="<?php echo actual_link(); ?>distance/js/jquery.datetimepicker.full.js" type="text/javascript"></script>
     <script>
 
         jQuery(document).ready(function () {
-            jQuery('.date-time-picker').datetimepicker({
+            
+            jQuery('#txtDropOfDateTime').datetimepicker({
+                alert();
                 dateFormat: 'yy-mm-dd',
                 minDate: 'today'
             });
         });
 
-    </script>
+    </script> 
 
 </body>
 </html>

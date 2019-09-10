@@ -1,6 +1,6 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
-  
+
 $PRODUCT_TYPE = new ProductType($vehicle['id']);
 $VEHICLE_TYPE = new VehicleType($PRODUCT_TYPE->type);
 ?>
@@ -75,7 +75,18 @@ $VEHICLE_TYPE = new VehicleType($PRODUCT_TYPE->type);
 
 
                             <div class="product-description no-rating">
-                                <h4 class="product-name"><a href=" "><?php echo $package["title"]; ?></a></h4>
+                                <?php
+                                if ($VEHICLE_TYPE->id == 1) {
+                                    ?>
+                                    <h4 class="product-name"><a href="<?php echo actual_link(); ?>booking-rent-car/<?php echo str_replace(" ", "-", strtolower($package["title"])); ?>/"><?php echo $package["title"]; ?></a></h4>
+
+                                <?php } else {
+                                    ?>
+                                    <h4 class="product-name"><a href="<?php echo actual_link(); ?>booking-wedding/<?php echo str_replace(" ", "-", strtolower($package["title"])); ?>/"><?php echo $package["title"]; ?></a></h4>
+
+                                 
+                                <?php } ?>
+
 
                                 <div class="pricing-area">
                                     <div class="product-price new-price"> 
@@ -88,7 +99,7 @@ $VEHICLE_TYPE = new VehicleType($PRODUCT_TYPE->type);
                                         } else {
                                             ?>
                                             <span style="color:#000;font-size:21px;" >Hours</span>
-                                            <?php }
+                                        <?php }
                                         ?>
                                         <span  style="color:#000;font-size:18px;" ><?php echo $package['dates']; ?></span> 
                                     </div>
@@ -109,7 +120,7 @@ $VEHICLE_TYPE = new VehicleType($PRODUCT_TYPE->type);
                                     <?php
                                     if ($VEHICLE_TYPE->id == 1) {
                                         ?>
-                                        <div><a href="<?php echo actual_link(); ?>booking/<?php echo str_replace(" ", "-", strtolower($package["title"])); ?>/" class="btn-2">Book Now</a></div>
+                                        <div><a href="<?php echo actual_link(); ?>booking-rent-car/<?php echo str_replace(" ", "-", strtolower($package["title"])); ?>/" class="btn-2">Book Now</a></div>
                                     <?php } else if ($VEHICLE_TYPE->id == 2) {
                                         ?>
                                         <div><a href="<?php echo actual_link(); ?>booking-wedding/<?php echo str_replace(" ", "-", strtolower($package["title"])); ?>/" class="btn-2">Book Now</a></div>

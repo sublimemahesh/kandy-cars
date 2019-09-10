@@ -764,7 +764,7 @@ $("#pay").click(function (event) {
     } else if ($('#agree').prop("checked") == false) {
         swal({
             title: "Error!",
-            text: "Please enter aggrey with team and conditions",
+            text: "Please accept our term and conditions",
             type: 'error',
             timer: 2000,
             showConfirmButton: false
