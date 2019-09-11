@@ -60,6 +60,8 @@ if (isset($_GET["order_id"])) {
     <link href="<?php echo actual_link() ?>distance/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="<?php echo actual_link() ?>css/countrySelect.min.css" rel="stylesheet" type="text/css"/>
+    
+    <link href="<?php echo actual_link() ?>css/intlTelInput.min.css" rel="stylesheet" type="text/css"/>
     <style>
         .product-name{
             font-size: 14px;
@@ -230,7 +232,7 @@ if (isset($_GET["order_id"])) {
 
                                             <div class="col-md-6">
                                                 <div id="your_location" style="display: none" >
-                                                    <label>Where you wont to deliver the vehicle</label>
+                                                    <label>Where you want us to deliver the vehicle</label>
                                                     <input type="text"  id="origin" class="form-control"  name="name"  placeholder="Your Location" autocomplete="off">                
                                                 </div>
                                             </div> 
@@ -278,7 +280,7 @@ if (isset($_GET["order_id"])) {
                     </div>
                 </div> 
             </div>
-            <div class="col-md-8" id="customer_panel" style="display: none"> 
+            <div class="col-md-8" id="customer_panel" > 
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h4> <b>Customer Details</b></h4></div>
                     <div class="panel-body" > 
@@ -301,7 +303,7 @@ if (isset($_GET["order_id"])) {
                                 </div> 
                                 <div class="col-sm-6 col-xs-12 col-md-6">
                                     <label>Phone Number</label>
-                                    <input type="text" id="phone_number" class="form-control"  name="phone_number"  placeholder="Phone Number"  >            
+                                    <input type="tel" id="phone" class="form-control"  name="phone_number"  placeholder="Phone Number"  >            
                                 </div> 
                             </div>
                             <div class="row">
@@ -419,7 +421,7 @@ if (isset($_GET["order_id"])) {
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row" id="pick_up_office_bar" >
                             <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
                                 <p class="price-summer-p">Pick up office:</p> 
                             </div>
@@ -581,7 +583,7 @@ if (isset($_GET["order_id"])) {
         });
     });
 </script>
-
+<script src="<?php echo actual_link() ?>js/intlTelInput.js" type="text/javascript"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
 <script src="<?php echo actual_link() ?>distance/js/distance-rent-car.js" type="text/javascript"></script>
@@ -589,7 +591,13 @@ if (isset($_GET["order_id"])) {
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="<?php echo actual_link() ?>js/countrySelect.min.js" type="text/javascript"></script>
 
-
+<script>
+    var input = document.querySelector("#phone");
+    window.intlTelInput(input, {
+     
+      utilsScript: "build/js/utils.js",
+    });
+  </script>
 
 <script>
     $("#country").countrySelect({

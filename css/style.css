@@ -1157,8 +1157,8 @@ a.top-tooltip .tooltip:after{
 }
 
 .header-2 .top-header{
-    background-color: #272a30;
-    padding: 40px 0;
+    background-color: #000;
+    
 }
 
 .header-2 #main-navigation > ul,
@@ -1168,7 +1168,7 @@ a.top-tooltip .tooltip:after{
 
 .header-2 #main-navigation > ul > li > a
 {
-    padding: 19px 52px 17px;
+    padding: 19px 63px 17px;
     margin-bottom: 0;
     text-decoration: none;
 }
@@ -8655,7 +8655,7 @@ table tr td.price{
 
 [class*="footer"] .top-footer{
     padding: 75px 0;
-    background: #272a30;
+    background: black;
     color: #999a9d;
     position: relative;
 }

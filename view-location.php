@@ -96,7 +96,7 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                  $LOCATIONS = Activities::all();
                                  foreach ($LOCATIONS as $key => $locations) {
                                      ?>
-                                    <a href="<?php echo actual_link(); ?>travel/<?php echo str_replace(" ", "-", strtolower($locations['title'])); ?>/">
+                                    <a href="<?php echo actual_link(); ?>rent-a-car/<?php echo str_replace(" ", "-", strtolower($locations['title'])); ?>/">
 
                                         <div class="row">
 
