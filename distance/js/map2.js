@@ -124,10 +124,10 @@ $(document).ready(function () {
                 if (jsonStr.status) {
                     $('#distance_append').empty();
                     $('#distance_append').append(jsonStr.distance);
-
-                    $('#Price').empty();
-                    $('#Price').append(jsonStr.price);
-                    $('#loading').hide();
+//
+//                    $('#Price').empty();
+//                    $('#Price').append(jsonStr.price);
+//                    $('#loading').hide();
 
                 }
             }
