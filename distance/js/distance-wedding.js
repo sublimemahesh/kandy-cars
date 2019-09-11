@@ -106,7 +106,7 @@ $(document).ready(function () {
 
 
         $.ajax({
-            url: "distance/ajax/distance-wedding.php",
+            url: "../../distance/ajax/distance-wedding.php",
             type: "POST",
             data: {
                 pickup: pickup,
@@ -155,7 +155,7 @@ $(document).ready(function () {
 
 
         $.ajax({
-            url: "distance/ajax/cal-hours.php",
+            url: "../../distance/ajax/cal-hours.php",
             type: "POST",
             data: {
                 pick_up_date_time: pick_up_date_time,

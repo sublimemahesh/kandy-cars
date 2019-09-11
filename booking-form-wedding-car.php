@@ -3,10 +3,19 @@
 date_default_timezone_set("Asia/Calcutta");
 include_once(dirname(__FILE__) . '/class/include.php');
 
-$id = $_GET['id'];
-$PACKAGE = new Package($id);
-$PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
+$PACKAGE = new Package($package['id']);
+$VEHICLE = new ProductType($PACKAGE->vehicle);
 $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
+$PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
+
+$ORDER = new Order(NULL);
+$LASTID = $ORDER->getLastID();
+$order_id = $LASTID + 1;
+
+if (isset($_GET["order_id"])) {
+    $ID = $_GET["order_id"];
+    $paymentSatusCode = $ORDER->getPaymentStatusCode($ID);
+}
 ?>
 <html lang="en">
 
@@ -20,8 +29,8 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
 
     <title>Book vehicle || www.kandycars.lk</title>
 
-    <!--meta info-->
 
+    <!--meta info-->
     <meta charset="utf-8">
     <meta name="author" content="">
     <meta name="keywords" content="rent a car in kandy, kandy rent car ,kandy car rent, rent a car in sri lanka, self drive vehicle rentals, wedding car hire kandy, wedding car hire sri lanka, airport transfer in sri lanka, budget rent a car sri lanka">
@@ -34,7 +43,7 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
 
     <!-- Vendor CSS
     ============================================ -->
-    <link rel="shortcut icon" href="<?php echo actual_link() ?>/images/logo/img.png">
+    <link rel="shortcut icon" href="<?php echo actual_link() ?>./images/logo/img.png">
     <link rel="stylesheet" href="<?php echo actual_link() ?>font/demo-files/demo.css">
     <link rel="stylesheet" href="<?php echo actual_link() ?>plugins/fancybox/jquery.fancybox.css">
 
@@ -48,8 +57,6 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
     <link href="<?php echo actual_link() ?>css/custom.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo actual_link() ?>css/jquery.dateselect.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link href="<?php echo actual_link() ?>css/timepicki.css" rel="stylesheet" type="text/css"/>    
-    <link href="<?php echo actual_link() ?>booking-form/style.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo actual_link() ?>control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo actual_link() ?>distance/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -67,7 +74,6 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
     </style>
 </head>
 
-
 <body>
 
 
@@ -83,8 +89,29 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
 
         <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
         <div class="container margin-top-50">
-
-            <div class="col-md-8">
+            <div class="alert hidden" id="beautypress-form-msg">
+                <?php
+                if (isset($_GET["order_id"])) {
+                    if ($paymentSatusCode == 2) {
+                        ?>
+                        <div class="alert alert-success alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Success!</strong> Your Payment has been succeeded.
+                        </div>
+                        <?php
+                    } else {
+                        ?>
+                        <div class="alert alert-danger alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Error!</strong> Your Payment was not successful. Please do your reservation again.
+                        </div>
+                        <?php
+                    }
+                }
+                ?>
+            </div>
+            <div class="col-md-8" id="package_panel">
+                <img id="loading" src="https://www.vedantalimited.com/SiteAssets/Images/loading.gif" style="display: none; position: absolute;margin-top: 40%;margin-left: 37%;z-index: 999;"/>
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h4> <b><?php echo $PACKAGE->title ?></b></h4></div>
                     <div class="panel-body" > 
@@ -93,7 +120,7 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
                             <div class="contact-form">
                                 <div class="row">
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">Package Details - Pick  And Drop ( Date / Time)</div>
+                                        <div class="panel-heading">Package Details - Pick Up and Drop Off  ( Date / Time)</div>
                                         <div class="panel-body">
                                             <div class="col-sm-12 col-xs-12 col-md-12">
                                                 <label>Package Name</label>
@@ -122,9 +149,8 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
                                                             <tr>
                                                                 <th>Package Name</th>
                                                                 <th>Hours</th>
-                                                                <th>Millage Limit</th>
+                                                                <th>Mileage Limit</th>
                                                                 <th>Package Price</th>
-
                                                             </tr>
                                                         </thead>
                                                         <tbody  >
@@ -135,15 +161,19 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
                                                             <?php echo $PACKAGE->dates ?>
                                                         </td>
                                                         <td>
-                                                            <?php echo $PACKAGE->km ?> km
+                                                            <?php echo $PACKAGE->km . " Km" ?>
                                                         </td>
                                                         <td>
-                                                            Rs: <?php echo number_format($PACKAGE->charge, 2) ?>
+                                                            <?php echo "Rs:" . $PACKAGE->charge . ".00" ?>
                                                         </td> 
+
                                                         </tbody>
+
                                                     </table>
                                                 </div>
                                             </div>
+                                            <input type="hidden" id="package-tot" value="<?php echo $PACKAGE->charge; ?>">
+                                            <input type="hidden" id="package-distance" value="<?php echo $PACKAGE->km; ?>">
                                             <div  id="table-bar" style="display: none"> 
                                                 <div class="col-sm-6 col-xs-12 col-md-12">
                                                     <table class="table table-bordered">
@@ -151,9 +181,8 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
                                                             <tr>
                                                                 <th>Package Name</th>
                                                                 <th>Hours</th>
-                                                                <th>Millage Limit</th>
+                                                                <th>Mileage Limit</th>
                                                                 <th>Package Price</th>
-
                                                             </tr>
                                                         </thead>
                                                         <tbody id="package_body"> 
@@ -161,28 +190,28 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
                                                         </tbody>
                                                     </table>
                                                 </div>
+
                                             </div>
                                             <div class="col-sm-6 col-xs-12 col-md-6">
                                                 <label>Pick up Date / Time</label>
-                                                <input type="text" name="pick_up_date_time" id="pick_up_date_time" class="form-control date-time-picker" data-select="date"  placeholder="Pick Up date / Time">
+                                                <input type="text" name="pick_up_date_time" id="pick_up_date" class="form-control date-time-picker" data-select="date"  placeholder="Pick Up date / Time">
                                             </div>
                                             <input type="hidden" name="hours" id="hours" value="<?php echo $PACKAGE->dates ?>" />
                                             <div class="col-sm-6 col-xs-12 col-md-6">
-                                                <label>Return Date / Time</label>
-                                                <input class="padd-left" type="text" name="drop_time" id="drop_date_time"  placeholder="Drop off date / Time" autocomplete="off" disabled="TRUE"/>
+                                                <label>Drop Off  Date / Time</label>
+                                                <input class="padd-left" type="text" name="drop_time" id="drop_up_date"  placeholder="Drop off date / Time" autocomplete="off" disabled="TRUE"/>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-
                                 <div class="row"> 
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">How to take the vehicle</div>
+                                        <div class="panel-heading">Select pick up location</div>
                                         <div class="panel-body">
                                             <div class="col-sm-6 col-xs-12 col-md-12">
                                                 <select  style="padding-left: 10px" id="select_method"> 
-                                                    <option value="" selected=""> -- How to take the vehicle --</option>
+                                                    <option value="" selected=""> -- Select pick up location --</option>
                                                     <option value="Collect From Office"> Collect From Office </option>  
                                                     <option value="Home Delivery"> Home Delivery </option>
                                                 </select>                 
@@ -190,8 +219,8 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
                                             <div class="col-md-6">
                                                 <div class="collect_office" style="display: none" > 
                                                     <label>Your nearest office</label>
-                                                    <select  style="padding-left: 10px"  id="office"> 
-                                                        <option value="" selected=""> -- Select your near Office --</option>
+                                                    <select style="padding-left: 10px"  id="office"> 
+                                                        <option value="" selected=""> -- Select your nearest Office --</option>
                                                         <?php
                                                         $OFFICE = new Office(NULL);
                                                         foreach ($OFFICE->all() as $office) {
@@ -204,7 +233,7 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
 
                                             <div class="col-md-6">
                                                 <div id="your_location" style="display: none" >
-                                                    <label>The place you get the vehicle</label>
+                                                    <label>Pickup Location</label>
                                                     <input type="text"  id="origin" class="form-control"  name="name"  placeholder="Your Location" autocomplete="off">                
                                                 </div>
                                             </div> 
@@ -215,8 +244,9 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
 
                                 <div class="row"> 
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">Locations</div>
+                                        <div class="panel-heading">Locations & Destination</div>
                                         <div class="panel-body">
+                                            <p>Please add them sequentially.Last location will be your final destination</p>
                                             <div class="col-sm-12 col-xs-11 col-md-11">
                                                 <div class="controls"> 
                                                     <input type="text" id="destination" class="form-control  " name="text" placeholder="locations" autocomplete="off"/> 
@@ -250,17 +280,15 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
                                         <div class="panel-body">
 
                                             <div class="col-sm-6 col-xs-12 col-md-12">
-
                                                 <select name="decoration" id="decoration" class="padd-left" >
-
-                                                    <option  selected="" >  -- Please select the option --</option>
+                                                    <!--                                                    <option  selected="" >  -- Please select the option --</option>-->
                                                     <option value="0"   > Without decoration </option>
                                                     <option value="1">  With decoration</option>                                    
                                                 </select>
                                             </div> 
                                             <div class="col-sm-6 col-xs-12 col-md-12">
                                                 <div  style="margin-top: 20px; margin-bottom: 20px; " >
-                                                    <div class="owl-carousel container" data-max-items="5" data-item-margin="10" data-dots="false" style="display: none;" id="iteam_show">
+                                                    <div class="owl-carousel container" data-max-items="3" data-item-margin="5" data-dots="false" style="display: none;" id="iteam_show">
                                                         <?php
                                                         $DECORATION = new Decoration(NULL);
                                                         foreach ($DECORATION->getDecorationsByVehicle($PRODUCT_TYPE->id) as $key => $decoration) {
@@ -294,9 +322,9 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
                             <div class="row">
 
                                 <div class="col-sm-12 col-xs-12">
-                                    <input type="hidden" name="package_id" id="package_id" value="<?php echo $id ?>" /> 
+                                    <input type="hidden" name="package_id" id="package_id" value="<?php echo $PACKAGE->id; ?>" /> 
                                     <input type="hidden" name="vehicle_id" id="vehicle_id" value="<?php echo $PACKAGE->vehicle ?>" />
-                                    <button type="submit" id="btnSubmit" class="btn btn-style-3 submit">Next</button> 
+                                    <button type="submit" id="next" class="btn btn-style-3 submit">Next</button> 
                                 </div>
                             </div> 
                         </div>  
@@ -343,7 +371,7 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
                             <div class="row">
                                 <div class="col-sm-6 col-xs-12 col-md-4">
                                     <label>Country</label>
-                                    <input type="text" id="country" class="form-control"  name="country"  placeholder="City"  >            
+                                    <input type="text" id="country" class="form-control"  name="country"  placeholder="Country"  >            
                                 </div>
 
                                 <div class="col-sm-6 col-xs-12 col-md-4">
@@ -377,7 +405,7 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
                             <input type="hidden" name="merchant_id" value="1213021">  
                             <!--live merchant id-->
 
-                            <input type="hidden" name="return_url" value="https://kandycars.lk/booking-form-rent-car.php?id=<?php echo $id ?>">
+                            <input type="hidden" name="return_url" value="https://kandycars.lk/success-payment.php">
                             <input type="hidden" name="cancel_url" value="https://kandycars.lk/order-form.php?cancelled">
                             <input type="hidden" name="notify_url" value="https://kandycars.lk/payments/notify.php">
                             <input type="hidden" name="package_id" id="package_id" value="<?php echo $id ?>" />
@@ -403,117 +431,196 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
             <div class="col-md-4" >
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h4> <b>Your Price Summary </b></h4></div>
-                    <div class="panel-body" > 
-                        <span  class="price-summer-span">
-                            <div class="row">
-                                <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                    <p class="price-summer-p">Pick up D / T: </p>  
-
-                                </div>
-                                <div class="col-md-7">
-                                    <p class="price-summer-p"> <span id="pick_up_date_append"></span> </p> 
-                                </div>
+                    <div class="panel-body"> 
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p">Pick up D / T: </p>  
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                    <p class="price-summer-p">Drop up D / T: </p>  
-
-                                </div>
-                                <div class="col-md-7">
-                                    <p class="price-summer-p"> <span id="drop_up_date_append"></span> </p> 
-                                </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="pick_up_date_append"></span></p> 
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p">Return D / T:</p> 
 
-                            <div class="row">
-                                <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                    <p class="price-summer-p">Office: </p> 
-
-                                </div>
-                                <div class="col-md-7">
-                                    <p class="price-summer-p">  </p> 
-                                </div>
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                    <p class="price-summer-p">Package Price: </p> 
-
-                                </div>
-                                <div class="col-md-7">
-                                    <p class="price-summer-p"> <span id="package_charge"> <?php echo $PACKAGE->charge ?></span></p> 
-                                </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="drop_up_date_append"></span></p>
                             </div>
-                            <div class="row">
-                                <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                    <p class="price-summer-p">Price: </p> 
+                        </div>
 
-                                </div>
-                                <div class="col-md-7">
-                                    <p class="price-summer-p"> </p> 
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                    <p class="price-summer-p">Tax: </p> 
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p">Pick up method:</p>
 
-                                </div>
-                                <div class="col-md-7">
-                                    <p class="price-summer-p">  </p> 
-                                </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                    <p class="price-summer-p">Total Price: </p> 
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="select_method_append"></span></p> 
+                            </div>
+                        </div>
 
-                                </div>
-                                <div class="col-md-7">
-                                    <p class="price-summer-p"> </p> 
-                                </div>
+                        <div class="row" id="select_method_drop_hide" style="display: none">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p">Drop method:</p>
                             </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="select_method_drop_append"></span></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p">Pick up office:</p> 
+                            </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="select_office_append"></span></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p" id="pickup_hide" style="display: none">Pickup:</p>
+                            </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="pickup"></span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p" id="destination_hide" style="display: none">Destination:</p>
+                            </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="drop_location_append"></span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p">Total Distance:</p></div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="destination_distance_append"></span></p>
+                            </div>
+                        </div>
+
+                        <!--                        <div class="row">
+                                                    <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                                        <p class="price-summer-p" id="return_office" style="display: none">Return Office:</p>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <p class="price-summer-p"><span id="select_office_drop_append"></span></p> 
+                                                    </div>
+                                                </div>-->
+
+
+                        <div class="row" id="package_charge_hide" style="display: none">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p"><strong>Package Charge:</strong></p></div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><strong><span id="package_charge"></span></strong></p>
+                            </div>
+                        </div>
+
+                        <div class="row" id="driver_charge_hide" style="display: none">
                             <hr>
-                            <div class="row">
-                                <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                    <p class="price-summer-p">Distance: </p> 
-
-                                </div>
-                                <div class="col-md-7">
-                                    <p class="price-summer-p">  </p> 
-                                </div>
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p">Drive Charge:</p>                            </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="driver_charge"></span></p>
                             </div>
-                            <div class="row">
-                                <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                    <p class="price-summer-p">Per km: </p> 
-
-                                </div>
-                                <div class="col-md-7">
-                                    <p class="price-summer-p"> </p> 
-                                </div>
+                        </div>
+                        <div class="row" id="distance_hide" style="display: none">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p ">Delivery Distance:</p> 
                             </div>
-                            <div class="row">
-                                <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                    <p class="price-summer-p">Distance Price: </p> 
-
-                                </div>
-                                <div class="col-md-7">
-                                    <p class="price-summer-p"> </p> 
-                                </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="distance"></span></p>
                             </div>
-                            <div class="row">
-                                <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                    <p class="price-summer-p">Decoration: </p> 
+                        </div>
+                        <div class="row" id="ex_per_km_hide" style="display: none">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p">Per km:</p></div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="ex_per_km"></span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p" id="distance_price_hide" style="display: none">Distance Charge:</p></div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="distance_price"></span></p>
+                            </div>
+                        </div> 
 
-                                </div>
-                                <div class="col-md-7">
-                                    <p class="price-summer-p"> </p> 
-                                </div>
-                            </div> 
-                        </span>
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p" id="deliver_charge_hide" style="display: none"><strong>Delivery Charges:</strong></p>
+                            </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><strong><span id="deliver_charge"></span></strong></p>
+                                <input type="hidden" id="deliver_charge_number" value="0" />
+                            </div>
+                        </div>
+                        <div class="row" id="extra_mileage_hide" style="display: none">
+                            <hr>
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p">Extra Mileage:</p>   
+                            </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="extra_mileage_append"></span></p>
+                            </div>
+                        </div>
+                        <div class="row" id="extra_price_hide" style="display: none">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p"><strong>Extra Price:</strong></p>   
+                            </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><strong><span id="extra_price_append"></span></strong></p>
+                            </div>
+                            <input type="hidden" id="extra_price" value="0" />
+                        </div>
+                        <hr>
+                        <div class="row"  id="deco_charge_hide" style="display: none">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p"><strong>Decoration:</strong></p>   
+                            </div>
+                            <input type="hidden" id="dec_price" value="0" />
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><strong><span id="decoration_price_append"></span></strong></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p"><strong>Price:</strong></p>   
+                            </div>
+
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><strong><span id="price_id"></span></strong></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p">Tax:</p>      
+                            </div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><span id="tax"></span></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                <p class="price-summer-p"><strong>Total price:</strong></p></div>
+                            <div class="col-md-7">
+                                <p class="price-summer-p"><strong><span class="total_price"></span></strong></p>
+                            </div>
+                        </div>
+
                     </div>
 
                     <div class="panel panel-default">
                         <div class="panel-heading text-center">
-                            <b>Tearm and Conditions </b> 
+                            <b>Terms and Conditions </b> 
                         </div> 
                         <div class="panel-body"> 
                             <div class="row">
@@ -565,7 +672,7 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
                             </div>
                             <div class=" row modal-footer" style="padding: 12px 10px 0px;"> 
                                 <input type="hidden" id="dec_id" value="<?php echo $decoration['id'] ?>" />
-                                <button type="submit" class="  btn-style-3 btn-sm submit decoration_btn" decoration_name="<?php echo $decoration['name'] ?>" decoration_id="<?php echo $decoration['id'] ?>" >Add Now</button>
+                                <button type="submit" data-dismiss="modal" class="btn-style-3 btn-sm submit decoration_btn" decoration-price="<?php echo $decoration['charge']; ?>" decoration-price-string="<?php echo number_format($decoration['charge'], 2); ?>" decoration_name="<?php echo $decoration['name'] ?>" decoration_id="<?php echo $decoration['id'] ?>" >Add Now</button>
                             </div> 
                         </div>
                     </div> 
@@ -605,11 +712,28 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
 <script src="<?php echo actual_link() ?>js/plugins.js"></script>
 <script src="<?php echo actual_link() ?>js/script.js"></script> 
 <script src="<?php echo actual_link() ?>distance/jquery.datetimepicker.full.js" type="text/javascript"></script> 
+<script src="<?php echo actual_link() ?>control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
+<script>
+    jQuery(document).ready(function () {
+        jQuery('.date-time-picker').datetimepicker({
+            dateFormat: 'yy-mm-dd',
+            minDate: 'today',
+            timeFormat: 'HH:mm:ss',
+        });
+    });
+</script>
 <script src="<?php echo actual_link() ?>distance/js/wedding-cars.js" type="text/javascript"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="<?php echo actual_link() ?>js/countrySelect.min.js" type="text/javascript"></script>
 
+<script>
+    $("#country").countrySelect({
+        defaultCountry: "lk",
+        responsiveDropdown: true
+    });
+</script>
 
+<!--
 <script type="text/javascript">
 
 
@@ -643,6 +767,6 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
             minDate: 'today',
         });
     });
-</script>
+</script>-->
 </body>
 </html>
