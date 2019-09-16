@@ -19,6 +19,7 @@ class Order {
     public $postalCode;
     public $package;
     public $amount;
+    public $price_summery;
     public $status;
     public $paymentStatusCode;
     public $deliveryStatus;
@@ -44,6 +45,7 @@ class Order {
             $this->postalCode = $result['postal_code'];
             $this->package = $result['package'];
             $this->amount = $result['amount'];
+            $this->price_summery = $result['price_summery'];
             $this->status = $result['status'];
             $this->paymentStatusCode = $result['payment_status_code'];
             $this->deliveryStatus = $result['delivery_status'];
@@ -66,6 +68,7 @@ class Order {
                 . "`postal_code`,"
                 . "`package`,"
                 . "`amount`,"
+                . "`price_summery`,"
                 . "`status`) VALUES  ("
                 . "'" . $this->orderedAt . "', "
                 . "'" . $this->firstName . "', "
@@ -78,6 +81,7 @@ class Order {
                 . "'" . $this->postalCode . "', "
                 . "'" . $this->package . "', "
                 . "'" . $this->amount . "', "
+                . "'" . $this->price_summery . "', "
                 . "'" . $this->status . "')";
 
         $db = new Database();
@@ -213,7 +217,8 @@ class Order {
         $comany_name = "kandycars";
         $website_name = "www.kandycars.lk";
         $comConNumber = "+94 77 365 7856";
-        $comEmail = "booking@kandycars.lk";
+//        $comEmail = "booking@kandycars.lk";
+        $comEmail = "info@galle.website";
         $site_link = "http://" . $_SERVER['HTTP_HOST'];
 
 
@@ -493,7 +498,7 @@ class Order {
 
 
         $subject = 'Website Order Enquiry  - #' . $this->id;
-        $from = 'info@msrbeauty.com';
+        $from = 'info@galle.website';
 
         date_default_timezone_set('Asia/Colombo');
         $todayis = date("l, F j, Y, g:i a");

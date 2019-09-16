@@ -219,7 +219,7 @@ $("#select_method").change(function () {
         $('.collect_office').css("display", "block");
         $('#your_location').css("display", "none");
         $('#select_method_pick_up_hide').css("display", "block");
-
+        $('#pickup_hide').hide();
 
 //            $('#distance_hide').css("display", "none");
 //            $('#ex_per_km_hide').css("display", "none");
@@ -233,9 +233,15 @@ $("#select_method").change(function () {
 
 //            $('#select_office_append').empty();
 //            $('#select_office_append').append(pickup);
+
+
         $('#select_method_append').empty();
         $('#select_method_append').append(select_method);
         $('#deliver_charge_number').val("0");
+        $('#distance-tot').val("0");
+
+        $('#deliver_charge_hide').hide();
+        calPrice();
 //
 //
 //            $('#distance').empty();
@@ -375,6 +381,9 @@ function calPrice() {
 
 function calDropHome() {
     $('#loading').show();
+
+    var dis_tototal = $('#distance-tot').val();
+
     $.ajax({
         url: "../../distance/ajax/wedding-calculations.php",
         type: "POST",
@@ -388,30 +397,36 @@ function calDropHome() {
         success: function (jsonStr) {
 
             //Empty value
-            $('#distance_id').empty();
-            $('#ex_per_km').empty();
-            $('#driver_charge').empty();
+//            $('#distance_id').empty();
+
+
+//            $('#ex_per_km').empty();
+//            $('#driver_charge').empty();
             $('#deliver_charge').empty();
-            $('#distance').empty();
-            $('#distance_price').empty();
+            $('#destination_distance_append').empty();
+//            $('#distance_price').empty();
             $('#package_charge').empty();
             $('.payment').empty();
             $('#pickup').empty();
+
             //Show val
-            $('#distance_hide').show();
-            $('#ex_per_km_hide').show();
-            $('#distance_price_hide').show();
-            $('#driver_charge_hide').show();
+//            $('#distance_hide').show();
+//      $('#ex_per_km_hide').show();      
+//            $('#distance_price_hide').show();
+//            $('#driver_charge_hide').show();
             $('#package_charge_hide').show();
             $('#deliver_charge_hide').show();
             $('#pickup_hide').show();
             //Append
-            $('#distance').append(jsonStr.distance);
-            $('#ex_per_km').append('Rs: ' + jsonStr.ex_per_km);
-            $('#distance_price').append('Rs: ' + jsonStr.distance_price);
-            $('#driver_charge').append('Rs: ' + jsonStr.driver_charge);
-            $('#deliver_charge').append('Rs: ' + jsonStr.deliver_charge);
-            $('#deliver_charge_number').val(jsonStr.deliver_charge_number);
+
+            $('#destination_distance_append').append(jsonStr.distance);
+            $('#distance-tot').val(jsonStr.distance_numbers);
+
+//            $('#ex_per_km').append('Rs: ' + jsonStr.ex_per_km);
+//            $('#distance_price').append('Rs: ' + jsonStr.distance_price);
+//            $('#driver_charge').append('Rs: ' + jsonStr.driver_charge);
+            $('#deliver_charge').append('Rs: ' + jsonStr.driver_charge);
+            $('#deliver_charge_number').val(jsonStr.driver_charge);
             $('#pickup').append(pickup);
 
             $('#package_charge').append('Rs: ' + jsonStr.charge);
@@ -523,7 +538,7 @@ $("#add-destination").click(function () {
 
     var select_method = $('#select_method').val();
 
-
+    var dis_tot_now = 00;
     var destination = $('#destination').val();
 
     if (!destination) {
@@ -548,10 +563,10 @@ $("#add-destination").click(function () {
             } else if (select_method == 'Home Delivery') {
                 firstpickup = $('#origin').val();
             }
-
-
+            dis_tot_now = $('#distance-tot').val()
         } else {
             firstpickup = lasttr;
+            dis_tot_now = 0.00;
         }
 
         $.ajax({
@@ -559,13 +574,14 @@ $("#add-destination").click(function () {
             type: "POST",
             data: {
                 pickup: firstpickup,
+                dis_tot: dis_tot_now,
                 destination: destination,
             },
             dataType: "JSON",
             success: function (jsonStr) {
                 if (jsonStr.status) {
 
-                    total_distance_cal = parseFloat(total_distance_cal) + parseFloat(jsonStr.distance_numbers);
+                    total_distance_cal = parseFloat(total_distance_cal) + parseFloat(jsonStr.distance_numbers) + parseFloat(dis_tot_now);
 
                     var dis = jsonStr.distance_numbers;
 
@@ -678,7 +694,7 @@ $("#next").click(function () {
     var select_method = $('#select_method').val();
     var office = $('#office').val();
     var dis_tot = $('#distance-tot').val();
-    
+
 
     if (!pick_up_date) {
         swal({
@@ -712,8 +728,7 @@ $("#next").click(function () {
             timer: 3000,
             showConfirmButton: false
         });
-    }
-    else {
+    } else {
         $('#customer_panel').css("display", "block");
         $('#package_panel').css("display", "none");
 
@@ -731,7 +746,7 @@ $("#back").click(function (event) {
 $("#pay").click(function (event) {
     event.preventDefault();
     var captchacode = $('#captchacode').val();
-    
+
     if (!$('#first_name').val() || $('#first_name').val().length === 0) {
         swal({
             title: "Error!",
@@ -814,13 +829,17 @@ $("#pay").click(function (event) {
         var email = $('#email').val();
         var phone = $('#phone_number').val();
         var amount = $('#amount').val();
+        var price_summery = $("#price-summery").html();
 
         var postal_code = $('#postal_code').val();
         var captchacode = $('#captchacode').val();
+        
+//        $("#summery-append").val("");
+//        $("#summery-append").val(summery);
 
         $.ajax({
             type: 'POST',
-            url: '../../distance/ajax/pay.php',
+            url: '../../distance/ajax/pay-wedding.php',
             dataType: "json",
             data: {
                 fname: fname,
@@ -834,12 +853,12 @@ $("#pay").click(function (event) {
                 postal_code: postal_code,
                 amount: amount,
                 captchacode: captchacode,
+                price_summery: price_summery,
                 option: 'PAY'
             },
             success: function (result) {
                 if (result.status == 'success') {
                     $("#payments").submit();
-
                 } else if (result.status == 'error') {
                     swal({
                         title: "Error!",
