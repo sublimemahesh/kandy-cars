@@ -336,7 +336,7 @@ class Order {
                                         <td width="96%" style="border-top:1px solid #000000" >
                                            
                                             <font style="font-family: Verdana, Geneva, sans-serif; color:#1400FF; font-size:14px; " >
-                                                   <h4>&nbsp;&nbsp;&nbsp;Enquiry Details</h4>
+                                                   <h4>&nbsp;&nbsp;&nbsp;Your Details</h4>
                                             </font>
                                             <ul>
                                              <li>
@@ -374,7 +374,7 @@ class Order {
                                                          Country : ' . $this->country . '
                                                     </font>
                                                 </li>
-                                                  <li>
+                                                  
                                                   
                                                 <li>
                                                     <font style="font-family: Verdana, Geneva, sans-serif; color:#68696a; font-size:14px; " >
@@ -397,6 +397,56 @@ class Order {
                                         <td width="2%">&nbsp;</td>
                                     </tr>
                                 </table>
+
+<table style="max-width:660px" width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                                <tr>
+                                    <td bgcolor="#FFFFFF">
+                                        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="color:#6d6e70;font-family:Arial,Helvetica,sans-serif;font-size:18px;font-style:normal;font-weight:bold;line-height:28px;padding:30px 40px 0px 40px" align="left">
+                                                        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td style="padding:25px 25px 0px 25px" bgcolor="#eeeeee">
+                                                                        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td style="font-family:Open Sans,Helvetica,Arial,sans-serif;color:#333333;font-weight:600;text-align:center;font-size:22px;line-height:24px;padding-bottom:15px;padding-top:0;margin:0;border-bottom:1px solid #dddddd" align="center"><span><u>Booking Details.</u></span></td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                       
+                                ' . $this->price_summery . '
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                           <td style="color:#6d6e70;font-family:Arial,Helvetica,sans-serif;font-size:16px;font-style:normal;font-weight:500;line-height:28px;padding:15px 40px 0px 40px" align="left">Thanks for your valuable Booking. <span class="m_-7001215355951597446il"></span> <a style="color:#dd3826;font-size:16px;font-weight:bold;text-decoration:none;font-family:Arial,Helvetica,sans-serif">www.kandycars.lk</a>.</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
                             </td>
                         </tr>
                         <tr>
@@ -493,7 +543,7 @@ class Order {
         $comany_name = "kandycars";
         $website_name = "www.kandycars.lk";
         $comConNumber = "+94 77 365 7856";
-        $comEmail = "booking@kandycars.lk";
+        $comEmail = "dinudhanusha@gmail.com";
         $site_link = "http://" . $_SERVER['HTTP_HOST'];
 
 
@@ -631,6 +681,54 @@ class Order {
                                         <td width="2%">&nbsp;</td>
                                     </tr>
                                 </table>
+                                <table style="max-width:660px" width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                                <tr>
+                                    <td bgcolor="#FFFFFF">
+                                        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="color:#6d6e70;font-family:Arial,Helvetica,sans-serif;font-size:18px;font-style:normal;font-weight:bold;line-height:28px;padding:30px 40px 0px 40px" align="left">
+                                                        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td style="padding:25px 25px 0px 25px" bgcolor="#eeeeee">
+                                                                        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td style="font-family:Open Sans,Helvetica,Arial,sans-serif;color:#333333;font-weight:600;text-align:center;font-size:22px;line-height:24px;padding-bottom:15px;padding-top:0;margin:0;border-bottom:1px solid #dddddd" align="center"><span><u>Booking Details.</u></span></td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                       
+                                ' . $this->price_summery . '
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color:#6d6e70;font-family:Arial,Helvetica,sans-serif;font-size:16px;font-style:normal;font-weight:500;line-height:28px;padding:15px 40px 0px 40px" align="left">Thanks for your valuable Booking. <span class="m_-7001215355951597446il"></span> <a style="color:#dd3826;font-size:16px;font-weight:bold;text-decoration:none;font-family:Arial,Helvetica,sans-serif">www.kandycars.lk</a>.</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                             </td>
                         </tr>
                         <tr>
