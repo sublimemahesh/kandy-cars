@@ -45,8 +45,8 @@ $Contact2 = new Page(9);
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-sm-12 col-xs-12 col-md-4 ">
-                    <div class="logo-wrap">
-                        <a href="<?php echo actual_link() ?>" class="logo"><img src="<?php echo actual_link() ?>images/logo/logo.jpg" alt=""></a>
+                    <div class="logo-wrap" style="padding: 25px;">
+                        <a href="<?php echo actual_link() ?>" class="logo"><img src="<?php echo actual_link() ?>images/logo/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-12 col-xs-12 col-md-4 contact-number-design" style="margin-top: 35px;" >

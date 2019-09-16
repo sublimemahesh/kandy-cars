@@ -16,7 +16,7 @@ $local_md5sig = strtoupper(md5($merchant_id . $order_id . $payhere_amount . $pay
 
 $ORDER = new Order($order_id);
 if (($local_md5sig === $md5sig) AND ( $status_code == 2)) {
-
+     
     $ORDER->paymentStatusCode = $status_code;
     $ORDER->status = 1;
     $result = $ORDER->updatePaymentStatusCodeAndStatus();

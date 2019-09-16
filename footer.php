@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="widget">
-                        <a href="<?php echo actual_link() ?>" class="logo"><img src="<?php echo actual_link() ?>images/logo/logo.jpg" width="200" alt=""></a>
+                        <a href="<?php echo actual_link() ?>" class="logo"><img src="<?php echo actual_link() ?>images/logo/logo.png" width="200" alt=""></a>
                         <ul class="social-icons">
                             <li><a href="#"><i class="icon-facebook"></i></a></li>
                             <li><a href="#"><i class="icon-twitter"></i></a></li>

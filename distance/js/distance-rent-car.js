@@ -180,42 +180,46 @@ $("#office,#select_method,#select_method_drop,#origin").change(function () {
         $('#price_hide').css("display", "block");
         $('#tax_hide').css("display", "block");
         $('.total_price_hide').css("display", "block");
-
         $('#select_method_append').empty();
         $('#select_method_append').append(select_method);
         $('#select_office_append').append(pickup);
         $('#select_method_drop_append').append(select_method_drop);
     }
 
-    if (select_method == '' ) {
-         
-        $('#select_office_append').empty();
-        $('#select_method_drop_append').empty();
-        $('#select_office_drop_append').empty();
+    if (select_method == '') {
 
         $('.collect_office').css("display", "none");
         $('#your_location').css("display", "none");
+
         $('#distance_hide').css("display", "none");
         $('#ex_per_km_hide').css("display", "none");
         $('#distance_price_hide').css("display", "none");
         $('#driver_charge_hide').css("display", "none");
         $('#package_charge_hide').css("display", "none");
         $('#select_method_pick_up_hide').css("display", "none");
-        $('#select_method_drop_hide').css("display", "none"); 
+        $('#select_method_drop_hide').css("display", "none");
+        $('#select_method_drop_hide').css("display", "none");
         $('#price_id').css("display", "none");
         $('#tax').css("display", "none");
         $('.total_price').css("display", "none");
         $('#select_office_append').css("display", "none");
+
         $('#price_hide').css("display", "none");
         $('#tax_hide').css("display", "none");
-        $('.total_price_hide').css("display", "none"); 
+        $('.total_price_hide').css("display", "none");
+        $('#select_office_append').empty();
+        $('#select_method_drop_append').empty();
+        $('#select_office_drop_append').empty();
 
 
     } else if (select_method == 'Collect From Office') {
 
+
         $('.collect_office').css("display", "block");
         $('#your_location').css("display", "none");
         $('#select_method_pick_up_hide').css("display", "block");
+
+
         $('#distance_hide').css("display", "none");
         $('#ex_per_km_hide').css("display", "none");
         $('#distance_price_hide').css("display", "none");
@@ -224,25 +228,39 @@ $("#office,#select_method,#select_method_drop,#origin").change(function () {
         $('#select_method_pick_up_hide').css("display", "none");
         $('#select_method_drop_hide').css("display", "none");
         $('#select_method_pick_up_hide').css("display", "block");
-
         $('#deliver_charge_hide').hide();
 
         $('#select_method_drop_append').empty();
         $('#select_office_append').empty();
+        $('#select_office_append').append(pickup);
 
         $('#distance').empty();
         $('#ex_per_km').empty();
         $('#distance_price').empty();
         $('#driver_charge').empty();
+        $('#deliver_charge').empty();
         $('#origin').val(' ');
+
         $('#package_charge').empty();
         $('#tax').empty();
-        $('.total_price').empty(); 
-        $('#select_office_append').append(pickup);
-        
+        $('.total_price').empty();
+
+        $('#price_id').empty();
+        $('#tax').empty();
+        $('.total_price').empty();
+
+
+
     } else if (select_method == 'Home Delivery') {
 
- 
+        $('#select_method_append').empty();
+        $('#select_office_append').empty();
+        $('#select_office_drop_append').empty();
+
+        $('#select_method_append').append(select_method);
+        $('#select_office_append').append(pickup);
+
+
         $('.collect_office').css("display", "block");
         $('#your_location').css("display", "block");
         $('#distance_hide').css("display", "none");
@@ -258,24 +276,15 @@ $("#office,#select_method,#select_method_drop,#origin").change(function () {
         $('.total_price_hide').css("display", "block");
         $('#destination').val(' ');
 
-        $('#select_method_append').empty();
-        $('#select_office_append').empty();
-        $('#select_office_drop_append').empty();
-        $('#price_id').empty();
-        $('#tax').empty();
-        $('.total_price').empty();
-        $('#select_method_append').append(select_method);
-        $('#select_office_append').append(pickup);
-
     }
 
     if (select_method_drop == '') {
-
         $('.drop_office').css("display", "none");
         $('#drop_office_2').css("display", "none");
         $('#your_drop_location').css("display", "none");
         $('#select_method_drop_hide').css("display", "none");
         $('#destination').empty();
+
 
     } else if (select_method_drop == 'Drop From Office' && select_method == 'Home Delivery') {
 
@@ -286,40 +295,42 @@ $("#office,#select_method,#select_method_drop,#origin").change(function () {
         $('#driver_charge_hide').hide();
         $('#return_office').css("display", "block");
         $('#package_charge_hide').css("display", "block");
+
         $('#distance_price_hide').css("display", "block");
-        $('#your_drop_location').css("display", "none");
+
 
         $('#select_method_pick_up_hide').css("display", "block");
         $('#driver_charge_hide').css("display", "block");
+
         $('#select_method_append').empty();
         $('#select_method_drop_append').empty();
         $('#select_office_append').empty();
-        $('#price_id').empty();
-        $('#tax').empty();
-        $('.total_price').empty();
-        $('#select_office_append').empty();
 
         $('#select_method_append').append(select_method);
+        $('#select_method_drop_append').append('Drop From Office');
         $('#select_office_append').append(pickup);
         $('#select_office_drop_append').append(pickup);
-        $('#select_method_drop_append').append(select_method_drop);
 
+
+        $('#select_method_drop_append').empty();
 
     } else if (select_method_drop == 'Drop From Office') {
-         
+
         $('.drop_office').css("display", "block");
         $('#your_drop_location').css("display", "none");
-        $('#return_office').css("display", "block");
-        $('#select_method_drop_hide').css("display", "block");
-        $('.drop_office').css("display", "block");
-        $('#package_charge_hide').css("display", "none");
 
         $('#select_office_drop_append').empty();
         $('#select_office_append').empty();
         $('#select_method_append').empty();
-        $('#select_method_drop_append').empty(); 
+        $('#select_method_drop_append').empty();
+        $('#select_office_append').empty();
+        $('#select_office_drop_append').empty();
 
-
+        $('#return_office').css("display", "block");
+        $('#select_method_drop_hide').css("display", "block");
+        $('.drop_office').css("display", "block");
+        $('#your_drop_location').css("display", "none");
+        $('#package_charge_hide').css("display", "none");
         $('#select_method_drop_append').append(select_method_drop);
         $('#select_method_append').append(select_method);
         $('#select_office_append').append(pickup);
@@ -329,19 +340,17 @@ $("#office,#select_method,#select_method_drop,#origin").change(function () {
 
 
     } else if (select_method_drop == 'Home Delivery') {
-
         $('#select_method_drop_append').empty();
         $('#select_method_append').empty();
         $('#select_office_append').empty();
-        $('#select_office_drop_append').empty();
+        $('#select_office_append').empty();
         $('#price_id').empty();
         $('#tax').empty();
         $('.total_price').empty();
 
-
         $('#select_method_append').append(select_method);
         $('#select_office_append').append(pickup);
-        $('#select_office_drop_append').append(pickup);
+
         $('#select_method_drop_append').append(select_method_drop);
 
         $('.drop_office').css("display", "block");
@@ -353,6 +362,7 @@ $("#office,#select_method,#select_method_drop,#origin").change(function () {
         $('#distance_price_hide').css("display", "block");
         $('#package_charge_hide').css("display", "none");
     }
+
 
 });
 

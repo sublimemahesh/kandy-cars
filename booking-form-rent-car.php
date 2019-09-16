@@ -60,8 +60,6 @@ if (isset($_GET["order_id"])) {
     <link href="<?php echo actual_link() ?>distance/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="<?php echo actual_link() ?>css/countrySelect.min.css" rel="stylesheet" type="text/css"/>
-    
-    <link href="<?php echo actual_link() ?>css/intlTelInput.min.css" rel="stylesheet" type="text/css"/>
     <style>
         .product-name{
             font-size: 14px;
@@ -280,7 +278,7 @@ if (isset($_GET["order_id"])) {
                     </div>
                 </div> 
             </div>
-            <div class="col-md-8" id="customer_panel" > 
+            <div class="col-md-8" id="customer_panel" style="display: none"> 
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h4> <b>Customer Details</b></h4></div>
                     <div class="panel-body" > 
@@ -303,7 +301,7 @@ if (isset($_GET["order_id"])) {
                                 </div> 
                                 <div class="col-sm-6 col-xs-12 col-md-6">
                                     <label>Phone Number</label>
-                                    <input type="tel" id="phone" class="form-control"  name="phone_number"  placeholder="Phone Number"  >            
+                                    <input type="text" id="phone_number" class="form-control"  name="phone_number"  placeholder="Phone Number"  >            
                                 </div> 
                             </div>
                             <div class="row">
@@ -354,9 +352,9 @@ if (isset($_GET["order_id"])) {
                             <input type="hidden" name="merchant_id" value="1213021">  
                             <!--live merchant id-->
 
-                            <input type="hidden" name="return_url" value="https://kandycars.lk/booking-form-rent-car.php?id=<?php echo $id ?>">
-                            <input type="hidden" name="cancel_url" value="https://kandycars.lk/order-form.php?cancelled">
-                            <input type="hidden" name="notify_url" value="https://kandycars.lk/payments/notify.php">
+                            <input type="hidden" name="return_url" value="https://kandycars.lk/new/booking-form-rent-car.php?id=<?php echo $id ?>">
+                            <input type="hidden" name="cancel_url" value="https://kandycars.lk/new/order-form.php?cancelled">
+                            <input type="hidden" name="notify_url" value="https://kandycars.lk/new/payments/notify.php">
                             <input type="hidden" name="package_id" id="package_id" value="<?php echo $id ?>" />
                             <input name="order_id" id="order_id" type="hidden" value="<?php echo $order_id; ?>" />
                             <input name="amount" id="amount" type="hidden"    class="payment"/>
@@ -583,7 +581,7 @@ if (isset($_GET["order_id"])) {
         });
     });
 </script>
-<script src="<?php echo actual_link() ?>js/intlTelInput.js" type="text/javascript"></script>
+
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
 <script src="<?php echo actual_link() ?>distance/js/distance-rent-car.js" type="text/javascript"></script>
@@ -591,13 +589,7 @@ if (isset($_GET["order_id"])) {
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="<?php echo actual_link() ?>js/countrySelect.min.js" type="text/javascript"></script>
 
-<script>
-    var input = document.querySelector("#phone");
-    window.intlTelInput(input, {
-     
-      utilsScript: "build/js/utils.js",
-    });
-  </script>
+
 
 <script>
     $("#country").countrySelect({
