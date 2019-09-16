@@ -82,8 +82,9 @@ if ($_POST['action'] == 'DISTANCE_BY_HOME_DELIVERY') {
     $json = file_get_contents($url);
     $data = json_decode($json, TRUE);
     $distance = $data['rows'][0]['elements'][0]['distance']['text'];
+    $distance_numbers = strtok($distance, ' ');
 
-    $distance_price = $distance * $extra_per_km;
+    $distance_price = $distance_numbers * $extra_per_km;
     $price = $distance_price;
     $price += $driver_charge;
     $price += $charge;
@@ -99,6 +100,7 @@ if ($_POST['action'] == 'DISTANCE_BY_HOME_DELIVERY') {
         $data_res = array(
             "status" => TRUE,
             "distance" => $distance,
+            "distance_numbers" => $distance_numbers,
             "ex_per_km" => number_format($extra_per_km, 2),
             "distance_price" => number_format($distance_price, 2),
             "charge" => number_format($charge, 2),

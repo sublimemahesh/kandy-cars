@@ -5,7 +5,9 @@ include_once(dirname(__FILE__) . '/class/include.php');
 
 $PACKAGE = new Package($package['id']);
 $VEHICLE = new ProductType($PACKAGE->vehicle);
+
 $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
+
 $PRODUCT_TYPE = new ProductType($PACKAGE->vehicle);
 
 $ORDER = new Order(NULL);
@@ -70,7 +72,7 @@ if (isset($_GET["order_id"])) {
             width: 100%;
         }
 
-        tr:nth-child(even){background-color: #f2f2f2}
+        /*        tr:nth-child(even){background-color: #f2f2f2}*/
     </style>
 </head>
 
@@ -113,15 +115,16 @@ if (isset($_GET["order_id"])) {
             <div class="col-md-8" id="package_panel">
                 <img id="loading" src="https://www.vedantalimited.com/SiteAssets/Images/loading.gif" style="display: none; position: absolute;margin-top: 40%;margin-left: 37%;z-index: 999;"/>
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center"><h4> <b><?php echo $PACKAGE->title ?></b></h4></div>
+                    <div class="panel-heading text-center"><h4> <b><?php echo $VEHICLE->name ?></b></h4></div>
                     <div class="panel-body" > 
 
                         <div class=" question-form bg-sidebar-item">  
-                            <div class="contact-form">
+                            <div class="contact-form"> 
                                 <div class="row">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Package Details - Pick Up and Drop Off  ( Date / Time)</div>
                                         <div class="panel-body">
+
                                             <div class="col-sm-12 col-xs-12 col-md-12">
                                                 <label>Package Name</label>
                                                 <select  style="padding-left: 10px" id="packages" >  
@@ -413,6 +416,7 @@ if (isset($_GET["order_id"])) {
                             <input name="amount" id="amount" type="hidden"    class="payment"/>
                             <input name="items" id="items" type="hidden"   value="1"/>
                             <input type="hidden" name="currency" value="LKR">
+                            <input type="hidden" id="summery-append" name="summery-append" value="">
 
                             <div class="row"> 
                                 <div class="col-sm-6 col-xs-12 col-md-6 pull-left">
@@ -429,131 +433,223 @@ if (isset($_GET["order_id"])) {
             </div> 
 
             <div class="col-md-4" >
-                <div class="panel panel-default">
+
+                <div class="panel panel-default" id="price-summery">
                     <div class="panel-heading text-center"><h4> <b>Your Price Summary </b></h4></div>
-                    <div class="panel-body"> 
-                        <div class="row">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p">Pick up D / T: </p>  
-                            </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="pick_up_date_append"></span></p> 
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p">Return D / T:</p> 
+                    <div class="panel-body" id="price-summery"> 
+                        <table style="width:100%">
+                            <tr>
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%);width: 75%;">Pick up D / T: </th>
+                                <td><p class="price-summer-p"><span id="pick_up_date_append"></span></p> </td>
+                            </tr>
+                            <tr>
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">Return D / T:</th>
+                                <td><p class="price-summer-p"><span id="drop_up_date_append"></span></p></td>
+                            </tr>
+                            <tr>
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">Pick up method:</th>
+                                <td><p class="price-summer-p"><span id="select_method_append"></span></p> </td>
+                            </tr>
+                            <tr id="select_method_drop_hide" style="display: none">
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">Drop method:</th>
+                                <td> <p class="price-summer-p"><span id="select_method_drop_append"></span></p></td>
+                            </tr>
+                            <tr>
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">Pick up office:</th>
+                                <td><p class="price-summer-p"><span id="select_office_append"></span></p></td>
+                            </tr>
+                            <tr id="pickup_hide">
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">Pickup:</th>
+                                <td> <p class="price-summer-p"><span id="pickup"></span></p></td>
+                            </tr>
+                            <tr id="destination_hide" style="display: none">
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">Destination:</th>
+                                <td> <p class="price-summer-p"><span id="drop_location_append"></span></p></td>
+                            </tr>
+                            <tr>
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">Total Distance:</th>
+                                <td>  <p class="price-summer-p"><span id="destination_distance_append"></span></p></td>
+                            </tr>
+                            <tr id="package_charge_hide" style="display: none">
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">Package Charge:</th>
+                                <td><p class="price-summer-p"><strong><span id="package_charge"></span></strong></p></td>
+                            </tr>
 
-                            </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="drop_up_date_append"></span></p>
-                            </div>
-                        </div>
+                            <tr style="border-top: 0.5px solid #b4a8a8; display: none" id="deliver_charge_hide">
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">Delivery Charges:</th>
+                                <td><p class="price-summer-p"><strong><span id="deliver_charge"></span></strong></p></td>
+                            <input type="hidden" id="deliver_charge_number" value="0" />
+                            </tr>
 
-                        <div class="row">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p">Pick up method:</p>
+                            <tr style="border-top: 0.5px solid #b4a8a8;; display: none" id="extra_mileage_hide" >
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">Extra Mileage:</th>
+                                <td> <p class="price-summer-p"><span id="extra_mileage_append"></span></p></td>
+                            </tr>
 
-                            </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="select_method_append"></span></p> 
-                            </div>
-                        </div>
+                            <tr id="extra_price_hide" style="display: none">
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">Extra Price:</th>
+                                <td>  <p class="price-summer-p"><strong><span id="extra_price_append"></span></strong></p></td>
+                            <input type="hidden" id="extra_price" value="0" />
+                            </tr>
 
-                        <div class="row" id="select_method_drop_hide" style="display: none">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p">Drop method:</p>
-                            </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="select_method_drop_append"></span></p>
-                            </div>
-                        </div>
+                            <tr style="border-top: 0.5px solid #b4a8a8;">
 
-                        <div class="row">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p">Pick up office:</p> 
-                            </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="select_office_append"></span></p>
-                            </div>
-                        </div>
+                            </tr>
 
-                        <div class="row">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p" id="pickup_hide" style="display: none">Pickup:</p>
-                            </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="pickup"></span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p" id="destination_hide" style="display: none">Destination:</p>
-                            </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="drop_location_append"></span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p">Total Distance:</p></div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="destination_distance_append"></span></p>
-                            </div>
-                        </div>
+                            <tr style="display: none" id="deco_charge_hide">
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">Decoration:</th>
+                                <td>   <p class="price-summer-p"><strong><span id="decoration_price_append"></span></strong></p></td>
+                            <input type="hidden" id="dec_price" value="0" />
+                            </tr>
+
+                            <tr>
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">Price</th>
+                                <td>  <p class="price-summer-p"><strong><span id="price_id"></span></strong></p></td>
+                            </tr>
+
+                            <tr>
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">Tax</th>
+                                <td>
+                                    <p class="price-summer-p"><span id="tax"></span></p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">Total Price</th>
+                                <td>
+                                    <p class="price-summer-p"><strong><span class="total_price"></span></strong></p>
+                                </td>
+                            </tr>
+
+
+
+
+                        </table>
 
                         <!--                        <div class="row">
                                                     <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                                        <p class="price-summer-p" id="return_office" style="display: none">Return Office:</p>
+                                                        <p class="price-summer-p">Pick up D / T: </p>  
                                                     </div>
                                                     <div class="col-md-7">
-                                                        <p class="price-summer-p"><span id="select_office_drop_append"></span></p> 
+                                                        <p class="price-summer-p"><span id="pick_up_date_append"></span></p> 
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                                        <p class="price-summer-p">Return D / T:</p> 
+                        
+                                                    </div>
+                                                    <div class="col-md-7">
+                        
+                                                    </div>
+                                                </div>
+                        
+                                                <div class="row">
+                                                    <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                                        <p class="price-summer-p">Pick up method:</p>
+                        
+                                                    </div>
+                                                    <div class="col-md-7">
+                        
+                                                    </div>
+                                                </div>
+                        
+                                                <div class="row" id="select_method_drop_hide" style="display: none">
+                                                    <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                                        <p class="price-summer-p">Drop method:</p>
+                                                    </div>
+                                                    <div class="col-md-7">
+                        
+                                                    </div>
+                                                </div>
+                        
+                                                <div class="row">
+                                                    <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                                        <p class="price-summer-p">Pick up office:</p> 
+                                                    </div>
+                                                    <div class="col-md-7">
+                        
+                                                    </div>
+                                                </div>
+                        
+                                                <div class="row" id="pickup_hide">
+                                                    <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                                        <p class="price-summer-p">Pickup:</p>
+                                                    </div>
+                                                    <div class="col-md-7">
+                        
+                                                    </div>
+                                                </div>
+                        
+                                                <div class="row">
+                                                    <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                                        <p class="price-summer-p" id="destination_hide" style="display: none">Destination:</p>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <p class="price-summer-p"><span id="drop_location_append"></span></p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                                        <p class="price-summer-p">Total Distance:</p></div>
+                                                    <div class="col-md-7">
+                                                        <p class="price-summer-p"><span id="destination_distance_append"></span></p>
+                                                    </div>
+                                                </div>
+                        
+                                                                        <div class="row">
+                                                                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                                                                <p class="price-summer-p" id="return_office" style="display: none">Return Office:</p>
+                                                                            </div>
+                                                                            <div class="col-md-7">
+                                                                                <p class="price-summer-p"><span id="select_office_drop_append"></span></p> 
+                                                                            </div>
+                                                                        </div>
+                        
+                        
+                                                <div class="row" id="package_charge_hide" style="display: none">
+                                                    <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                                        <p class="price-summer-p"><strong>Package Charge:</strong></p></div>
+                                                    <div class="col-md-7">
+                                                     
                                                     </div>
                                                 </div>-->
 
-
-                        <div class="row" id="package_charge_hide" style="display: none">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p"><strong>Package Charge:</strong></p></div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><strong><span id="package_charge"></span></strong></p>
-                            </div>
-                        </div>
-
-                        <div class="row" id="driver_charge_hide" style="display: none">
+                        <!--                        <div class="row" id="driver_charge_hide" style="display: none">
+                                                    <hr>
+                                                    <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                                        <p class="price-summer-p">Driver Charge:</p>                            </div>
+                                                    <div class="col-md-7">
+                                                        <p class="price-summer-p"><span id="driver_charge"></span></p>
+                                                    </div>
+                                                </div>-->
+                        <!--                        <div class="row" id="distance_hide" style="display: none">
+                                                    <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                                        <p class="price-summer-p ">Delivery Distance:</p> 
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <p class="price-summer-p"><span id="distance"></span></p>
+                                                    </div>
+                                                </div>-->
+                        <!--                        <div class="row" id="ex_per_km_hide" style="display: none">
+                                                    <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                                        <p class="price-summer-p">Per km:</p></div>
+                                                    <div class="col-md-7">
+                                                        <p class="price-summer-p"><span id="ex_per_km"></span></p>
+                                                    </div>
+                                                </div>-->
+                        <!--                        <div class="row">
+                                                    <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
+                                                        <p class="price-summer-p" id="distance_price_hide" style="display: none">Distance Charge:</p></div>
+                                                    <div class="col-md-7">
+                                                        <p class="price-summer-p"><span id="distance_price"></span></p>
+                                                    </div>
+                                                </div> -->
+<!--
+                        <div class="row" style="display: none" id="deliver_charge_hide" >
                             <hr>
                             <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p">Drive Charge:</p>                            </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="driver_charge"></span></p>
-                            </div>
-                        </div>
-                        <div class="row" id="distance_hide" style="display: none">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p ">Delivery Distance:</p> 
-                            </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="distance"></span></p>
-                            </div>
-                        </div>
-                        <div class="row" id="ex_per_km_hide" style="display: none">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p">Per km:</p></div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="ex_per_km"></span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p" id="distance_price_hide" style="display: none">Distance Charge:</p></div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="distance_price"></span></p>
-                            </div>
-                        </div> 
-
-                        <div class="row">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p" id="deliver_charge_hide" style="display: none"><strong>Delivery Charges:</strong></p>
+                                <p class="price-summer-p"><strong>Delivery Charges:</strong></p>
                             </div>
                             <div class="col-md-7">
                                 <p class="price-summer-p"><strong><span id="deliver_charge"></span></strong></p>
@@ -578,7 +674,7 @@ if (isset($_GET["order_id"])) {
                             </div>
                             <input type="hidden" id="extra_price" value="0" />
                         </div>
-                        <hr>
+
                         <div class="row"  id="deco_charge_hide" style="display: none">
                             <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
                                 <p class="price-summer-p"><strong>Decoration:</strong></p>   
@@ -614,7 +710,7 @@ if (isset($_GET["order_id"])) {
                             <div class="col-md-7">
                                 <p class="price-summer-p"><strong><span class="total_price"></span></strong></p>
                             </div>
-                        </div>
+                        </div>-->
 
                     </div>
 
