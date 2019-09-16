@@ -1,9 +1,16 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
+include './main-fuction.php';
 
 $About = new Page(1);
 $Vission = new Page(7);
 $Mission = new Page(8);
+$ORDER = new Order(NULL);
+
+if (isset($_GET["order_id"])) {
+    $ID = $_GET["order_id"];
+    $paymentSatusCode = $ORDER->getPaymentStatusCode($ID);
+}
 ?> 
 <!doctype html>
 <html lang="en">
@@ -11,7 +18,7 @@ $Mission = new Page(8);
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900%7COverpass:300,400,600,700,800,900" rel="stylesheet">
 
-    <title> About Us || www.kandycars.lk</title>
+    <title> Payment success || www.kandycars.lk</title>
 
     <!--meta info-->
     <meta charset="utf-8">
@@ -43,7 +50,6 @@ $Mission = new Page(8);
         margin: 0 auto;
         text-align: center;
         position: relative;
-        top: 50%;
         transform: perspective(1px) translateY(50%)
     }
     .success-page img{
@@ -55,7 +61,7 @@ $Mission = new Page(8);
     .btn-view-orders{
         display: block;
         border:1px solid #47c7c5;
-        width:100px;
+        width:120px;
         margin: 0 auto;
         margin-top: 45px;
         padding: 10px;
@@ -91,24 +97,49 @@ $Mission = new Page(8);
         <!-- - - - - - - - - - - - - end Header - - - - - - - - - - - - - - - -->
         <section class="hidden-xs hidden-sm">
             <div class="container margin-bottom-40 margin-top-50">
+                <div class="row">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
 
-                <div class="row margin-bottom-40 ">
 
-                    <div class="col-md-12 ">
+                        <?php
+                        if (isset($_GET["order_id"])) {
+                            if ($paymentSatusCode == 2) {
+                                ?>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"> <h2 class="text-center">Payment Successful !</h2></div>
+                                    <div class="panel-body"> 
+                                        <p class="  text-center" style=" color:#47c7c5;">Your Payment was not successful. Please do your reservation again.</p>
+                                        <a href="<?php echo actual_link() ?>home/" class="btn btn-view-orders">Home</a> 
+                                    </div>
+                                </div>
+                                <?php
+                            } else {
+                                ?>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"> <h2 class="text-center">Payment was not successful</h2></div>
+                                    <div class="panel-body"> 
+                                        <p class="text-danger text-center">Your Payment was not successful. Please do your reservation again.</p>
+                                        <a href="<?php echo actual_link() ?>home/" class="btn btn-view-orders">Home</a> 
+                                    </div>
+                                </div>
+                                <?php
+                            }
+                        }
+                        ?>
 
-                        <div class="success-page">
-                            <img  src="http://share.ashiknesin.com/green-checkmark.png" class="center" alt="" />
-                            <h2>Payment Successful !</h2>
-                            <p>We are delighted to inform you that we received your payments</p>
-                            <a href="#" class="btn-view-orders">View Orders</a>
-                            <a href="#">Continue Shopping</a>
+
+
+
+                        <div class="col-md-4">
                         </div>
                     </div>
 
+
+
+
                 </div>
-
-
-            </div>
         </section>
 
 

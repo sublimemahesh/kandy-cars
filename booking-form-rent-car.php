@@ -10,11 +10,6 @@ $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
 $ORDER = new Order(NULL);
 $LASTID = $ORDER->getLastID();
 $order_id = $LASTID + 1;
-
-if (isset($_GET["order_id"])) {
-    $ID = $_GET["order_id"];
-    $paymentSatusCode = $ORDER->getPaymentStatusCode($ID);
-}
 ?>
 <html lang="en">
 
@@ -64,7 +59,7 @@ if (isset($_GET["order_id"])) {
         .product-name{
             font-size: 14px;
         }
- 
+
         th, td { 
             width: 100%;
         }
@@ -84,29 +79,11 @@ if (isset($_GET["order_id"])) {
         <nav id="mobile-advanced" class="mobile-advanced" style="text-align:center;"></nav>
 
         <!-- - - - - - - - - - - - - - Header - - - - - - - - - - - - - - - - -->
-        <?php include './header.php'; ?>
+<?php include './header.php'; ?>
         <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
         <div class="container margin-top-50  "      >  
             <div class="alert hidden" id="beautypress-form-msg">
-                <?php
-                if (isset($_GET["order_id"])) {
-                    if ($paymentSatusCode == 2) {
-                        ?>
-                        <div class="alert alert-success alert-dismissible">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            <strong>Success!</strong> Your Payment has been succeeded.
-                        </div>
-                        <?php
-                    } else {
-                        ?>
-                        <div class="alert alert-danger alert-dismissible">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            <strong>Error!</strong> Your Payment was not successful. Please do your reservation again.
-                        </div>
-                        <?php
-                    }
-                }
-                ?>
+
             </div>
             <div class="col-md-8" id="package_panel">
                 <img id="loading" src="https://www.vedantalimited.com/SiteAssets/Images/loading.gif" style="display: none; position: absolute;margin-top: 40%;margin-left: 37%;z-index: 999;"/>
@@ -123,20 +100,20 @@ if (isset($_GET["order_id"])) {
                                                 <label>Package Name</label>
                                                 <select  style="padding-left: 10px" id="packages" >  
                                                     <option value="0"> -- Select the other packages -- </option>  
-                                                    <?php
-                                                    $PACKAGES = new Package(NULL);
-                                                    foreach ($PACKAGES->getPackagesByVehicle($PACKAGE->vehicle) as $key => $package) {
-                                                        if ($package['id'] == $PACKAGE->id) {
-                                                            ?>
+<?php
+$PACKAGES = new Package(NULL);
+foreach ($PACKAGES->getPackagesByVehicle($PACKAGE->vehicle) as $key => $package) {
+    if ($package['id'] == $PACKAGE->id) {
+        ?>
 
                                                             <option  selected="" value="<?php echo $package['id'] ?>"> <?php echo $package['title'] ?></option>
-                                                        <?php } else { ?>
+    <?php } else { ?>
 
                                                             <option value="<?php echo $package['id'] ?>"> <?php echo $package['title'] ?></option>  
-                                                            <?php
-                                                        }
-                                                    }
-                                                    ?>
+        <?php
+    }
+}
+?>
                                                 </select>                 
                                             </div> 
 
@@ -154,13 +131,13 @@ if (isset($_GET["order_id"])) {
                                                         </thead>
                                                         <tbody>
                                                         <td>
-                                                            <?php echo $PACKAGE->title ?>
+<?php echo $PACKAGE->title ?>
                                                         </td>
                                                         <td>
-                                                            <?php echo $PACKAGE->dates ?>
+<?php echo $PACKAGE->dates ?>
                                                         </td>
                                                         <td>
-                                                            <?php echo $PACKAGE->km ?> km
+<?php echo $PACKAGE->km ?> km
                                                         </td>
                                                         <td>
                                                             Rs: <?php echo number_format($PACKAGE->charge, 2) ?>
@@ -218,10 +195,10 @@ if (isset($_GET["order_id"])) {
                                                     <label>Select your nearest office</label>
                                                     <select  style="padding-left: 10px"  id="office"> 
                                                         <option value="" selected=""> -- Select your nearest office --</option>
-                                                        <?php
-                                                        $OFFICE = new Office(NULL);
-                                                        foreach ($OFFICE->all() as $office) {
-                                                            ?>
+<?php
+$OFFICE = new Office(NULL);
+foreach ($OFFICE->all() as $office) {
+    ?>
                                                             <option value="<?php echo $office['location'] ?>"><?php echo $office['location'] ?> </option>  
                                                         <?php } ?> 
                                                     </select>
@@ -282,95 +259,95 @@ if (isset($_GET["order_id"])) {
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h4> <b>Customer Details</b></h4></div>
                     <div class="panel-body" > 
-
-                        <form name="order_from" id="payments" class="order_from" action="https://sandbox.payhere.lk/pay/checkout" method="post" autocomplete="off">
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-12 col-md-6">
-                                    <label>First Name</label>
-                                    <input type="text" id="first_name" class="form-control"  name="first_name"  placeholder="First Name"  >            
-                                </div> 
-                                <div class="col-sm-6 col-xs-12 col-md-6">
-                                    <label>Last Name</label>
-                                    <input type="text" id="last_name" class="form-control"  name="last_name"  placeholder="Last Name"  >            
-                                </div> 
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-12 col-md-6">
-                                    <label>Email Address</label>
-                                    <input type="text" id="email" class="form-control"  name="email"  placeholder="Email Address"  >            
-                                </div> 
-                                <div class="col-sm-6 col-xs-12 col-md-6">
-                                    <label>Phone Number</label>
-                                    <input type="text" id="phone_number" class="form-control"  name="phone_number"  placeholder="Phone Number"  >            
-                                </div> 
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-12 col-md-6">
-                                    <label>City</label>
-                                    <input type="text" id="city" class="form-control"  name="city"  placeholder="City"  >            
-                                </div> 
-                                <div class="col-sm-6 col-xs-12 col-md-6">
-                                    <label>Address</label>
-                                    <input type="text" id="address" class="form-control"  name="address"  placeholder="Address"  >            
-                                </div> 
-
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-12 col-md-4">
-                                    <label>Country</label>
-                                    <input type="text" id="country" class="form-control"  name="country"  placeholder="City"  >            
-                                </div>
-
-                                <div class="col-sm-6 col-xs-12 col-md-4">
-                                    <label>Security Code</label>
-                                    <input type="text" id="captchacode" class="form-control"  name="captchacode"  placeholder="Security Code"  >            
-                                </div> 
-                                <div class="col-sm-6 col-xs-12 col-md-4">
-                                    <div class="col-sm-6 col-xs-12 col-md-12"> 
-                                        <?php include("./booking-rent-car/captchacode-widget.php"); ?> 
+<!--                        <form name="order_from" id="payments" class="order_from" action="https://www.payhere.lk/pay/checkout" method="post">-->
+                            <form name="order_from" id="payments" class="order_from" action="https://sandbox.payhere.lk/pay/checkout" method="post" autocomplete="off">
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-12 col-md-6">
+                                        <label>First Name</label>
+                                        <input type="text" id="first_name" class="form-control"  name="first_name"  placeholder="First Name"  >            
                                     </div> 
-                                </div> 
-                            </div>
-                            <div class="row hidden">
-                                <div class="col-sm-6 col-xs-12 col-md-12">
-                                    <label>Postal Code</label>
-                                    <input type="text" id="postal_code" class="form-control"  name="postal_code"  placeholder="City"  >            
-                                </div>  
-                            </div>
-
-                            <div class="row"> 
-                                <div class="col-xs-12   " style="margin-bottom: 10px;">  
-                                    <label class="cont-check">Click here to accept that you have read and agreed to our terms and conditions regarding reservation  <a href="term-and-condition.php" target="_blank" class="text-primary">terms and conditions</a>.
-                                        <input type="checkbox"   id="agree" style="float: left;margin-right:10px;">
-                                        <span class="checkmark" style="margin-left: 10px;"></span>
-                                    </label>
+                                    <div class="col-sm-6 col-xs-12 col-md-6">
+                                        <label>Last Name</label>
+                                        <input type="text" id="last_name" class="form-control"  name="last_name"  placeholder="Last Name"  >            
+                                    </div> 
                                 </div>
-                            </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-12 col-md-6">
+                                        <label>Email Address</label>
+                                        <input type="text" id="email" class="form-control"  name="email"  placeholder="Email Address"  >            
+                                    </div> 
+                                    <div class="col-sm-6 col-xs-12 col-md-6">
+                                        <label>Phone Number</label>
+                                        <input type="text" id="phone_number" class="form-control"  name="phone_number"  placeholder="Phone Number"  >            
+                                    </div> 
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-12 col-md-6">
+                                        <label>City</label>
+                                        <input type="text" id="city" class="form-control"  name="city"  placeholder="City"  >            
+                                    </div> 
+                                    <div class="col-sm-6 col-xs-12 col-md-6">
+                                        <label>Address</label>
+                                        <input type="text" id="address" class="form-control"  name="address"  placeholder="Address"  >            
+                                    </div> 
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-12 col-md-4">
+                                        <label>Country</label>
+                                        <input type="text" id="country" class="form-control"  name="country"  placeholder="City"  >            
+                                    </div>
+
+                                    <div class="col-sm-6 col-xs-12 col-md-4">
+                                        <label>Security Code</label>
+                                        <input type="text" id="captchacode" class="form-control"  name="captchacode"  placeholder="Security Code"  >            
+                                    </div> 
+                                    <div class="col-sm-6 col-xs-12 col-md-4">
+                                        <div class="col-sm-6 col-xs-12 col-md-12"> 
+<?php include("./booking-rent-car/captchacode-widget.php"); ?> 
+                                        </div> 
+                                    </div> 
+                                </div>
+                                <div class="row hidden">
+                                    <div class="col-sm-6 col-xs-12 col-md-12">
+                                        <label>Postal Code</label>
+                                        <input type="text" id="postal_code" class="form-control"  name="postal_code"  placeholder="City"  >            
+                                    </div>  
+                                </div>
+
+                                <div class="row"> 
+                                    <div class="col-xs-12   " style="margin-bottom: 10px;">  
+                                        <label class="cont-check">Click here to accept that you have read and agreed to our terms and conditions regarding reservation  <a href="term-and-condition.php" target="_blank" class="text-primary">terms and conditions</a>.
+                                            <input type="checkbox"   id="agree" style="float: left;margin-right:10px;">
+                                            <span class="checkmark" style="margin-left: 10px;"></span>
+                                        </label>
+                                    </div>
+                                </div>
 
 
-                            <!--sandbox merchant id-->
-                            <input type="hidden" name="merchant_id" value="1213021">  
-                            <!--live merchant id-->
+                                <!--sandbox merchant id-->
+                                <input type="hidden" name="merchant_id" value="1213021">  
+                                <!--live merchant id-->
 
-                            <input type="hidden" name="return_url" value="https://kandycars.lk/new/booking-form-rent-car.php?id=<?php echo $id ?>">
-                            <input type="hidden" name="cancel_url" value="https://kandycars.lk/new/order-form.php?cancelled">
-                            <input type="hidden" name="notify_url" value="https://kandycars.lk/new/payments/notify.php">
-                            <input type="hidden" name="package_id" id="package_id" value="<?php echo $id ?>" />
-                            <input name="order_id" id="order_id" type="hidden" value="<?php echo $order_id; ?>" />
-                            <input name="amount" id="amount" type="hidden"    class="payment"/>
-                            <input name="items" id="items" type="hidden"   value="1"/>
-                            <input type="hidden" name="currency" value="LKR">
+                                <input type="hidden" name="return_url" value="https://kandycars.lk/new/payment-success.php?id=<?php echo $id ?>">
+                                <input type="hidden" name="cancel_url" value="https://kandycars.lk/new/order-form.php?cancelled">
+                                <input type="hidden" name="notify_url" value="https://kandycars.lk/new/payments/notify.php">
+                                <input type="hidden" name="package_id" id="package_id" value="<?php echo $id ?>" />
+                                <input name="order_id" id="order_id" type="hidden" value="<?php echo $order_id; ?>" />
+                                <input name="amount" id="amount" type="hidden"    class="payment"/>
+                                <input name="items" id="items" type="hidden"   value="1"/>
+                                <input type="hidden" name="currency" value="LKR">
 
-                            <div class="row"> 
-                                <div class="col-sm-6 col-xs-12 col-md-6 pull-left">
-                                    <button type="submit" id="back" class="btn btn-style-3 submit">Back</button>
-                                </div> 
-                                <div class="col-sm-6 col-xs-12 col-md-3 pull-right">
-                                    <button type="submit" id="pay" class="btn btn-style-3 submit">Pay Now</button>
-                                </div> 
-                            </div>
+                                <div class="row"> 
+                                    <div class="col-sm-6 col-xs-12 col-md-6 pull-left">
+                                        <button type="submit" id="back" class="btn btn-style-3 submit">Back</button>
+                                    </div> 
+                                    <div class="col-sm-6 col-xs-12 col-md-3 pull-right">
+                                        <button type="submit" id="pay" class="btn btn-style-3 submit">Pay Now</button>
+                                    </div> 
+                                </div>
 
-                        </form>
+                            </form>
                     </div>
                 </div> 
             </div> 
@@ -522,16 +499,12 @@ if (isset($_GET["order_id"])) {
                         <div class="row">
                             <div class="col-md-12" >
 
-                                <?php
-                                echo $VEHICLE_TYPE->term_and_condition;
-                                ?>
+<?php
+echo $VEHICLE_TYPE->term_and_condition;
+?>
 
                             </div>
-                        </div>
-                        <p> 
-
-
-                        </p>
+                        </div> 
                     </div>
                 </div>
             </div>  
@@ -544,7 +517,7 @@ if (isset($_GET["order_id"])) {
 
     <!-- - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
 
-    <?php include './footer.php'; ?>
+<?php include './footer.php'; ?>
 
     <!-- - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - -->
 </div>
