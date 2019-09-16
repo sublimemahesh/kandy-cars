@@ -110,7 +110,7 @@ if (isset($_GET["order_id"])) {
                                 <div class="panel panel-default">
                                     <div class="panel-heading"> <h2 class="text-center">Payment Successful !</h2></div>
                                     <div class="panel-body"> 
-                                        <p class="  text-center" style=" color:#47c7c5;">Your Payment was not successful. Please do your reservation again.</p>
+                                        <p class="  text-center" style=" color:#47c7c5;">Your payment has been processed successfully and you booking is confirmed. Please check your email for booking details</p>
                                         <a href="<?php echo actual_link() ?>home/" class="btn btn-view-orders">Home</a> 
                                     </div>
                                 </div>
@@ -118,7 +118,7 @@ if (isset($_GET["order_id"])) {
                             } else {
                                 ?>
                                 <div class="panel panel-default">
-                                    <div class="panel-heading"> <h2 class="text-center">Payment was not successful</h2></div>
+                                    <div class="panel-heading"> <h2 class="text-center">Payment was declined</h2></div>
                                     <div class="panel-body"> 
                                         <p class="text-danger text-center">Your Payment was not successful. Please do your reservation again.</p>
                                         <a href="<?php echo actual_link() ?>home/" class="btn btn-view-orders">Home</a> 
