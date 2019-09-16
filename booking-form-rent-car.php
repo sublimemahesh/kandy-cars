@@ -230,7 +230,7 @@ if (isset($_GET["order_id"])) {
 
                                             <div class="col-md-6">
                                                 <div id="your_location" style="display: none" >
-                                                    <label>Where you wont to deliver the vehicle</label>
+                                                    <label>Where you want us to deliver the vehicle</label>
                                                     <input type="text"  id="origin" class="form-control"  name="name"  placeholder="Your Location" autocomplete="off">                
                                                 </div>
                                             </div> 
@@ -352,9 +352,9 @@ if (isset($_GET["order_id"])) {
                             <input type="hidden" name="merchant_id" value="1213021">  
                             <!--live merchant id-->
 
-                            <input type="hidden" name="return_url" value="https://kandycars.lk/booking-form-rent-car.php?id=<?php echo $id ?>">
-                            <input type="hidden" name="cancel_url" value="https://kandycars.lk/order-form.php?cancelled">
-                            <input type="hidden" name="notify_url" value="https://kandycars.lk/payments/notify.php">
+                            <input type="hidden" name="return_url" value="https://kandycars.lk/new/booking-form-rent-car.php?id=<?php echo $id ?>">
+                            <input type="hidden" name="cancel_url" value="https://kandycars.lk/new/order-form.php?cancelled">
+                            <input type="hidden" name="notify_url" value="https://kandycars.lk/new/payments/notify.php">
                             <input type="hidden" name="package_id" id="package_id" value="<?php echo $id ?>" />
                             <input name="order_id" id="order_id" type="hidden" value="<?php echo $order_id; ?>" />
                             <input name="amount" id="amount" type="hidden"    class="payment"/>
@@ -419,7 +419,7 @@ if (isset($_GET["order_id"])) {
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row" id="pick_up_office_bar" >
                             <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
                                 <p class="price-summer-p">Pick up office:</p> 
                             </div>

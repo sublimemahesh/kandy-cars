@@ -75,15 +75,15 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                     <div class="col-sm-12 col-xs-6">  
                                         <div class="product">
                                             <figure class="product-image">
-                                                <a href="<?php echo actual_link(); ?>travel/<?php echo str_replace(" ", "-", strtolower($location['title'])); ?>/"><img src="<?php echo actual_link() ?>upload/activity/<?php echo $location["image_name"]; ?>" alt=""></a>
+                                                <a href="<?php echo actual_link(); ?>rent-a-car/<?php echo str_replace(" ", "-", strtolower($location['title'])); ?>/"><img src="<?php echo actual_link() ?>upload/activity/<?php echo $location["image_name"]; ?>" alt=""></a>
                                             </figure>
                                             <div class="product-description">
                                                 <div class="col-xs-12">
-                                                    <h5 class="product-name"><a href="<?php echo actual_link(); ?>travel/<?php echo str_replace(" ", "-", strtolower($location['title'])); ?>/"><?php echo $location["title"]; ?></a></h5>
+                                                    <h5 class="product-name"><a href="<?php echo actual_link(); ?>rent-a-car/<?php echo str_replace(" ", "-", strtolower($location['title'])); ?>/"><?php echo $location["title"]; ?></a></h5>
                                                     <p class="text-justify" style="margin-top: 12px;"><?php echo substr($location["description"], 0, 500); ?></p>
                                                 </div>
                                                 <div class="model-info pull-right" style="margin-right: 20px;">
-                                                    <div ><a href="<?php echo actual_link(); ?>travel/<?php echo str_replace(" ", "-", strtolower($location['title'])); ?>/" class="btn-2">View</a></div>
+                                                    <div ><a href="<?php echo actual_link(); ?>rent-a-car/<?php echo str_replace(" ", "-", strtolower($location['title'])); ?>/" class="btn-2">View</a></div>
                                                 </div>
                                             </div>
 

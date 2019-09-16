@@ -10,8 +10,9 @@
                             <li><a href="<?php echo actual_link() ?>about-us/">About Us</a></li>
                             <li><a href="<?php echo actual_link() ?>services/">Services</a></li>
                             <li><a href="<?php echo actual_link() ?>vehicles/">Vehicle</a></li>
-                            <li> <a href="<?php echo actual_link() ?>travel/">RENT</a>  </li> 
+                            <li> <a href="<?php echo actual_link() ?>rent-a-car/">Rent</a>  </li> 
                             <li><a href="<?php echo actual_link() ?>gallery/">Gallery</a></li>
+                              <li ><a href="<?php echo actual_link() ?>compare-vehicle-rates-price-list/">Rates</a> </li>
                             <li><a href="<?php echo actual_link() ?>price-list/">Price List</a></li>
                             <li><a href="<?php echo actual_link() ?>contact-us/">Contact Us</a></li>
                             <li><a href="term-and-condition.php">Term and Conditions</a></li>
@@ -20,7 +21,7 @@
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="widget">
-                        <a href="<?php echo actual_link() ?>" class="logo"><img src="<?php echo actual_link() ?>images/logo/logo-1.png" width="200" alt=""></a>
+                        <a href="<?php echo actual_link() ?>" class="logo"><img src="<?php echo actual_link() ?>images/logo/logo.png" width="200" alt=""></a>
                         <ul class="social-icons">
                             <li><a href="#"><i class="icon-facebook"></i></a></li>
                             <li><a href="#"><i class="icon-twitter"></i></a></li>

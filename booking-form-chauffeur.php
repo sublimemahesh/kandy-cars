@@ -239,7 +239,7 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                         <option value="Benz E Class Soft Top">Benz E Class Soft Top </option>     
                                         <option value="convertible car">convertible car </option>     
                                         <option value="Toyota Voxy van (5 seats)">Toyota Voxy van (5 seats) </option>     
-                                        <option value="Cars - 3 seats">Cars - 3 seats</option>     
+                                        <option value="Cars - (3 seats)">Cars - 3 seats</option>     
                                         <option value="Mini suv s - 3 seats">Mini suv s - 3 seats</option>     
                                         <option value="Suv s - 7 seats(exluding driving seats) ">Suv s - 7 seats(exluding driving seats) </option>     
                                         <option value="Toyota KDH Flat roof van (7 or 8 seats) "> Toyota KDH Flat roof van (7 or 8 seats) </option>     

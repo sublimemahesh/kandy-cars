@@ -77,7 +77,7 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                         ?>
 
                                         <div>
-                                            <a href="booking-form-chauffeur.php" class="btn-2">Contact</a>
+                                            <a href="<?php echo actual_link(); ?>vehicle-type/<?php echo str_replace(" ", "-", strtolower($vehicle_type['name'])); ?>/" class="btn-2">Contact</a>
                                         </div>
                                     <?php } else { ?>
                                         <div>

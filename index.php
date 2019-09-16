@@ -18,7 +18,7 @@ if ($params[2] == '' || $params[2] == '') {
 } elseif ($params[2] == 'about-us') {
     include './about.php';
     exit();
-} elseif ($params[2] == 'travel') {
+} elseif ($params[2] == 'rent-a-car') {
 
     $title = str_replace("-", " ", strtolower($params[3]));
 
@@ -206,7 +206,7 @@ if ($params[2] == '' || $params[2] == '') {
 } elseif ($params[2] == 'gallery') {
     include './gallery.php';
     exit();
-} elseif ($params[2] == 'price-list') {
+} elseif ($params[2] == 'compare-vehicle-rates-price-list') {
     include './price.php';
     exit();
 } elseif ($params[2] == 'contact-us') {
