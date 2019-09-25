@@ -23,6 +23,7 @@ class Package {
     public $charge;
     public $driver_charge;
     public $ex_per_km;
+    public $per_additional_day;
     public $queue;
 
     public function __construct($id) {
@@ -44,6 +45,7 @@ class Package {
             $this->charge = $result['charge'];
             $this->driver_charge = $result['driver_charge'];
             $this->ex_per_km = $result['ex_per_km'];
+            $this->per_additional_day = $result['per_additional_day'];
             $this->queue = $result['queue'];
 
             return $this;
@@ -52,7 +54,7 @@ class Package {
 
     public function create() {
 
-        $query = "INSERT INTO `package` (`vehicle`,`title`,`image_name`,`short_description`,`dates`,`km`,`charge`,`driver_charge`,`ex_per_km`,`queue`) VALUES  ('"
+        $query = "INSERT INTO `package` (`vehicle`,`title`,`image_name`,`short_description`,`dates`,`km`,`charge`,`driver_charge`,`ex_per_km`,`per_additional_day`,`queue`) VALUES  ('"
                 . $this->vehicle . "','"
                 . $this->title . "','"
                 . $this->image_name . "', '"
@@ -62,6 +64,7 @@ class Package {
                 . $this->charge . "', '"
                 . $this->driver_charge . "', '"
                 . $this->ex_per_km . "', '"
+                . $this->per_additional_day . "', '"
                 . $this->queue . "')";
 
         $db = new Database();
@@ -159,6 +162,7 @@ class Package {
                 . "`charge` ='" . $this->charge . "', "
                 . "`driver_charge` ='" . $this->driver_charge . "', "
                 . "`ex_per_km` ='" . $this->ex_per_km . "', "
+                . "`per_additional_day` ='" . $this->per_additional_day . "', "
                 . "`queue` ='" . $this->queue . "' "
                 . "WHERE `id` = '" . $this->id . "'";
 

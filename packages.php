@@ -84,36 +84,55 @@ $VEHICLE_TYPE = new VehicleType($PRODUCT_TYPE->type);
                                     ?>
                                     <h4 class="product-name"><a href="<?php echo actual_link(); ?>booking-wedding/<?php echo str_replace(" ", "-", strtolower($package["title"])); ?>/"><?php echo $package["title"]; ?></a></h4>
 
-                                 
+
                                 <?php } ?>
 
 
                                 <div class="pricing-area">
-                                    <div class="product-price new-price"> 
-                                        <span>Rental</span>  
-                                        <?php
-                                        if ($VEHICLE_TYPE->id == 1) {
-                                            ?>
-                                            <span style="color:#000;font-size:21px;" >Dates</span>
-                                            <?php
-                                        } else {
-                                            ?>
-                                            <span style="color:#000;font-size:21px;" >Hours</span>
-                                        <?php }
-                                        ?>
-                                        <span  style="color:#000;font-size:18px;" ><?php echo $package['dates']; ?></span> 
+                                    <div class="row" style="display: block;">
+                                        <div class="col-md-6">
+                                            <div class="product-price new-price"> 
+                                                <span>Rental</span>  
+                                                <?php
+                                                if ($VEHICLE_TYPE->id == 1) {
+                                                    ?>
+                                                    <span style="color:#000;font-size:21px;" >Dates</span>
+                                                    <?php
+                                                } else {
+                                                    ?>
+                                                    <span style="color:#000;font-size:21px;" >Hours</span>
+                                                <?php }
+                                                ?>
+                                                <span  style="color:#000;font-size:18px;" ><?php echo $package['dates']; ?></span> 
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="product-price new-price"> 
+                                                <span>Mileage Limit</span>  
+                                                <span style="color:#000;font-size:21px;" >KM</span>
+                                                <span  style="color:#000;font-size:18px;" ><?php echo $package['km']; ?></span> 
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="product-price new-price"> 
-                                        <span>Mileage Limit</span>  
-                                        <span style="color:#000;font-size:21px;" >KM</span>
-                                        <span  style="color:#000;font-size:18px;" ><?php echo $package['km']; ?></span> 
+                                    <div class="row" style="display: block;">
+                                        <div class="col-md-6">
+                                            <div class="product-price new-price">
+                                                <span>Price</span>  
+                                                <span style="color:#000;font-size:21px;" >LKR</span>
+                                                <span  style="color:#000;font-size:18px; text-transform: none;" >Rs: <?php echo number_format($package['charge'], 2); ?></span> 
+                                            </div> 
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="product-price new-price">
+                                                <span>Per Additional Day</span>  
+                                                <span style="color:#000;font-size:21px;" >LKR</span>
+                                                <span  style="color:#000;font-size:18px; text-transform: none;" >Rs: <?php echo number_format($package['per_additional_day'], 2); ?></span> 
+                                            </div> 
+                                        </div>
                                     </div>
-                                    <div class="product-price new-price">
 
-                                        <span>Price</span>  
-                                        <span style="color:#000;font-size:21px;" >LKR</span>
-                                        <span  style="color:#000;font-size:18px; text-transform: none;" >Rs: <?php echo number_format($package['charge'], 2); ?></span> 
-                                    </div> 
+                                    
+
                                 </div>
 
                                 <div class="model-info  pull-left" style="  padding-bottom:12px;">
