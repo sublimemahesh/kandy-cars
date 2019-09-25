@@ -71,9 +71,9 @@ class OfficeDetail {
     }
 
     public function getOfficeByVehicle($vehicle) {
-
+       
         $query = "SELECT * FROM `office_details` WHERE `vehicle`='" . $vehicle . "'";
-
+ 
         $db = new Database();
         $result = $db->readQuery($query);
          

@@ -1,0 +1,8 @@
+[16-Sep-2019 05:54:24 America/New_York] PHP Notice:  Undefined index: merchant_id in /home/gallnwxt/sites/kandycarrent/new/payments/notify.php on line 5
+[16-Sep-2019 05:54:24 America/New_York] PHP Notice:  Undefined index: order_id in /home/gallnwxt/sites/kandycarrent/new/payments/notify.php on line 6
+[16-Sep-2019 05:54:24 America/New_York] PHP Notice:  Undefined index: payhere_amount in /home/gallnwxt/sites/kandycarrent/new/payments/notify.php on line 7
+[16-Sep-2019 05:54:24 America/New_York] PHP Notice:  Undefined index: payhere_currency in /home/gallnwxt/sites/kandycarrent/new/payments/notify.php on line 8
+[16-Sep-2019 05:54:24 America/New_York] PHP Notice:  Undefined index: status_code in /home/gallnwxt/sites/kandycarrent/new/payments/notify.php on line 9
+[16-Sep-2019 05:54:24 America/New_York] PHP Notice:  Undefined index: md5sig in /home/gallnwxt/sites/kandycarrent/new/payments/notify.php on line 10
+[16-Sep-2019 05:57:50 America/New_York] PHP Notice:  Undefined index: payment_status_code in /home/gallnwxt/sites/kandycarrent/new/class/Order.php on line 48
+[16-Sep-2019 05:57:50 America/New_York] PHP Notice:  Undefined index: delivery_status in /home/gallnwxt/sites/kandycarrent/new/class/Order.php on line 49

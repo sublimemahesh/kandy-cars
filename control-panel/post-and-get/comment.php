@@ -9,6 +9,8 @@ if (isset($_POST['create'])) {
 
     $COMMENT->name = $_POST['name'];
     $COMMENT->title = $_POST['title'];
+    $COMMENT->rating = $_POST['rating'];
+    $COMMENT->type = $_POST['type'];
     $COMMENT->comment =$_POST['comment'];
     $COMMENT->is_active = $_POST['active'];
 
@@ -39,6 +41,8 @@ if (isset($_POST['create'])) {
     $VALID->check($COMMENT, [
         'name' => ['required' => TRUE],
         'title' => ['required' => TRUE],
+        'rating' => ['required' => TRUE],
+        'type' => ['required' => TRUE],
         'comment' => ['required' => TRUE]
     ]);
 
@@ -96,6 +100,8 @@ if (isset($_POST['update'])) {
     $COMMENT->image_name = $_POST['oldImageName'];
     $COMMENT->name = $_POST['name'];
     $COMMENT->title = $_POST['title'];
+    $COMMENT->rating = $_POST['rating'];
+    $COMMENT->type = $_POST['type'];
     $COMMENT->comment = $_POST['comment'];
     $COMMENT->is_active = $_POST['active'];
 
@@ -104,6 +110,8 @@ if (isset($_POST['update'])) {
         'image_name' => ['required' => TRUE],
         'name' => ['required' => TRUE],
         'title' => ['required' => TRUE],
+        'rating' => ['required' => TRUE],
+        'type' => ['required' => TRUE],
         'comment' => ['required' => TRUE],
      
     ]);

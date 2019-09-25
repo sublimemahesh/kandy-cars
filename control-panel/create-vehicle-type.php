@@ -1,8 +1,6 @@
 <?php
 include_once(dirname(__FILE__) . '/../class/include.php');
 include_once(dirname(__FILE__) . '/auth.php');
-
-  
 ?>
 
 <!DOCTYPE html>
@@ -24,17 +22,17 @@ include_once(dirname(__FILE__) . '/auth.php');
     </head>
 
     <body class="theme-red">
-        <?php
-        include './navigation-and-header.php';
-        ?>
+<?php
+include './navigation-and-header.php';
+?>
 
         <section class="content">
             <div class="container-fluid">  
-                <?php
-                $vali = new Validator();
+<?php
+$vali = new Validator();
 
-                $vali->show_message();
-                ?>
+$vali->show_message();
+?>
                 <!-- Vertical Layout -->
                 <div class="row clearfix">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -73,7 +71,12 @@ include_once(dirname(__FILE__) . '/auth.php');
                                                 </div>
                                             </div>
                                         </div>
-                                        
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <label for="description">Description</label>
+                                            <div class="form-line">
+                                                <textarea id="description" name="description" class="form-control" rows="5"> </textarea> 
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row clearfix">
                                         <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5"> 

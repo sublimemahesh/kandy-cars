@@ -777,7 +777,7 @@
 						if (!base.wrapper.is('.active')) {
 							$('html, body').animate({ scrollTop: 0 }, 0, function () {
 								base.wrapper.css({
-									height: base.navMobile.children('ul').outerHeight(true)
+//									height: base.navMobile.children('ul').outerHeight(true)
 								}).addClass('active');
 							});
 						}

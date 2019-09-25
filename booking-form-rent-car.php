@@ -6,7 +6,6 @@ $PACKAGE = new Package($package['id']);
 $VEHICLE = new ProductType($PACKAGE->vehicle);
 $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
 
-
 $ORDER = new Order(NULL);
 $LASTID = $ORDER->getLastID();
 $order_id = $LASTID + 1;
@@ -64,7 +63,7 @@ $order_id = $LASTID + 1;
             width: 100%;
         }
 
-        tr:nth-child(even){background-color: #f2f2f2}
+        /*        tr:nth-child(even){background-color: #f2f2f2}*/
     </style>
 
 </head>
@@ -79,7 +78,7 @@ $order_id = $LASTID + 1;
         <nav id="mobile-advanced" class="mobile-advanced" style="text-align:center;"></nav>
 
         <!-- - - - - - - - - - - - - - Header - - - - - - - - - - - - - - - - -->
-<?php include './header.php'; ?>
+        <?php include './header.php'; ?>
         <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
         <div class="container margin-top-50  "      >  
             <div class="alert hidden" id="beautypress-form-msg">
@@ -100,20 +99,20 @@ $order_id = $LASTID + 1;
                                                 <label>Package Name</label>
                                                 <select  style="padding-left: 10px" id="packages" >  
                                                     <option value="0"> -- Select the other packages -- </option>  
-<?php
-$PACKAGES = new Package(NULL);
-foreach ($PACKAGES->getPackagesByVehicle($PACKAGE->vehicle) as $key => $package) {
-    if ($package['id'] == $PACKAGE->id) {
-        ?>
+                                                    <?php
+                                                    $PACKAGES = new Package(NULL);
+                                                    foreach ($PACKAGES->getPackagesByVehicle($PACKAGE->vehicle) as $key => $package) {
+                                                        if ($package['id'] == $PACKAGE->id) {
+                                                            ?>
 
                                                             <option  selected="" value="<?php echo $package['id'] ?>"> <?php echo $package['title'] ?></option>
-    <?php } else { ?>
+                                                        <?php } else { ?>
 
                                                             <option value="<?php echo $package['id'] ?>"> <?php echo $package['title'] ?></option>  
-        <?php
-    }
-}
-?>
+                                                            <?php
+                                                        }
+                                                    }
+                                                    ?>
                                                 </select>                 
                                             </div> 
 
@@ -131,13 +130,13 @@ foreach ($PACKAGES->getPackagesByVehicle($PACKAGE->vehicle) as $key => $package)
                                                         </thead>
                                                         <tbody>
                                                         <td>
-<?php echo $PACKAGE->title ?>
+                                                            <?php echo $PACKAGE->title ?>
                                                         </td>
                                                         <td>
-<?php echo $PACKAGE->dates ?>
+                                                            <?php echo $PACKAGE->dates ?>
                                                         </td>
                                                         <td>
-<?php echo $PACKAGE->km ?> km
+                                                            <?php echo $PACKAGE->km ?> km
                                                         </td>
                                                         <td>
                                                             Rs: <?php echo number_format($PACKAGE->charge, 2) ?>
@@ -193,14 +192,20 @@ foreach ($PACKAGES->getPackagesByVehicle($PACKAGE->vehicle) as $key => $package)
                                             <div class="col-md-6">
                                                 <div class="collect_office" style="display: none" > 
                                                     <label>Select your nearest office</label>
-                                                    <select  style="padding-left: 10px"  id="office"> 
+                                                    <select  style="padding-left: 10px"  id="office">
                                                         <option value="" selected=""> -- Select your nearest office --</option>
-<?php
-$OFFICE = new Office(NULL);
-foreach ($OFFICE->all() as $office) {
-    ?>
-                                                            <option value="<?php echo $office['location'] ?>"><?php echo $office['location'] ?> </option>  
-                                                        <?php } ?> 
+                                                        <?php
+                                                        $OFFICE_DETAILS = new OfficeDetail(NULL);
+
+                                                        foreach ($OFFICE_DETAILS->getOfficeByVehicle($PACKAGE->vehicle) as $key => $office_details) {
+                                                            $OFFICE = new Office($office_details['office']);
+                                                            ?>
+                                                            <option value="<?php echo $OFFICE->location ?>">
+                                                                <?php
+                                                                echo $OFFICE->location;
+                                                                ?>
+                                                            </option>  
+                                                        <?php } ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -259,95 +264,98 @@ foreach ($OFFICE->all() as $office) {
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h4> <b>Customer Details</b></h4></div>
                     <div class="panel-body" > 
-<!--                        <form name="order_from" id="payments" class="order_from" action="https://www.payhere.lk/pay/checkout" method="post">-->
-                            <form name="order_from" id="payments" class="order_from" action="https://sandbox.payhere.lk/pay/checkout" method="post" autocomplete="off">
-                                <div class="row">
-                                    <div class="col-sm-6 col-xs-12 col-md-6">
-                                        <label>First Name</label>
-                                        <input type="text" id="first_name" class="form-control"  name="first_name"  placeholder="First Name"  >            
-                                    </div> 
-                                    <div class="col-sm-6 col-xs-12 col-md-6">
-                                        <label>Last Name</label>
-                                        <input type="text" id="last_name" class="form-control"  name="last_name"  placeholder="Last Name"  >            
-                                    </div> 
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 col-xs-12 col-md-6">
-                                        <label>Email Address</label>
-                                        <input type="text" id="email" class="form-control"  name="email"  placeholder="Email Address"  >            
-                                    </div> 
-                                    <div class="col-sm-6 col-xs-12 col-md-6">
-                                        <label>Phone Number</label>
-                                        <input type="text" id="phone_number" class="form-control"  name="phone_number"  placeholder="Phone Number"  >            
-                                    </div> 
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 col-xs-12 col-md-6">
-                                        <label>City</label>
-                                        <input type="text" id="city" class="form-control"  name="city"  placeholder="City"  >            
-                                    </div> 
-                                    <div class="col-sm-6 col-xs-12 col-md-6">
-                                        <label>Address</label>
-                                        <input type="text" id="address" class="form-control"  name="address"  placeholder="Address"  >            
-                                    </div> 
 
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 col-xs-12 col-md-4">
-                                        <label>Country</label>
-                                        <input type="text" id="country" class="form-control"  name="country"  placeholder="City"  >            
-                                    </div>
+                        <form name="order_from" id="payments" class="order_from" action="https://sandbox.payhere.lk/pay/checkout" method="post" autocomplete="off"> 
+<!--                        <form name="contact-from" id="payments" class="booking-form" action="https://www.payhere.lk/pay/checkout" method="post">-->
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <label>First Name</label>
+                                    <input type="text" id="first_name" class="form-control"  name="first_name"  placeholder="First Name"  >            
+                                </div> 
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <label>Last Name</label>
+                                    <input type="text" id="last_name" class="form-control"  name="last_name"  placeholder="Last Name"  >            
+                                </div> 
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <label>Email Address</label>
+                                    <input type="text" id="email" class="form-control"  name="email"  placeholder="Email Address"  >            
+                                </div> 
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <label>Phone Number</label>
+                                    <input type="text" id="phone_number" class="form-control"  name="phone_number"  placeholder="Phone Number"  >            
+                                </div> 
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <label>City</label>
+                                    <input type="text" id="city" class="form-control"  name="city"  placeholder="City"  >            
+                                </div> 
+                                <div class="col-sm-6 col-xs-12 col-md-6">
+                                    <label>Address</label>
+                                    <input type="text" id="address" class="form-control"  name="address"  placeholder="Address"  >            
+                                </div> 
 
-                                    <div class="col-sm-6 col-xs-12 col-md-4">
-                                        <label>Security Code</label>
-                                        <input type="text" id="captchacode" class="form-control"  name="captchacode"  placeholder="Security Code"  >            
-                                    </div> 
-                                    <div class="col-sm-6 col-xs-12 col-md-4">
-                                        <div class="col-sm-6 col-xs-12 col-md-12"> 
-<?php include("./booking-rent-car/captchacode-widget.php"); ?> 
-                                        </div> 
-                                    </div> 
-                                </div>
-                                <div class="row hidden">
-                                    <div class="col-sm-6 col-xs-12 col-md-12">
-                                        <label>Postal Code</label>
-                                        <input type="text" id="postal_code" class="form-control"  name="postal_code"  placeholder="City"  >            
-                                    </div>  
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12 col-md-4">
+                                    <label>Country</label>
+                                    <input type="text" id="country" class="form-control"  name="country"  placeholder="City"  >            
                                 </div>
 
-                                <div class="row"> 
-                                    <div class="col-xs-12   " style="margin-bottom: 10px;">  
-                                        <label class="cont-check">Click here to accept that you have read and agreed to our terms and conditions regarding reservation  <a href="term-and-condition.php" target="_blank" class="text-primary">terms and conditions</a>.
-                                            <input type="checkbox"   id="agree" style="float: left;margin-right:10px;">
-                                            <span class="checkmark" style="margin-left: 10px;"></span>
-                                        </label>
-                                    </div>
-                                </div>
-
-
-                                <!--sandbox merchant id-->
-                                <input type="hidden" name="merchant_id" value="1213021">  
-                                <!--live merchant id-->
-
-                                <input type="hidden" name="return_url" value="https://kandycars.lk/new/payment-success.php?id=<?php echo $id ?>">
-                                <input type="hidden" name="cancel_url" value="https://kandycars.lk/new/order-form.php?cancelled">
-                                <input type="hidden" name="notify_url" value="https://kandycars.lk/new/payments/notify.php">
-                                <input type="hidden" name="package_id" id="package_id" value="<?php echo $id ?>" />
-                                <input name="order_id" id="order_id" type="hidden" value="<?php echo $order_id; ?>" />
-                                <input name="amount" id="amount" type="hidden"    class="payment"/>
-                                <input name="items" id="items" type="hidden"   value="1"/>
-                                <input type="hidden" name="currency" value="LKR">
-
-                                <div class="row"> 
-                                    <div class="col-sm-6 col-xs-12 col-md-6 pull-left">
-                                        <button type="submit" id="back" class="btn btn-style-3 submit">Back</button>
+                                <div class="col-sm-6 col-xs-12 col-md-4">
+                                    <label>Security Code</label>
+                                    <input type="text" id="captchacode" class="form-control"  name="captchacode"  placeholder="Security Code"  >            
+                                </div> 
+                                <div class="col-sm-6 col-xs-12 col-md-4">
+                                    <div class="col-sm-6 col-xs-12 col-md-12"> 
+                                        <?php include("./booking-rent-car/captchacode-widget.php"); ?> 
                                     </div> 
-                                    <div class="col-sm-6 col-xs-12 col-md-3 pull-right">
-                                        <button type="submit" id="pay" class="btn btn-style-3 submit">Pay Now</button>
-                                    </div> 
-                                </div>
+                                </div> 
+                            </div>
+                            <div class="row hidden">
+                                <div class="col-sm-6 col-xs-12 col-md-12">
+                                    <label>Postal Code</label>
+                                    <input type="text" id="postal_code" class="form-control"  name="postal_code"  placeholder="City"  >            
+                                </div>  
+                            </div>
 
-                            </form>
+                            <div class="row"> 
+                                <div class="col-xs-12   " style="margin-bottom: 10px;">  
+                                    <label class="cont-check">Click here to indicate that you have read and agree to the booking <a href="<?php echo actual_link() ?>terms-and-conditions/" target="_blank" class="text-primary">terms and conditions</a>.
+                                        <input type="checkbox"   id="agree" style="float: left;margin-right:10px;">
+                                        <span class="checkmark" style="margin-left: 10px;"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <!--sandbox merchant id-->
+                            <input type="hidden" name="merchant_id" value="1213021">  
+<!--
+                            <input type="hidden" name="merchant_id" value="213461">  -->
+                            <!--live merchant id-->
+
+                            <input type="hidden" name="return_url" value="https://kandycars.lk/payment-success.php?id=<?php echo $id ?>">
+                            <input type="hidden" name="cancel_url" value="https://kandycars.lk/order-form.php?cancelled">
+                            <input type="hidden" name="notify_url" value="https://kandycars.lk/payments/notify.php">
+                            <input type="hidden" name="package_id" id="package_id" value="<?php echo $id ?>" />
+                            <input name="order_id" id="order_id" type="hidden" value="<?php echo $order_id; ?>" />
+                            <input name="amount" id="amount" type="hidden"    class="payment"/>
+                            <input name="items" id="items" type="hidden"   value="1"/>
+                            <input type="hidden" name="currency" value="LKR">
+
+                            <div class="row"> 
+                                <div class="col-sm-6 col-xs-12 col-md-6 pull-left">
+                                    <button type="submit" id="back" class="btn btn-style-3 submit">Back</button>
+                                </div> 
+                                <div class="col-sm-6 col-xs-12 col-md-3 pull-right">
+                                    <button type="submit" id="pay" class="btn btn-style-3 submit">Pay Now</button>
+                                </div> 
+                            </div>
+
+                        </form>
                     </div>
                 </div> 
             </div> 
@@ -357,151 +365,96 @@ foreach ($OFFICE->all() as $office) {
                     <div class="panel-heading text-center">
                         <b>Price Summary </b> 
                     </div> 
-                    <div class="panel-body"> 
-                        <div class="row">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p">Pick up D / T: </p>  
+                    <div class="panel-body" id="price-summery"> 
+                        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <tr>
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%); color: #666666;font-size: 13px;font-weight: bold; margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 35%; padding: 10px 0px 10px 5px;" width="40%" align="left">Pick up D / T: </th>
+                                <td style="color: #666666;font-size: 13px;font-weight: 300;margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 60%;padding: 10px 0px 10px 10px;" width="60%" align="left"><p class="price-summer-p"><span id="pick_up_date_append"></span></p> </td>
+                            </tr>
+                            <tr>
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%); color: #666666;font-size: 13px;font-weight: bold; margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 35%; padding: 10px 0px 10px 5px;" width="40%" align="left">Return D / T: </th>
+                                <td style="color: #666666;font-size: 13px;font-weight: 300;margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 60%;padding: 10px 0px 10px 10px;" width="60%" align="left"><p class="price-summer-p"><span id="drop_up_date_append"></span></p> </td>
+                            </tr>
 
-                            </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="pick_up_date_append"></span></p> 
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p">Return D / T:</p> 
+                            <tr>
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%); color: #666666;font-size: 13px;font-weight: bold; margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 35%; padding: 10px 0px 10px 5px;" width="40%" align="left">Pick up method:</th>
+                                <td style="color: #666666;font-size: 13px;font-weight: 300;margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 60%;padding: 10px 0px 10px 10px;" width="60%" align="left"><p class="price-summer-p"><span id="select_method_append"></span></p> </td>
+                            </tr>
 
-                            </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="drop_up_date_append"  ></span></p>
-                            </div>
-                        </div>
+                            <tr id="select_method_drop_hide" style="display: none;  "  > 
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%); color: #666666;font-size: 13px;font-weight: bold; margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 35%; padding: 10px 0px 10px 5px;" width="40%" align="left" >Drop method:</th>
+                                <td style="color: #666666;font-size: 13px;font-weight: 300;margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 60%;padding: 10px 0px 10px 10px;" width="60%" align="left" ><p class="price-summer-p"><span id="select_method_drop_append"></span></p> </td>
+                            </tr>
 
-                        <div class="row">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p">Pick up method:</p>
 
-                            </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="select_method_append"></span></p> 
-                            </div>
-                        </div>
+                            <tr id="pick_up_office_bar" >
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%); color: #666666;font-size: 13px;font-weight: bold; margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 35%; padding: 10px 0px 10px 5px;" width="40%" align="left">Pick up office:</th>
+                                <td style="color: #666666;font-size: 13px;font-weight: 300;margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 60%;padding: 10px 0px 10px 10px;" width="60%" align="left"><p class="price-summer-p"><span id="select_office_append"></span></p> </td>
+                            </tr>
+                            <span>
 
-                        <div class="row" id="select_method_drop_hide" style="display: none">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p" >Drop method:</p>
-                            </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="select_method_drop_append"></span></p>
-                            </div>
-                        </div>
+                            </span>
+                            <tr id="return_office" style="display: none">
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%); color: #666666;font-size: 13px;font-weight: bold; margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 35%; padding: 10px 0px 10px 5px;" width="40%" align="left">Return Office:</th>
+                                <td style="color: #666666;font-size: 13px;font-weight: 300;margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 60%;padding: 10px 0px 10px 10px;" width="60%" align="left"><p class="price-summer-p"><span id="select_office_drop_append"></span></p> </td>
+                            </tr>
+                            <tr id="deliver_charge_hide" style="display: none">
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%); color: #666666;font-size: 13px;font-weight: bold; margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 35%; padding: 10px 0px 10px 5px;" width="40%" align="left">Deliver Charges:</th>
+                                <td style="color: #666666;font-size: 13px;font-weight: 300;margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 60%;padding: 10px 0px 10px 10px;" width="60%" align="left"><p class="price-summer-p"><span id="deliver_charge"></span></p> </td>
+                            </tr>
 
-                        <div class="row" id="pick_up_office_bar" >
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p">Pick up office:</p> 
-                            </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="select_office_append"></span></p>
-                            </div>
-                        </div>
+                            <tr id="package_charge_hide" style="display: none">
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%); color: #666666;font-size: 13px;font-weight: bold; margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 35%; padding: 10px 0px 10px 5px;" width="40%" align="left">Package Charge:</th>
+                                <td style="color: #666666;font-size: 13px;font-weight: 300;margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 60%;padding: 10px 0px 10px 10px;" width="60%" align="left"><p class="price-summer-p"><span id="package_charge"></span></p> </td>
+                            </tr>
 
-                        <div class="row">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p" id="return_office" style="display: none">Return Office:</p>
-                            </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span  id="select_office_drop_append"></span></p> 
-                            </div>
-                        </div>
+                            <tr>
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%); color: #666666;font-size: 13px;font-weight: bold; margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 35%; padding: 10px 0px 10px 5px;" width="40%" align="left">Price:</th>
+                                <td style="color: #666666;font-size: 13px;font-weight: 300;margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 60%;padding: 10px 0px 10px 10px;" width="60%" align="left"><p class="price-summer-p"><span id="price_id"></span></p> </td>
+                            </tr>
 
-                        <div class="row">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p" id="deliver_charge_hide" style="display: none">Deliver Charges:</p>
-                            </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="deliver_charge"></span></p>
-                            </div>
-                        </div>
 
-                        <div class="row" id="package_charge_hide" style="display: none">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p" >Package Charge:</p></div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="package_charge"></span></p>
-                            </div>
-                        </div>
+                            <tr>
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%); color: #666666;font-size: 13px;font-weight: bold; margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 35%; padding: 10px 0px 10px 5px;" width="40%" align="left">Tax:</th>
+                                <td style="color: #666666;font-size: 13px;font-weight: 300;margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 60%;padding: 10px 0px 10px 10px;" width="60%" align="left"><p class="price-summer-p"><span id="tax"></span></p> </td>
+                            </tr>
+                            <tr>
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%); color: #666666;font-size: 13px;font-weight: bold; margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 35%; padding: 10px 0px 10px 5px;" width="40%" align="left">Total price:</th>
+                                <td style="color: #666666;font-size: 13px;font-weight: 300;margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 60%;padding: 10px 0px 10px 10px;" width="60%" align="left"><p class="price-summer-p"><span class="total_price"></span></p> </td>
+                            </tr>
 
-                        <div class="row">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p">Price:</p>   
-                            </div>
 
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="price_id"></span></p>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p">Tax:</p>      
-                            </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="tax"></span></p>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p">Total price:</p>                         </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span class="total_price"></span></p>
-                            </div>
-                        </div>
-
-                        <hr>
-                        <div class="row" id="driver_charge_hide" style="display: none">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p" >Drive Charge:</p>                            </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="driver_charge"></span></p>
-                            </div>
-                        </div>
-                        <div class="row" id="distance_hide" style="display: none">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p " >Distance:</p> 
-                            </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="distance"></span></p>
-                            </div>
-                        </div>
-                        <div class="row"  id="ex_per_km_hide" style="display: none">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p">Per km:</p>                         </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="ex_per_km"></span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5" style="border-right: 1px solid hsl(199.2, 9.8%, 50%);">
-                                <p class="price-summer-p" id="distance_price_hide" style="display: none">Distance Charge:</p>                            </div>
-                            <div class="col-md-7">
-                                <p class="price-summer-p"><span id="distance_price"></span></p>
-
-                            </div>
-                        </div> 
-                    </div> 
+                            <tr id="distance_hide" style="display: none;border-top: 0.5px solid #b4a8a8;">
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%); color: #666666;font-size: 13px;font-weight: bold; margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 35%; padding: 10px 0px 10px 5px;" width="40%" align="left">Distance:</th>
+                                <td style="color: #666666;font-size: 13px;font-weight: 300;margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 60%;padding: 10px 0px 10px 10px;" width="60%" align="left"><p class="price-summer-p"><span id="distance"></span></p> </td>
+                            </tr>
+                            <tr id="ex_per_km_hide" style="display: none">
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%); color: #666666;font-size: 13px;font-weight: bold; margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 35%; padding: 10px 0px 10px 5px;" width="40%" align="left">Per km:</th>
+                                <td style="color: #666666;font-size: 13px;font-weight: 300;margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 60%;padding: 10px 0px 10px 10px;" width="60%" align="left"><p class="price-summer-p"><span id="ex_per_km"></span></p> </td>
+                            </tr>
+                            <tr id="distance_price_hide" style="display: none">
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%); color: #666666;font-size: 13px;font-weight: bold; margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 35%; padding: 10px 0px 10px 5px;" width="40%" align="left">Distance Charge:</th>
+                                <td style="color: #666666;font-size: 13px;font-weight: 300;margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 60%;padding: 10px 0px 10px 10px;" width="60%" align="left"><p class="price-summer-p"><span id="distance_price"></span></p> </td>
+                            </tr>
+                            <tr id="driver_charge_hide" style=" ; display: none">
+                                <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%); color: #666666;font-size: 13px;font-weight: bold; margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 35%; padding: 10px 0px 10px 5px;" width="40%" align="left">Drive Charge:</th>
+                                <td style="color: #666666;font-size: 13px;font-weight: 300;margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 60%;padding: 10px 0px 10px 10px;" width="60%" align="left"><p class="price-summer-p"><span id="driver_charge"></span></p> </td>
+                            </tr>
+                        </table>
+                    </div>                     
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading text-center">
                         <b>Terms and Conditions </b> 
                     </div> 
-                    <div class="panel-body"> 
+                    <div class="panel-body" style="overflow-y: auto;height: 450px;"> 
                         <div class="row">
-                            <div class="col-md-12" >
+                            <div class="col-md-12 " >
 
-<?php
-echo $VEHICLE_TYPE->term_and_condition;
-?>
+                                <?php
+                                echo $VEHICLE_TYPE->term_and_condition;
+                                ?>
 
                             </div>
                         </div> 
@@ -517,7 +470,7 @@ echo $VEHICLE_TYPE->term_and_condition;
 
     <!-- - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
 
-<?php include './footer.php'; ?>
+    <?php include './footer.php'; ?>
 
     <!-- - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - -->
 </div>
@@ -569,6 +522,7 @@ echo $VEHICLE_TYPE->term_and_condition;
         defaultCountry: "lk",
         responsiveDropdown: true
     });
+    $("#accept").addClass("disabled");
 </script>
 </body>
 </html>

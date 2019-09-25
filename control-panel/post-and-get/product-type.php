@@ -222,3 +222,14 @@ if (isset($_POST['save-data'])) {
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 }
+
+if (isset($_POST['save-data'])) {
+
+    foreach ($_POST['sort'] as $key => $img) {
+        $key = $key + 1;
+
+        $PRODUCT_TYPE = ProductType::arrange($key, $img);
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+}

@@ -36,7 +36,7 @@ $PRODUCT_TYPE = new ProductType(NULL);
                         <div class="card">
                             <div class="header">
                                 <h2>
-                                   View vehicles by - " <?php echo $VEHICLE_TYPE->name ?> "
+                                    View vehicles by - " <?php echo $VEHICLE_TYPE->name ?> "
                                 </h2>
                                 <ul class="header-dropdown">
                                     <li>
@@ -64,7 +64,9 @@ $PRODUCT_TYPE = new ProductType(NULL);
                                                         <div class="d">
                                                             <a href="create-packages.php?id=<?php echo $product['id']; ?>"><button class="glyphicon glyphicon-briefcase edit-btn" title="Add Packages"></button></a> | 
                                                             <a href="create-decoration.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-send arrange-btn" title="Add Decoration"></button></a> | 
-                                                            <a href="manage-vehicle-office.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-map-marker deffult-btn" title="Add Offices"></button></a>
+                                                            <a href="manage-vehicle-office.php?id=<?php echo $product['id']; ?>">  <button class="glyphicon glyphicon-map-marker deffult-btn" title="Add Offices"></button></a> | 
+
+                                                            <a href="arrange-vehicles.php?id=<?php echo $id; ?>">  <button class="glyphicon glyphicon-random arrange-btn " title=""></button></a>
                                                         </div>
                                                     </div>
                                                 </div>  

@@ -7,10 +7,10 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
 $COMMENT = new Comments($id);
-?> 
+?>
 
 <!DOCTYPE html>
-<html> 
+<html>
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -50,13 +50,14 @@ $COMMENT = new Comments($id);
                                 <ul class="header-dropdown">
                                     <li class="">
                                         <a href="manage-comments.php">
-                                            <i class="material-icons">list</i> 
+                                            <i class="material-icons">list</i>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="body">
-                                <form class="form-horizontal" method="post" action="post-and-get/comment.php" enctype="multipart/form-data"> 
+
+                                <form class="form-horizontal" method="post" action="post-and-get/comment.php" enctype="multipart/form-data">
                                     <div class="col-md-12">
                                         <div class="form-group form-float">
                                             <div class="form-line">
@@ -74,7 +75,7 @@ $COMMENT = new Comments($id);
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12">                                       
+                                    <div class="col-md-12">                                      
                                         <div class="form-group form-float">
                                             <div class="form-line">
                                                 <input type="file" id="image" class="form-control" name="image">
@@ -82,11 +83,48 @@ $COMMENT = new Comments($id);
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-12 hidden">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="text" id="rating" value="1" class="form-control"  autocomplete="off" name="rating" required="true">
+                                                <label class="form-label">Rating</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <p>Select Rating Type:</p>
+                                            <?php
+                                            if ($COMMENT->type == 1) {
+                                                ?>
+                                                <div>
+                                                    <input type="radio" id="huey" name="type" value="1"  checked>
+                                                    <label for="huey">Google</label>
+                                                </div>
 
+                                                <div>
+                                                    <input type="radio" id="dewey" name="type" value="2">
+                                                    <label for="dewey">Tripadvisor</label>
+                                                </div>
+                                                <?php
+                                            } else {
+                                                ?>
+                                                <div>
+                                                    <input type="radio" id="huey" name="type" value="1"                                                          >
+                                                    <label for="huey">Google</label>
+                                                </div>
+
+                                                <div>
+                                                    <input type="radio" id="dewey" name="type" value="2" checked="checked" >
+                                                    <label for="dewey">Tripadvisor</label>
+                                                </div>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <label for="Comment">Comment</label>
                                         <div class="form-line">
-                                            <textarea id="description" name="comment" class="form-control" rows="5"><?php echo $COMMENT->comment; ?></textarea> 
+                                            <textarea id="description" name="comment" class="form-control" rows="5"><?php echo $COMMENT->comment; ?></textarea>
                                         </div>
 
                                     </div>
@@ -119,7 +157,7 @@ $COMMENT = new Comments($id);
 
         <!-- Jquery Core Js -->
         <script src="plugins/jquery/jquery.min.js"></script>
-        <script src="plugins/bootstrap/js/bootstrap.js"></script> 
+        <script src="plugins/bootstrap/js/bootstrap.js"></script>
         <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
         <script src="plugins/node-waves/waves.js"></script>
         <script src="js/admin.js"></script>

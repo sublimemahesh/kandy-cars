@@ -222,14 +222,15 @@ if (isset($_GET["order_id"])) {
                                             <div class="col-md-6">
                                                 <div class="collect_office" style="display: none" > 
                                                     <label>Your nearest office</label>
-                                                    <select style="padding-left: 10px"  id="office"> 
-                                                        <option value="" selected=""> -- Select your nearest Office --</option>
+                                                    <select  style="padding-left: 10px"  id="office">
+                                                        <option value="" selected=""> -- Select your nearest office --</option>
                                                         <?php
-                                                        $OFFICE = new Office(NULL);
-                                                        foreach ($OFFICE->all() as $office) {
+                                                        $OFFICE_DETAILS = new OfficeDetail(NULL);
+                                                        foreach ($OFFICE_DETAILS->getOfficeByVehicle($PACKAGE->vehicle) as $office) {
+                                                            $OFFICE = new Office($office['office']);
                                                             ?>
-                                                            <option value="<?php echo $office['location'] ?>"><?php echo $office['location'] ?> </option>  
-                                                        <?php } ?> 
+                                                            <option value="<?php echo $OFFICE->location ?>"><?php echo $OFFICE->location ?> </option>  
+                                                        <?php } ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -339,7 +340,8 @@ if (isset($_GET["order_id"])) {
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h4> <b>Customer Details</b></h4></div>
                     <div class="panel-body" >  
-                        <form name="order_from" id="payments" class="order_from" action="https://sandbox.payhere.lk/pay/checkout" method="post" autocomplete="off">
+                        <!--<form name="order_from" id="payments" class="order_from" action="https://sandbox.payhere.lk/pay/checkout" method="post" autocomplete="off">-->
+                            <form name="contact-from" id="payments" class="booking-form" action="https://www.payhere.lk/pay/checkout" method="post">
                             <div class="row">
                                 <div class="col-sm-6 col-xs-12 col-md-6">
                                     <label>First Name</label>
@@ -396,7 +398,7 @@ if (isset($_GET["order_id"])) {
 
                             <div class="row"> 
                                 <div class="col-xs-12   " style="margin-bottom: 10px;">  
-                                    <label class="cont-check">Click here to indicate that you have read and agree to the booking <a href="term-and-condition.php" target="_blank" class="text-primary">terms and conditions</a>.
+                                    <label class="cont-check">Click here to indicate that you have read and agree to the booking <a href="<?php echo actual_link() ?>terms-and-conditions/" target="_blank" class="text-primary">terms and conditions</a>.
                                         <input type="checkbox"   id="agree" style="float: left;margin-right:10px;">
                                         <span class="checkmark" style="margin-left: 10px;"></span>
                                     </label>
@@ -405,12 +407,12 @@ if (isset($_GET["order_id"])) {
 
 
                             <!--sandbox merchant id-->
-                            <input type="hidden" name="merchant_id" value="1213021">  
+                            <input type="hidden" name="merchant_id" value="213461">  
                             <!--live merchant id-->
 
-                            <input type="hidden" name="return_url" value="https://kandycars.lk/new/payment-success.php?id=<?php echo $id ?>">
-                            <input type="hidden" name="cancel_url" value="https://kandycars.lk/new/order-form.php?cancelled">
-                            <input type="hidden" name="notify_url" value="https://kandycars.lk/new/payments/notify.php">
+                            <input type="hidden" name="return_url" value="https://kandycars.lk/payment-success.php?id=<?php echo $id ?>">
+                            <input type="hidden" name="cancel_url" value="https://kandycars.lk/order-form.php?cancelled">
+                            <input type="hidden" name="notify_url" value="https://kandycars.lk/payments/notify.php">
                             <input type="hidden" name="package_id" id="package_id" value="<?php echo $id ?>" />
                             <input name="order_id" id="order_id" type="hidden" value="<?php echo $order_id; ?>" />
                             <input name="amount" id="amount" type="hidden"    class="payment"/>
@@ -829,6 +831,8 @@ if (isset($_GET["order_id"])) {
         defaultCountry: "lk",
         responsiveDropdown: true
     });
+    
+     $("#accept").addClass("disabled");
 </script>
 
 <!--

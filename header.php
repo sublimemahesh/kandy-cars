@@ -80,15 +80,15 @@ $Contact2 = new Page(9);
                                 <ul class="dropdown-menu dropdown-content">
                                     <hr>
                                     <?php
-                                    $SERVICE = Service::all();
-                                    foreach ($SERVICE as $key => $service) {
+                                    $SERVICE_All = Service::all();
+                                    foreach ($SERVICE_All as $key => $service_nav) {
                                         ?>
-                                        <li  > <a href="<?php echo actual_link(); ?>services/<?php echo str_replace(" ", "-", strtolower($service['title'])); ?>/"><h6><?php echo $service["title"]; ?> </h6></a></li>
+                                        <li  > <a href="<?php echo actual_link(); ?>services/<?php echo str_replace(" ", "-", strtolower($service_nav['title'])); ?>/"><h6><?php echo $service_nav["title"]; ?> </h6></a></li>
                                         <hr>
                                     <?php } ?>
                                 </ul>
                             </li>
-
+                            <li ><a href="https://import.kandycars.lk/">Import a Car</a> </li> 
                             <li ><a href="<?php echo actual_link() ?>contact-us">Contact</a> </li> 
                             <li style="background-color: beige;"><a href="<?php echo actual_link() ?>vehicle-type/">Book Now</a> </li>  
                         </ul>
