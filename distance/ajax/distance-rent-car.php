@@ -166,8 +166,9 @@ if ($_POST['action'] == 'DISTANCE_PICK_UP_DROP_HOME_DELIVERY') {
     $office = $_POST['office'];
     $pickup = $_POST['pickup'];
     $destination = $_POST['destination'];
+   
     if ($destination == " ") {
-        
+         
     } else {
         $from = str_replace(" ", "+", $office);
         $to = str_replace(" ", "+", $pickup);
@@ -198,7 +199,7 @@ if ($_POST['action'] == 'DISTANCE_PICK_UP_DROP_HOME_DELIVERY') {
         $distance_drop = $data['rows'][0]['elements'][0]['distance']['text'];
 
 
-        $distance = $distance_pick_up + $distance_drop;
+        $distance = $distance_pick_up + $distance_drop;       
         $distance_price = $distance * $extra_per_km;
         $driver_charge = $driver_charge + $driver_charge;
 

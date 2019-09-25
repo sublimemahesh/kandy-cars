@@ -120,6 +120,14 @@ $PACKAGE = new Package($id);
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="number" id="per_additional_day" class="form-control" autocomplete="off" name="per_additional_day" required="true" value="<?php echo $PACKAGE->per_additional_day; ?>" min="0"> 
+                                                <label class="form-label">Charges per additional day</label>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="col-md-12">
                                         <input type="hidden" id="oldImageName" value="<?php echo $PACKAGE->image_name; ?>" name="oldImageName"/>

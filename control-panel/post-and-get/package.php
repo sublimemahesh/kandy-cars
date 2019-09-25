@@ -5,16 +5,17 @@ include_once(dirname(__FILE__) . '/../../class/include.php');
 if (isset($_POST['create'])) {
 
     $PACKAGE = new Package(NULL);
-    $VALID = new Validator(); 
+    $VALID = new Validator();
 
     $PACKAGE->vehicle = $_POST['vehicle'];
     $PACKAGE->title = $_POST['title'];
     $PACKAGE->short_description = $_POST['short_description'];
     $PACKAGE->dates = $_POST['dates'];
     $PACKAGE->km = $_POST['km'];
-    $PACKAGE->charge = $_POST['charge']; 
-    $PACKAGE->driver_charge = $_POST['driver_charge']; 
+    $PACKAGE->charge = $_POST['charge'];
+    $PACKAGE->driver_charge = $_POST['driver_charge'];
     $PACKAGE->ex_per_km = $_POST['ex_per_km'];
+    $PACKAGE->per_additional_day = $_POST['per_additional_day'];
 
     $dir_dest = '../../upload/packages/';
 
@@ -93,7 +94,7 @@ if (isset($_POST['update'])) {
     }
 
     $PACKAGE = new Package($_POST['id']);
-    
+
     $PACKAGE->image_name = $_POST['oldImageName'];
     $PACKAGE->title = $_POST['title'];
     $PACKAGE->short_description = $_POST['short_description'];
@@ -101,13 +102,13 @@ if (isset($_POST['update'])) {
     $PACKAGE->km = $_POST['km'];
     $PACKAGE->charge = $_POST['charge'];
     $PACKAGE->driver_charge = $_POST['driver_charge'];
-    
     $PACKAGE->ex_per_km = $_POST['ex_per_km'];
-
+    $PACKAGE->per_additional_day = $_POST['per_additional_day'];
+    
     $VALID = new Validator();
     $VALID->check($PACKAGE, [
         'title' => ['required' => TRUE],
-        'short_description' => ['required' => TRUE],      
+        'short_description' => ['required' => TRUE],
         'ex_per_km' => ['required' => TRUE],
         'image_name' => ['required' => TRUE]
     ]);
