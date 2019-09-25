@@ -1,7 +1,6 @@
 <!doctype html>
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
-include './main-fuction.php';
 $PAGES = new Page(11);
 ?>
 <html lang="en">

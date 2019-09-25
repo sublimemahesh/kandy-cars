@@ -12,7 +12,7 @@ $WEILCOME_Description = new Page(6);
 
 <html lang="en">
 
-    <title>KANDY CARS Sri Lanka-Rental Cars ||  Wedding Cars || Car Import Dealers </title>
+    <title>Kandy Cars - Sri Lanka Rental Cars, Luxury Wedding Cars, Car Import Dealers</title>
 
     <!--meta info-->
 
@@ -52,7 +52,7 @@ $WEILCOME_Description = new Page(6);
     <link href="<?php echo actual_link() ?>css/set-1.css" rel="stylesheet" type="text/css"/> 
 
 
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/>
     <!-- Google Web Fonts
 
     ================================================== -->
@@ -119,7 +119,7 @@ $WEILCOME_Description = new Page(6);
 
                         <div class="" style="background-color:#fff ">
 
-                            <a href="<?php echo actual_link(); ?>travel/<?php echo str_replace(" ", "-", strtolower($location['title'])); ?>/">
+                            <a href="<?php echo actual_link(); ?>rent-a-car/<?php echo str_replace(" ", "-", strtolower($location['title'])); ?>/">
 
                                 <img src="<?php echo actual_link() ?>upload/activity/<?php echo $location["image_name"]; ?>" alt="<?php echo $location["title"]; ?>">
                                 <h4 class="img-title"><?php echo $location["title"]; ?></h4>
@@ -149,7 +149,7 @@ $WEILCOME_Description = new Page(6);
 
                         <h2>Welcome to Kandy Cars</h2>
 
-                        <h1 style="font-size: 18px;padding: 0px;margin-bottom: 0px;">Rent a Car, Taxi and Tours in Kandy</h1>
+                        <h1 style="font-size: 18px;padding: 0px;margin-bottom: 0px;">Rent a Car, Luxury Wedding Car, Taxi & Tours</h1>
 
                         <p class="text-size-medium"><?php echo $WEILCOME_QUOTE->description; ?> </p>
 
@@ -327,37 +327,28 @@ $WEILCOME_Description = new Page(6);
 
                                     <div class="testimonial-holder">
 
-                                        <h5><?php echo $comment["title"]; ?></h5>
+                                        <div class="author-box">
 
 
 
-                                        <p><?php echo $comment["comment"]; ?></p>
 
 
 
-                                    </div>
+                                            <div class="author-info">
+
+                                                <a href="#" class="avatar">
+
+                                                    <img src="<?php echo actual_link() ?>upload/comments/<?php echo $comment["image_name"]; ?>" alt="">
+
+                                                </a>
+
+                                                <h6 class="author-name"><?php echo $comment["name"]; ?></h6>
 
 
 
-                                    <div class="author-box">
 
 
-
-                                        <a href="#" class="avatar">
-
-                                            <img src="<?php echo actual_link() ?>upload/comments/<?php echo $comment["image_name"]; ?>" alt="">
-
-                                        </a>
-
-
-
-                                        <div class="author-info">
-
-
-
-                                            <h6 class="author-name"><?php echo $comment["name"]; ?></h6>
-
-
+                                            </div>
 
 
 
@@ -365,7 +356,41 @@ $WEILCOME_Description = new Page(6);
 
 
 
+                                        <h5><?php echo $comment["title"]; ?></h5>
+
+
+
+                                        <p><?php echo $comment["comment"]; ?></p>
+                                        <?php
+                                      
+                                        if ($comment["type"] === "1") {
+                                            ?>
+                                            <div class="rating-reviews r1">
+                                              
+                                                <div class="avatar">
+                                                    <img src="<?php echo actual_link() ?>img/google-reviews.png" style="border-radius: 0px;" >
+                                                </div>
+                                            </div>
+
+                                            <?php
+                                        } else {
+                                            ?>
+                                            <div class="rating-reviews r2">
+                                              
+                                                <div class="avatar">
+                                                    <img src="<?php echo actual_link() ?>img/tripadvisor-logo.png"  style="border-radius: 0px;"> 
+                                                </div>
+                                            </div>
+                                            <?php
+                                        }
+                                        ?>
+
+
                                     </div>
+
+
+
+
 
 
 
@@ -389,20 +414,16 @@ $WEILCOME_Description = new Page(6);
 
 
 
+
+
                 </div>
 
 
 
             </div>
 
-            <div class="model-info" style="margin-top:80px;">
-
-                <div ><a href="<?php echo actual_link() ?>comment/" class="btn">ADD COMMENTS</a></div>
-
-            </div>
 
         </div>
-
         <?php include './footer.php'; ?>
 
 
@@ -429,20 +450,20 @@ $WEILCOME_Description = new Page(6);
 
     <script src="<?php echo actual_link() ?>js/script.js"></script>
 
-   <script>
+    <script>
         $(document).ready(function () {
-             alert("hello");
+            alert("hello");
             $(".dropdown").mouseover(function () {
                 alert("hello");
             });
         });
 
-//        $('.dropdown-toggle').hover(function () {
-//        alert();
-//        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
-//        }, function () {
-//        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
-//        });
+        //        $('.dropdown-toggle').hover(function () {
+        //        alert();
+        //        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+        //        }, function () {
+        //        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+        //        });
     </script>
 </body>
 

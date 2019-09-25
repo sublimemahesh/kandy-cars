@@ -223,3 +223,30 @@ blockquote:before {
     padding: 10px 20px 10px 20px;
     border-radius: 4px;
 }
+
+.rating-reviews ul{
+  list-style-type:none;  
+      display: block;
+    position: relative;  
+    color: red;
+}
+.rating-reviews ul li  {
+    color:#000;
+    display: inline-block;
+}
+.rating-reviews i{
+    color :#000;
+    font-family: Fontawosome;
+}
+.r1 .fill{
+    color: #E9C062;
+}
+.r2 .fill{
+    color: #008080;
+}
+.r1 .empty{
+    color: #d5d1d1;
+}
+.r2 .empty{
+    color: #d5d1d1;
+}

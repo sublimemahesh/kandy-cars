@@ -9,26 +9,25 @@
                         <ul class="info-links">
                             <li><a href="<?php echo actual_link() ?>about-us/">About Us</a></li>
                             <li><a href="<?php echo actual_link() ?>services/">Services</a></li>
-                            <li><a href="<?php echo actual_link() ?>vehicles/">Vehicle</a></li>
-                            <li> <a href="<?php echo actual_link() ?>rent-a-car/">Rent</a>  </li> 
+                            <li><a href="<?php echo actual_link() ?>vehicles/">Vehicles</a></li>
+                            <li> <a href="<?php echo actual_link() ?>rent-a-car/">Rent a Car</a>  </li> 
                             <li><a href="<?php echo actual_link() ?>gallery/">Gallery</a></li>
                               <li ><a href="<?php echo actual_link() ?>compare-vehicle-rates-price-list/">Rates</a> </li>
                             <li><a href="<?php echo actual_link() ?>price-list/">Price List</a></li>
                             <li><a href="<?php echo actual_link() ?>contact-us/">Contact Us</a></li>
-                            <li><a href="term-and-condition.php">Term and Conditions</a></li>
+                            <li><a href="<?php echo actual_link() ?>terms-and-conditions/">Term and Conditions</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="widget">
                         <a href="<?php echo actual_link() ?>" class="logo"><img src="<?php echo actual_link() ?>images/logo/logo.png" width="200" alt=""></a>
-                        <ul class="social-icons">
-                            <li><a href="#"><i class="icon-facebook"></i></a></li>
-                            <li><a href="#"><i class="icon-twitter"></i></a></li>
-                            <li><a href="#"><i class="icon-youtube-play"></i></a></li>
-                            <li><a href="#"><i class="icon-gplus-3"></i></a></li>
-                            <li><a href="#"><i class="icon-instagram-5"></i></a></li>
-                            <li><a href="#"><i class="icon-linkedin-3"></i></a></li>
+                        <ul class="social-icons" style="margin-left: 12%;">
+                            <li><a href="https://www.facebook.com/kandycars1/" target="_blank"><i class="icon-facebook"></i></a></li>
+                            <
+                            <li><a href="https://www.youtube.com/channel/UCE8kk3FlgwTmMISeTPjT7HA" target="_blank"><i class="icon-youtube-play"></i></a></li>
+                           
+                            <li><a href="https://www.instagram.com/kandycars.lk/ " target="_blank"><i class="icon-instagram-5"></i></a></li>
                         </ul>
                         <a href="https://www.srilankantravelguide.com/" target="new" >  <img src="<?php echo actual_link() ?>images/banner/logo-intro2.png" style="width:50px;height:44px; ">
                         </a>

@@ -41,6 +41,7 @@ if (isset($_GET["order_id"])) {
     <link href="<?php echo actual_link() ?>css/custom.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="<?php echo actual_link() ?>css/responsive.css">
     <link href="<?php echo actual_link() ?>css/custom.css" rel="stylesheet" type="text/css"/>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
 </head>
 <style>
@@ -105,13 +106,23 @@ if (isset($_GET["order_id"])) {
 
                         <?php
                         if (isset($_GET["order_id"])) {
+                            
                             if ($paymentSatusCode == 2) {
                                 ?>
                                 <div class="panel panel-default">
-                                    <div class="panel-heading"> <h2 class="text-center">Payment Successful !</h2></div>
+                                    <div class="panel-heading"> <h2 class="text-center">PAYMENT SUCCESSFUL !</h2></div>
                                     <div class="panel-body"> 
-                                        <p class="  text-center" style=" color:#47c7c5;">Your payment has been processed successfully and you booking is confirmed. Please check your email for booking details</p>
+                                        <p class="  text-center" style=" color:#000;">
+                                            Dear Client, your payments has been accepted and the booking is confirmed.
+                                            Kindly Check your e-mail inbox for confirmation mail and go through it.
+                                            <span class="text-danger">DO NOT DELETE THE CONFIRMATION E-MAIL.</span>
+                                            THANK YOU.......!
+                                        </p>
+
                                         <a href="<?php echo actual_link() ?>home/" class="btn btn-view-orders">Home</a> 
+                                        <center>
+                                            <a href="mailto:"><i class="fa fa-google"></i>  </a>
+                                        </center>
                                     </div>
                                 </div>
                                 <?php
@@ -128,9 +139,6 @@ if (isset($_GET["order_id"])) {
                             }
                         }
                         ?>
-
-
-
 
                         <div class="col-md-4">
                         </div>

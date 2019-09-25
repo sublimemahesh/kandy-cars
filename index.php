@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 include './class/include.php';
 include './main-fuction.php';
@@ -108,8 +108,8 @@ if ($params[2] == '' || $params[2] == '') {
 
         include './booking-form-chauffeur.php';
     }
-
-
+else{
+    
     $result = $VEHICLE_TYPE->checkExistVehicleType($title);
 
     if ($result == true) {
@@ -128,6 +128,8 @@ if ($params[2] == '' || $params[2] == '') {
 
     include './vehicle-type.php';
     exit();
+}
+
 } elseif ($params[2] == 'package') {
 
     $title = str_replace("-", " ", strtolower($params[3]));
@@ -215,7 +217,10 @@ if ($params[2] == '' || $params[2] == '') {
 } elseif ($params[2] == 'comment') {
     include './comments.php';
     exit();
+} elseif ($params[2] == 'terms-and-conditions') {
+    include './term-and-condition.php';
+    exit();
 } elseif ($params[2] == 'not-found') {
     include './not-found.php';
     exit();
-} 
+}

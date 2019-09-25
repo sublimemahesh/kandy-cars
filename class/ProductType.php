@@ -217,7 +217,7 @@ class ProductType {
 
     public function getVehiclesByType($type) {
 
-        $query = "SELECT * FROM `product_types` WHERE `type`='" . $type . "'";
+        $query = "SELECT * FROM `product_types` WHERE `type`='" . $type . "' ORDER BY queue ASC";
         $db = new Database();
         $result = $db->readQuery($query);
         $array_res = array();

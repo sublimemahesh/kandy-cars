@@ -26,7 +26,6 @@ if ($_POST['option'] == 'PAY') {
         $ORDER->postalCode = $_POST["postal_code"];
         $ORDER->package = $_POST["package_id"];
         $ORDER->amount = $_POST["amount"];
-        $ORDER->$_POST["price_summery"];
         $ORDER->status = '0';
 
         $result = $ORDER->create();

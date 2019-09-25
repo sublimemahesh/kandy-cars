@@ -17,6 +17,7 @@ class VehicleType {
     public $name;
     public $image_name;
     public $term_and_condition;
+    public $description;
     public $sort;
 
     public function __construct($id) {
@@ -31,6 +32,7 @@ class VehicleType {
             $this->id = $result['id'];
             $this->name = $result['name'];
             $this->image_name = $result['image_name'];
+            $this->description = $result['description'];
             $this->term_and_condition = $result['term_and_condition'];
             $this->sort = $result['sort'];
 
@@ -40,9 +42,10 @@ class VehicleType {
 
     public function create() {
 
-        $query = "INSERT INTO `vehicle_type` (`name`,`image_name`) VALUES  ('"
+        $query = "INSERT INTO `vehicle_type` (`name`,`image_name`,`description`) VALUES  ('"
                 . $this->name . "','"
-                . $this->image_name . "')";
+                . $this->image_name . "','"
+                . $this->description . "')";
 
         $db = new Database();
 
@@ -75,6 +78,7 @@ class VehicleType {
 
         $query = "UPDATE  `vehicle_type` SET "
                 . "`name` ='" . $this->name . "', "
+                . "`description` ='" . $this->description . "', "
                 . "`image_name` ='" . $this->image_name . "' "
                 . "WHERE `id` = '" . $this->id . "'";
 
@@ -88,10 +92,10 @@ class VehicleType {
             return FALSE;
         }
     }
-    
+
     public function updateTermAndCondition() {
 
-        $query = "UPDATE  `vehicle_type` SET " 
+        $query = "UPDATE  `vehicle_type` SET "
                 . "`term_and_condition` ='" . $this->term_and_condition . "' "
                 . "WHERE `id` = '" . $this->id . "'";
 

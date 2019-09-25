@@ -64,6 +64,30 @@ include_once(dirname(__FILE__) . '/auth.php');
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-12 hidden">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                <input type="text" id="rating" value="1" class="form-control"  autocomplete="off" name="rating" required="true">
+                                                <label class="form-label">Rating</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group form-float">
+                                            <p>Select Rating Type:</p>
+
+                                            <div>
+                                                <input type="radio" id="huey" name="type" value="1"
+                                                       checked>
+                                                <label for="huey">Google</label>
+                                            </div>
+
+                                            <div>
+                                                <input type="radio" id="dewey" name="type" value="2">
+                                                <label for="dewey">Tripadvisor</label>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="col-md-12">                                       
                                         <div class="form-group form-float">
@@ -77,7 +101,7 @@ include_once(dirname(__FILE__) . '/auth.php');
                                         <label for="Comment">Comment</label>
                                         <div class="form-line">
                                             <textarea id="description" name="comment" class="form-control" rows="5"></textarea> 
-                                           <input type="hidden" value="1" name="active" />
+                                            <input type="hidden" value="1" name="active" />
                                         </div>
 
                                     </div>

@@ -8,6 +8,7 @@ if (isset($_POST['create'])) {
     $VALID = new Validator();
 
     $VEHICLE_TYPE->name = $_POST['name'];
+    $VEHICLE_TYPE->description = $_POST['description'];
 
     $dir_dest = '../../upload/vehicle_type/';
 
@@ -89,7 +90,7 @@ if (isset($_POST['update'])) {
 
     $VEHICLE_TYPE->image_name = $_POST['oldImageName'];
     $VEHICLE_TYPE->name = $_POST['name'];
-
+    $VEHICLE_TYPE->description = $_POST['description'];
 
     $VALID = new Validator();
     $VALID->check($VEHICLE_TYPE, [
@@ -121,14 +122,14 @@ if (isset($_POST['update'])) {
 }
 
 if (isset($_POST['update-term'])) {
-      
+
     $VEHICLE_TYPE = new VehicleType($_POST['id']);
 
     $VEHICLE_TYPE->term_and_condition = $_POST['term_and_condition'];
-     
+
     $VALID = new Validator();
     $VALID->check($VEHICLE_TYPE, [
-        'term_and_condition' => ['required' => TRUE],  
+        'term_and_condition' => ['required' => TRUE],
     ]);
 
 

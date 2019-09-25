@@ -10,7 +10,7 @@ if ($_POST['option'] == 'PAY') {
         echo json_encode($result);
         exit();
     } else {
-
+       
         date_default_timezone_set('Asia/Colombo');
         $orderedAt = date('Y-m-d H:i:s');
 
@@ -24,11 +24,13 @@ if ($_POST['option'] == 'PAY') {
         $ORDER->city = $_POST["city"];
         $ORDER->country = $_POST["country"];
         $ORDER->postalCode = $_POST["postal_code"];
-        $ORDER->package = $_POST["package_id"]; 
+        $ORDER->package = $_POST["package_id"];
+        $ORDER->price_summery = $_POST["price_summery"];
         $ORDER->amount = $_POST["amount"];
         $ORDER->status = '0';
 
         $result = $ORDER->create();
+        
 
         $result = ["status" => 'success'];
         echo json_encode($result);

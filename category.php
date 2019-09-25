@@ -1,5 +1,6 @@
 <?php
 include_once(dirname(__FILE__) . '/class/include.php');
+include './main-fuction.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -58,18 +59,18 @@ include_once(dirname(__FILE__) . '/class/include.php');
                             <?php
                             if ($vehicle_type['id'] == 3) {
                                 ?>
-                                <a href="<?php echo actual_link(); ?>vehicle-type/<?php echo str_replace(" ", "-", strtolower($vehicle_type['name'])); ?>/">
-                                    <img src="<?php echo actual_link() ?>upload/vehicle_type/<?php echo $vehicle_type['image_name'] ?>" alt="">
+                                <a href="booking-form-chauffeur.php">
+                                    <img src="upload/vehicle_type/<?php echo $vehicle_type['image_name'] ?>" alt="">
                                 </a>
                             <?php } else { ?>
-                                <a href="<?php echo actual_link(); ?>vehicle-type/<?php echo str_replace(" ", "-", strtolower($vehicle_type['name'])); ?>/">
-                                    <img src="<?php echo actual_link() ?>upload/vehicle_type/<?php echo $vehicle_type['image_name'] ?>" alt="">
+                                <a href="book-vehicle.php?id=<?php echo $vehicle_type['id'] ?>">
+                                    <img src="upload/vehicle_type/<?php echo $vehicle_type['image_name'] ?>" alt="">
                                 </a>
                             <?php } ?>
                             <div class="product-description no-rating">
                                 <h4 class="product-name"> <?php echo $vehicle_type['name'] ?> </h4> 
                                 <div class="pricing-area text-justify">
-                                    <?php echo $vehicle_type['description'] ?> 
+                                    Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator , as well as a random Lipsum generator
                                 </div>   
                                 <div class="model-info  pull-left" style="  padding-bottom:12px;">
                                     <?php
@@ -77,11 +78,11 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                         ?>
 
                                         <div>
-                                            <a href="<?php echo actual_link(); ?>vehicle-type/<?php echo str_replace(" ", "-", strtolower($vehicle_type['name'])); ?>/" class="btn-2">Contact</a>
+                                            <a href="booking-form-chauffeur.php" class="btn-2">Contact</a>
                                         </div>
                                     <?php } else { ?>
                                         <div>
-                                            <a href="<?php echo actual_link(); ?>vehicle-type/<?php echo str_replace(" ", "-", strtolower($vehicle_type['name'])); ?>/" class="btn-2">vehicles</a>
+                                            <a href="book-vehicle.php?id=<?php echo $vehicle_type['id'] ?>" class="btn-2">vehicles</a>
                                         </div>
                                     <?php } ?>
                                 </div> 

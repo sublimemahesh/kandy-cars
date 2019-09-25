@@ -170,6 +170,7 @@ $('#wrapper').on('change', '#pick_up_date ,#drop_up_date,#destination,#office', 
 $("#office,#select_method,#select_method_drop,#origin").change(function () {
 
     var pickup = $('#office').val();
+
     var select_method = $('#select_method').val();
     var select_method_drop = $('#select_method_drop').val();
 
@@ -177,9 +178,9 @@ $("#office,#select_method,#select_method_drop,#origin").change(function () {
 
         calPrice();
 
-        $('#price_hide').css("display", "block");
-        $('#tax_hide').css("display", "block");
-        $('.total_price_hide').css("display", "block");
+        $('#price_hide').show();
+        $('#tax_hide').show();
+        $('.total_price_hide').show();
         $('#select_method_append').empty();
         $('#select_method_append').append(select_method);
         $('#select_office_append').append(pickup);
@@ -198,7 +199,6 @@ $("#office,#select_method,#select_method_drop,#origin").change(function () {
         $('#package_charge_hide').css("display", "none");
         $('#select_method_pick_up_hide').css("display", "none");
         $('#select_method_drop_hide').css("display", "none");
-        $('#select_method_drop_hide').css("display", "none");
         $('#price_id').css("display", "none");
         $('#tax').css("display", "none");
         $('.total_price').css("display", "none");
@@ -215,9 +215,9 @@ $("#office,#select_method,#select_method_drop,#origin").change(function () {
     } else if (select_method == 'Collect From Office') {
 
 
-        $('.collect_office').css("display", "block");
+        $('.collect_office').show();
         $('#your_location').css("display", "none");
-        $('#select_method_pick_up_hide').css("display", "block");
+        $('#select_method_pick_up_hide').show();
 
 
         $('#distance_hide').css("display", "none");
@@ -227,7 +227,7 @@ $("#office,#select_method,#select_method_drop,#origin").change(function () {
         $('#package_charge_hide').css("display", "none");
         $('#select_method_pick_up_hide').css("display", "none");
         $('#select_method_drop_hide').css("display", "none");
-        $('#select_method_pick_up_hide').css("display", "block");
+        $('#select_method_pick_up_hide').show();
         $('#deliver_charge_hide').hide();
 
         $('#select_method_drop_append').empty();
@@ -261,19 +261,19 @@ $("#office,#select_method,#select_method_drop,#origin").change(function () {
         $('#select_office_append').append(pickup);
 
 
-        $('.collect_office').css("display", "block");
-        $('#your_location').css("display", "block");
+        $('.collect_office').show();
+        $('#your_location').show();
         $('#distance_hide').css("display", "none");
         $('#ex_per_km_hide').css("display", "none");
         $('#distance_price_hide').css("display", "none");
         $('#package_charge_hide').css("display", "none");
         $('#select_method_pick_up_hide').css("display", "none");
         $('#select_method_drop_hide').css("display", "none");
-        $('#select_method_pick_up_hide').css("display", "block");
+        $('#select_method_pick_up_hide').show();
         $('#driver_charge_hide').css("display", "none");
-        $('#price_hide').css("display", "block");
-        $('#tax_hide').css("display", "block");
-        $('.total_price_hide').css("display", "block");
+        $('#price_hide').show();
+        $('#tax_hide').show();
+        $('.total_price_hide').show();
         $('#destination').val(' ');
 
     }
@@ -288,19 +288,19 @@ $("#office,#select_method,#select_method_drop,#origin").change(function () {
 
     } else if (select_method_drop == 'Drop From Office' && select_method == 'Home Delivery') {
 
-        $('#select_method_drop_hide').css("display", "block");
-        $('#distance_hide').css("display", "block");
-        $('#ex_per_km_hide').css("display", "block");
-        $('#distance_price_hide').css("display", "block");
+        $('#select_method_drop_hide').show();
+        $('#distance_hide').show();
+        $('#ex_per_km_hide').show();
+        $('#distance_price_hide').show();
+        $('#return_office').show();
+        $('#package_charge_hide').show();
+        $('.drop_office').show();
+        $('#distance_price_hide').show();
+        $('#select_method_pick_up_hide').show();
+        $('#driver_charge_hide').show();
+        $('.drop_office').show();
+
         $('#driver_charge_hide').hide();
-        $('#return_office').css("display", "block");
-        $('#package_charge_hide').css("display", "block");
-
-        $('#distance_price_hide').css("display", "block");
-
-
-        $('#select_method_pick_up_hide').css("display", "block");
-        $('#driver_charge_hide').css("display", "block");
 
         $('#select_method_append').empty();
         $('#select_method_drop_append').empty();
@@ -316,8 +316,8 @@ $("#office,#select_method,#select_method_drop,#origin").change(function () {
 
     } else if (select_method_drop == 'Drop From Office') {
 
-        $('.drop_office').css("display", "block");
-        $('#your_drop_location').css("display", "none");
+        $('.drop_office').show();
+        $('#your_drop_location').hide();
 
         $('#select_office_drop_append').empty();
         $('#select_office_append').empty();
@@ -326,9 +326,8 @@ $("#office,#select_method,#select_method_drop,#origin").change(function () {
         $('#select_office_append').empty();
         $('#select_office_drop_append').empty();
 
-        $('#return_office').css("display", "block");
-        $('#select_method_drop_hide').css("display", "block");
-        $('.drop_office').css("display", "block");
+        $('#return_office').show();
+        $('#select_method_drop_hide').show();
         $('#your_drop_location').css("display", "none");
         $('#package_charge_hide').css("display", "none");
         $('#select_method_drop_append').append(select_method_drop);
@@ -353,13 +352,12 @@ $("#office,#select_method,#select_method_drop,#origin").change(function () {
 
         $('#select_method_drop_append').append(select_method_drop);
 
-        $('.drop_office').css("display", "block");
-        $('#drop_office_2').css("display", "block");
-        $('#your_drop_location').css("display", "block");
-        $('#select_method_drop_hide').css("display", "block");
-        $('#distance_hide').css("display", "block");
-        $('#ex_per_km_hide').css("display", "block");
-        $('#distance_price_hide').css("display", "block");
+        $('.drop_office').show();
+        $('#your_drop_location').show();
+        $('#select_method_drop_hide').show();
+        $('#distance_hide').show();
+        $('#ex_per_km_hide').show();
+        $('#distance_price_hide').show();
         $('#package_charge_hide').css("display", "none");
     }
 
@@ -418,7 +416,7 @@ $('#wrapper').on('change', '#packages', function () {
                 $('#package_body').empty();
                 $('#package_body').append(html);
                 $('#table-bar-display').css("display", "none");
-                $('#table-bar').css("display", "block");
+                $('#table-bar').show();
                 $('#price_id').empty();
                 $('#tax').empty();
                 $('.total_price').empty();
@@ -485,6 +483,8 @@ function calPrice() {
 }
 
 function  calHomePrice() {
+
+//    var select_method_drop = $('#select_method_drop').val();
 
     if (pickup != null && destination != null) {
 
@@ -686,7 +686,7 @@ $("#next").click(function () {
             showConfirmButton: false
         });
     } else {
-        $('#customer_panel').css("display", "block");
+        $('#customer_panel').show();
         $('#package_panel').css("display", "none");
 
     }
@@ -779,7 +779,7 @@ $("#pay").click(function (event) {
         var email = $('#email').val();
         var phone = $('#phone_number').val();
         var amount = $('#amount').val();
-
+        var price_summery = $("#price-summery").html(); 
         var postal_code = $('#postal_code').val();
         var captchacode = $('#captchacode').val();
 
@@ -799,6 +799,7 @@ $("#pay").click(function (event) {
                 postal_code: postal_code,
                 amount: amount,
                 captchacode: captchacode,
+                price_summery: price_summery,
                 option: 'PAY'
             },
             success: function (result) {
@@ -823,7 +824,7 @@ $("#back").click(function (event) {
     event.preventDefault();
 
     $('#customer_panel').css("display", "none");
-    $('#package_panel').css("display", "block");
+    $('#package_panel').show();
 });
 
 $("#country").change(function () {
