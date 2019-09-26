@@ -223,10 +223,15 @@ blockquote:before {
     padding: 10px 20px 10px 20px;
     border-radius: 4px;
 }
+.btn-clear-all{
+    padding: 10px 15px 10px 15px;
+    border-radius: 4px;
+    margin-left: 10px;
+}
 
 .rating-reviews ul{
-  list-style-type:none;  
-      display: block;
+    list-style-type:none;  
+    display: block;
     position: relative;  
     color: red;
 }

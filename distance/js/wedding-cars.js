@@ -437,7 +437,7 @@ function calDropHome() {
 
 
 
-            if (package_distance > (total_distance_calculate*2)) {
+            if (package_distance > (total_distance_calculate * 2)) {
                 $('#loading').hide();
                 calPrice();
             } else {
@@ -455,7 +455,7 @@ function calDropHome() {
                         function (isConfirm) {
                             var package_id = $('#package_id').val();
                             if (isConfirm) {
-                                var dif = (total_distance_calculate*2) - package_distance;
+                                var dif = (total_distance_calculate * 2) - package_distance;
                                 $.ajax({
                                     url: "../../distance/ajax/wedding-calculations.php",
                                     type: "POST",
@@ -494,7 +494,7 @@ function calDropHome() {
                                 });
                             } else {
                                 $('#origin').val("");
-                                 $('#loading').hide();
+                                $('#loading').hide();
                             }
                         });
             }
@@ -602,13 +602,14 @@ function calDistance() {
 }
 
 $("#add-destination").click(function () {
-
+    $('#loading').show();
     var select_method = $('#select_method').val();
 
     var dis_tot_now = 00;
     var destination = $('#destination').val();
 
     if (!destination) {
+        $('#loading').show();
         swal({
             title: "Error",
             text: "Location is empty",
@@ -617,6 +618,7 @@ $("#add-destination").click(function () {
             showConfirmButton: false
         }, );
         $('#destination').val("");
+        $('#loading').hide();
     } else {
 
         var package_distance = $('#package-distance').val();
@@ -624,19 +626,20 @@ $("#add-destination").click(function () {
         var lasttr = $('#myTable tr:last').attr('place-value');
 
         if (!lasttr) {
-
             if (select_method == 'Collect From Office') {
                 firstpickup = $('#office').val();
             } else if (select_method == 'Home Delivery') {
                 firstpickup = $('#origin').val();
             }
-            dis_tot_now = $('#distance-tot').val()
+            dis_tot_now = $('#distance-tot').val();
+
         } else {
             firstpickup = lasttr;
             dis_tot_now = 0.00;
         }
 
         $.ajax({
+
             url: "../../distance/ajax/wedding-distance-between.php",
             type: "POST",
             data: {
@@ -647,12 +650,12 @@ $("#add-destination").click(function () {
             dataType: "JSON",
             success: function (jsonStr) {
                 if (jsonStr.status) {
-
+                    $('#loading').hide();
                     total_distance_cal = parseFloat(total_distance_cal) + parseFloat(jsonStr.distance_numbers) + parseFloat(dis_tot_now);
 
                     var dis = jsonStr.distance_numbers;
 
-                    if (package_distance > (total_distance_cal*2)) {
+                    if (package_distance > (total_distance_cal * 2)) {
                         $('table').show();
                         $('.destination').show();
                         $(".inc").append('<tr class="remove-col" place-value="' + destination + '"><td scope="row"><p class="pull-left">' + destination + ' </p></td><td scope="row"> <input type="hidden" name="txtpick_up_location" class="pick_up_location" distance-between="' + jsonStr.distance_numbers + '" id="txtpick_up_location" value="' + destination + '  "> <p>' + jsonStr.distance + '</p> </td></tr>  ');
@@ -661,7 +664,6 @@ $("#add-destination").click(function () {
                         $('#destination_distance_append').empty();
                         $('#destination_distance_append').append(total_distance_cal + "km");
                         $('#distance-tot').val(total_distance_cal);
-
 
                         $('#drop_location_append').empty();
                         $('#drop_location_append').append(destination);
@@ -683,7 +685,7 @@ $("#add-destination").click(function () {
                                 function (isConfirm) {
                                     var package_id = $('#package_id').val();
                                     if (isConfirm) {
-                                        var dif = (2*total_distance_cal) - package_distance;
+                                        var dif = (2 * total_distance_cal) - package_distance;
                                         $.ajax({
                                             url: "../../distance/ajax/wedding-calculations.php",
                                             type: "POST",
@@ -754,7 +756,37 @@ $("#add-destination").click(function () {
 
 });
 
+$("#clear-destination").click(function () {
+    $('#myTable tbody > tr').remove();
+    $('#myTable').hide();
 
+
+    $('#destination_hide').css("display", "none");
+    $('#drop_location_append').empty();
+
+    $('#deliver_charge').empty();
+    $('#deliver_charge_hide').css("display", "none");
+    $('#deliver_charge_number').val("0.00");
+
+    $('#extra_mileage_hide').css("display", "none");
+    $('#extra_mileage_append').empty();
+
+
+    $('#extra_price_hide').css("display", "none");
+    $('#extra_price_append').empty();
+    $('#extra_price').val("0.00");
+
+    $('#destination_distance_append').empty();
+
+    $('#pickup_hide').css("display", "none");
+    $('#pickup').empty();
+
+    $('#origin').val("");
+
+    calPrice();
+
+
+});
 $("#next").click(function () {
 
     var pick_up_date = $('#pick_up_date').val();

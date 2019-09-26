@@ -146,8 +146,8 @@ if (isset($_GET["order_id"])) {
                                                 </select>                 
                                             </div>
                                             <div  id="table-bar-display"  > 
-                                                <div class="col-sm-12 col-xs-12 col-md-12 table-responsive" style="display: flex;  overflow: auto;  white-space: nowrap;">
-                                                    <table class="table table-bordered" id="table-res">
+                                                <div class="col-sm-12 col-xs-12 col-md-12 table-responsive" style="display: flex;">
+                                                    <table class="table table-bordered" id="table-res" style="overflow-x:auto;">
                                                         <thead>
                                                             <tr>
                                                                 <th>Package Name</th>
@@ -156,7 +156,7 @@ if (isset($_GET["order_id"])) {
                                                                 <th>Package Price</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody  >
+                                                        <tbody>
                                                         <td>
                                                             <?php echo $PACKAGE->title ?>
                                                         </td>
@@ -178,8 +178,8 @@ if (isset($_GET["order_id"])) {
                                             <input type="hidden" id="package-tot" value="<?php echo $PACKAGE->charge; ?>">
                                             <input type="hidden" id="package-distance" value="<?php echo $PACKAGE->km; ?>">
                                             <div  id="table-bar" style="display: none"> 
-                                                <div class="col-sm-6 col-xs-12 col-md-12">
-                                                    <table class="table table-bordered">
+                                                <div class="col-sm-6 col-xs-12 col-md-12 table-responsive" style="display: flex;">
+                                                    <table class="table table-bordered" style="overflow-x:auto;">
                                                         <thead>
                                                             <tr>
                                                                 <th>Package Name</th>
@@ -250,15 +250,20 @@ if (isset($_GET["order_id"])) {
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Locations & Destination</div>
                                         <div class="panel-body">
-                                            <p>Please add them sequentially.Last location will be your final destination</p>
-                                            <div class="col-sm-12 col-xs-11 col-md-11">
+                                            <p>Please add them sequentially.Last location will be your final destination.
+                                                <br>
+                                                Click + button after selecting a location</p>
+                                            <div class="col-sm-12 col-xs-12 col-md-8">
                                                 <div class="controls"> 
                                                     <input type="text" id="destination" class="form-control  " name="text" placeholder="locations" autocomplete="off"/> 
                                                 </div>
                                             </div>
 
-                                            <div class="col-sm-12 col-xs-4 col-md-1" style="padding-left: 0px;"> 
+                                            <div class="col-sm-6 col-xs-4 col-md-1" style="padding-left: 0px;"> 
                                                 <button type="submit"  class="  btn-style-3  btn-add submit" id="add-destination" name="add-destination" > + </button>
+                                            </div> 
+                                              <div class="col-sm-6 col-xs-8 col-md-3" style="padding-left: 0px;"> 
+                                                <button type="submit"  class="  btn-danger btn-clear-all submit" id="clear-destination" name="clear-destination" > Clear All</button>
                                             </div> 
 
                                             <div class="col-sm-12 col-xs-4 col-md-12" > 
@@ -340,8 +345,8 @@ if (isset($_GET["order_id"])) {
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h4> <b>Customer Details</b></h4></div>
                     <div class="panel-body" >  
-                        <!--<form name="order_from" id="payments" class="order_from" action="https://sandbox.payhere.lk/pay/checkout" method="post" autocomplete="off">-->
-                            <form name="contact-from" id="payments" class="booking-form" action="https://www.payhere.lk/pay/checkout" method="post">
+                        <form name="order_from" id="payments" class="order_from" action="https://sandbox.payhere.lk/pay/checkout" method="post" autocomplete="off">
+<!--                            <form name="contact-from" id="payments" class="booking-form" action="https://www.payhere.lk/pay/checkout" method="post">-->
                             <div class="row">
                                 <div class="col-sm-6 col-xs-12 col-md-6">
                                     <label>First Name</label>
