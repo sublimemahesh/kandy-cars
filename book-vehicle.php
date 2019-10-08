@@ -56,16 +56,16 @@ include_once(dirname(__FILE__) . '/class/include.php');
                     ?>
                     <!-- Slide -->                  
                     <div class="col-md-4 "> 
-                        <div class="product" style="margin-bottom:20px;">
-                            <a href="<?php echo actual_link(); ?>package/<?php echo str_replace(" ", "-", strtolower($product['name'])); ?>/">
+                        <div class="product" style="margin-bottom:20px;height: 40%">
+                            <a href="<?php echo actual_link(); ?>vehicle-type/<?php echo str_replace(" ", "-", strtolower($vehicle_type['name'])); ?>/package/<?php echo str_replace(" ", "-", strtolower($product['name'])); ?>/">
                                 <img src="<?php echo actual_link() ?>upload/product-type/<?php echo $product["image_name"]; ?>" alt="">
                             </a>
                             <div class="product-description no-rating">
-                                <h5 class="product-name"><a href=""><?php echo $product["name"]; ?></a>
+                                <h5 class="product-name"><a href="<?php echo actual_link(); ?>vehicle-type/<?php echo str_replace(" ", "-", strtolower($vehicle_type['name'])); ?>/package/<?php echo str_replace(" ", "-", strtolower($product['name'])); ?>/"><?php echo $product["name"]; ?></a>
 
                                 </h5>
                                 <div class="model-info  pull-right" style="  padding-bottom:12px;">
-                                    <div ><a href="<?php echo actual_link(); ?>package/<?php echo str_replace(" ", "-", strtolower($product['name'])); ?>/" class="btn-2">Packages</a></div>
+                                    <div ><a href="<?php echo actual_link(); ?>vehicle-type/<?php echo str_replace(" ", "-", strtolower($vehicle_type['name'])); ?>/package/<?php echo str_replace(" ", "-", strtolower($product['name'])); ?>/" class="btn-2">Packages</a></div>
                                 </div> 
                             </div> 
                         </div> 

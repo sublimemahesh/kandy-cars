@@ -8,10 +8,6 @@ $WEILCOME_Description = new Page(6);
 //$id = $_GET["id"];
 ?>
 
-
-
-
-
 <!doctype html>
 
 <html lang="en">

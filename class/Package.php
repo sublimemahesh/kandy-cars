@@ -97,6 +97,7 @@ class Package {
     public function getPackagesByVehicle($id) {
 
         $query = "SELECT * FROM `package` WHERE `vehicle`=" . $id . " ORDER BY queue ASC";
+       
         $db = new Database();
         $result = $db->readQuery($query);
         $array_res = array();
@@ -111,6 +112,7 @@ class Package {
     public function getPackagesById($id) {
 
         $query = "SELECT * FROM `package` WHERE `id`=" . $id . " ORDER BY queue ASC";
+           
         $db = new Database();
         $result = $db->readQuery($query);
         $array_res = array();

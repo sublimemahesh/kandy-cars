@@ -387,7 +387,7 @@ $('#wrapper').on('change', '#packages', function () {
     var package_id = $('#packages').val();
     var pick_up_date = $('#pick_up_date').val();
     var pickup = $('#office').val();
-
+    
 //    if (!pick_up_date) {
 //
 //        swal({
@@ -402,7 +402,7 @@ $('#wrapper').on('change', '#packages', function () {
         $('#table-bar').hide();
     } else {
         $.ajax({
-            url: "../../distance/ajax/distance-rent-car.php",
+            url: "../../../../../../distance/ajax/distance-rent-car.php",
             type: "POST",
             data: {
                 package_id: package_id,
@@ -475,7 +475,7 @@ function calPrice() {
     var package_id = $('#package_id').val();
 
     $.ajax({
-        url: "../../distance/ajax/distance-rent-car.php",
+        url: "../../../../../../distance/ajax/distance-rent-car.php",
         type: "POST",
         data: {
             office: office,
@@ -506,7 +506,7 @@ function  calHomePrice() {
     if (pickup != null && destination != null) {
  
         $.ajax({
-            url: "../../distance/ajax/distance-rent-car.php",
+            url: "../../../../../../distance/ajax/distance-rent-car.php",
             type: "POST",
             data: {
                 pickup: pickup,
@@ -559,7 +559,7 @@ function  calHomePrice() {
        
         $('#loading').show();
         $.ajax({
-            url: "../../distance/ajax/distance-rent-car.php",
+            url: "../../../../../../distance/ajax/distance-rent-car.php",
             type: "POST",
             data: {
                 destination: destination,
@@ -615,7 +615,7 @@ function calDropHome() {
 
     $('#loading').show();
     $.ajax({
-        url: "../../distance/ajax/distance-rent-car.php",
+        url: "../../../../../../distance/ajax/distance-rent-car.php",
         type: "POST",
         data: {
             pickup: pickup,
@@ -803,7 +803,7 @@ $("#pay").click(function (event) {
 
         $.ajax({
             type: 'POST',
-            url: '../../distance/ajax/pay.php',
+            url: '../../../../../../distance/ajax/pay.php',
             dataType: "json",
             data: {
                 fname: fname,

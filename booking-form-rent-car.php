@@ -3,9 +3,10 @@
 include_once(dirname(__FILE__) . '/class/include.php');
 
 $PACKAGE = new Package($package['id']);
+
 $VEHICLE = new ProductType($PACKAGE->vehicle);
 $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
-
+ 
 $ORDER = new Order(NULL);
 $LASTID = $ORDER->getLastID();
 $order_id = $LASTID + 1;
@@ -101,6 +102,7 @@ $order_id = $LASTID + 1;
                                                     <option value="0"> -- Select the other packages -- </option>  
                                                     <?php
                                                     $PACKAGES = new Package(NULL);
+                                                   
                                                     foreach ($PACKAGES->getPackagesByVehicle($PACKAGE->vehicle) as $key => $package) {
                                                         if ($package['id'] == $PACKAGE->id) {
                                                             ?>
@@ -265,8 +267,8 @@ $order_id = $LASTID + 1;
                     <div class="panel-heading text-center"><h4> <b>Customer Details</b></h4></div>
                     <div class="panel-body" > 
 
-                        <form name="order_from" id="payments" class="order_from" action="https://sandbox.payhere.lk/pay/checkout" method="post" autocomplete="off"> 
-<!--                        <form name="contact-from" id="payments" class="booking-form" action="https://www.payhere.lk/pay/checkout" method="post">-->
+                        <!--<form name="order_from" id="payments" class="order_from" action="https://sandbox.payhere.lk/pay/checkout" method="post" autocomplete="off"> -->
+                        <form name="contact-from" id="payments" class="booking-form" action="https://www.payhere.lk/pay/checkout" method="post">
                             <div class="row">
                                 <div class="col-sm-6 col-xs-12 col-md-6">
                                     <label>First Name</label>
@@ -332,11 +334,11 @@ $order_id = $LASTID + 1;
 
 
                             <!--sandbox merchant id-->
-                            <input type="hidden" name="merchant_id" value="1213021">  
-<!--
-                            <input type="hidden" name="merchant_id" value="213461">  -->
-                            <!--live merchant id-->
+                            <!--<input type="hidden" name="merchant_id" value="1213021">  -->
 
+                         
+                            <!--live merchant id-->
+                            <input type="hidden" name="merchant_id" value="213461"> 
                             <input type="hidden" name="return_url" value="https://kandycars.lk/payment-success.php?id=<?php echo $id ?>">
                             <input type="hidden" name="cancel_url" value="https://kandycars.lk/order-form.php?cancelled">
                             <input type="hidden" name="notify_url" value="https://kandycars.lk/payments/notify.php">
@@ -509,7 +511,7 @@ $order_id = $LASTID + 1;
 </script>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBowwQmOfERv2WsBHHvFs2rNTwQex9r1A&libraries=places&reigion=lk"></script>
 <script src="<?php echo actual_link() ?>distance/js/distance-rent-car.js" type="text/javascript"></script>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
