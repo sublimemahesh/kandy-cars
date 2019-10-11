@@ -9,18 +9,18 @@ $url = $_SERVER['REQUEST_URI'];
 #split the path by '/'
 $params = split("/", $url);
 
-if ($params[1] == '' || $params[1] == '') {
+if ($params[2] == '' || $params[2] == '') {
     include './home.php';
     exit();
-} elseif ($params[1] == 'home') {
+} elseif ($params[2] == 'home') {
     include './home.php';
     exit();
-} elseif ($params[1] == 'about-us') {
+} elseif ($params[2] == 'about-us') {
     include './about.php';
     exit();
-} elseif ($params[1] == 'rent-a-car') {
+} elseif ($params[2] == 'rent-a-car') {
 
-    $title = str_replace("-", " ", strtolower($params[2]));
+    $title = str_replace("-", " ", strtolower($params[3]));
 
     if ($title == '') {
         $title = 'xxxxx';
@@ -40,9 +40,9 @@ if ($params[1] == '' || $params[1] == '') {
     }
     include './travel.php';
     exit();
-} elseif ($params[1] == 'services') {
+} elseif ($params[2] == 'services') {
 
-    $title = str_replace("-", " ", strtolower($params[2]));
+    $title = str_replace("-", " ", strtolower($params[3]));
     $SERVICE = new Service(NULL);
 
     if ($title == '') {
@@ -67,9 +67,9 @@ if ($params[1] == '' || $params[1] == '') {
 
     include './service.php';
     exit();
-} elseif ($params[1] == 'vehicles') {
+} elseif ($params[2] == 'vehicles') {
 
-    $title = str_replace("-", " ", strtolower($params[2]));
+    $title = str_replace("-", " ", strtolower($params[3]));
 
     $VEHICLE = new ProductType(NULL);
     if ($title == '') {
@@ -95,11 +95,12 @@ if ($params[1] == '' || $params[1] == '') {
 
     include './vehicle.php';
     exit();
-} elseif ($params[1] == 'vehicle-type') {
+} elseif ($params[2] == 'vehicle-type') {
 
-    if ($params[5] == 'booking' ) {
+    if ($params[6] == 'booking') {
 
-        $title = str_replace("-", " ", strtolower($params[6]));
+        $title = str_replace("-", " ", strtolower($params[7]));
+        $vehicle_name = str_replace("-", " ", strtolower($params[5]));
 
         $PACKAGE = new Package(NULL);
         if ($title == '') {
@@ -111,8 +112,14 @@ if ($params[1] == '' || $params[1] == '') {
 
         if ($result == true) {
             $PACKAGE = new Package(NULL);
+            $VEHICLES = new ProductType(Null);
 
-            $packages = $PACKAGE->getPackageByName($title);
+
+            foreach ($VEHICLES->getVehicleName($vehicle_name) as $vehicles) {
+                $vehicles_id = $vehicles['id'];
+            }
+           
+            $packages = $PACKAGE->getPackageByName($title,$vehicles_id);
             foreach ($packages as $package) {
                 include './booking-form-rent-car.php';
                 exit();
@@ -123,9 +130,9 @@ if ($params[1] == '' || $params[1] == '') {
             exit();
         }
     }
-    if ($params[3] == 'package') {
+    if ($params[4] == 'package') {
 
-        $title = str_replace("-", " ", strtolower($params[4]));
+        $title = str_replace("-", " ", strtolower($params[5]));
 
         $VEHICLE = new ProductType(NULL);
         if ($title == '') {
@@ -151,10 +158,10 @@ if ($params[1] == '' || $params[1] == '') {
     }
 
 
-    $title = str_replace("-", " ", strtolower($params[2]));
+    $title = str_replace("-", " ", strtolower($params[3]));
 
     $VEHICLE_TYPE = new VehicleType(NULL);
-   
+
     if ($title == 'chauffeur driven car') {
 
         include './booking-form-chauffeur.php';
@@ -179,11 +186,11 @@ if ($params[1] == '' || $params[1] == '') {
         include './vehicle-type.php';
         exit();
     }
-} elseif ($params[1] == 'booking-rent-car') {
+} elseif ($params[2] == 'booking-rent-car') {
     
-} elseif ($params[1] == 'booking-wedding') {
+} elseif ($params[2] == 'booking-wedding') {
 
-    $title = str_replace("-", " ", strtolower($params[2]));
+    $title = str_replace("-", " ", strtolower($params[3]));
 
     $PACKAGE = new Package(NULL);
     if ($title == '') {
@@ -206,22 +213,22 @@ if ($params[1] == '' || $params[1] == '') {
         include './booking-form-wedding-car.php';
         exit();
     }
-} elseif ($params[1] == 'gallery') {
+} elseif ($params[2] == 'gallery') {
     include './gallery.php';
     exit();
-} elseif ($params[1] == 'compare-vehicle-rates-price-list') {
+} elseif ($params[2] == 'compare-vehicle-rates-price-list') {
     include './price.php';
     exit();
-} elseif ($params[1] == 'contact-us') {
+} elseif ($params[2] == 'contact-us') {
     include './contact.php';
     exit();
-} elseif ($params[1] == 'comment') {
+} elseif ($params[2] == 'comment') {
     include './comments.php';
     exit();
-} elseif ($params[1] == 'terms-and-conditions') {
+} elseif ($params[2] == 'terms-and-conditions') {
     include './term-and-condition.php';
     exit();
-} elseif ($params[1] == 'not-found') {
+} elseif ($params[2] == 'not-found') {
     include './not-found.php';
     exit();
 }

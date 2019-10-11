@@ -46,11 +46,13 @@ include_once(dirname(__FILE__) . '/class/include.php');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
     <link href="<?php echo actual_link(); ?>css/timepicki.css" rel="stylesheet" type="text/css"/>     
     <link href="<?php echo actual_link(); ?>control-panel/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
-   
+
     <link href="<?php echo actual_link(); ?>booking-chaufferur/style.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
     <link href="<?php echo actual_link(); ?>css/countrySelect.min.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo actual_link(); ?>distance/js/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
+
+    <link href="<?php echo actual_link() ?>css/intlTelInput.min.css" rel="stylesheet" type="text/css"/>
 </head>
 
 
@@ -91,29 +93,29 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                 </div> 
                             </div>
                             <div class="row"> 
-                                <div class="col-sm-6 col-xs-12 col-md-4">
+                                <div class="col-sm-6 col-xs-12 col-md-3">
                                     <label>Nationality</label>
                                     <input type="text" name="txtNationality" id="txtNationality"  placeholder="Nationality" class="form-control input-validater">
                                     <div class="col-md-12">
                                         <span id="spanNationality" ></span>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-xs-12 col-md-4">
+                                <div class="col-sm-6 col-xs-12 col-md-3">
                                     <label>Mobile Number</label>
-                                    <input type="text" name="txtMobileNumber" id="txtMobileNumber" class="form-control  " data-select="date"  placeholder="Mobile Number">
-                                    <div class="col-md-12">
+<!--                                    <input type="text" name="txtMobileNumber" id="txtMobileNumber" class="form-control  " data-select="date"  placeholder="Mobile Number">--> 
+                                    <input id="phone" name="phone" type="text" class="form-control  "  name="txtMobileNumber" id="txtMobileNumber"  >                                    <div class="col-md-12">
                                         <span id="spanMobileNumber" ></span>
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6 col-xs-12 col-md-2" style="margin-top: 40px"> 
+                                <div class="col-sm-6 col-xs-12 col-md-3" style="margin-top: 40px"> 
                                     <label class="cont-check"> Whats App   
                                         <input type="checkbox" value="Whats App" class="contact_number_type"  id="agree" style="float: left;margin-right:10px;">
                                         <span class="checkmark" style="margin-left: 10px;"></span>
                                     </label>
                                 </div>
 
-                                <div class="col-sm-6 col-xs-12 col-md-2" style="margin-top: 40px">
+                                <div class="col-sm-6 col-xs-12 col-md-3" style="margin-top: 40px">
                                     <label class="cont-check"> Viber
                                         <input type="checkbox" value="Viber"  class="contact_number_type"  id="agree" style="float: left;margin-right:10px;">
                                         <span class="checkmark" style="margin-left: 10px;"></span>
@@ -319,8 +321,14 @@ include_once(dirname(__FILE__) . '/class/include.php');
     ============================================ -->
     <script src="<?php echo actual_link(); ?>js/libs/jquery.modernizr.js"></script>
     <script src="<?php echo actual_link(); ?>js/libs/jquery-2.2.4.min.js"></script>
+
+    <script src="<?php echo actual_link() ?>js/intlTelInput.min.js" type="text/javascript"></script>
+
+
+    <script src="<?php echo actual_link(); ?>distance/js/jquery.datetimepicker.full.js" type="text/javascript"></script>
+
     <script src="<?php echo actual_link(); ?>control-panel/plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL0Gc6zvPpvH-CbORJwntxbqedMmkMcfc&libraries=places&reigion=lk"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBowwQmOfERv2WsBHHvFs2rNTwQex9r1A&libraries=places&reigion=lk"></script>
 
 
     <script src="<?php echo actual_link(); ?>js/libs/jquery-ui.min.js"></script>
@@ -329,27 +337,35 @@ include_once(dirname(__FILE__) . '/class/include.php');
     <script src="<?php echo actual_link(); ?>plugins/sticky-sidebar.js"></script>
     <script src="<?php echo actual_link(); ?>plugins/isotope.pkgd.min.js"></script>
     <script src="<?php echo actual_link(); ?>plugins/jquery.queryloader2.min.js"></script>
-    <script src="<?php echo actual_link(); ?>plugins/bootstrap.js"></script>
-    <script src="<?php echo actual_link(); ?>plugins/fancybox/jquery.fancybox.min.js"></script>
-    <script src="<?php echo actual_link(); ?>plugins/owl.carousel.min.js"></script>
- 
-    <!-- 
-    JS theme files
-    ============================================ 
-    -->
-
+    <script src="<?php echo actual_link(); ?>plugins/bootstrap.js"></script> 
 
     <script src="<?php echo actual_link(); ?>js/plugins.js"></script>
     <script src="<?php echo actual_link(); ?>js/script.js"></script> 
     <script src="<?php echo actual_link(); ?>distance/js/chauffeur.js" type="text/javascript"></script>
 
-
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="<?php echo actual_link(); ?>js/countrySelect.min.js" type="text/javascript"></script>
+    <script>
+        var input = document.querySelector("#phone");
+        window.intlTelInput(input, {
+            initialCountry: 'lk',
+            placeholderNumberType: 'MOBILE',
+            utilsScript: "<?php echo actual_link(); ?>js/utils.js",
+        });
+    </script>
 
+    <script>
 
+        jQuery(document).ready(function () {
+
+            jQuery('#txtDropOfDateTime').datetimepicker({
+                alert();
+                        dateFormat: 'yy-mm-dd',
+                minDate: 'today'
+            });
+        });
+
+    </script> 
     <script type="text/javascript">
-
 
         $("#txtNationality").countrySelect({
             preferredCountries: ["lk"],
@@ -377,22 +393,10 @@ include_once(dirname(__FILE__) . '/class/include.php');
         }
     </script>
 
-    
+
     <script src="<?php echo actual_link(); ?>code.js" type="text/javascript"></script>
     <script src="<?php echo actual_link(); ?>booking-chaufferur/scripts.js" type="text/javascript"></script>
-    <script src="<?php echo actual_link(); ?>distance/js/jquery.datetimepicker.full.js" type="text/javascript"></script>
-    <script>
 
-        jQuery(document).ready(function () {
-            
-            jQuery('#txtDropOfDateTime').datetimepicker({
-                alert();
-                dateFormat: 'yy-mm-dd',
-                minDate: 'today'
-            });
-        });
-
-    </script> 
 
 </body>
 </html>
