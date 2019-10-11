@@ -229,9 +229,10 @@ class Package {
         }
     }
 
-    public function getPackageByName($title) {
+    public function getPackageByName($title,$vehicles_id) {
         
-        $query = "SELECT * FROM `package` WHERE `title`='" . $title . "'";
+        $query = "SELECT * FROM `package` WHERE `title`='" . $title . "' And `vehicle`=" . $vehicles_id . "";
+      
         $db = new Database();
         $result = $db->readQuery($query);
         $array_res = array();
