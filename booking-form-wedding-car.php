@@ -345,8 +345,8 @@ if (isset($_GET["order_id"])) {
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h4> <b>Customer Details</b></h4></div>
                     <div class="panel-body" >  
-                        <!--<form name="order_from" id="payments" class="order_from" action="https://sandbox.payhere.lk/pay/checkout" method="post" autocomplete="off">-->
-                            <form name="contact-from" id="payments" class="booking-form" action="https://www.payhere.lk/pay/checkout" method="post">
+<!--                        <form name="order_from" id="payments" class="order_from" action="https://sandbox.payhere.lk/pay/checkout" method="post" autocomplete="off">-->
+                           <form name="contact-from" id="payments" class="booking-form" action="https://www.payhere.lk/pay/checkout" method="post">
                             <div class="row">
                                 <div class="col-sm-6 col-xs-12 col-md-6">
                                     <label>First Name</label>
@@ -413,7 +413,7 @@ if (isset($_GET["order_id"])) {
 
                             <!--sandbox merchant id-->
                            
-                              <!--<input type="hidden" name="merchant_id" value="1213021"> -->
+<!--                           <input type="hidden" name="merchant_id" value="1213021">-->
                             <!--live merchant id-->
                              <input type="hidden" name="merchant_id" value="213461">  
                             <input type="hidden" name="return_url" value="https://kandycars.lk/payment-success.php?id=<?php echo $id ?>">
@@ -723,11 +723,11 @@ if (isset($_GET["order_id"])) {
 
                     </div>
 
-                    <div class="panel panel-default">
+                    <div class="panel panel-default" style="margin-top: 10px">
                         <div class="panel-heading text-center">
                             <b>Terms and Conditions </b> 
                         </div> 
-                        <div class="panel-body"> 
+                        <div class="panel-body" style="overflow-y: auto;height: 450px;"> 
                             <div class="row">
                                 <div class="col-md-12" > 
                                     <?php

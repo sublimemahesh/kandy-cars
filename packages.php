@@ -32,9 +32,7 @@ $VEHICLE_TYPE = new VehicleType($PRODUCT_TYPE->type);
     <link rel="stylesheet" href="<?php echo actual_link() ?>css/style.css">
     <link rel="stylesheet" href="<?php echo actual_link() ?>css/responsive.css">
     <link href="<?php echo actual_link() ?>css/custom.css" rel="stylesheet" type="text/css"/> 
-    <link href="<?php echo actual_link() ?>css/set-1.css" rel="stylesheet" type="text/css"/> 
-
-
+    <link href="<?php echo actual_link() ?>css/set-1.css" rel="stylesheet" type="text/css"/>   
 </head>
 
 <body>
@@ -51,65 +49,47 @@ $VEHICLE_TYPE = new VehicleType($PRODUCT_TYPE->type);
         <?php include './header.php'; ?>
 
         <div class="page-section container " >
-            <div class="row">
-                <?php
-                $PACKAGE = Package::getPackagesByVehicle($vehicle['id']);
-                foreach ($PACKAGE as $key => $package) {
-                    ?>
-                    <!-- Slide -->                  
-                    <div class="col-md-4 ">
-                        <div class="product" style="margin-bottom:20px;">
-                            <a href="<?php echo actual_link(); ?>vehicle-type/<?php echo str_replace(" ", "-", strtolower($VEHICLE_TYPE->name)); ?>/package/<?php echo str_replace(" ", "-", strtolower($vehicle['name'])); ?>/booking/<?php echo str_replace(" ", "-", strtolower($package["title"])); ?>/">
-                                <img src="<?php echo actual_link() ?>upload/packages/<?php echo $package["image_name"]; ?>" alt="">
-                            </a>
 
-                            <div class="product-description no-rating">
-                                <h4 class="product-name"><a href="<?php echo actual_link(); ?>vehicle-type/<?php echo str_replace(" ", "-", strtolower($VEHICLE_TYPE->name)); ?>/package/<?php echo str_replace(" ", "-", strtolower($vehicle['name'])); ?>/booking/<?php echo str_replace(" ", "-", strtolower($package["title"])); ?>/"><?php echo $package["title"]; ?></a></h4>
-                                <div class="pricing-area">
-                                    <div class="row" style="display: block;">
-                                        <div class="col-md-6">
-                                            <div class="product-price new-price"> 
-                                                <span>Rental</span>  
-                                                <span style="color:#000;font-size:21px;" >Dates</span>
-                                                <span  style="color:#000;font-size:18px;" ><?php echo $package['dates']; ?></span> 
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="product-price new-price"> 
-                                                <span>Mileage Limit</span>  
-                                                <span style="color:#000;font-size:21px;" >KM</span>
-                                                <span  style="color:#000;font-size:18px;" ><?php echo $package['km']; ?></span> 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="display: block;">
-                                        <div class="col-md-6">
-                                            <div class="product-price new-price">
-                                                <span>Price</span>  
-                                                <span style="color:#000;font-size:21px;" >LKR</span>
-                                                <span  style="color:#000;font-size:18px; text-transform: none;" >Rs: <?php echo number_format($package['charge'], 2); ?></span> 
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="product-price new-price">
-                                                <span>Per Additional Day</span>  
-                                                <span style="color:#000;font-size:21px;" >LKR</span>
-                                                <span  style="color:#000;font-size:18px; text-transform: none;" >Rs: <?php echo number_format($package['per_additional_day'], 2); ?></span> 
-                                            </div> 
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="model-info  pull-left" style="  padding-bottom:12px;">
-                                    <div><a href="<?php echo actual_link(); ?>vehicle-type/<?php echo str_replace(" ", "-", strtolower($VEHICLE_TYPE->name)); ?>/package/<?php echo str_replace(" ", "-", strtolower($vehicle['name'])); ?>/booking/<?php echo str_replace(" ", "-", strtolower($package["title"])); ?>/" class="btn-2">Book Now</a></div>
-                                </div>
-                            </div> 
-                        </div> 
-                    </div>
+            <table class="table table-striped table-responsive table-bordered" id="myTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Duration</th>
+                        <th>Mileage Limit</th>
+                        <th>Price</th>
+                        <th>Per Additional Day</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
                     <?php
-                }
-                ?>
-            </div>
+                    $PACKAGE = Package::getPackagesByVehicle($vehicle['id']);
+                    foreach ($PACKAGE as $key => $package) {
+                        ?>
+                        <tr>
+                            <td><?php echo $package["title"]; ?></td>
+                            <td><?php echo $package['dates']; ?> Dates</td>
+                            <td><?php echo $package['km']; ?> km</td>
+                            <td><?php echo number_format($package['charge'], 2); ?> LKR</td>
+                            <td> <?php echo number_format($package['per_additional_day'], 2); ?> LKR</td>
+                            <td><a href="<?php echo actual_link(); ?>vehicle-type/<?php echo str_replace(" ", "-", strtolower($VEHICLE_TYPE->name)); ?>/package/<?php echo str_replace(" ", "-", strtolower($vehicle['name'])); ?>/booking/<?php echo str_replace(" ", "-", strtolower($package["title"])); ?>/" class="btn-2">Book Now</a></td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Duration</th>
+                        <th>Mileage Limit</th>
+                        <th>Price</th>
+                        <th>Per Additional Day</th>
+                        <th></th>
+                    </tr>
+                </tfoot> 
+            </table>
+
         </div>
 
         <!-- - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
@@ -131,5 +111,6 @@ $VEHICLE_TYPE = new VehicleType($PRODUCT_TYPE->type);
     <script src="<?php echo actual_link() ?>js/plugins.js"></script>
     <script src="<?php echo actual_link() ?>js/script.js"></script>
     <script src="<?php echo actual_link(); ?>js/booking-wedding-car.js" type="text/javascript"></script>
+
 </body>
 </html>
