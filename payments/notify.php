@@ -8,9 +8,13 @@ $payhere_amount = $_POST['payhere_amount'];
 $payhere_currency = $_POST['payhere_currency'];
 $status_code = $_POST['status_code'];
 $md5sig = $_POST['md5sig'];
+$package_id = $_POST['package_id'];
 
-$merchant_secret = '44a78a415672d2c3767bde90efa97e29'; // Live Merchant Secret (Can be found on your PayHere account's Settings page)
-// $merchant_secret = '121302112130211213021'; // Sandbox Merchant Secret
+// Live Merchant Secret (Can be found on your PayHere account's Settings page)
+$merchant_secret = '44a78a415672d2c3767bde90efa97e29';
+
+//Test
+ //$merchant_secret = '121302112130211213021'; // Sandbox Merchant Secret
 
 $local_md5sig = strtoupper(md5($merchant_id . $order_id . $payhere_amount . $payhere_currency . $status_code . strtoupper(md5($merchant_secret))));
  

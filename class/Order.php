@@ -409,6 +409,12 @@ class Order {
                                             <h4>&nbsp;&nbsp;&nbsp;Your Details</h4>
                                         </font>
                                         <ul>
+                                           <li>
+                                            
+                                                <font style="font-family: Verdana, Geneva, sans-serif; color:#68696a; font-size:14px; " >
+                                                    Vehicle  : ' .             $PRODUCT_TYPE->name        . '
+                                                </font>
+                                            </li>
                                             <li>
                                                 <font style="font-family: Verdana, Geneva, sans-serif; color:#68696a; font-size:14px; " >
                                                     First Name : ' . $this->firstName . '
@@ -456,6 +462,7 @@ class Order {
                                                     Ordered At : ' . $this->orderedAt . '
                                                 </font>
                                             </li>
+                                         
                                             <li>
                                                 <font style="font-family: Verdana, Geneva, sans-serif; color:#68696a; font-size:14px; " >
                                                     Payment Status : ' . $status . '
@@ -630,7 +637,7 @@ class Order {
         $comEmail = "keer20180511@gmail.com";
         $comEmail_1 = "keerthi@kandycars.lk";
         $comEmail_2 = "booking@kandycars.lk";
-        
+
         $site_link = "http://" . $_SERVER['HTTP_HOST'];
 
 
@@ -786,6 +793,14 @@ class Order {
                                                                                         </td>
                                                                                     </tr>
                                                                                     <tr>
+                                                                                        <td> 
+                                            
+                                                <font style="font-family: Verdana, Geneva, sans-serif; color:#68696a; font-size:14px; " >
+                                                    Vehicle  : ' .
+                                                                 $PRODUCT_TYPE->name   . '
+                                                </font>
+                                             
+                                                                                        </td>
                                                                                         <td>
 
                                                                                             ' . $this->price_summery . '

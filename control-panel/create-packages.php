@@ -166,7 +166,7 @@ $PRODUCT_TYPE = new ProductType($id);
                                                         <p class="maxlinetitle"><?php echo $package['title']; ?></p>
                                                         <div class="d">
                                                             <a href="edit-package.php?id=<?php echo $package['id']; ?>"> <button class="glyphicon glyphicon-pencil edit-btn"></button></a> | 
-                                                            <a href="arrange-package.php">  <button class="glyphicon glyphicon-random arrange-btn"></button></a> | 
+                                                            <a href="arrange-package.php?id=<?php echo $PRODUCT_TYPE->id; ?>">  <button class="glyphicon glyphicon-random arrange-btn"></button></a> | 
                                                             <a href="#"  class="delete-package" data-id="<?php echo $package['id']; ?>"> <button class="glyphicon glyphicon-trash delete-btn"></button></a>
                                                         </div>
                                                     </div>

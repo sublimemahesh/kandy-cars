@@ -121,7 +121,7 @@ $('#wrapper').on('change', '#packages', function () {
         $('#package-distance').val("0");
     } else {
         $.ajax({
-            url: "../../distance/ajax/distance-rent-car.php",
+            url: "../../../../../../distance/ajax/distance-rent-car.php",
             type: "POST",
             data: {
                 package_id: package_id,
@@ -351,7 +351,7 @@ function calPrice() {
     var extra_price = $('#extra_price').val();
 
     $.ajax({
-        url: "../../distance/ajax/wedding-calculations.php",
+        url: "../../../../../../distance/ajax/wedding-calculations.php",
         type: "POST",
         data: {
             office: office,
@@ -387,7 +387,7 @@ function calDropHome() {
     var package_distance = $('#package-distance').val();
 
     $.ajax({
-        url: "../../distance/ajax/wedding-calculations.php",
+        url: "../../../../../../distance/ajax/wedding-calculations.php",
         type: "POST",
         data: {
             pickup: pickup,
@@ -457,7 +457,7 @@ function calDropHome() {
                             if (isConfirm) {
                                 var dif = (total_distance_calculate * 2) - package_distance;
                                 $.ajax({
-                                    url: "../../distance/ajax/wedding-calculations.php",
+                                    url: "../../../../../../distance/ajax/wedding-calculations.php",
                                     type: "POST",
                                     data: {
                                         extra_km: dif,
@@ -530,7 +530,7 @@ function calDistance() {
             $('#destination').val("");
         } else {
             $.ajax({
-                url: "../../distance/ajax/distance-wedding.php",
+                url: "../../../../../../distance/ajax/distance-wedding.php",
                 type: "POST",
                 data: {
                     pickup: office,
@@ -566,7 +566,7 @@ function calDistance() {
             $('#destination').val("");
         } else {
             $.ajax({
-                url: "../../distance/ajax/distance-wedding.php",
+                url: "../../../../../../distance/ajax/distance-wedding.php",
                 type: "POST",
                 data: {
                     pickup: origin,
@@ -640,7 +640,7 @@ $("#add-destination").click(function () {
 
         $.ajax({
 
-            url: "../../distance/ajax/wedding-distance-between.php",
+            url: "../../../../../../distance/ajax/wedding-distance-between.php",
             type: "POST",
             data: {
                 pickup: firstpickup,
@@ -687,7 +687,7 @@ $("#add-destination").click(function () {
                                     if (isConfirm) {
                                         var dif = (2 * total_distance_cal) - package_distance;
                                         $.ajax({
-                                            url: "../../distance/ajax/wedding-calculations.php",
+                                            url: "../../../../../../distance/ajax/wedding-calculations.php",
                                             type: "POST",
                                             data: {
                                                 extra_km: dif,
@@ -938,7 +938,7 @@ $("#pay").click(function (event) {
 
         $.ajax({
             type: 'POST',
-            url: '../../distance/ajax/pay-wedding.php',
+            url: '../../../../../../distance/ajax/pay-wedding.php',
             dataType: "json",
             data: {
                 fname: fname,

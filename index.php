@@ -97,6 +97,39 @@ if ($params[2] == '' || $params[2] == '') {
     exit();
 } elseif ($params[2] == 'vehicle-type') {
 
+    if ($params[3] == 'wedding-cars-and-vip-tours') {
+        if ($params[6] == 'booking') {
+
+            $title = str_replace("-", " ", strtolower($params[7]));
+            $vehicle_name = str_replace("-", " ", strtolower($params[5]));
+
+            $PACKAGE = new Package(NULL);
+            if ($title == '') {
+                $title = 'xxxxx';
+            }
+
+
+            $result = $PACKAGE->checkExistPackage($title);
+
+            if ($result == true) {
+                $PACKAGE = new Package(NULL);
+                $VEHICLES = new ProductType(Null);
+
+
+                foreach ($VEHICLES->getVehicleName($vehicle_name) as $vehicles) {
+                    $vehicles_id = $vehicles['id'];
+                }
+
+                $packages = $PACKAGE->getPackageByName($title, $vehicles_id);
+                foreach ($packages as $package) {
+                    include './booking-form-wedding-car.php';
+                    exit();
+                }
+            }
+        }
+    }
+    
+    
     if ($params[6] == 'booking') {
 
         $title = str_replace("-", " ", strtolower($params[7]));
@@ -118,18 +151,50 @@ if ($params[2] == '' || $params[2] == '') {
             foreach ($VEHICLES->getVehicleName($vehicle_name) as $vehicles) {
                 $vehicles_id = $vehicles['id'];
             }
-           
-            $packages = $PACKAGE->getPackageByName($title,$vehicles_id);
+
+            $packages = $PACKAGE->getPackageByName($title, $vehicles_id);
             foreach ($packages as $package) {
                 include './booking-form-rent-car.php';
                 exit();
             }
         } else {
 
-            include './booking-form-rent-car.php';
-            exit();
+            $title = str_replace("-", " ", strtolower($params[7]));
+            $vehicle_name = str_replace("-", " ", strtolower($params[5]));
+
+            $PACKAGE = new Package(NULL);
+            if ($title == '') {
+                $title = 'xxxxx';
+            }
+
+
+            $result = $PACKAGE->checkExistPackage($title);
+
+            if ($result == true) {
+                $PACKAGE = new Package(NULL);
+                $VEHICLES = new ProductType(Null);
+
+
+                foreach ($VEHICLES->getVehicleName($vehicle_name) as $vehicles) {
+                    $vehicles_id = $vehicles['id'];
+                }
+
+                $packages = $PACKAGE->getPackageByName($title, $vehicles_id);
+                foreach ($packages as $package) {
+                    include './booking-form-rent-car.php';
+                    exit();
+                }
+            } else {
+
+                include './booking-form-rent-car.php';
+                exit();
+            }
         }
     }
+
+
+
+
     if ($params[4] == 'package') {
 
         $title = str_replace("-", " ", strtolower($params[5]));
@@ -186,8 +251,6 @@ if ($params[2] == '' || $params[2] == '') {
         include './vehicle-type.php';
         exit();
     }
-} elseif ($params[2] == 'booking-rent-car') {
-    
 } elseif ($params[2] == 'booking-wedding') {
 
     $title = str_replace("-", " ", strtolower($params[3]));
@@ -231,4 +294,5 @@ if ($params[2] == '' || $params[2] == '') {
 } elseif ($params[2] == 'not-found') {
     include './not-found.php';
     exit();
-}
+}    
+ 
