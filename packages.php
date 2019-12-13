@@ -32,7 +32,22 @@ $VEHICLE_TYPE = new VehicleType($PRODUCT_TYPE->type);
     <link rel="stylesheet" href="<?php echo actual_link() ?>css/style.css">
     <link rel="stylesheet" href="<?php echo actual_link() ?>css/responsive.css">
     <link href="<?php echo actual_link() ?>css/custom.css" rel="stylesheet" type="text/css"/> 
-    <link href="<?php echo actual_link() ?>css/set-1.css" rel="stylesheet" type="text/css"/>   
+    <link href="<?php echo actual_link() ?>css/set-1.css" rel="stylesheet" type="text/css"/> 
+    <style>
+
+
+        @media screen and (max-width: 767px) {
+            table caption {
+                border-bottom: 1px solid #ddd;
+            }
+        }
+
+        .p {
+            text-align: center;
+            padding-top: 140px;
+            font-size: 14px;
+        }
+    </style>
 </head>
 
 <body>
@@ -49,48 +64,52 @@ $VEHICLE_TYPE = new VehicleType($PRODUCT_TYPE->type);
         <?php include './header.php'; ?>
 
         <div class="page-section container " >
+            <div class="table-responsive"> 
+                    <table class="table     table-bordered" id="myTable">
+                        <thead>
+                            <tr>
+                                <th   >Name      </th>
+                                <th >Duration         </th>
+                                <th >Mileage Limit</th>
+                                <th >Price</th>
+                                <th >Per Additional Day</th>
+                                <th  ></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $PACKAGE = Package::getPackagesByVehicle($vehicle['id']);
+                            foreach ($PACKAGE as $key => $package) {
+                                ?>
+                                <tr>
+                                    <td  ><?php echo $package["title"]; ?></td>
+                                    <td  ><?php echo $package['dates']; ?> Dates</td>
+                                    <td  ><?php echo $package['km']; ?> km</td>
+                                    <td  ><?php echo number_format($package['charge'], 2); ?> LKR</td>
+                                    <td  > <?php echo number_format($package['per_additional_day'], 2); ?> LKR</td>
+                                    <td><a href="<?php echo actual_link(); ?>vehicle-type/<?php echo str_replace(" ", "-", strtolower($VEHICLE_TYPE->name)); ?>/package/<?php echo str_replace(" ", "-", strtolower($vehicle['name'])); ?>/booking/<?php echo str_replace(" ", "-", strtolower($package["title"])); ?>/" class="btn-2">Book Now</a></td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Name</th>
+                                <th>Duration</th>
+                                <th>Mileage Limit</th>
+                                <th>Price</th>
+                                <th>Per Additional Day</th>
+                                <th></th>
+                            </tr>
+                        </tfoot> 
+                    </table>
 
-            <table class="table table-striped table-responsive table-bordered" id="myTable">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Duration</th>
-                        <th>Mileage Limit</th>
-                        <th>Price</th>
-                        <th>Per Additional Day</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $PACKAGE = Package::getPackagesByVehicle($vehicle['id']);
-                    foreach ($PACKAGE as $key => $package) {
-                        ?>
-                        <tr>
-                            <td><?php echo $package["title"]; ?></td>
-                            <td><?php echo $package['dates']; ?> Dates</td>
-                            <td><?php echo $package['km']; ?> km</td>
-                            <td><?php echo number_format($package['charge'], 2); ?> LKR</td>
-                            <td> <?php echo number_format($package['per_additional_day'], 2); ?> LKR</td>
-                            <td><a href="<?php echo actual_link(); ?>vehicle-type/<?php echo str_replace(" ", "-", strtolower($VEHICLE_TYPE->name)); ?>/package/<?php echo str_replace(" ", "-", strtolower($vehicle['name'])); ?>/booking/<?php echo str_replace(" ", "-", strtolower($package["title"])); ?>/" class="btn-2">Book Now</a></td>
-                        </tr>
-                        <?php
-                    }
-                    ?>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Name</th>
-                        <th>Duration</th>
-                        <th>Mileage Limit</th>
-                        <th>Price</th>
-                        <th>Per Additional Day</th>
-                        <th></th>
-                    </tr>
-                </tfoot> 
-            </table>
-
+                
+            </div>
         </div>
+
+
 
         <!-- - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->
         <?php include './footer.php'; ?>
@@ -105,9 +124,11 @@ $VEHICLE_TYPE = new VehicleType($PRODUCT_TYPE->type);
     ============================================ -->
     <script src="<?php echo actual_link() ?>js/libs/jquery.modernizr.js"></script>
     <script src="<?php echo actual_link() ?>js/libs/jquery-2.2.4.min.js"></script>
+    
+     <script src="<?php echo actual_link() ?>js/bootstrap.min.js" type="text/javascript"></script>
     <script src="<?php echo actual_link() ?>js/libs/jquery-ui.min.js"></script>
     <script src="<?php echo actual_link() ?>plugins/owl.carousel.min.js"></script>
-
+   
     <script src="<?php echo actual_link() ?>js/plugins.js"></script>
     <script src="<?php echo actual_link() ?>js/script.js"></script>
     <script src="<?php echo actual_link(); ?>js/booking-wedding-car.js" type="text/javascript"></script>
