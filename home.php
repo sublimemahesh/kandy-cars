@@ -145,7 +145,9 @@ $WEILCOME_Description = new Page(6);
 
                 <div class="row">
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-4" style="height: 711px;
+overflow-y: auto;
+">
 
                         <h2>Welcome to Kandy Cars</h2>
 
