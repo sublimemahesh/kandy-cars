@@ -6,7 +6,7 @@ $PACKAGE = new Package($package['id']);
 
 $VEHICLE = new ProductType($PACKAGE->vehicle);
 $VEHICLE_TYPE = new VehicleType($VEHICLE->type);
- 
+
 $ORDER = new Order(NULL);
 $LASTID = $ORDER->getLastID();
 $order_id = $LASTID + 1;
@@ -102,7 +102,7 @@ $order_id = $LASTID + 1;
                                                     <option value="0"> -- Select the other packages -- </option>  
                                                     <?php
                                                     $PACKAGES = new Package(NULL);
-                                                   
+
                                                     foreach ($PACKAGES->getPackagesByVehicle($PACKAGE->vehicle) as $key => $package) {
                                                         if ($package['id'] == $PACKAGE->id) {
                                                             ?>
@@ -266,8 +266,8 @@ $order_id = $LASTID + 1;
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h4> <b>Customer Details</b></h4></div>
                     <div class="panel-body" > 
-<!--                         <form name="order_from" id="payments" class="order_from" action="https://sandbox.payhere.lk/pay/checkout" method="post" autocomplete="off">  -->
-                        <form name="contact-from" id="payments" class="booking-form" action="https://www.payhere.lk/pay/checkout" method="post">
+<!--                           <form name="order_from" id="payments" class="order_from" action="https://sandbox.payhere.lk/pay/checkout" method="post" autocomplete="off">   -->
+                        <form name="contact-from" id="payments" class="booking-form" action="https://www.payhere.lk/pay/checkout" method="post"> 
                             <div class="row">
                                 <div class="col-sm-6 col-xs-12 col-md-6">
                                     <label>First Name</label>
@@ -333,15 +333,19 @@ $order_id = $LASTID + 1;
 
 
                             <!--sandbox merchant id-->
-<!--    <input type="hidden" name="merchant_id" value="1213021"> -->
 
-                         
+                            
+                            
+                            
+                            
+
+
                             <!--live merchant id-->
                             <input type="hidden" name="merchant_id" value="213461"> 
-                            <input type="hidden" name="return_url" value="https://kandycars.lk/payment-success.php?id=<?php echo $id ?>">
+                            <input type="hidden" name="return_url" value="https://kandycars.lk/payment-success.php?id=<?php echo $package['id'] ?>">
                             <input type="hidden" name="cancel_url" value="https://kandycars.lk/order-form.php?cancelled">
                             <input type="hidden" name="notify_url" value="https://kandycars.lk/payments/notify.php">
-                            <input type="hidden" name="package_id" id="package_id" value="<?php echo $id ?>" />
+                            <input type="hidden" name="package_id" id="package_id" value="<?php echo $package['id'] ?>" />
                             <input name="order_id" id="order_id" type="hidden" value="<?php echo $order_id; ?>" />
                             <input name="amount" id="amount" type="hidden"    class="payment"/>
                             <input name="items" id="items" type="hidden"   value="1"/>
@@ -392,9 +396,7 @@ $order_id = $LASTID + 1;
                                 <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%); color: #666666;font-size: 13px;font-weight: bold; margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 35%; padding: 10px 0px 10px 5px;" width="40%" align="left">Pick up office:</th>
                                 <td style="color: #666666;font-size: 13px;font-weight: 300;margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 60%;padding: 10px 0px 10px 10px;" width="60%" align="left"><p class="price-summer-p"><span id="select_office_append"></span></p> </td>
                             </tr>
-                            <span>
 
-                            </span>
                             <tr id="return_office" style="display: none">
                                 <th style="border-right: 1px solid hsl(199.2, 9.8%, 50%); color: #666666;font-size: 13px;font-weight: bold; margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 35%; padding: 10px 0px 10px 5px;" width="40%" align="left">Return Office:</th>
                                 <td style="color: #666666;font-size: 13px;font-weight: 300;margin: 0px;font-family: Arial,Helvetica,sans-serif;line-height: 15px;width: 60%;padding: 10px 0px 10px 10px;" width="60%" align="left"><p class="price-summer-p"><span id="select_office_drop_append"></span></p> </td>

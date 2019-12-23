@@ -63,19 +63,19 @@
 
                         <div class="contact-li">
                             <h3>Contact</h3>
-                            <li class="text-center">   <span class="contact-item"><i class="icon-phone"></i> <span class="contatct-span-style" > <a href="tel:(+94) 71 351 1350"  class="white">  (+94) 71 351 1350</a></span></span></li>
+                            <li class="text-center">   <span class="contact-item"><i class="icon-phone"></i> <span class="contatct-span-style" > <a href="tel: (+94) 70 451 1450 "  class="white">   (+94) 70 451 1450 </a></span></span></li>
                         </div>
                         <div class="contact-li">
                             <h3>Email</h3>
-                            <li class="text-center">  <span class="contact-item"><i class="icon-envelope-open"></i><span class="contatct-span-style"> <a href="mailto:keerthi@kandycars.lk" class="white"> keerthi@kandycars.lk</a></span></span></li>
+                            <li class="text-center">  <span class="contact-item"><i class="icon-envelope-open"></i><span class="contatct-span-style"> <a href="mailto:keerthi@kandycars.lk" class="white"> keer20180511@gmail.com</a></span></span></li>
 
                             <li class="text-center"> <span class="contact-item"><i class="icon-envelope-open"></i> <span class="contatct-span-style"> <a href="mailto:booking@kandycars.lk" class="white">  booking@kandycars.lk</a></span></span></li>
                         </div>
-                        <div class="contact-li">
+<!--                        <div class="contact-li">
                             <h3>Join With Us</h3>
                             <li class="text-center">   <span class="contact-item"><i class="icon-hand-pointer-o"></i> <a href="https://www.srilankantravelguide.com/" target="new" class="white"> <span class="contatct-span-style"> www.srilankantravelguide.com</span></a></span></li>
 
-                        </div>
+                        </div>-->
 
                     </div>
                 </div>
