@@ -29,11 +29,11 @@
 
                             <li><a href="https://www.instagram.com/kandycars.lk/ " target="_blank"><i class="icon-instagram-5"></i></a></li>
                         </ul>
-                        <a href="https://www.srilankantravelguide.com/" target="new" >  <img src="<?php echo actual_link() ?>images/banner/logo-intro2.png" style="width:50px;height:44px; ">
-                        </a>
-                        <a href="https://www.srilankantravelguide.com/" target="new" class="btn btn-style-3 submit">
+<!--                        <a href="https://www.srilankantravelguide.com/" target="new" >  <img src="<?php echo actual_link() ?>images/banner/logo-intro2.png" style="width:50px;height:44px; ">
+                        </a>-->
+<!--                        <a href="https://www.srilankantravelguide.com/" target="new" class="btn btn-style-3 submit">
                             JOIN WITH US
-                        </a>
+                        </a>-->
                     </div>
                 </div>
 

@@ -423,6 +423,7 @@ if (isset($_GET["order_id"])) {
                             <input name="order_id" id="order_id" type="hidden" value="<?php echo $order_id; ?>" />
                             <input name="amount" id="amount" type="hidden"    class="payment"/>
                             <input name="items" id="items" type="hidden"   value="1"/>
+                            <input name="status_code" id="status_code" type="hidden"   value="2"/>
                             <input type="hidden" name="currency" value="LKR">
                             <input type="hidden" id="summery-append" name="summery-append" value="">
 

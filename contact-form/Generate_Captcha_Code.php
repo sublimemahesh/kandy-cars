@@ -19,14 +19,14 @@ session_start();
 //Settings: You can customize the captcha here
 $image_width = 120;
 $image_height = 40;
-$characters_on_image = 6;
+$characters_on_image = 3;
 $font = './monofont.ttf';
 
 //The characters that can be used in the CAPTCHA code.
 //avoid confusing characters (l 1 and i for example)
 $possible_letters = '23456789bcdfghjkmnpqrstvwxyz';
 $random_dots = 0;
-$random_lines = 20;
+$random_lines = 12;
 $captcha_text_color="0x142864";
 $captcha_noice_color = "0x142864";
 
