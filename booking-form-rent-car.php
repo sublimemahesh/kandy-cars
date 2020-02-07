@@ -333,7 +333,7 @@ $order_id = $LASTID + 1;
 
 
                             <!--sandbox merchant id-->
-<!--                            <input type="hidden" name="merchant_id" value="1213021"> -->
+<!--                             <input type="hidden" name="merchant_id" value="1213021"> -->
 
 
                             <!--live merchant id-->

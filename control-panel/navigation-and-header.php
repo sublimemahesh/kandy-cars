@@ -370,6 +370,12 @@
                         <span>Tax</span>
                     </a> 
                 </li>
+                <li class="qqq">
+                    <a href="manage-orders.php" class="">
+                        <i class="material-icons">chevron_right</i>
+                        <span>Bookings</span>
+                    </a> 
+                </li>
                  
                 <li class="qqq">
                     <a href="javascript:void(0);" class="menu-toggle">
