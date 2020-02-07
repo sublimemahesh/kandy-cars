@@ -228,13 +228,12 @@ class Order {
 
 
         $subject = 'KANDY CARS Sri Lanka : Booking Reference Number - ' . $this->id;
-        $from = 'booking@kandycars.lk'; // give from email address
-        $replay = 'booking@kandycars.lk';
+        $from = 'booking@kandycars.lk';
 
-        $headers = "From: " . $from . "\r\n";
-        $headers .= "Reply-To: " . $comEmail . "\r\n";
-        $headers .= "MIME-Version: 1.0\r\n";
-        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+        $headers1 = "From: " . $from . "\r\n";
+        $headers1 .= "Reply-To: " . $comEmail . "\r\n";
+        $headers1 .= "MIME-Version: 1.0\r\n";
+        $headers1 .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
         $html = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -253,7 +252,7 @@ class Order {
                                         <td width="40"></td>
                                         <td width="144">
                                             <a href= "' . $site_link . '" target="_blank"> '
-                . '<img src=""' . $site_link . '/contact-form/img/logo.png" border="0" alt=""/>
+                . ' 
                                         </a>
                                     </td>
                                     <td width="393">
@@ -519,9 +518,7 @@ class Order {
                                                                             <tr>
                                                                                 <td>&nbsp;</td>
                                                                             </tr>
-                                                                            <tr>
-                                                                                <td><img src="' . $site_link . '/PROMO-GREEN2_02/img/PROMO-GREEN2_07.jpg" width="598" height="7" style="display:block" border="0" alt=""/></td>
-                                                                            </tr>
+                                                                           
                                                                             <tr>
                                                                                 <td>&nbsp;</td>
                                                                             </tr>
@@ -583,9 +580,10 @@ class Order {
                                  </body>
                            </html>';
 
+
         $arr = array();
 
-        if (mail($this->email, $subject, $html, $headers)) {
+        if (mail($this->email, $subject, $html, $headers1)) {
 
             $arr['status'] = "Your message has been sent successfully";
         } else {
@@ -918,9 +916,7 @@ class Order {
                                                                                             <tr>
                                                                                                 <td>&nbsp;</td>
                                                                                             </tr>
-                                                                                            <tr>
-                                                                                                <td><img src="' . $site_link . '/PROMO-GREEN2_02/img/PROMO-GREEN2_07.jpg" width="598" height="7" style="display:block" border="0" alt=""/></td>
-                                                                                            </tr>
+                                                                                           
                                                                                             <tr>
                                                                                                 <td>&nbsp;</td>
                                                                                             </tr>

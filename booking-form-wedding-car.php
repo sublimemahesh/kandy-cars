@@ -345,8 +345,8 @@ if (isset($_GET["order_id"])) {
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h4> <b>Customer Details</b></h4></div>
                     <div class="panel-body" >  
-<!--                        <form name="order_from" id="payments" class="order_from" action="https://sandbox.payhere.lk/pay/checkout" method="post" autocomplete="off">-->
-                           <form name="contact-from" id="payments" class="booking-form" action="https://www.payhere.lk/pay/checkout" method="post">
+                        <form name="order_from" id="payments" class="order_from" action="https://sandbox.payhere.lk/pay/checkout" method="post" autocomplete="off">
+<!--                           <form name="contact-from" id="payments" class="booking-form" action="https://www.payhere.lk/pay/checkout" method="post">-->
                             <div class="row">
                                 <div class="col-sm-6 col-xs-12 col-md-6">
                                     <label>First Name</label>
@@ -413,9 +413,9 @@ if (isset($_GET["order_id"])) {
 
                             <!--sandbox merchant id-->
                            
-<!--                           <input type="hidden" name="merchant_id" value="1213021">-->
+                           <input type="hidden" name="merchant_id" value="1213021">
                             <!--live merchant id-->
-                             <input type="hidden" name="merchant_id" value="213461">  
+<!--                             <input type="hidden" name="merchant_id" value="213461">  -->
                             <input type="hidden" name="return_url" value="https://kandycars.lk/payment-success.php?id=<?php echo $id ?>">
                             <input type="hidden" name="cancel_url" value="https://kandycars.lk/order-form.php?cancelled">
                             <input type="hidden" name="notify_url" value="https://kandycars.lk/payments/notify.php">
