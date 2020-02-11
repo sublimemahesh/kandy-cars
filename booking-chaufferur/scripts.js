@@ -1,7 +1,7 @@
 
 //--------------------------------------------------check one by one on blur--------------------------------------------------
 jQuery(document).ready(function () {
-
+    
     jQuery("#txtFullName").blur(function () {
         validateEmpty("txtFullName", "spanFullName");
     });
@@ -10,12 +10,10 @@ jQuery(document).ready(function () {
         ValidateEmail("txtEmail", "spanEmail");
     });
 
-    jQuery("#txtNationality").blur(function () {
-        validateEmpty("txtNationality", "spanNationality");
-    });
+
     jQuery("#txtMobileNumber").blur(function () {
         validateEmpty("txtMobileNumber", "spanMobileNumber");
-    });
+   });
 
     jQuery("#txtPickUpDate").blur(function () {
         validateEmpty("txtPickUpDate", "spanPickUpDate");
@@ -72,8 +70,7 @@ function validate() {
     if (
             validateEmpty("txtFullName", "spanFullName") &
             ValidateEmail("txtEmail", "spanEmail") &
-            validateEmpty("txtNationality", "spanNationality") &
-            validateEmpty("txtMobileNumber", "spanMobileNumber") &
+           validateEmpty("txtMobileNumber", "spanMobileNumber") &
             validateEmpty("txtPickUpDate", "spanPickUpDate") &
             validateEmpty("txtDropOfDateTime", "spanDropDateTime") &
             validateEmpty("txtNumAdult", "spanNumAdult") &
@@ -163,9 +160,18 @@ function sendForm() {
                 jQuery("#checking").hide();
                 jQuery("#dismessage").html(msg).delay(1000).show(1000);
 
+                jQuery('#txtFullName').val("");
+                jQuery('#txtEmail').val("");
                 jQuery('#captchacode').val("");
                 jQuery('#txtPickUpDate').val("");
-                jQuery('#txtEmail').val("");
+                jQuery('#txtNumAdult').val("");
+                jQuery('#txtNumChild').val("");
+                jQuery('#txtAccommodation').val("");
+                jQuery('#txtVehicleName').val("");
+                jQuery('#txtSeat').val("");
+                jQuery('#txtMessage').val("");
+                jQuery('#txtMobileNumber').val("");
+                
                 jQuery('#txtPickUpTime').val("");
                 jQuery('#txtDropOfDateTime').val("");
             }
