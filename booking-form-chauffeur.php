@@ -96,14 +96,12 @@ include_once(dirname(__FILE__) . '/class/include.php');
                                 <div class="col-sm-6 col-xs-12 col-md-3">
                                     <label>Nationality</label>
                                     <input type="text" name="txtNationality" id="txtNationality"  placeholder="Nationality" class="form-control input-validater">
-                                    <div class="col-md-12">
-                                        <span id="spanNationality" ></span>
-                                    </div>
+                                    
                                 </div>
                                 <div class="col-sm-6 col-xs-12 col-md-3">
                                     <label>Mobile Number</label>
 <!--                                    <input type="text" name="txtMobileNumber" id="txtMobileNumber" class="form-control  " data-select="date"  placeholder="Mobile Number">--> 
-                                    <input id="phone" name="phone" type="text" class="form-control  "  name="txtMobileNumber" id="txtMobileNumber"  >                                    <div class="col-md-12">
+                                    <input    type="text" class="form-control  "  name="txtMobileNumber" id="txtMobileNumber"  >                                    <div class="col-md-12">
                                         <span id="spanMobileNumber" ></span>
                                     </div>
                                 </div>
@@ -337,7 +335,7 @@ include_once(dirname(__FILE__) . '/class/include.php');
     <script src="<?php echo actual_link(); ?>distance/js/chauffeur.js" type="text/javascript"></script>
     <script src="<?php echo actual_link(); ?>js/countrySelect.min.js" type="text/javascript"></script>
     <script>
-        var input = document.querySelector("#phone");
+        var input = document.querySelector("#txtMobileNumber");
         window.intlTelInput(input, {
             initialCountry: 'lk',
             placeholderNumberType: 'MOBILE',
